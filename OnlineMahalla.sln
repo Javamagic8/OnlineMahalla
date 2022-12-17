@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32901.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineMahalla.Web.MVCClient", "OnlineMahalla.Web.MVCClient\OnlineMahalla.Web.MVCClient.csproj", "{7EFCBD00-8CC4-4FB7-812D-5FBD4E4C41D4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{0D5D9A82-C4A0-42AB-B5AC-129F80540E19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineMahalla.Common.Model", "OnlineMahalla.Common.Model\OnlineMahalla.Common.Model.csproj", "{B03C70B6-6467-41A8-8586-1B357129D9CF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7EFCBD00-8CC4-4FB7-812D-5FBD4E4C41D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EFCBD00-8CC4-4FB7-812D-5FBD4E4C41D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EFCBD00-8CC4-4FB7-812D-5FBD4E4C41D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EFCBD00-8CC4-4FB7-812D-5FBD4E4C41D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B03C70B6-6467-41A8-8586-1B357129D9CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B03C70B6-6467-41A8-8586-1B357129D9CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B03C70B6-6467-41A8-8586-1B357129D9CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B03C70B6-6467-41A8-8586-1B357129D9CF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B03C70B6-6467-41A8-8586-1B357129D9CF} = {0D5D9A82-C4A0-42AB-B5AC-129F80540E19}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B26C7E44-A6F4-4DCD-ACDD-75F0FB1C991F}
+	EndGlobalSection
+EndGlobal
