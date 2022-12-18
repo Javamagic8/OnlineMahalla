@@ -6,4 +6,16 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.12" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OnlineMahalla.Common.Model\OnlineMahalla.Common.Model.csproj" />
+    <ProjectReference Include="..\OnlineMahalla.Common.Signer\OnlineMahalla.Common.Signer.csproj" />
+    <ProjectReference Include="..\OnlineMahalla.Common.Utility\OnlineMahalla.Common.Utility.csproj" />
+    <ProjectReference Include="..\OnlineMahalla.Data.Model\OnlineMahalla.Data.Model.csproj" />
+  </ItemGroup>
+
 </Project>
