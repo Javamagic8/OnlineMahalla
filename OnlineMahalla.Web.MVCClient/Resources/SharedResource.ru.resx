@@ -1,0 +1,4791 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccCode" xml:space="preserve">
+    <value>Cчет</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Провести</value>
+  </data>
+  <data name="AcceptedSuccessfully" xml:space="preserve">
+    <value>Успешно проведен</value>
+  </data>
+  <data name="ActualSubAcc" xml:space="preserve">
+    <value>Счет.Факт.Расх.</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="Adress" xml:space="preserve">
+    <value>Адрес</value>
+  </data>
+  <data name="AgeingRate" xml:space="preserve">
+    <value>Износ (%)</value>
+  </data>
+  <data name="AgeingSubAcc" xml:space="preserve">
+    <value>Субсчет&lt;br&gt;(Износа)</value>
+  </data>
+  <data name="AllowedTransaction" xml:space="preserve">
+    <value>Операция</value>
+  </data>
+  <data name="AllowedTransactionNotSelected" xml:space="preserve">
+    <value>Операция не выбран</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Сумма</value>
+  </data>
+  <data name="Andijan" xml:space="preserve">
+    <value>Андижанская область</value>
+  </data>
+  <data name="April" xml:space="preserve">
+    <value>Апрель</value>
+  </data>
+  <data name="ContractStatusConflict" xml:space="preserve">
+    <value>Для того, чтобы заполнить доп. соглашение к договору, его состояние не должно быть: Архивный, Отправлен или Ожидание. После того, как состояние договора будет: Доставлен, а его состояние в казначействе перейдёт на: Утверждён можно будет по нему заполнить доп. соглашение.</value>
+  </data>
+  <data name="August" xml:space="preserve">
+    <value>Август</value>
+  </data>
+  <data name="Back to List" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="Bank" xml:space="preserve">
+    <value>Банк</value>
+  </data>
+  <data name="BankCode" xml:space="preserve">
+    <value>МФО</value>
+  </data>
+  <data name="BankDocument" xml:space="preserve">
+    <value>Информация о движении средств по лицевым счетам</value>
+  </data>
+  <data name="Budget" xml:space="preserve">
+    <value>Смета</value>
+  </data>
+  <data name="BudgetSettlementAccountCode" xml:space="preserve">
+    <value>Л/С поставщика</value>
+  </data>
+  <data name="BudgetSettlementAccountCodeNotCorrect" xml:space="preserve">
+    <value>Л/с получателя не верный</value>
+  </data>
+  <data name="BudgetType" xml:space="preserve">
+    <value>Тип сметы</value>
+  </data>
+  <data name="BudgetTypeNotSelected" xml:space="preserve">
+    <value>Тип сметы не выбран</value>
+  </data>
+  <data name="Buxara" xml:space="preserve">
+    <value>Бухарская область</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Отменить</value>
+  </data>
+  <data name="CancelSuccessfully" xml:space="preserve">
+    <value>Успешно отменен</value>
+  </data>
+  <data name="CashSubAcc" xml:space="preserve">
+    <value>Счет.Касс.Расх.</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Изменение пароля</value>
+  </data>
+  <data name="Check" xml:space="preserve">
+    <value>Проверить</value>
+  </data>
+  <data name="Children" xml:space="preserve">
+    <value>Дети</value>
+  </data>
+  <data name="ChoseDate" xml:space="preserve">
+    <value>Выберите дату</value>
+  </data>
+  <data name="Clone" xml:space="preserve">
+    <value>Клонировать</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="CloseDate" xml:space="preserve">
+    <value>Дата закрытия</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Код</value>
+  </data>
+  <data name="Code1" xml:space="preserve">
+    <value>Категория</value>
+  </data>
+  <data name="Code2" xml:space="preserve">
+    <value>Элемент</value>
+  </data>
+  <data name="Code3" xml:space="preserve">
+    <value>Статья</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Комментарий</value>
+  </data>
+  <data name="ConEndDate" xml:space="preserve">
+    <value>по</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Подтвердить</value>
+  </data>
+  <data name="ConstantValue" xml:space="preserve">
+    <value>Константы</value>
+  </data>
+  <data name="ConStartDate" xml:space="preserve">
+    <value>Договор с:</value>
+  </data>
+  <data name="ContactInfo" xml:space="preserve">
+    <value>Телефонный номер</value>
+  </data>
+  <data name="Contacts" xml:space="preserve">
+    <value>Контактные телефоны</value>
+  </data>
+  <data name="Contract" xml:space="preserve">
+    <value>Договора</value>
+  </data>
+  <data name="ContractCause" xml:space="preserve">
+    <value>Основание для обязательства</value>
+  </data>
+  <data name="ContractCauseNotSelected" xml:space="preserve">
+    <value>Основание для обязательства не выбран</value>
+  </data>
+  <data name="ContractCauseType" xml:space="preserve">
+    <value>Тип для обязательства</value>
+  </data>
+  <data name="ContractCauseTypeNotSelected" xml:space="preserve">
+    <value>Тип для обязательства не выбран</value>
+  </data>
+  <data name="ContractDate" xml:space="preserve">
+    <value>Дог. Дата</value>
+  </data>
+  <data name="ContractItemOfExpense" xml:space="preserve">
+    <value>График платежей</value>
+  </data>
+  <data name="ContractNotSelected" xml:space="preserve">
+    <value>Договор не выбран</value>
+  </data>
+  <data name="ContractNumber" xml:space="preserve">
+    <value>Дог. №</value>
+  </data>
+  <data name="Contractor" xml:space="preserve">
+    <value>Контрагент</value>
+  </data>
+  <data name="ContractorAccount" xml:space="preserve">
+    <value>Счет получателя</value>
+  </data>
+  <data name="ContractorAccountNotSelected" xml:space="preserve">
+    <value>Р/С контрагента не выбран</value>
+  </data>
+  <data name="ContractorINN" xml:space="preserve">
+    <value>ИНН</value>
+  </data>
+  <data name="ContractorName" xml:space="preserve">
+    <value>Получатель</value>
+  </data>
+  <data name="ContractorPayee" xml:space="preserve">
+    <value>Получатель</value>
+  </data>
+  <data name="ContractorPayeeNameNotCorrect" xml:space="preserve">
+    <value>Имя получателя не указан</value>
+  </data>
+  <data name="ContractorPayeeNotSelected" xml:space="preserve">
+    <value>Получатель не выбран</value>
+  </data>
+  <data name="ContractorSett" xml:space="preserve">
+    <value>Расчётный счет</value>
+  </data>
+  <data name="ContractorsSettlementAccount" xml:space="preserve">
+    <value>Л/С получателя</value>
+  </data>
+  <data name="ContractorsSettlementAccountNotSelected" xml:space="preserve">
+    <value>Счет получателя не заполнены</value>
+  </data>
+  <data name="ContractRegistration" xml:space="preserve">
+    <value>Книга регистрации договоров</value>
+  </data>
+  <data name="ContractSpecification" xml:space="preserve">
+    <value>Спецификация договора</value>
+  </data>
+  <data name="ContractType" xml:space="preserve">
+    <value>Тип информации</value>
+  </data>
+  <data name="ContractTypeInfo" xml:space="preserve">
+    <value>Тип документа</value>
+  </data>
+  <data name="ContractTypeInfoNotSelected" xml:space="preserve">
+    <value>Тип информации не выбран</value>
+  </data>
+  <data name="ContractTypeNotSelected" xml:space="preserve">
+    <value>Тип документа не выбран</value>
+  </data>
+  <data name="ConType" xml:space="preserve">
+    <value>Доп.согл.</value>
+  </data>
+  <data name="Course" xml:space="preserve">
+    <value>Курс</value>
+  </data>
+  <data name="Cr" xml:space="preserve">
+    <value>К-Т</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Создать</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Валюты</value>
+  </data>
+  <data name="CurrencyCode" xml:space="preserve">
+    <value>Код валюты</value>
+  </data>
+  <data name="CurrencyCourse" xml:space="preserve">
+    <value>Курс валюты</value>
+  </data>
+  <data name="CurrencyName" xml:space="preserve">
+    <value>Название валюты</value>
+  </data>
+  <data name="CurrencyNotCorrect" xml:space="preserve">
+    <value>Тип валюты не выбран</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="DateEnd" xml:space="preserve">
+    <value>по</value>
+  </data>
+  <data name="DateNotCorrect" xml:space="preserve">
+    <value>Дата не указан</value>
+  </data>
+  <data name="DateOfAcception" xml:space="preserve">
+    <value>Дата проведения</value>
+  </data>
+  <data name="DateOfAcceptionNotSelected" xml:space="preserve">
+    <value>Дата проведение не выбран!</value>
+  </data>
+  <data name="DateOfCentr" xml:space="preserve">
+    <value>Дата перехода в центр. бух.</value>
+  </data>
+  <data name="DateOfContract" xml:space="preserve">
+    <value>Дата контракта</value>
+  </data>
+  <data name="DateOfCreated" xml:space="preserve">
+    <value>Дата создания</value>
+  </data>
+  <data name="DateOfEnd" xml:space="preserve">
+    <value>Дата окончание</value>
+  </data>
+  <data name="DateOfStart" xml:space="preserve">
+    <value>Дата начало договора</value>
+  </data>
+  <data name="DateOfStartNotCorrect" xml:space="preserve">
+    <value>Дата начало не указан</value>
+  </data>
+  <data name="DateStart" xml:space="preserve">
+    <value>с</value>
+  </data>
+  <data name="Db" xml:space="preserve">
+    <value>Д-Т</value>
+  </data>
+  <data name="December" xml:space="preserve">
+    <value>Декабрь</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="DeletedSuccessfully" xml:space="preserve">
+    <value>Успешно удален</value>
+  </data>
+  <data name="DeliveryDate" xml:space="preserve">
+    <value>Дата Пост.</value>
+  </data>
+  <data name="Department" xml:space="preserve">
+    <value>Отдел</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="DetailedCheck" xml:space="preserve">
+    <value>Проверка счет-фактуры</value>
+  </data>
+  <data name="DisplayName" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="Document" xml:space="preserve">
+    <value>Документ</value>
+  </data>
+  <data name="Documents" xml:space="preserve">
+    <value>Документы</value>
+  </data>
+  <data name="DocumentType" xml:space="preserve">
+    <value>Тип документа</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="Employee" xml:space="preserve">
+    <value>Сотрудники</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>по</value>
+  </data>
+  <data name="ExciseRate" xml:space="preserve">
+    <value>ставка Акцизного налога&lt;br&gt;%</value>
+  </data>
+  <data name="ExciseSum" xml:space="preserve">
+    <value>сумма Акцизного налога</value>
+  </data>
+  <data name="ExpenseCode" xml:space="preserve">
+    <value>Статья </value>
+  </data>
+  <data name="February" xml:space="preserve">
+    <value>Февраль</value>
+  </data>
+  <data name="Fergana" xml:space="preserve">
+    <value>Ферганская область</value>
+  </data>
+  <data name="Fill" xml:space="preserve">
+    <value>Заполнить</value>
+  </data>
+  <data name="FinanceYear" xml:space="preserve">
+    <value>Финансовый год</value>
+  </data>
+  <data name="FinanceYearNotCorrect" xml:space="preserve">
+    <value>Финансовый год не указан</value>
+  </data>
+  <data name="FIOECode1" xml:space="preserve">
+    <value>Главный раздел</value>
+  </data>
+  <data name="FIOECode2" xml:space="preserve">
+    <value>Раздел</value>
+  </data>
+  <data name="FIOECode3" xml:space="preserve">
+    <value>Малый раздел</value>
+  </data>
+  <data name="FirstSign" xml:space="preserve">
+    <value>Первая подпись</value>
+  </data>
+  <data name="FirstSignNotSelected" xml:space="preserve">
+    <value>Первая подпись не выбран</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>Краткое наименование</value>
+  </data>
+  <data name="FunctionalItemOfExpense" xml:space="preserve">
+    <value>Функциональная классификация расходов</value>
+  </data>
+  <data name="GlobalHelpers" xml:space="preserve">
+    <value>Глобальный справочник</value>
+  </data>
+  <data name="Helpers" xml:space="preserve">
+    <value>Справочники</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Главная</value>
+  </data>
+  <data name="ImplementationDate" xml:space="preserve">
+    <value>Дата Эксп.</value>
+  </data>
+  <data name="IncomeSettlementAccount" xml:space="preserve">
+    <value>Счет дохода</value>
+  </data>
+  <data name="IncomeSettlementAccountNotCorrect" xml:space="preserve">
+    <value>Счет дохода  не правильный</value>
+  </data>
+  <data name="IncomeSettlementAccountNotSelected" xml:space="preserve">
+    <value>Счет дохода  не выбран</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Информация</value>
+  </data>
+  <data name="InfoBank" xml:space="preserve">
+    <value>Банк</value>
+  </data>
+  <data name="INN" xml:space="preserve">
+    <value>ИНН</value>
+  </data>
+  <data name="InventoryHolding" xml:space="preserve">
+    <value>Товарно-материальные запасы (ТМЗ)</value>
+  </data>
+  <data name="InventoryHoldingType" xml:space="preserve">
+    <value>Тип товарно-материального запаса</value>
+  </data>
+  <data name="InventoryNumber" xml:space="preserve">
+    <value>Инвентарный номер</value>
+  </data>
+  <data name="Invoice" xml:space="preserve">
+    <value>Счет-фактура</value>
+  </data>
+  <data name="IsADD" xml:space="preserve">
+    <value>Дополнительное соглашение</value>
+  </data>
+  <data name="IsBudgetOrg" xml:space="preserve">
+    <value>Поставщик бюджетная организация</value>
+  </data>
+  <data name="IsCurrency" xml:space="preserve">
+    <value>Валютный</value>
+  </data>
+  <data name="IsPrePayment" xml:space="preserve">
+    <value>Предоплата</value>
+  </data>
+  <data name="IsStowege" xml:space="preserve">
+    <value>Склад?</value>
+  </data>
+  <data name="ItemOfExpense" xml:space="preserve">
+    <value>Статьи расходов</value>
+  </data>
+  <data name="ItemOfExpenseCode" xml:space="preserve">
+    <value>Статьи расходов</value>
+  </data>
+  <data name="ItemOfExpenseNotSelected" xml:space="preserve">
+    <value>Статья расходов не выбран</value>
+  </data>
+  <data name="ItemOfExpenses" xml:space="preserve">
+    <value>Статья</value>
+  </data>
+  <data name="ItemOfExpensesCode" xml:space="preserve">
+    <value>Статья расходов</value>
+  </data>
+  <data name="ItemOfExpensesNotCorrect" xml:space="preserve">
+    <value>Статья не выбран</value>
+  </data>
+  <data name="January" xml:space="preserve">
+    <value>Январь</value>
+  </data>
+  <data name="Jizzakh" xml:space="preserve">
+    <value>Джизакская область</value>
+  </data>
+  <data name="July" xml:space="preserve">
+    <value>Июль</value>
+  </data>
+  <data name="June" xml:space="preserve">
+    <value>Июнь</value>
+  </data>
+  <data name="Karakalpak" xml:space="preserve">
+    <value>Республика Каракалпакстан</value>
+  </data>
+  <data name="Kashkadarya" xml:space="preserve">
+    <value>Кашкадарьинская область</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Язык</value>
+  </data>
+  <data name="Mail" xml:space="preserve">
+    <value>Электронная почта:</value>
+  </data>
+  <data name="Manage" xml:space="preserve">
+    <value>Администрирование</value>
+  </data>
+  <data name="March" xml:space="preserve">
+    <value>Март</value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>Май</value>
+  </data>
+  <data name="MoneyMeanName" xml:space="preserve">
+    <value>Движ. денежных средств</value>
+  </data>
+  <data name="MoneyMeansMovement" xml:space="preserve">
+    <value>Движение денежных средств</value>
+  </data>
+  <data name="MoneyMeansMovementNotSelected" xml:space="preserve">
+    <value>Движение денежных средств не выбран</value>
+  </data>
+  <data name="Namangan" xml:space="preserve">
+    <value>Наманганская область</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Наименование</value>
+  </data>
+  <data name="NameNotCorrect" xml:space="preserve">
+    <value>Наименование не введен</value>
+  </data>
+  <data name="Names" xml:space="preserve">
+    <value>Наименование</value>
+  </data>
+    <data name="NamesCon" xml:space="preserve">
+    <value>Наименование или ИНН</value>
+  </data>
+  <data name="Navoiy" xml:space="preserve">
+    <value>Навоийская область</value>
+  </data>
+  <data name="NotChoosen" xml:space="preserve">
+    <value>не выбран</value>
+  </data>
+  <data name="November" xml:space="preserve">
+    <value>Ноябрь</value>
+  </data>
+  <data name="Number" xml:space="preserve">
+    <value>Номер</value>
+  </data>
+  <data name="NumberNotCorrect" xml:space="preserve">
+    <value>Номер не заполнен</value>
+  </data>
+  <data name="NumberOfGroup" xml:space="preserve">
+    <value>Группа</value>
+  </data>
+  <data name="Oblast" xml:space="preserve">
+    <value>Область</value>
+  </data>
+  <data name="Occupation" xml:space="preserve">
+    <value>Должность</value>
+  </data>
+  <data name="October" xml:space="preserve">
+    <value>Октябрь</value>
+  </data>
+  <data name="OKED" xml:space="preserve">
+    <value>ОКЭД</value>
+  </data>
+  <data name="OldCode" xml:space="preserve">
+    <value>Старый Л/С</value>
+  </data>
+  <data name="OpenDate" xml:space="preserve">
+    <value>Дата открытия</value>
+  </data>
+  <data name="OperDate" xml:space="preserve">
+    <value>Опер. дата</value>
+  </data>
+  <data name="OperName" xml:space="preserve">
+    <value>Вид</value>
+  </data>
+  <data name="OrderNumber" xml:space="preserve">
+    <value>№</value>
+  </data>
+  <data name="TrOrganizationAccount" xml:space="preserve">
+    <value>Л/С</value>
+  </data>
+  <data name="OrganizationHelpers" xml:space="preserve">
+    <value>Справочник организации</value>
+  </data>
+  <data name="OrganizationID" xml:space="preserve">
+    <value>Код организации</value>
+  </data>
+  <data name="Organizations" xml:space="preserve">
+    <value>Организации</value>
+  </data>
+  <data name="OrganizationsSett" xml:space="preserve">
+    <value>Л/С</value>
+  </data>
+  <data name="OrganizationsSettlementAccount" xml:space="preserve">
+    <value>Л/С организации</value>
+  </data>
+  <data name="OrganizationsSettlementAccountNotSelected" xml:space="preserve">
+    <value>Л/С плательщика не выбран</value>
+  </data>
+  <data name="OutOfBalance" xml:space="preserve">
+    <value>Внебалансовый</value>
+  </data>
+  <data name="PAGroup" xml:space="preserve">
+    <value>Группа</value>
+  </data>
+  <data name="PASubGroup" xml:space="preserve">
+    <value>Под группа</value>
+  </data>
+  <data name="Payee" xml:space="preserve">
+    <value>Получатель</value>
+  </data>
+  <data name="PayeeAccount" xml:space="preserve">
+    <value>Р/С</value>
+  </data>
+  <data name="PayeeINN" xml:space="preserve">
+    <value>ИНН получателя</value>
+  </data>
+  <data name="PayeeName" xml:space="preserve">
+    <value>Получатель</value>
+  </data>
+  <data name="PayeeSettlement" xml:space="preserve">
+    <value>Счет получателя</value>
+  </data>
+  <data name="PayerAccount" xml:space="preserve">
+    <value>Л/С</value>
+  </data>
+  <data name="PayerINN" xml:space="preserve">
+    <value>ИНН</value>
+  </data>
+  <data name="PayerName" xml:space="preserve">
+    <value>Плательщик</value>
+  </data>
+  <data name="PayerSettlement" xml:space="preserve">
+    <value>Счет плательщика</value>
+  </data>
+  <data name="PaymentDetails" xml:space="preserve">
+    <value>Детали платежа</value>
+  </data>
+  <data name="PaymentDetailsNotSelected" xml:space="preserve">
+    <value>Детали платежа не заполнены</value>
+  </data>
+  <data name="PaymentDocuments" xml:space="preserve">
+    <value>Платежные документы</value>
+  </data>
+  <data name="PaymentOrder" xml:space="preserve">
+    <value>Платежное поручение</value>
+  </data>
+  <data name="PaymentRegister" xml:space="preserve">
+    <value>Реестр платежей</value>
+  </data>
+  <data name="PaymentTypeCode" xml:space="preserve">
+    <value>Код платежа</value>
+  </data>
+  <data name="PaymentTypeCodeNotCorrect" xml:space="preserve">
+    <value>Код платежа не правильный</value>
+  </data>
+  <data name="PaymentTypeCodeNotSelected" xml:space="preserve">
+    <value>Код платежа не выбран</value>
+  </data>
+  <data name="PayrollSheet" xml:space="preserve">
+    <value>Ведомость</value>
+  </data>
+  <data name="PayrollSheetNotSelected" xml:space="preserve">
+    <value>Ведомость не выбран</value>
+  </data>
+  <data name="PermanentAsset" xml:space="preserve">
+    <value>Основные средства</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Телефон:</value>
+  </data>
+  <data name="PleaseSelectOne" xml:space="preserve">
+    <value>Выберите из списка</value>
+  </data>
+  <data name="Prepayment" xml:space="preserve">
+    <value>Предоплата %</value>
+  </data>
+  <data name="PrepaymentNotCorrect" xml:space="preserve">
+    <value>Предоплата не указано</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Цена</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>Печать</value>
+  </data>
+  <data name="Protocol" xml:space="preserve">
+    <value>Протокол</value>
+  </data>
+  <data name="Q1" xml:space="preserve">
+    <value>1-Кв.</value>
+  </data>
+  <data name="Q2" xml:space="preserve">
+    <value>2-Кв.</value>
+  </data>
+  <data name="Q3" xml:space="preserve">
+    <value>3-Кв.</value>
+  </data>
+  <data name="Q4" xml:space="preserve">
+    <value>4-Кв.</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Кол-во</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="RegDate" xml:space="preserve">
+    <value>Рег. Дата</value>
+  </data>
+  <data name="RegEndDate" xml:space="preserve">
+    <value>по</value>
+  </data>
+  <data name="Region" xml:space="preserve">
+    <value>Регион</value>
+  </data>
+  <data name="RegNumber" xml:space="preserve">
+    <value>Рег. №</value>
+  </data>
+  <data name="RegStartDate" xml:space="preserve">
+    <value>Регистрация с:</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>Отчеты</value>
+  </data>
+  <data name="RequestReceivingCash" xml:space="preserve">
+    <value>Заявка</value>
+  </data>
+  <data name="RequestReceivingCashNotSelected" xml:space="preserve">
+    <value>Заявка не выбран</value>
+  </data>
+  <data name="ResponsiblePerson" xml:space="preserve">
+    <value>Материально-ответсвенное лицо (М.О.Л.)</value>
+  </data>
+  <data name="RetireAgeingSubAcc" xml:space="preserve">
+    <value>Субсчет&lt;br&gt;(Расход Износ)</value>
+  </data>
+  <data name="RetirementDate" xml:space="preserve">
+    <value>Дата Спис.</value>
+  </data>
+  <data name="RetireReappSubAcc" xml:space="preserve">
+    <value>Субсчет&lt;br&gt;(Переоцен.)</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Роли</value>
+  </data>
+  <data name="Samarkhand" xml:space="preserve">
+    <value>Самаркандская область</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="SavedSuccessfully" xml:space="preserve">
+    <value>Успешно сохранено</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="SecondSign" xml:space="preserve">
+    <value>Вторая подпись</value>
+  </data>
+  <data name="SecondSignNotSelected" xml:space="preserve">
+    <value>Вторая подпись не выбран</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Выбрать</value>
+  </data>
+  <data name="SelectKey" xml:space="preserve">
+    <value>Выберите ключ</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Отправить</value>
+  </data>
+  <data name="SentPaymentOrder" xml:space="preserve">
+    <value>Платёжные поручения, отправленные в центральную бухгалтерию</value>
+  </data>
+  <data name="SentSuccessfully" xml:space="preserve">
+    <value>Успешно отправлен</value>
+  </data>
+  <data name="September" xml:space="preserve">
+    <value>Сентябрь</value>
+  </data>
+  <data name="SettlementAccount" xml:space="preserve">
+    <value>Расчетный счет</value>
+  </data>
+  <data name="SignOut" xml:space="preserve">
+    <value>Выход</value>
+  </data>
+  <data name="Sirdarya" xml:space="preserve">
+    <value>Сырдарьинская область</value>
+  </data>
+  <data name="Specification" xml:space="preserve">
+    <value>Спецификация</value>
+  </data>
+  <data name="SpecificationNotCorrect" xml:space="preserve">
+    <value>Тип спецификации не выбран</value>
+  </data>
+  <data name="SPECSelect" xml:space="preserve">
+    <value>Список спецификации</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Период с</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>Состояние</value>
+  </data>
+  <data name="StateID" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="SubAcc" xml:space="preserve">
+    <value>Субсчет</value>
+  </data>
+  <data name="SubAccCr" xml:space="preserve">
+    <value>К-Т</value>
+  </data>
+  <data name="SubAccCrNotSelected" xml:space="preserve">
+    <value>К-Т субсчет не выбран</value>
+  </data>
+  <data name="SubAccDb" xml:space="preserve">
+    <value>Д-Т</value>
+  </data>
+  <data name="SubAccDbNotSelected" xml:space="preserve">
+    <value>Д-Т субсчет не выбран</value>
+  </data>
+  <data name="SubCode" xml:space="preserve">
+    <value>Субсчет</value>
+  </data>
+  <data name="SubCountSelect" xml:space="preserve">
+    <value>Выберите одно</value>
+  </data>
+  <data name="Sum" xml:space="preserve">
+    <value>Сумма</value>
+  </data>
+  <data name="SumEqv" xml:space="preserve">
+    <value>Стоимость поставки с&lt;br&gt;учетом НДС (в сумах)</value>
+  </data>
+  <data name="Summa===NotCorrect" xml:space="preserve">
+    <value>Сумма не совпадает</value>
+  </data>
+  <data name="SumNotCorrect" xml:space="preserve">
+    <value>Сумма не заполнена</value>
+  </data>
+  <data name="SumWithVAT" xml:space="preserve">
+    <value>Стоимость поставки с&lt;br&gt;учетом НДС</value>
+  </data>
+  <data name="Surxandarya" xml:space="preserve">
+    <value>Сурхандарьинская область</value>
+  </data>
+  <data name="Tashkent" xml:space="preserve">
+    <value>Город Ташкент</value>
+  </data>
+  <data name="Tashkentvil" xml:space="preserve">
+    <value>Ташкентская область</value>
+  </data>
+  <data name="Telegram" xml:space="preserve">
+    <value>Telegram:</value>
+  </data>
+  <data name="Ticket" xml:space="preserve">
+    <value>Номер лота</value>
+  </data>
+  <data name="TransactionCode" xml:space="preserve">
+    <value>Операция</value>
+  </data>
+  <data name="TreasContractID" xml:space="preserve">
+    <value>ID (Казна.)</value>
+  </data>
+  <data name="TreasInfo" xml:space="preserve">
+    <value>Казна Клиент</value>
+  </data>
+  <data name="TreasStatus" xml:space="preserve">
+    <value>Состояние</value>
+  </data>
+  <data name="TreasuryMemOrder" xml:space="preserve">
+    <value>Казначейский мемориальный ордер</value>
+  </data>
+  <data name="TreasuryMemOrderType" xml:space="preserve">
+    <value>Тип документа&lt;br&gt;(для казначейства)</value>
+  </data>
+  <data name="TreasuryMemOrderTypeNotSelected" xml:space="preserve">
+    <value>Тип документа не выбран</value>
+  </data>
+  <data name="UnitOfMeasureNotCorrect" xml:space="preserve">
+    <value>Ед.изм. не выбран</value>
+  </data>
+  <data name="UnitsOfMeasure" xml:space="preserve">
+    <value>Ед.изм.</value>
+  </data>
+  <data name="UnitsOfMeasureName" xml:space="preserve">
+    <value>Единица измерения</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Управление пользователями</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Список пользователей</value>
+  </data>
+  <data name="ValueAddedTax" xml:space="preserve">
+    <value>Сумма НДС</value>
+  </data>
+  <data name="ValueAddedTaxNotCorrect" xml:space="preserve">
+    <value>Сумма НДС не указан</value>
+  </data>
+  <data name="ValueAddedTaxRate" xml:space="preserve">
+    <value>ставка НДС&lt;br&gt;%</value>
+  </data>
+  <data name="ValueAddedTaxSum" xml:space="preserve">
+    <value>сумма НДС</value>
+  </data>
+  <data name="Warrant" xml:space="preserve">
+    <value>Доверенность</value>
+  </data>
+  <data name="Xorazm" xml:space="preserve">
+    <value>Хорезмская область</value>
+  </data>
+  <data name="Yearly" xml:space="preserve">
+    <value>Годовой</value>
+  </data>
+  <data name="YouWantToAccept" xml:space="preserve">
+    <value>Вы действительно хотите провести?</value>
+  </data>
+  <data name="YouWantToCancel" xml:space="preserve">
+    <value>Вы действительно хотите отменить?</value>
+  </data>
+  <data name="YouWantToDelete" xml:space="preserve">
+    <value>Вы действительно хотите удалить?</value>
+  </data>
+  <data name="YouWantToSend" xml:space="preserve">
+    <value>Вы действительно хотите отправить?</value>
+  </data>
+  <data name="ZipCode" xml:space="preserve">
+    <value>Индекс</value>
+  </data>
+  <data name="SettlementAccountNotSelected" xml:space="preserve">
+    <value>Лицевой счет не выбран</value>
+  </data>
+  <data name="DocumentNotFilled" xml:space="preserve">
+    <value>Документ не заполнен</value>
+  </data>
+  <data name="CName" xml:space="preserve">
+    <value>Номер договора</value>
+  </data>
+  <data name="FinanceYearNotSelected" xml:space="preserve">
+    <value>Финансовый год указано не правильно</value>
+  </data>
+  <data name="PRTables" xml:space="preserve">
+    <value>Список платежных поручений</value>
+  </data>
+  <data name="CommissionSum" xml:space="preserve">
+    <value>Сумма комиссии</value>
+  </data>
+  <data name="DepositSum" xml:space="preserve">
+    <value>Сумма залога</value>
+  </data>
+  <data name="OrganizationCode" xml:space="preserve">
+    <value>Код организации</value>
+  </data>
+  <data name="PositionNumber" xml:space="preserve">
+    <value>Номер позиции</value>
+  </data>
+  <data name="SettlementAccountCode" xml:space="preserve">
+    <value>Лицевой счет организации</value>
+  </data>
+  <data name="SpecificationCode" xml:space="preserve">
+    <value>Код спецификации</value>
+  </data>
+  <data name="SpecificationName" xml:space="preserve">
+    <value>Наименования товара (работ услуг)</value>
+  </data>
+  <data name="TicketNumber" xml:space="preserve">
+    <value>Номер лота</value>
+  </data>
+  <data name="TicketSum" xml:space="preserve">
+    <value>Сумма лота</value>
+  </data>
+  <data name="UzexCommissionSettlementAccount" xml:space="preserve">
+    <value>Л/С УзРТСБ для комиссии</value>
+  </data>
+  <data name="UzexDepositSettlementAccount" xml:space="preserve">
+    <value>Л/С УзРТСБ для залога</value>
+  </data>
+  <data name="UzexTransactionInfo" xml:space="preserve">
+    <value>Информация о биржевых торгах</value>
+  </data>
+  <data name="ATCode" xml:space="preserve">
+    <value>Проводка</value>
+  </data>
+  <data name="TrPayerSettlement" xml:space="preserve">
+    <value>Л/С плательщика</value>
+  </data>
+  <data name="FinanceYearCanNotBeLess2018" xml:space="preserve">
+    <value>Финансовый год не можеть быть ниже 2018г.</value>
+  </data>
+  <data name="TicketNotCorrect" xml:space="preserve">
+    <value>Номер лота не правильный</value>
+  </data>
+  <data name="TrOrganizationsSettlementAccount" xml:space="preserve">
+    <value>Л/С</value>
+  </data>
+  <data name="TrSettlementAccount" xml:space="preserve">
+    <value>Л/С</value>
+  </data>
+  <data name="ConSettlementAccount" xml:space="preserve">
+    <value>Р/С получателя</value>
+  </data>
+  <data name="ContractorAccountNotCorrect" xml:space="preserve">
+    <value>Ставьте галочку в Поставщик бюджетная организация когда заключаете договор с бюджетной орг. и заполните л/с</value>
+  </data>
+  <data name="ContractorNotCorrect" xml:space="preserve">
+    <value>Получатель не верный, выберите Казначейство Министерство финансов Руз.</value>
+  </data>
+  <data name="OrganizationAccount" xml:space="preserve">
+    <value>Л/С</value>
+  </data>
+  <data name="ContractorsSettlementAccountNotCorrect" xml:space="preserve">
+    <value>Л/С получателя неверный</value>
+  </data>
+  <data name="ContractorNotCorrect1" xml:space="preserve">
+    <value>Получатель не верный</value>
+  </data>
+  <data name="SettAccCode" xml:space="preserve">
+    <value>Р/с</value>
+  </data>
+  <data name="Tables" xml:space="preserve">
+    <value>Расчетные счета</value>
+  </data>
+  <data name="ClosingTransaction" xml:space="preserve">
+    <value>Заключительная проводка</value>
+  </data>
+  <data name="FixingTransaction" xml:space="preserve">
+    <value>Исправительная проводка</value>
+  </data>
+  <data name="CanceledDate" xml:space="preserve">
+    <value>Дата отмены</value>
+  </data>
+  <data name="ChequeNumber" xml:space="preserve">
+    <value>Номер чека</value>
+  </data>
+  <data name="ChequeSN" xml:space="preserve">
+    <value>Серия чека</value>
+  </data>
+  <data name="ChildrenName" xml:space="preserve">
+    <value>Ф.И.О</value>
+  </data>
+  <data name="CurrencyIncomeCashOrder" xml:space="preserve">
+    <value>Приходный кассовый ордер (Валютный)</value>
+  </data>
+  <data name="CurrencyOutcomeCashOrder" xml:space="preserve">
+    <value>Расходный кассовый ордер (Валютный)</value>
+  </data>
+  <data name="CurrencySum" xml:space="preserve">
+    <value>Сумма в валюте</value>
+  </data>
+  <data name="DepartmentName" xml:space="preserve">
+    <value>Группа</value>
+  </data>
+  <data name="DocumentNumber" xml:space="preserve">
+    <value>Номер &lt;br&gt; документа</value>
+  </data>
+  <data name="DocumentSeries" xml:space="preserve">
+    <value>Серия</value>
+  </data>
+  <data name="ForMonth" xml:space="preserve">
+    <value>За месяц</value>
+  </data>
+  <data name="ForPayment" xml:space="preserve">
+    <value>К оплате</value>
+  </data>
+  <data name="IncomeCashOrder" xml:space="preserve">
+    <value>Приходный кассовый ордер</value>
+  </data>
+  <data name="Inpayment" xml:space="preserve">
+    <value>Поступление денежных средств</value>
+  </data>
+  <data name="Issue" xml:space="preserve">
+    <value>Кому</value>
+  </data>
+  <data name="Matter" xml:space="preserve">
+    <value>Содержание</value>
+  </data>
+  <data name="OnlinePayment" xml:space="preserve">
+    <value>Online платежи (Через система UzCARD)</value>
+  </data>
+  <data name="OutcomeCashOrder" xml:space="preserve">
+    <value>Расходный кассовый ордер</value>
+  </data>
+  <data name="Payed" xml:space="preserve">
+    <value>Оплачено</value>
+  </data>
+  <data name="PayedDate" xml:space="preserve">
+    <value>Дата поступ. в Л/С</value>
+  </data>
+  <data name="PaymentID" xml:space="preserve">
+    <value>ID Платеж</value>
+  </data>
+  <data name="PaymentOrderID" xml:space="preserve">
+    <value>Реестр (ID)</value>
+  </data>
+  <data name="PaymentRequest" xml:space="preserve">
+    <value>Платежное требование</value>
+  </data>
+  <data name="PaymentSystemName" xml:space="preserve">
+    <value>Оператор</value>
+  </data>
+  <data name="RequestReceivingCashID" xml:space="preserve">
+    <value>Заявка (ID)</value>
+  </data>
+  <data name="TakeOver" xml:space="preserve">
+    <value>От кого</value>
+  </data>
+  <data name="TreasDocID" xml:space="preserve">
+    <value>ID (Казнна клиент)</value>
+  </data>
+  <data name="DepartmentCrName" xml:space="preserve">
+    <value>Склад (КТ)</value>
+  </data>
+  <data name="DepartmentDbName" xml:space="preserve">
+    <value>Отдел (ДТ)</value>
+  </data>
+  <data name="Detail" xml:space="preserve">
+    <value>Содержание</value>
+  </data>
+  <data name="EmployeeName" xml:space="preserve">
+    <value>Материально-ответственное лицо</value>
+  </data>
+  <data name="ExpireDate" xml:space="preserve">
+    <value>Срок действия</value>
+  </data>
+  <data name="GSMIntake" xml:space="preserve">
+    <value>Приход ГСМ</value>
+  </data>
+  <data name="IntakeDetails" xml:space="preserve">
+    <value>Содержание</value>
+  </data>
+  <data name="MovementDetails" xml:space="preserve">
+    <value>Содержание</value>
+  </data>
+  <data name="PermanentAssetAgeing" xml:space="preserve">
+    <value>Начисление износа</value>
+  </data>
+  <data name="PermanentAssetIntakeUnpaid" xml:space="preserve">
+    <value>Приход ОС (безвозмездно или централизованно)</value>
+  </data>
+  <data name="PermanentAssetMovement" xml:space="preserve">
+    <value>Перемещение ОС из отдела в отдел</value>
+  </data>
+  <data name="PermanentAssetMovementFromStowege" xml:space="preserve">
+    <value>Ввод в эксплуатацию основных средств</value>
+  </data>
+  <data name="PermanentAssetQuitType" xml:space="preserve">
+    <value>Причина</value>
+  </data>
+  <data name="PermanentAssetReappraisal" xml:space="preserve">
+    <value>Переоценка ОС</value>
+  </data>
+  <data name="PermanentAssetRetirement" xml:space="preserve">
+    <value>Списание ОС</value>
+  </data>
+  <data name="ResponsiblePersonCrName" xml:space="preserve">
+    <value>Материально-ответственное лицо (КТ)</value>
+  </data>
+  <data name="ResponsiblePersonDbName" xml:space="preserve">
+    <value>Материально-ответственное лицо (ДТ)</value>
+  </data>
+  <data name="RetirementDetails" xml:space="preserve">
+    <value>Содержание</value>
+  </data>
+  <data name="WarrantName" xml:space="preserve">
+    <value>Доверенность</value>
+  </data>
+  <data name="InventoryHoldingIntake" xml:space="preserve">
+    <value>Поступление ТМЗ</value>
+  </data>
+  <data name="InventoryHoldingIntakeUnpaid" xml:space="preserve">
+    <value>Поступление готовой продукции и ТМЗ (безвозмездно и централизованно)</value>
+  </data>
+  <data name="InventoryHoldingMovement" xml:space="preserve">
+    <value>Перемещение ТМЗ из отдела в отдел</value>
+  </data>
+  <data name="InventoryHoldingMovementFromStowege" xml:space="preserve">
+    <value>Перемещение ТМЗ из склада</value>
+  </data>
+  <data name="InventoryHoldingRetirement" xml:space="preserve">
+    <value>Списание ТМЗ</value>
+  </data>
+  <data name="GSMMovement" xml:space="preserve">
+    <value>Перемещение ГСМ</value>
+  </data>
+  <data name="GSMIntakeUnpaid" xml:space="preserve">
+    <value>Приход ГСМ (безвозмездно и централизованно)</value>
+  </data>
+  <data name="GSMRetirement" xml:space="preserve">
+    <value>Расход ГСМ</value>
+  </data>
+  <data name="CenterDemand" xml:space="preserve">
+    <value>Централизованное требование</value>
+  </data>
+  <data name="CentralOrganization" xml:space="preserve">
+    <value>Централизованная организация</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Детали</value>
+  </data>
+  <data name="DrugIntake" xml:space="preserve">
+    <value>Приход медикаментов</value>
+  </data>
+  <data name="DrugIntakeUnpaid" xml:space="preserve">
+    <value>Приход медикаментов (безвозмездно или централизованно)</value>
+  </data>
+  <data name="DrugMovement" xml:space="preserve">
+    <value>Перемещение медикаментов</value>
+  </data>
+  <data name="DrugRetirement" xml:space="preserve">
+    <value>Расход медикаментов</value>
+  </data>
+  <data name="FoodstuffIntake" xml:space="preserve">
+    <value>Приход продуктов питания</value>
+  </data>
+  <data name="FoodstuffIntakeUnpaid" xml:space="preserve">
+    <value>Приход продуктов питания (безвозмездно или централизованно)</value>
+  </data>
+  <data name="FoodstuffMovement" xml:space="preserve">
+    <value>Перемещение продуктов питания</value>
+  </data>
+  <data name="FoodstuffRetirement" xml:space="preserve">
+    <value>Расход продуктов питания</value>
+  </data>
+  <data name="ChargesFromSalary" xml:space="preserve">
+    <value>Удержание из заработный платы</value>
+  </data>
+  <data name="DepositedMoney" xml:space="preserve">
+    <value>Депонированные денежные средства</value>
+  </data>
+  <data name="ExpenseDetail" xml:space="preserve">
+    <value>Содержание</value>
+  </data>
+  <data name="ExpenseReport" xml:space="preserve">
+    <value>Авансовый отчет</value>
+  </data>
+  <data name="PayrollSalary1" xml:space="preserve">
+    <value>Начисление заработный платы</value>
+  </data>
+  <data name="ContractName" xml:space="preserve">
+    <value>Договор</value>
+  </data>
+  <data name="DocNumber" xml:space="preserve">
+    <value>Номер счет фактуры</value>
+  </data>
+  <data name="SettlementAccount1" xml:space="preserve">
+    <value>Лицевой счет</value>
+  </data>
+  <data name="WriteoffService" xml:space="preserve">
+    <value>Акт выполненных работ</value>
+  </data>
+  <data name="TAllowedTransaction" xml:space="preserve">
+    <value>Справочник проводок</value>
+  </data>
+  <data name="WritingOffCostServices" xml:space="preserve">
+    <value>Списание себестоимости выполненных работ и услуг</value>
+  </data>
+  <data name="RestsByAccount" xml:space="preserve">
+    <value>Остаток по счетам</value>
+  </data>
+  <data name="RestsByContractor" xml:space="preserve">
+    <value>Остаток по контрагентам</value>
+  </data>
+  <data name="RestsByEmployee" xml:space="preserve">
+    <value>Остаток по сотрудникам</value>
+  </data>
+  <data name="RestsByInventoryHolding" xml:space="preserve">
+    <value>Остаток по ТМЗ</value>
+  </data>
+  <data name="RestsByPermanentAsset" xml:space="preserve">
+    <value>Остаток по ОС</value>
+  </data>
+  <data name="RestsBySettlementAccount" xml:space="preserve">
+    <value>Остаток по лицевому счету</value>
+  </data>
+  <data name="resp" xml:space="preserve">
+    <value>Материально-ответственное лицо</value>
+  </data>
+  <data name="AcademicYearEnd" xml:space="preserve">
+    <value>Конец учебного года</value>
+  </data>
+  <data name="AcademicYearStart" xml:space="preserve">
+    <value>Начало учебного года</value>
+  </data>
+  <data name="CalculatingTaxes" xml:space="preserve">
+    <value>Начисление налогов</value>
+  </data>
+  <data name="CurrencyReappraisal" xml:space="preserve">
+    <value>Переоценка валюты</value>
+  </data>
+  <data name="FacultyName" xml:space="preserve">
+    <value>Факультет</value>
+  </data>
+  <data name="ListOfPositionName" xml:space="preserve">
+    <value>Курс</value>
+  </data>
+  <data name="Operation" xml:space="preserve">
+    <value>Операция</value>
+  </data>
+  <data name="OtherCalculation" xml:space="preserve">
+    <value>Прочие начисления</value>
+  </data>
+  <data name="PayrollDetail" xml:space="preserve">
+    <value>Содержание</value>
+  </data>
+  <data name="PayrollLease" xml:space="preserve">
+    <value>Начисление платных услуг</value>
+  </data>
+  <data name="PayrollPaidContract" xml:space="preserve">
+    <value>Начисление платно-контрактных средств</value>
+  </data>
+  <data name="PayrollPaidServiceCurrency" xml:space="preserve">
+    <value>Начисление платных услуг (Валютный)</value>
+  </data>
+  <data name="PayrollParentPayment" xml:space="preserve">
+    <value>Начисление род.взносов</value>
+  </data>
+  <data name="StudentContract" xml:space="preserve">
+    <value>Начисление платно-контрактных средств по студентам</value>
+  </data>
+  <data name="StudyDirectionName" xml:space="preserve">
+    <value>Направление</value>
+  </data>
+  <data name="StudyGroupName" xml:space="preserve">
+    <value>Группа</value>
+  </data>
+  <data name="SubAccCrID" xml:space="preserve">
+    <value>КТ</value>
+  </data>
+  <data name="SubAccDbID" xml:space="preserve">
+    <value>ДТ</value>
+  </data>
+  <data name="Subkonto1" xml:space="preserve">
+    <value>Субконто1</value>
+  </data>
+  <data name="Subkonto2" xml:space="preserve">
+    <value>Субконто2</value>
+  </data>
+  <data name="Subkonto3" xml:space="preserve">
+    <value>Субконто3</value>
+  </data>
+  <data name="Name1" xml:space="preserve">
+    <value>Номер</value>
+  </data>
+  <data name="ChildMovement" xml:space="preserve">
+    <value>Перемещения детей</value>
+  </data>
+  <data name="ChildrenMissedDays" xml:space="preserve">
+    <value>Справка за пропущенные дни</value>
+  </data>
+  <data name="ChildTimeSheet1" xml:space="preserve">
+    <value>Табель учёта посещаемости детей(Предварительный - до 15 числа)</value>
+  </data>
+  <data name="ChildTimeSheet2" xml:space="preserve">
+    <value>Табель учёта посещаемости детей(Окончательный - последний день месяца)</value>
+  </data>
+  <data name="F.I.O." xml:space="preserve">
+    <value>Ф.И.О.</value>
+  </data>
+  <data name="PositionNameRus1" xml:space="preserve">
+    <value>Должность</value>
+  </data>
+  <data name="PositionNameUzb1" xml:space="preserve">
+    <value>Должность (на узб.)</value>
+  </data>
+  <data name="RequestForChangeTreasPerson" xml:space="preserve">
+    <value>Заявления на смену реквизитов организации</value>
+  </data>
+  <data name="RequestForSettlementAccount" xml:space="preserve">
+    <value>Заявление на включение новых лицевых счетов в ПК УзАСБО</value>
+  </data>
+  <data name="DescriptionIsNotSpecified" xml:space="preserve">
+    <value>Описание не указано</value>
+  </data>
+  <data name="NotReceive" xml:space="preserve">
+    <value>Не принимать</value>
+  </data>
+  <data name="PaymentForecast" xml:space="preserve">
+    <value>Прогноз исполнении кассовых расходов</value>
+  </data>
+  <data name="Receive" xml:space="preserve">
+    <value>Принять</value>
+  </data>
+  <data name="Cheque" xml:space="preserve">
+    <value>Чеки</value>
+  </data>
+  <data name="CommentNotSelected" xml:space="preserve">
+    <value>Комментарий не заполнен</value>
+  </data>
+  <data name="DetailsNotCorrect" xml:space="preserve">
+    <value>Детали не заполненны</value>
+  </data>
+  <data name="FulFilled" xml:space="preserve">
+    <value>Выполнен</value>
+  </data>
+  <data name="CommentNotCorrect" xml:space="preserve">
+    <value>Комментарий не заполнен</value>
+  </data>
+  <data name="QuantityNotCorrect" xml:space="preserve">
+    <value>Количество не указан</value>
+  </data>
+  <data name="EndSum" xml:space="preserve">
+    <value>Сумма по</value>
+  </data>
+  <data name="StartSum" xml:space="preserve">
+    <value>Сумма с</value>
+  </data>
+  <data name="FullFilledSuccessfully" xml:space="preserve">
+    <value>Успешно выполнен</value>
+  </data>
+  <data name="YouWantToFullFilled" xml:space="preserve">
+    <value>Вы действительно хотите подтвердить выполнение данной операции?</value>
+  </data>
+  <data name="TicketNotSelected" xml:space="preserve">
+    <value>Номер лота не указан</value>
+  </data>
+  <data name="PleaseSelectContractor" xml:space="preserve">
+    <value>Илтимос  контрагентни танланг</value>
+  </data>
+  <data name="BeginDate" xml:space="preserve">
+    <value>Начало</value>
+  </data>
+  <data name="ChildHoursType" xml:space="preserve">
+    <value>Часы</value>
+  </data>
+  <data name="ChildNumber" xml:space="preserve">
+    <value>№</value>
+  </data>
+  <data name="ChildrenGroup" xml:space="preserve">
+    <value>Группа</value>
+  </data>
+  <data name="ChildrenGroupType" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="DateOfBirth" xml:space="preserve">
+    <value>Дата рожд.</value>
+  </data>
+  <data name="ForAllChildren" xml:space="preserve">
+    <value>Для всех</value>
+  </data>
+  <data name="MissedDays" xml:space="preserve">
+    <value>Пропущено дней. Всего</value>
+  </data>
+  <data name="MissedDaysTypeName" xml:space="preserve">
+    <value>Основание</value>
+  </data>
+  <data name="MoreThanOneChild" xml:space="preserve">
+    <value>Более чем &lt;br&gt; один ребёнок</value>
+  </data>
+  <data name="NoPayment" xml:space="preserve">
+    <value>Освобожден от платы</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Контакт номер</value>
+  </data>
+  <data name="WorkSheduleKind" xml:space="preserve">
+    <value>Тип недели</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Адрес:</value>
+  </data>
+  <data name="DateOfDismissal" xml:space="preserve">
+    <value>Последний день &lt;br&gt; посещения(выбытия)</value>
+  </data>
+  <data name="DateOfReception" xml:space="preserve">
+    <value>Дата начало посещения</value>
+  </data>
+  <data name="DEPSelect" xml:space="preserve">
+    <value>Выберите отдел</value>
+  </data>
+  <data name="IsEmployee" xml:space="preserve">
+    <value>Питание сотрудника</value>
+  </data>
+  <data name="IsRent" xml:space="preserve">
+    <value>Арендует жилье</value>
+  </data>
+  <data name="PhoneNumberChild" xml:space="preserve">
+    <value>Номер сотового телефона родителей (12 символов)</value>
+  </data>
+  <data name="TimeSheetNumber" xml:space="preserve">
+    <value>Таб.№:</value>
+  </data>
+  <data name="Credit" xml:space="preserve">
+    <value>Начисление</value>
+  </data>
+  <data name="DateOfModified" xml:space="preserve">
+    <value>Дата изменения</value>
+  </data>
+  <data name="FinancingLevelName" xml:space="preserve">
+    <value>Финансирование</value>
+  </data>
+  <data name="OblastName" xml:space="preserve">
+    <value>Область</value>
+  </data>
+  <data name="Organization" xml:space="preserve">
+    <value>Организация</value>
+  </data>
+  <data name="RegionName" xml:space="preserve">
+    <value>Регион</value>
+  </data>
+  <data name="Type1" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="Type2" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="MissedDaysType" xml:space="preserve">
+    <value>Основание</value>
+  </data>
+  <data name="YouCanNotPerformThisOperationFromThisSettlementAccount" xml:space="preserve">
+    <value>Вы не можете выполнить данную операцию с этого счета</value>
+  </data>
+  <data name="PrepareForSend" xml:space="preserve">
+    <value>Готов к отправке</value>
+  </data>
+  <data name="BeginCreditAmount" xml:space="preserve">
+    <value>Начало (Кредит)</value>
+  </data>
+  <data name="BeginDebitAmount" xml:space="preserve">
+    <value>Начало (Дебет)</value>
+  </data>
+  <data name="Childcan'tbechoosen" xml:space="preserve">
+    <value>Ребенка не можно выбрать ещё раз</value>
+  </data>
+  <data name="ChildHoursTypeName" xml:space="preserve">
+    <value>Продолжительность</value>
+  </data>
+  <data name="ChildrenGroupTypeName" xml:space="preserve">
+    <value>Тип группы</value>
+  </data>
+  <data name="ChildrenNumber" xml:space="preserve">
+    <value>Таб.№</value>
+  </data>
+  <data name="ChildTimeSheet" xml:space="preserve">
+    <value>Табель учёта посещаемости детей</value>
+  </data>
+  <data name="ChildTimeSheetType" xml:space="preserve">
+    <value>Тип табеля</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Очистить</value>
+  </data>
+  <data name="Clearfirstly" xml:space="preserve">
+    <value>Сначала очистите данные </value>
+  </data>
+  <data name="CreditAmount" xml:space="preserve">
+    <value>Сумма (Кредит)</value>
+  </data>
+  <data name="DepartmentNotSelected" xml:space="preserve">
+    <value>Отдел (группа) не выбрано</value>
+  </data>
+  <data name="FactualDays" xml:space="preserve">
+    <value>Дни посещения подлежащие оплате</value>
+  </data>
+  <data name="Informationisnotfill" xml:space="preserve">
+    <value>Информация не заполнена</value>
+  </data>
+  <data name="IsRegionCenter" xml:space="preserve">
+    <value>Регион. центр</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Месяц</value>
+  </data>
+  <data name="MonthNotSelected" xml:space="preserve">
+    <value>Месяц не выбран</value>
+  </data>
+  <data name="OldDepartment" xml:space="preserve">
+    <value>Предыдущая группа</value>
+  </data>
+  <data name="OrganizationsSettlementAccountNotCorrect" xml:space="preserve">
+    <value>Л/С неправильный</value>
+  </data>
+  <data name="PlanDays" xml:space="preserve">
+    <value>Плановые дни</value>
+  </data>
+  <data name="PriceAmount" xml:space="preserve">
+    <value>Ставка</value>
+  </data>
+  <data name="ReasonlyMissedDays" xml:space="preserve">
+    <value>в том числе не засчитываемых</value>
+  </data>
+  <data name="ReCalc" xml:space="preserve">
+    <value>Перерасчет</value>
+  </data>
+  <data name="SubAccCr1" xml:space="preserve">
+    <value>Субсчет</value>
+  </data>
+  <data name="SubAccNotCorrect" xml:space="preserve">
+    <value>Субсчет не выбран</value>
+  </data>
+  <data name="WorkSheduleKindName" xml:space="preserve">
+    <value>Тип недели</value>
+  </data>
+  <data name="AllCredit" xml:space="preserve">
+    <value>Всего Начислено</value>
+  </data>
+  <data name="AllForPayment" xml:space="preserve">
+    <value>Всего к оплате</value>
+  </data>
+  <data name="ClearSuccessfully" xml:space="preserve">
+    <value>Очищено успешно</value>
+  </data>
+  <data name="DateOfBirthNotSelected" xml:space="preserve">
+    <value>Дата рождения не заполнено</value>
+  </data>
+  <data name="ExplanatoryNote" xml:space="preserve">
+    <value>Пояснительная записка к балансу</value>
+  </data>
+  <data name="fillSuccessfully" xml:space="preserve">
+    <value>Заполнено успешно</value>
+  </data>
+  <data name="Period" xml:space="preserve">
+    <value>Квартал</value>
+  </data>
+  <data name="ChildHoursTypeNotSelected" xml:space="preserve">
+    <value>Часы не выбраны</value>
+  </data>
+  <data name="ChildrenGroupTypeNotSelected" xml:space="preserve">
+    <value>Тип группы не выбрано</value>
+  </data>
+  <data name="DateOfReceptionNotSelected" xml:space="preserve">
+    <value>Дата начало посещения не указано</value>
+  </data>
+  <data name="Department1" xml:space="preserve">
+    <value>Группа</value>
+  </data>
+  <data name="DepartmentNameNotSelected" xml:space="preserve">
+    <value>Группа не выбрано</value>
+  </data>
+  <data name="DocumentNumberNotSelected" xml:space="preserve">
+    <value>Номер документа не введено</value>
+  </data>
+  <data name="DocumentTypeNotSelected" xml:space="preserve">
+    <value>Тип документа не выбрано</value>
+  </data>
+  <data name="NameNotSelected" xml:space="preserve">
+    <value>Ф.И.О не введено</value>
+  </data>
+  <data name="NumberSelected" xml:space="preserve">
+    <value>Номер табеля не введено</value>
+  </data>
+  <data name="WorkSheduleKindNotSelected" xml:space="preserve">
+    <value>Тип недели не выбрано</value>
+  </data>
+  <data name="PhoneNumberisnotcorrect" xml:space="preserve">
+    <value>Номер телефона не правильно заполнен</value>
+  </data>
+  <data name="DateOfDismissalNotCorrect" xml:space="preserve">
+    <value>Дата выбытия не правильный</value>
+  </data>
+  <data name="treasury account there are funds required to return to the state budget. Сумма:" xml:space="preserve">
+    <value>казначейском счете есть средства, необходимые для возврата в государственный бюджет. Сумма:</value>
+  </data>
+  <data name="RegisterOfDocuments" xml:space="preserve">
+    <value>Регистрация документов</value>
+  </data>
+  <data name="BudgetRegistery" xml:space="preserve">
+    <value>Реестр смет</value>
+  </data>
+  <data name="SentBudget" xml:space="preserve">
+    <value>Сметы расходов отправленные в централизованную бухгалтерию</value>
+  </data>
+  <data name="Confirmedsuccesfully" xml:space="preserve">
+    <value>Подтверждено успешно</value>
+  </data>
+  <data name="Print1" xml:space="preserve">
+    <value>1-й вид</value>
+  </data>
+  <data name="Print2" xml:space="preserve">
+    <value>2-й вид</value>
+  </data>
+  <data name="Print3" xml:space="preserve">
+    <value>3-й вид</value>
+  </data>
+  <data name="CheckDocumentStatus" xml:space="preserve">
+    <value>Проверьте статус документа</value>
+  </data>
+  <data name="FIO1" xml:space="preserve">
+    <value>Ф.И.О</value>
+  </data>
+  <data name="Cashier" xml:space="preserve">
+    <value>Кассир</value>
+  </data>
+  <data name="FIO2" xml:space="preserve">
+    <value>Ф.И.О</value>
+  </data>
+  <data name="FIO3" xml:space="preserve">
+    <value>Ф.И.О</value>
+  </data>
+  <data name="FIO4" xml:space="preserve">
+    <value>Ф.И.О</value>
+  </data>
+  <data name="PositionNameRus2" xml:space="preserve">
+    <value>Должность</value>
+  </data>
+  <data name="PositionNameRus3" xml:space="preserve">
+    <value>Должность</value>
+  </data>
+  <data name="PositionNameRus4" xml:space="preserve">
+    <value>Должность</value>
+  </data>
+  <data name="PositionNameUzb2" xml:space="preserve">
+    <value>Должность (на узб.)</value>
+  </data>
+  <data name="PositionNameUzb3" xml:space="preserve">
+    <value>Должность (на узб.)</value>
+  </data>
+  <data name="PositionNameUzb4" xml:space="preserve">
+    <value>Должность (на узб.)</value>
+  </data>
+  <data name="ReadyToSent" xml:space="preserve">
+    <value>Готов к отправке.</value>
+  </data>
+  <data name="TreasuryMemOrderTypeWrong" xml:space="preserve">
+    <value>Тип документа (для казначейства) неверный</value>
+  </data>
+  <data name="TotalSum:" xml:space="preserve">
+    <value>Итого сумма:</value>
+  </data>
+  <data name="Contract1" xml:space="preserve">
+    <value>Договор</value>
+  </data>
+  <data name="Employee1" xml:space="preserve">
+    <value>Сотрудник</value>
+  </data>
+  <data name="PassportAuthoriry" xml:space="preserve">
+    <value>Кем выдан</value>
+  </data>
+  <data name="PassportDateOfIssue" xml:space="preserve">
+    <value>Дата выдачи</value>
+  </data>
+  <data name="PassportNumber" xml:space="preserve">
+    <value>Паспорт  №</value>
+  </data>
+  <data name="PassportSeries" xml:space="preserve">
+    <value>Cерия паспорта</value>
+  </data>
+  <data name="AdminCode" xml:space="preserve">
+    <value>Код администратора</value>
+  </data>
+  <data name="InSettlementAccountCode" xml:space="preserve">
+    <value>Счет куда перебрасываются средства</value>
+  </data>
+  <data name="OutSettlementAccountCode" xml:space="preserve">
+    <value>Счет откуда перебрасываются средства</value>
+  </data>
+  <data name="Recipient'sName" xml:space="preserve">
+    <value>Наименование получателя</value>
+  </data>
+  <data name="ReturnIncomeType1" xml:space="preserve">
+    <value>Заключение о возврате</value>
+  </data>
+  <data name="ReturnIncomeType2" xml:space="preserve">
+    <value>Заключение о зачете</value>
+  </data>
+  <data name="25Digits" xml:space="preserve">
+    <value>25 цифр</value>
+  </data>
+  <data name="20or27Digits" xml:space="preserve">
+    <value>20 или 27 цифр</value>
+  </data>
+  <data name="25or27Digits" xml:space="preserve">
+    <value>25 или 27 цифр</value>
+  </data>
+  <data name="ChangeSubAcc" xml:space="preserve">
+    <value>Обновить проводки</value>
+  </data>
+  <data name="OrganizationsCashierNotCorrect" xml:space="preserve">
+    <value>Кассир организации не указан</value>
+  </data>
+  <data name="OrganizationsFIO1NotCorrect" xml:space="preserve">
+    <value>Не указано Ф.И.О руководителя</value>
+  </data>
+  <data name="OrganizationsFIOCannotbeInputSameTime" xml:space="preserve">
+    <value>Невозможно сохранить одинаковые Ф.И.О для лиц имеющих право на первую подпись</value>
+  </data>
+  <data name="ChooseSubAcc" xml:space="preserve">
+    <value>Выберите субсчет</value>
+  </data>
+  <data name="OrganizationsFullNameNotCorrect" xml:space="preserve">
+    <value>Наименование организации не указано</value>
+  </data>
+  <data name="ChangedSuccessfully" xml:space="preserve">
+    <value>Успешно изменено</value>
+  </data>
+  <data name="YouWantToPrepareForSend" xml:space="preserve">
+    <value>Подтвердить готовность документа к отправке?</value>
+  </data>
+  <data name="OrganizationsPositionNameRus1NotCorrect" xml:space="preserve">
+    <value>Должность не указан</value>
+  </data>
+  <data name="OrganizationsPositionNameUzb1NotCorrect" xml:space="preserve">
+    <value>Должность не указан</value>
+  </data>
+  <data name="PersonsWithFirstSign" xml:space="preserve">
+    <value>Лица имеющие право на первую подпись</value>
+  </data>
+  <data name="EmployeeNotCorrect" xml:space="preserve">
+    <value>Сотрудник не выбран</value>
+  </data>
+  <data name="PassportAuthoriryrNotCorrect" xml:space="preserve">
+    <value>Не указано кем выдан</value>
+  </data>
+  <data name="PassportNumberNotCorrect" xml:space="preserve">
+    <value>Номер паспорта не указано</value>
+  </data>
+  <data name="PassportSeriesNotCorrect" xml:space="preserve">
+    <value>Серия паспорта не указано</value>
+  </data>
+  <data name="FirstSignMustConfirm" xml:space="preserve">
+    <value>Для отправки данного документа руководитель организации должен подтвердить, нажав на кнопку [ Готово  к отправке ].</value>
+  </data>
+  <data name="AllowedTransactionNotCorrect" xml:space="preserve">
+    <value>Операция не правильно!</value>
+  </data>
+  <data name="InventoryHolding1" xml:space="preserve">
+    <value>Товарно-материальные ценности</value>
+  </data>
+  <data name="UnitsOfMeasure1" xml:space="preserve">
+    <value>Единица измерения</value>
+  </data>
+  <data name="ConfirmedPassword" xml:space="preserve">
+    <value>Потверждение пароля</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Новый пароль</value>
+  </data>
+  <data name="OldPassword" xml:space="preserve">
+    <value>Старый пароль</value>
+  </data>
+  <data name="Сourse" xml:space="preserve">
+    <value>Курс</value>
+  </data>
+  <data name="CurrencyNotSelected" xml:space="preserve">
+    <value>Курс не выбран</value>
+  </data>
+  <data name="MFOCode" xml:space="preserve">
+    <value>МФО</value>
+  </data>
+  <data name="СourseNotCorrect" xml:space="preserve">
+    <value>Курс не указан</value>
+  </data>
+  <data name="CodeNotCorrect" xml:space="preserve">
+    <value>МФО не указан</value>
+  </data>
+  <data name="ChangeFinYear" xml:space="preserve">
+    <value>Изменить Фин. Год</value>
+  </data>
+  <data name="YouWantToChangeFinYear" xml:space="preserve">
+    <value>Вы действительно хотите изменить финансовый год?</value>
+  </data>
+  <data name="ActualEndAmount" xml:space="preserve">
+    <value>Фактическое количество&lt;br&gt;на конец (квартала) года</value>
+  </data>
+  <data name="ActualStartAmount" xml:space="preserve">
+    <value>Фактическое количество&lt;br&gt;на начало года</value>
+  </data>
+  <data name="AverageAccomplishAmount" xml:space="preserve">
+    <value>Среднегодовое количество&lt;br&gt;выполнение</value>
+  </data>
+  <data name="AveragePlanAmount" xml:space="preserve">
+    <value>Среднегодовое количество&lt;br&gt;годовой план</value>
+  </data>
+  <data name="CategoryCode" xml:space="preserve">
+    <value>Коды разрядов</value>
+  </data>
+  <data name="CategoryName" xml:space="preserve">
+    <value>Основные показатели</value>
+  </data>
+  <data name="CategorySubCode" xml:space="preserve">
+    <value>Субкоды  разрядов</value>
+  </data>
+  <data name="FormaSet" xml:space="preserve">
+    <value>Отчет о выполнении плана по сети, штатам и контингентам</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Очистить</value>
+  </data>
+  <data name="DateOfSend" xml:space="preserve">
+    <value>Дата отправки</value>
+  </data>
+  <data name="FinPeriod" xml:space="preserve">
+    <value>Финансовый период</value>
+  </data>
+  <data name="PeriodNotCorrect" xml:space="preserve">
+    <value>Финансовый период не выбран</value>
+  </data>
+  <data name="PassportDateOfIssueNotSelected" xml:space="preserve">
+    <value>Дата выдачи не правильный</value>
+  </data>
+  <data name="PaymentForecastType" xml:space="preserve">
+    <value>Тип прогноза исполнении кассовых расходов</value>
+  </data>
+  <data name="Quarter1" xml:space="preserve">
+    <value>Квартал 1</value>
+  </data>
+  <data name="Quarter2" xml:space="preserve">
+    <value>Квартал 2</value>
+  </data>
+  <data name="Quarter3" xml:space="preserve">
+    <value>Квартал 3</value>
+  </data>
+  <data name="Quarter4" xml:space="preserve">
+    <value>Квартал 4</value>
+  </data>
+  <data name="AdressNotCorrect" xml:space="preserve">
+    <value>Адрес не указано</value>
+  </data>
+  <data name="ContactInfoNotCorrect" xml:space="preserve">
+    <value>Номер телефона не указано</value>
+  </data>
+  <data name="ContragentProfile" xml:space="preserve">
+    <value>Контрагент</value>
+  </data>
+  <data name="EditeContractor" xml:space="preserve">
+    <value>Данные расчетного счета</value>
+  </data>
+  <data name="INNNotSelected" xml:space="preserve">
+    <value>ИНН не указано</value>
+  </data>
+  <data name="OblastSelected" xml:space="preserve">
+    <value>Область не выбрано</value>
+  </data>
+  <data name="RegionNotSelected" xml:space="preserve">
+    <value>Регион не выбран</value>
+  </data>
+  <data name="ZipCodeNotSelected" xml:space="preserve">
+    <value>Индекс не указано</value>
+  </data>
+  <data name="ContractProtocol" xml:space="preserve">
+    <value>Протокол</value>
+  </data>
+  <data name="InventoryHoldingIntakeCharges" xml:space="preserve">
+    <value>Затраты на ТМЗ</value>
+  </data>
+  <data name="DateOfUpdate" xml:space="preserve">
+    <value>Дата обновления</value>
+  </data>
+  <data name="PassportSeriesNotA-Z" xml:space="preserve">
+    <value>Буквы в серии паспорта должны бить латинскими</value>
+  </data>
+  <data name="SettlementAccountCashSubAccNotFound" xml:space="preserve">
+    <value>Субсчёт кассовых расходов Лицевого счёта не выбран</value>
+  </data>
+  <data name="Reportfillingbyaccountantinthousandssums" xml:space="preserve">
+    <value>Отчет заполняется бухгалтером в тысячи сумах</value>
+  </data>
+  <data name="FoodstuffIntakeNotAdded" xml:space="preserve">
+    <value>Приход продуктов питания не заполнено</value>
+  </data>
+  <data name="IntakeDetailsNotCorrect" xml:space="preserve">
+    <value>Содержание не заполнено</value>
+  </data>
+  <data name="InventoryHoldingIntakeChargesNotAdded" xml:space="preserve">
+    <value>Затраты на ТМЗ не заполнены</value>
+  </data>
+  <data name="InventoryHoldingIntakeNotAdded" xml:space="preserve">
+    <value>Товарно-материальные запасы (ТМЗ) не заполнены</value>
+  </data>
+  <data name="Copeck" xml:space="preserve">
+    <value>Разница</value>
+  </data>
+  <data name="DrugIntakeChargesNotAdded" xml:space="preserve">
+    <value>Затраты на ТМЗ не заполнены</value>
+  </data>
+  <data name="DrugIntakeNotAdded" xml:space="preserve">
+    <value>Приход медикаментов не заполнены</value>
+  </data>
+  <data name="PriceKG" xml:space="preserve">
+    <value>Цена(кг)</value>
+  </data>
+  <data name="QuantityKG" xml:space="preserve">
+    <value>Кол-во(кг)</value>
+  </data>
+  <data name="FormaSetReceive" xml:space="preserve">
+    <value>Отчет о выполнении плана по сети, штатам и контингентам принять</value>
+  </data>
+  <data name="FormaSetRegistery" xml:space="preserve">
+    <value>Реестр сет, штат и контингентов</value>
+  </data>
+  <data name="FormaSetRegistry" xml:space="preserve">
+    <value>Реестр сет, штат и контингентов</value>
+  </data>
+  <data name="FormaSetSent" xml:space="preserve">
+    <value>Отчет о выполнении плана по сети, штатам и контингентам централизованные</value>
+  </data>
+  <data name="HeaderOrgMustConfirm" xml:space="preserve">
+    <value>Для отправки данного документа вышестоящая организация должно подтвердить, нажав на кнопку [ Готово  к отправке ].</value>
+  </data>
+  <data name="OrganizationName" xml:space="preserve">
+    <value>Наименование организации</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>Просмотр</value>
+  </data>
+  <data name="ActualAmountOfAnnualProduct" xml:space="preserve">
+    <value>Фактически&lt;br&gt;потраченные&lt;br&gt;кол-во&lt;br&gt;продуктов</value>
+  </data>
+  <data name="AmountOfConsumedProducts" xml:space="preserve">
+    <value>Сумма&lt;br&gt;потраченных&lt;br&gt;продуктов&lt;br&gt;(сум)</value>
+  </data>
+  <data name="Annual" xml:space="preserve">
+    <value>Лимит(км)&lt;br&gt;годового&lt;br&gt;пробега</value>
+  </data>
+  <data name="AnnualWorkingDay" xml:space="preserve">
+    <value>Рабочие дни&lt;br&gt;в год( дет. дни.&lt;br&gt;койка дни)</value>
+  </data>
+  <data name="AverageDailyCost" xml:space="preserve">
+    <value>Среднедневные&lt;br&gt;затраты на&lt;br&gt;одно место (сум)</value>
+  </data>
+  <data name="AverageDailyRealCost" xml:space="preserve">
+    <value>Фактически&lt;br&gt;средний расход&lt;br&gt;в день (сум)</value>
+  </data>
+  <data name="AveragePriceOfProducts" xml:space="preserve">
+    <value>Средняя&lt;br&gt;цена продуктов&lt;br&gt;(сум)</value>
+  </data>
+  <data name="CarName" xml:space="preserve">
+    <value>Наименование&lt;br&gt;имеющихся&lt;br&gt;транспортов</value>
+  </data>
+  <data name="Coefficient" xml:space="preserve">
+    <value>Коэфициент&lt;br&gt;корректировки</value>
+  </data>
+  <data name="CountryNumber" xml:space="preserve">
+    <value>Гос.&lt;br&gt;номера</value>
+  </data>
+  <data name="DaysWorkedOneYear" xml:space="preserve">
+    <value>Проработанные&lt;br&gt;дни одного&lt;br&gt;места в году</value>
+  </data>
+  <data name="DoneInReality" xml:space="preserve">
+    <value>Фактическое исполнение</value>
+  </data>
+  <data name="EstimatedByTheOrganization" xml:space="preserve">
+    <value>Расчитанно организацией</value>
+  </data>
+  <data name="FuelConsumption" xml:space="preserve">
+    <value>Норма&lt;br&gt;расхода горючего&lt;br&gt;(100км; для&lt;br&gt;1 мото/час) </value>
+  </data>
+  <data name="FuelPrices" xml:space="preserve">
+    <value>Цена&lt;br&gt;горючего</value>
+  </data>
+  <data name="FuelType" xml:space="preserve">
+    <value>Вид&lt;br&gt;горючего</value>
+  </data>
+  <data name="Monthly" xml:space="preserve">
+    <value>Лимит(км)&lt;br&gt;месячного&lt;br&gt;пробега</value>
+  </data>
+  <data name="MonthlyFuelConsumption" xml:space="preserve">
+    <value>Расходы&lt;br&gt;горючего&lt;br&gt;на один&lt;br&gt;месяц(кг)</value>
+  </data>
+  <data name="MonthlyFuelConsumptionLitr" xml:space="preserve">
+    <value>Кол-во&lt;br&gt;расходованного&lt;br&gt;горючего в&lt;br&gt;год (литр)</value>
+  </data>
+  <data name="NumberOfSeats" xml:space="preserve">
+    <value>Кол-во&lt;br&gt; мест</value>
+  </data>
+  <data name="OneYearAmount" xml:space="preserve">
+    <value>Cумма за&lt;br&gt;один год&lt;br&gt;(сум)</value>
+  </data>
+  <data name="PlaceOfWork" xml:space="preserve">
+    <value>Фактическое &lt;br&gt;выполнение &lt;br&gt;кол-во&lt;br&gt;мест (в тыс.)</value>
+  </data>
+  <data name="PriceOfTheProduct" xml:space="preserve">
+    <value>Цена продуктов&lt;br&gt;в сумах&lt;br&gt;( на 1 единицу) </value>
+  </data>
+  <data name="SoInAYear" xml:space="preserve">
+    <value>Это же&lt;br&gt;в год (кг)</value>
+  </data>
+  <data name="StandardOfTheProduct" xml:space="preserve">
+    <value>Указанные&lt;br&gt;нормативы&lt;br&gt;продуктов&lt;br&gt;в один день</value>
+  </data>
+  <data name="TotalRequiredFinance" xml:space="preserve">
+    <value>Всего&lt;br&gt;затребованная&lt;br&gt;сумма (сум)</value>
+  </data>
+  <data name="TypeOfService" xml:space="preserve">
+    <value>Вид &lt;br&gt;оказываемой&lt;br&gt; услуги</value>
+  </data>
+  <data name="WorkShift" xml:space="preserve">
+    <value>Смена&lt;br&gt; работы</value>
+  </data>
+  <data name="BudgetCalculationFood" xml:space="preserve">
+    <value>Расходы на продукты питания</value>
+  </data>
+  <data name="BudgetCalculationGSM" xml:space="preserve">
+    <value>Расходы на топливо и ГСМ</value>
+  </data>
+  <data name="BudgetCalculationMedical" xml:space="preserve">
+    <value>Расходы на медикаменты и мед. принадлежности</value>
+  </data>
+  <data name="Расходы на продукты питания" xml:space="preserve">
+    <value>Прочие расходы</value>
+  </data>
+  <data name="BudgetCalculation" xml:space="preserve">
+    <value>Другие расходы</value>
+  </data>
+  <data name="4252300NotCorrect" xml:space="preserve">
+    <value>Сумма в разделе: *Смета* статьи 4252300 и в разделе: *Расходы на продукты питания* в статьи 4252300 не равны!</value>
+  </data>
+  <data name="4252410NotCorrect" xml:space="preserve">
+    <value>Сумма в разделе: *Смета* статьи 4252410и в разделе: *Расходы на медикаменты и мед. принадлежности* в статьи 4252410не равны!</value>
+  </data>
+  <data name="4252500NotCorrect" xml:space="preserve">
+    <value>Сумма в разделе: *Смета* статьи 4252500 и в разделе: *Расходы на топливо и ГСМ* в статьи 4252500 не равны!</value>
+  </data>
+  <data name="Approve" xml:space="preserve">
+    <value>Утвердить</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Зарегистрировать</value>
+  </data>
+  <data name="AnnualWorkingDayNotCorrect" xml:space="preserve">
+    <value>Рабочие дни в год( дет. дни. койка дни) не указан!</value>
+  </data>
+  <data name="DaysWorkedOneYearNotCorrect" xml:space="preserve">
+    <value>Проработанные дни одного места в году не указан!</value>
+  </data>
+  <data name="DepartmentNotCorrect" xml:space="preserve">
+    <value>Отдел не выбрано!</value>
+  </data>
+  <data name="NumberOfSeatNotCorrect" xml:space="preserve">
+    <value>Кол-во мест не указан!</value>
+  </data>
+  <data name="PlaceOfWorkNotCorrect" xml:space="preserve">
+    <value>Фактическое выполнение  кол-во мест (в тыс.) не указан!</value>
+  </data>
+  <data name="4252300EnterInformation" xml:space="preserve">
+    <value>Не указано сумма в статье 4252300 в разделе *Смета*</value>
+  </data>
+  <data name="4252410EnterInformation" xml:space="preserve">
+    <value>Не указано сумма в статье 4252410 в разделе *Смета*</value>
+  </data>
+  <data name="4252500EnterInformation" xml:space="preserve">
+    <value>Не указано сумма в статье 4252500 в разделе *Смета*</value>
+  </data>
+  <data name="HeaderOrganizationName" xml:space="preserve">
+    <value>Под. отчетная</value>
+  </data>
+  <data name="BudgetReceive" xml:space="preserve">
+    <value>Принять смету</value>
+  </data>
+  <data name="YouWantToApprove" xml:space="preserve">
+    <value>Вы действительно хотите утвердить?</value>
+  </data>
+  <data name="YouWantToReceive" xml:space="preserve">
+    <value>Вы действительно хотите принять?</value>
+  </data>
+  <data name="YouWantToRegister" xml:space="preserve">
+    <value>Вы действительно хотите зарегестрировать?</value>
+  </data>
+  <data name="FuelTypeNotCorrect" xml:space="preserve">
+    <value>Вид горючего не выбрано</value>
+  </data>
+  <data name="TotalSum" xml:space="preserve">
+    <value>Итоговая сумма</value>
+  </data>
+  <data name="ApprovedSuccessfully" xml:space="preserve">
+    <value>Успешно утвержден</value>
+  </data>
+  <data name="ReceivedSuccessfully" xml:space="preserve">
+    <value>Успешно принять</value>
+  </data>
+  <data name="RegisteredSuccessfully" xml:space="preserve">
+    <value>Успешно зарегистрирован</value>
+  </data>
+  <data name="Chapter" xml:space="preserve">
+    <value>Глава</value>
+  </data>
+  <data name="UZASBOVideos" xml:space="preserve">
+    <value>Видео уроки</value>
+  </data>
+  <data name="BankNotSelected" xml:space="preserve">
+    <value>МФО не указан</value>
+  </data>
+  <data name="ChapterNotCorrect" xml:space="preserve">
+    <value>Глава не указан</value>
+  </data>
+  <data name="INNNotCorrect" xml:space="preserve">
+    <value>ИНН не указан</value>
+  </data>
+  <data name="InSettlementAccountCodeNotCorrect" xml:space="preserve">
+    <value>Счет куда перебрасываются не указан</value>
+  </data>
+  <data name="OutSettlementAccountCodeNotCorrect" xml:space="preserve">
+    <value>Счет откуда перебрасываются не указан</value>
+  </data>
+  <data name="PaymentSchedule" xml:space="preserve">
+    <value>График платежей(Рус)</value>
+  </data>
+  <data name="PAAgeing is not calculated for:" xml:space="preserve">
+    <value>Начислите износ за месяц</value>
+  </data>
+  <data name="BudgetRequest" xml:space="preserve">
+    <value>Бюджетный запрос</value>
+  </data>
+  <data name="CurrentYear" xml:space="preserve">
+    <value>Утвержденные&lt;br&gt;расходы</value>
+  </data>
+  <data name="CurrentYearBudget" xml:space="preserve">
+    <value>Смета&lt;br&gt;расходов за&lt;br&gt;</value>
+  </data>
+  <data name="CurtYApp" xml:space="preserve">
+    <value>Утвержденные&lt;br&gt;расходы</value>
+  </data>
+  <data name="CurYP" xml:space="preserve">
+    <value>Дополнительные&lt;br&gt;расходы</value>
+  </data>
+  <data name="CYearBd" xml:space="preserve">
+    <value>Утвержденный&lt;br&gt;план&lt;br&gt;расходов&lt;br&gt;</value>
+  </data>
+  <data name="CYearEv" xml:space="preserve">
+    <value>в том&lt;br&gt;числе&lt;br&gt;расходы на&lt;br&gt;мероприятия&lt;br&gt;</value>
+  </data>
+  <data name="DateOfActivation" xml:space="preserve">
+    <value>Дата&lt;br&gt;вступления&lt;br&gt;в силу</value>
+  </data>
+  <data name="DateOfExpiration" xml:space="preserve">
+    <value>Срок&lt;br&gt;истечения&lt;br&gt;норматива</value>
+  </data>
+  <data name="EventBase" xml:space="preserve">
+    <value>Основание для&lt;br&gt;выделения средств&lt;br&gt;из бюджета</value>
+  </data>
+  <data name="EventName" xml:space="preserve">
+    <value>Наименование&lt;br&gt;программ и&lt;br&gt;мероприятий</value>
+  </data>
+  <data name="EventNormative" xml:space="preserve">
+    <value>Документ для&lt;br&gt;реализации&lt;br&gt;программы развития</value>
+  </data>
+  <data name="EventNumber" xml:space="preserve">
+    <value>Номер&lt;br&gt;норматива для&lt;br&gt;мероприятия</value>
+  </data>
+  <data name="Form" xml:space="preserve">
+    <value>Форма&lt;br&gt;документа</value>
+  </data>
+  <data name="NextY1" xml:space="preserve">
+    <value>Проект расходов&lt;br&gt;</value>
+  </data>
+  <data name="NextY2" xml:space="preserve">
+    <value>Проект расходов</value>
+  </data>
+  <data name="NextY3" xml:space="preserve">
+    <value>Проект расходов</value>
+  </data>
+  <data name="NextYear1" xml:space="preserve">
+    <value>Проект расходов&lt;br&gt;</value>
+  </data>
+  <data name="NextYear1WithEvent" xml:space="preserve">
+    <value>Прогноз на </value>
+  </data>
+  <data name="NextYear2" xml:space="preserve">
+    <value>Проект расходов</value>
+  </data>
+  <data name="NextYear2WithEvent" xml:space="preserve">
+    <value>Прогноз на</value>
+  </data>
+  <data name="NextYear3" xml:space="preserve">
+    <value>Проект расходов</value>
+  </data>
+  <data name="NextYear3WithEvent" xml:space="preserve">
+    <value>Прогноз на</value>
+  </data>
+  <data name="NY1WoutEv" xml:space="preserve">
+    <value>Без учета&lt;br&gt;мероприятий </value>
+  </data>
+  <data name="NY2WithEv" xml:space="preserve">
+    <value>С учетом&lt;br&gt;мероприятий</value>
+  </data>
+  <data name="NY2WoutEv" xml:space="preserve">
+    <value>Без учета&lt;br&gt;мероприятий</value>
+  </data>
+  <data name="NY3WithEv" xml:space="preserve">
+    <value>С учетом&lt;br&gt;мероприятий</value>
+  </data>
+  <data name="NY3WoutEv" xml:space="preserve">
+    <value>Без учета&lt;br&gt;мероприятий</value>
+  </data>
+  <data name="NYear1Ind" xml:space="preserve">
+    <value>Индексация</value>
+  </data>
+  <data name="NYear1L1" xml:space="preserve">
+    <value>На основании&lt;br&gt;программ развития&lt;br&gt;распределителей&lt;br&gt; </value>
+  </data>
+  <data name="NYear1L2" xml:space="preserve">
+    <value>На основании&lt;br&gt;мер и программ,&lt;br&gt;утвержденных решениями&lt;br&gt;правительства</value>
+  </data>
+  <data name="NYear1WEv" xml:space="preserve">
+    <value>С учетом&lt;br&gt;мероприятий</value>
+  </data>
+  <data name="NYear2Ind" xml:space="preserve">
+    <value>Индексация</value>
+  </data>
+  <data name="NYear2L1" xml:space="preserve">
+    <value>На основании&lt;br&gt;программ развития&lt;br&gt;распределителей&lt;br&gt;</value>
+  </data>
+  <data name="NYear2L2" xml:space="preserve">
+    <value>На основании&lt;br&gt;мер и программ,&lt;br&gt;утвержденных решениями&lt;br&gt;правительства</value>
+  </data>
+  <data name="NYear2WEv" xml:space="preserve">
+    <value>С учетом&lt;br&gt;мероприятий</value>
+  </data>
+  <data name="NYear3Ind" xml:space="preserve">
+    <value>Индексация</value>
+  </data>
+  <data name="NYear3L1" xml:space="preserve">
+    <value>На основании&lt;br&gt;программ развития&lt;br&gt;распределителей&lt;br&gt;</value>
+  </data>
+  <data name="NYear3L2" xml:space="preserve">
+    <value>На основании&lt;br&gt;мер и программ,&lt;br&gt;утвержденных решениями&lt;br&gt;правительства</value>
+  </data>
+  <data name="NYear3WEv" xml:space="preserve">
+    <value>С учетом&lt;br&gt;мероприятий</value>
+  </data>
+  <data name="OrganizationSpecifics" xml:space="preserve">
+    <value>Вид&lt;br&gt;деятельности&lt;br&gt;бюджетной&lt;br&gt;организации</value>
+  </data>
+  <data name="PreviousYear" xml:space="preserve">
+    <value>Кассовые&lt;br&gt;расходы&lt;br&gt;</value>
+  </data>
+  <data name="PreviousYearCashAmount" xml:space="preserve">
+    <value>Кассовые&lt;br&gt;расходы за&lt;br&gt;</value>
+  </data>
+  <data name="PrevYear" xml:space="preserve">
+    <value>Кассовые&lt;br&gt;расходы&lt;br&gt;</value>
+  </data>
+  <data name="PYearAA" xml:space="preserve">
+    <value>Фактические&lt;br&gt;расходы&lt;br&gt;</value>
+  </data>
+  <data name="PYearCA" xml:space="preserve">
+    <value>Кассовые&lt;br&gt;расходы&lt;br&gt;</value>
+  </data>
+  <data name="ResetfillRows" xml:space="preserve">
+    <value>Очистите 3-приложение</value>
+  </data>
+  <data name="ResetfillRows2" xml:space="preserve">
+    <value>Очистите 2-приложение</value>
+  </data>
+  <data name="year" xml:space="preserve">
+    <value>год</value>
+  </data>
+  <data name="CurrentYearApprove" xml:space="preserve">
+    <value>Утвержденные&lt;br&gt;расходы </value>
+  </data>
+  <data name="CurrentYearTotal" xml:space="preserve">
+    <value>Итого за год</value>
+  </data>
+  <data name="Reportfillingbyaccountantinsums" xml:space="preserve">
+    <value>Отчет заполняется бухгалтером в сумах</value>
+  </data>
+  <data name="BudReqApp2" xml:space="preserve">
+    <value>приложение - 2</value>
+  </data>
+  <data name="BudReqApp3" xml:space="preserve">
+    <value>приложение - 3</value>
+  </data>
+  <data name="BudReqApp4" xml:space="preserve">
+    <value>приложение - 4</value>
+  </data>
+  <data name="BudReqApp5" xml:space="preserve">
+    <value>приложение - 5</value>
+  </data>
+  <data name="BudReqApp6" xml:space="preserve">
+    <value>приложение - 6</value>
+  </data>
+  <data name="BudReqApp7" xml:space="preserve">
+    <value>приложение - 7</value>
+  </data>
+  <data name="EventDate" xml:space="preserve">
+    <value>Дата норматива</value>
+  </data>
+  <data name="NextYear1Correction" xml:space="preserve">
+    <value>Корректировка проекта расходов&lt;br&gt;</value>
+  </data>
+  <data name="BRCalcType" xml:space="preserve">
+    <value>Тип бюджетного запроса</value>
+  </data>
+  <data name="BudgetRequestCalc" xml:space="preserve">
+    <value>Расчет бюджетного запроса</value>
+  </data>
+  <data name="CurrentYearEvent" xml:space="preserve">
+    <value>Прогнозируемые расходы&lt;br&gt;</value>
+  </data>
+  <data name="AddEventBase" xml:space="preserve">
+    <value>Добавить основание для выделения средств</value>
+  </data>
+  <data name="BREventHelper" xml:space="preserve">
+    <value>Справочник мероприятий</value>
+  </data>
+  <data name="EventNameRus" xml:space="preserve">
+    <value>Наименование мероприятий</value>
+  </data>
+  <data name="NameRus" xml:space="preserve">
+    <value>Русча</value>
+  </data>
+  <data name="NameUzb" xml:space="preserve">
+    <value>Ўзбекча</value>
+  </data>
+  <data name="EventBaseNotAdded" xml:space="preserve">
+    <value>Основание для выделение средств не указано</value>
+  </data>
+  <data name="EventNameNotFilled" xml:space="preserve">
+    <value>Наименование мероприятия не указано (узб)</value>
+  </data>
+  <data name="EventNameRusNotFilled" xml:space="preserve">
+    <value>Наименование мероприятия не указано (рус)</value>
+  </data>
+  <data name="EventNumberNotFilled" xml:space="preserve">
+    <value>Номер регистрации мероприятия не указан</value>
+  </data>
+  <data name="NameRusNotFilled" xml:space="preserve">
+    <value>Основание для выделение средств не указано (узб)</value>
+  </data>
+  <data name="NameUzbNotFilled" xml:space="preserve">
+    <value>Основание для выделение средств не указано (рус)</value>
+  </data>
+  <data name="BudgetRequestEventlistNotCorrect" xml:space="preserve">
+    <value>Наименование мероприятия не выбрано</value>
+  </data>
+  <data name="EventlistNotCorrect" xml:space="preserve">
+    <value>Основание для выделения средств не выбрано</value>
+  </data>
+  <data name="EventNameNotCorrect" xml:space="preserve">
+    <value>Наименование мероприятия не заполнено</value>
+  </data>
+  <data name="EventNormativeNotCorrect" xml:space="preserve">
+    <value>Документ для программы развития не заполнено</value>
+  </data>
+  <data name="CurrentYearEventNotCorrect" xml:space="preserve">
+    <value>Прогнозируемые расходы не указано</value>
+  </data>
+  <data name="FormNotCorrect" xml:space="preserve">
+    <value>Форма норматива не указано</value>
+  </data>
+  <data name="NormativeNameNotCorrect" xml:space="preserve">
+    <value>Наименование норматива не указано</value>
+  </data>
+  <data name="NormativeNumberNotCorrect" xml:space="preserve">
+    <value>Номер норматива не указано</value>
+  </data>
+  <data name="OrganizationSpecificsNotCorrect" xml:space="preserve">
+    <value>Вид деятельности бюджетной организации не указано</value>
+  </data>
+  <data name="BRFunctionalItem" xml:space="preserve">
+    <value>Раздел, глава</value>
+  </data>
+  <data name="BROrganizationsFunctionalItem" xml:space="preserve">
+    <value>Раздел, глава</value>
+  </data>
+  <data name="BudgetRequestCalcFill" xml:space="preserve">
+    <value>Бюджетный запрос ОТПРАВЛЕННЫЕ</value>
+  </data>
+  <data name="BudgetRequestRegionFill" xml:space="preserve">
+    <value>Бюджетный запрос СВОД</value>
+  </data>
+  <data name="BudReqElements" xml:space="preserve">
+    <value>Организации</value>
+  </data>
+  <data name="CreateCalc" xml:space="preserve">
+    <value>Создать расчет бюджетного запроса</value>
+  </data>
+  <data name="NextYearSumIsNotNull" xml:space="preserve">
+    <value>Итоговая сумма корректировки в 6-приложении должно быть ровно 0</value>
+  </data>
+  <data name="ToApply" xml:space="preserve">
+    <value>Применить</value>
+  </data>
+  <data name="AppIsNotFilled" xml:space="preserve">
+    <value>Не заполнено 2- и 3- приложение</value>
+  </data>
+  <data name="PayrollSheetAmountNotExactlyWithPayment" xml:space="preserve">
+    <value>Сумма ведомости и сумма платежного поручения не равны</value>
+  </data>
+  <data name="otherwise it slows down the program" xml:space="preserve">
+    <value>в противном случае это приводит к замедлению программы в отчетный период</value>
+  </data>
+  <data name="CurrencyIDNotCorrect" xml:space="preserve">
+    <value>Валюта не выбрано</value>
+  </data>
+  <data name="CurrencySumNotCorrect" xml:space="preserve">
+    <value>Сумма валюты не указано</value>
+  </data>
+  <data name="FixingDetail" xml:space="preserve">
+    <value>Детали</value>
+  </data>
+  <data name="FixingDetailNotCorrect" xml:space="preserve">
+    <value>Детали не заполнены</value>
+  </data>
+  <data name="MemOrd" xml:space="preserve">
+    <value>Мемориальный ордер</value>
+  </data>
+  <data name="SubAccCrNotCorrect" xml:space="preserve">
+    <value>Субсчет (Кт) не выбран</value>
+  </data>
+  <data name="SubAccDbNotCorrect" xml:space="preserve">
+    <value>Субсчет (Дт) не выбран</value>
+  </data>
+  <data name="SubCountCr1Value" xml:space="preserve">
+    <value>Субконто (Кт) 1</value>
+  </data>
+  <data name="SubCountCr1ValueNotCorrect" xml:space="preserve">
+    <value>Субконто (Кт) 1 не выбран</value>
+  </data>
+  <data name="SubCountCr2Value" xml:space="preserve">
+    <value>Субконто (Кт) 2</value>
+  </data>
+  <data name="SubCountCr2ValueNotCorrect" xml:space="preserve">
+    <value>Субконто (Кт) 2 не выбран</value>
+  </data>
+  <data name="SubCountCr3Value" xml:space="preserve">
+    <value>Субконто (Кт) 3</value>
+  </data>
+  <data name="SubCountCr3ValueNotCorrect" xml:space="preserve">
+    <value>Субконто (Кт) 3 не выбран</value>
+  </data>
+  <data name="SubCountDb1Value" xml:space="preserve">
+    <value>Субконто (Дт) 1</value>
+  </data>
+  <data name="SubCountDb1ValueNotCorrect" xml:space="preserve">
+    <value>Субконто (Дт) 1 не выбран</value>
+  </data>
+  <data name="SubCountDb2Value" xml:space="preserve">
+    <value>Субконто (Дт) 2</value>
+  </data>
+  <data name="SubCountDb2ValueNotCorrect" xml:space="preserve">
+    <value>Субконто (Дт) 2 не выбран</value>
+  </data>
+  <data name="SubCountDb3Value" xml:space="preserve">
+    <value>Субконто (Дт) 3</value>
+  </data>
+  <data name="SubCountDb3ValueNotCorrect" xml:space="preserve">
+    <value>Субконто (Дт) 3 не выбран</value>
+  </data>
+  <data name="DataHistory" xml:space="preserve">
+    <value>История изменений</value>
+  </data>
+  <data name="TrSettAccCode" xml:space="preserve">
+    <value>Лицевой счет</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>Значение</value>
+  </data>
+  <data name="Acc" xml:space="preserve">
+    <value>Счет</value>
+  </data>
+  <data name="AccCr" xml:space="preserve">
+    <value>Кредит</value>
+  </data>
+  <data name="AccDb" xml:space="preserve">
+    <value>Дебет</value>
+  </data>
+  <data name="CanFixingTransaction" xml:space="preserve">
+    <value>Разреш.исправ.</value>
+  </data>
+  <data name="CurrencyCode1" xml:space="preserve">
+    <value>Валюта</value>
+  </data>
+  <data name="DocDisplayName" xml:space="preserve">
+    <value>Документ</value>
+  </data>
+  <data name="MemorialOrderNumber" xml:space="preserve">
+    <value>Мемориальный ордер</value>
+  </data>
+  <data name="Summustbegreaterthan0" xml:space="preserve">
+    <value>Сумма должно быть больше чем  0</value>
+  </data>
+  <data name="IncomeSettlementAccountRegoinCodeNotCorrect" xml:space="preserve">
+    <value>В доходном Л/С не правильно указан код территориальной принадлежности, в соответствии с утвержденной территориальной классификацией.</value>
+  </data>
+  <data name="ForCorrection" xml:space="preserve">
+    <value>На корректирование</value>
+  </data>
+  <data name="ClosingDetail" xml:space="preserve">
+    <value>Детали</value>
+  </data>
+  <data name="ClosingDetailNotCorrect" xml:space="preserve">
+    <value>Детали не заполнены</value>
+  </data>
+  <data name="CreditSum" xml:space="preserve">
+    <value>Остаток</value>
+  </data>
+  <data name="DebitSum" xml:space="preserve">
+    <value>Остаток</value>
+  </data>
+  <data name="AgeingRateNotSelected" xml:space="preserve">
+    <value>Не указан износ (%)</value>
+  </data>
+  <data name="AgeingSubAccCodeNotSelected" xml:space="preserve">
+    <value>Не указан Субсчет (Износа)</value>
+  </data>
+  <data name="NamePermanentAssetNotSelected" xml:space="preserve">
+    <value>Не введено наименование ОС</value>
+  </data>
+  <data name="PAGroupNotSelected" xml:space="preserve">
+    <value>Не указано группа</value>
+  </data>
+  <data name="PASubGroupNotSelected" xml:space="preserve">
+    <value>Не указано под группа</value>
+  </data>
+  <data name="RetireAgeingItemOfExpenseNotSelected" xml:space="preserve">
+    <value>Не указан Статьи расходов</value>
+  </data>
+  <data name="RetireAgeingSubAccCodeNotSelected" xml:space="preserve">
+    <value>Не указан Субсчет (Расход Износ)</value>
+  </data>
+  <data name="RetireReappSubAccCodeNotSelected" xml:space="preserve">
+    <value>Не указан Субсчет (Переоцен.)</value>
+  </data>
+  <data name="SubAccCodeNotSelected" xml:space="preserve">
+    <value>Не указан Субсчет</value>
+  </data>
+  <data name="UnitsOfMeasureNotSelected" xml:space="preserve">
+    <value>Не указано единица измерения</value>
+  </data>
+  <data name="AccCod" xml:space="preserve">
+    <value>Cчет</value>
+  </data>
+  <data name="CashSubAccNotCorrect" xml:space="preserve">
+    <value>Счет кассовых расходов не выбран</value>
+  </data>
+  <data name="NameTrOrgSet" xml:space="preserve">
+    <value>Наименование</value>
+  </data>
+  <data name="AddIH" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="ContractorID" xml:space="preserve">
+    <value>Контрагент ID</value>
+  </data>
+  <data name="BankCodeNotCorrect" xml:space="preserve">
+    <value>МФО не введено</value>
+  </data>
+  <data name="ContractorIDNotCorrect" xml:space="preserve">
+    <value>Контрактор ИД не введен</value>
+  </data>
+  <data name="SettlementAccountNotCorrect" xml:space="preserve">
+    <value>Расчетный счет не введен</value>
+  </data>
+  <data name="BankDate" xml:space="preserve">
+    <value>Опер.Дата</value>
+  </data>
+  <data name="DocumentTypeName" xml:space="preserve">
+    <value>Тип документа</value>
+  </data>
+  <data name="IncomeDocument" xml:space="preserve">
+    <value>Информация о поступивших контингентах налогов</value>
+  </data>
+  <data name="TerritoryLevel" xml:space="preserve">
+    <value>Уровень</value>
+  </data>
+  <data name="AddNewSettlementAccount" xml:space="preserve">
+    <value>Добавить новый р/с</value>
+  </data>
+  <data name="AddSettlementAccount" xml:space="preserve">
+    <value>Добавить новый р/с</value>
+  </data>
+  <data name="ChooseContractorFirstly" xml:space="preserve">
+    <value>Контрагент не выбран, выберите контрагента</value>
+  </data>
+  <data name="IncomeSplitBudget" xml:space="preserve">
+    <value>Информации о расщепленных (первичное расщепление) средствах на бюджеты (фонды)</value>
+  </data>
+  <data name="OutSettlementAccountCodes" xml:space="preserve">
+    <value>Л/С</value>
+  </data>
+  <data name="IncomeSplitFund" xml:space="preserve">
+    <value>Информация об отчисленных средствах на специальные счета</value>
+  </data>
+  <data name="InSettlementAccountCodes" xml:space="preserve">
+    <value>Л/С</value>
+  </data>
+  <data name="SettlementAccountCodes" xml:space="preserve">
+    <value>Л/С</value>
+  </data>
+  <data name="ContractNotCorrect" xml:space="preserve">
+    <value>Договор не указан</value>
+  </data>
+  <data name="ContractorTMZNotCorrect" xml:space="preserve">
+    <value>Контрагент не указан</value>
+  </data>
+  <data name="InventoryHoldingNotSelected" xml:space="preserve">
+    <value>ТМЗ не выбран</value>
+  </data>
+  <data name="InventoryHoldingTypeNotSelected" xml:space="preserve">
+    <value>Тип ТМЗ не выбран</value>
+  </data>
+  <data name="QuantityLitr" xml:space="preserve">
+    <value>Кол-во литр</value>
+  </data>
+  <data name="DocNumberNotCorrect" xml:space="preserve">
+    <value>Номер счет-фактуры не ведено</value>
+  </data>
+  <data name="GSMIntakeChargesNotAdded" xml:space="preserve">
+    <value>Затраты на ТМЗ не указаны</value>
+  </data>
+  <data name="GSMIntakeNotAdded" xml:space="preserve">
+    <value>Приход ГСМ не указано</value>
+  </data>
+  <data name="ResponsiblePersonNotCorrect" xml:space="preserve">
+    <value>Материально ответственное лицо не указан</value>
+  </data>
+  <data name="DrugIntakeUnpaidNotAdded" xml:space="preserve">
+    <value>Медикаменты не указаны</value>
+  </data>
+  <data name="FoodstuffIntakeUnpaidNotAdded" xml:space="preserve">
+    <value>ТМЗ не указан</value>
+  </data>
+  <data name="GSMIntakeUnpaidNotAdded" xml:space="preserve">
+    <value>ГСМ не указан</value>
+  </data>
+  <data name="InventoryHoldingIntakeUnpaidNotAdded" xml:space="preserve">
+    <value>ТМЗ не указан</value>
+  </data>
+  <data name="DepartmentCrNotCorrect" xml:space="preserve">
+    <value>Склад (КТ) не выбран</value>
+  </data>
+  <data name="DepartmentDbNotCorrect" xml:space="preserve">
+    <value>Отдел (ДТ) не выбран</value>
+  </data>
+  <data name="MovementDetailsNotCorrect" xml:space="preserve">
+    <value>Содержание не заполнено</value>
+  </data>
+  <data name="ResponsiblePersonCrNotCorrect" xml:space="preserve">
+    <value>Материально-ответственное лицо (КТ) не выбран</value>
+  </data>
+  <data name="ResponsiblePersonDbNotCorrect" xml:space="preserve">
+    <value>Материально-ответственное лицо (ДТ) не выбран</value>
+  </data>
+  <data name="RestQuantity" xml:space="preserve">
+    <value>Остаток</value>
+  </data>
+  <data name="InventaryHoldingNotAdded" xml:space="preserve">
+    <value>ТМЗ не выбран</value>
+  </data>
+  <data name="Department1CrName" xml:space="preserve">
+    <value>Отдел (КТ)</value>
+  </data>
+  <data name="QueueNumber" xml:space="preserve">
+    <value>Номер очереди</value>
+  </data>
+  <data name="OutOfBalance1" xml:space="preserve">
+    <value>Забалансовый счет</value>
+  </data>
+  <data name="PAQuitTypeNotCorrect" xml:space="preserve">
+    <value>Причина не выбрано</value>
+  </data>
+  <data name="SubAccOBNotCorrect" xml:space="preserve">
+    <value>Забалансовый счет не ыбран</value>
+  </data>
+  <data name="IHOBRetirement" xml:space="preserve">
+    <value>Списание ТМЗ из ЗБ</value>
+  </data>
+  <data name="ResponsiblePersons" xml:space="preserve">
+    <value>М.О.Л.</value>
+  </data>
+  <data name="DepartmentCrNames" xml:space="preserve">
+    <value>Склад (КТ)</value>
+  </data>
+  <data name="DepartmentDbNames" xml:space="preserve">
+    <value>Отдел (ДТ)</value>
+  </data>
+  <data name="ResponsiblePersonCrNames" xml:space="preserve">
+    <value>М.О.Л. (КТ)</value>
+  </data>
+  <data name="ResponsiblePersonDbNames" xml:space="preserve">
+    <value>М.О.Л. (ДТ)</value>
+  </data>
+  <data name="ChequeSNORChequeNumberNotSelected" xml:space="preserve">
+    <value>Серия чека или номер чека не заполнено</value>
+  </data>
+  <data name="ChequePaymentOrderID" xml:space="preserve">
+    <value>ID платежного поручения</value>
+  </data>
+  <data name="MatterNotSelected" xml:space="preserve">
+    <value>Содержание не указано</value>
+  </data>
+  <data name="TakeOverNotSelected" xml:space="preserve">
+    <value>От кого не указано</value>
+  </data>
+  <data name="ContractorName-ContractorINN" xml:space="preserve">
+    <value>Получатель-ИНН</value>
+  </data>
+  <data name="UzexBlackList" xml:space="preserve">
+    <value>Информация по недобросовестным поставщикам</value>
+  </data>
+  <data name="ByDocument" xml:space="preserve">
+    <value>По документу</value>
+  </data>
+  <data name="ByDocumentNotSelected" xml:space="preserve">
+    <value>По документу не заполнено</value>
+  </data>
+  <data name="Comment2" xml:space="preserve">
+    <value>Приложение</value>
+  </data>
+  <data name="Comment2NotSelected" xml:space="preserve">
+    <value>Приложение не заполнено</value>
+  </data>
+  <data name="IssueNotSelected" xml:space="preserve">
+    <value>Кому не заполнено</value>
+  </data>
+  <data name="DateOfEndLot" xml:space="preserve">
+    <value>Дата окончания лота</value>
+  </data>
+  <data name="DateOfStartLot" xml:space="preserve">
+    <value>Дата начала лота</value>
+  </data>
+  <data name="DeliveryTime" xml:space="preserve">
+    <value>Срок поставки (дн.)</value>
+  </data>
+  <data name="INNBuyer" xml:space="preserve">
+    <value>ИНН (покупателя)</value>
+  </data>
+  <data name="NonBudgetAccountCode" xml:space="preserve">
+    <value>Внебюд. Л/С поставщика</value>
+  </data>
+  <data name="NonCompletionReason" xml:space="preserve">
+    <value>Причина несовершения сделки</value>
+  </data>
+  <data name="NumberOfContract" xml:space="preserve">
+    <value>Номер контракта</value>
+  </data>
+  <data name="PriceStart" xml:space="preserve">
+    <value>Стартовая цена</value>
+  </data>
+  <data name="ProviderINN" xml:space="preserve">
+    <value>ИНН поставщика (продавца)</value>
+  </data>
+  <data name="ProviderName" xml:space="preserve">
+    <value>Наим. поставщика (продавца)</value>
+  </data>
+  <data name="RegionCode" xml:space="preserve">
+    <value>Код территории продавца</value>
+  </data>
+  <data name="SettlementAccountCodeBuyer" xml:space="preserve">
+    <value>ЛС (покупателя)</value>
+  </data>
+  <data name="SpecificationNote" xml:space="preserve">
+    <value>Описания товара</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Тип информации</value>
+  </data>
+  <data name="TypeOfContract" xml:space="preserve">
+    <value>Тип договора</value>
+  </data>
+  <data name="BargainType" xml:space="preserve">
+    <value>Тип сделки</value>
+  </data>
+  <data name="UzexDeals" xml:space="preserve">
+    <value>Информации по объявлениям</value>
+  </data>
+  <data name="UzexReservationOfFunds" xml:space="preserve">
+    <value>Информации по бронированию средств</value>
+  </data>
+  <data name="Matter2" xml:space="preserve">
+    <value>Приложение</value>
+  </data>
+  <data name="Matter2NotSelected" xml:space="preserve">
+    <value>Приложение не заполнено</value>
+  </data>
+  <data name="PaymentDetails2" xml:space="preserve">
+    <value>Содержание</value>
+  </data>
+  <data name="PaymentDetails2NotCorrect" xml:space="preserve">
+    <value>Содержание не заполнено</value>
+  </data>
+  <data name="Print1N" xml:space="preserve">
+    <value>Печать(Рус.Прил.№1)</value>
+  </data>
+  <data name="Print2N" xml:space="preserve">
+    <value>Печать(Рус.Прил.№2)</value>
+  </data>
+  <data name="Print3N" xml:space="preserve">
+    <value>Печать(Узб.Прил.№1)</value>
+  </data>
+  <data name="Print4N" xml:space="preserve">
+    <value>Печать(Узб.Прил.№2)</value>
+  </data>
+  <data name="ActualSubAccNotCorrect" xml:space="preserve">
+    <value>Субсчёт фактических расходов выбранный в акте выполненных работ и субсчёт фактических расходов прикреплённый к ЛС выбранного договора не совпадают</value>
+  </data>
+  <data name="PayrollDetailNotCorrect" xml:space="preserve">
+    <value>Содержание не заполнено</value>
+  </data>
+  <data name="PayrollleaseNotAdded" xml:space="preserve">
+    <value>Документ не заполнен</value>
+  </data>
+  <data name="PaymentSchedule1" xml:space="preserve">
+    <value>График платежей(Узб)</value>
+  </data>
+  <data name="DocumentNumbers" xml:space="preserve">
+    <value>Номер документа</value>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>Изменить</value>
+  </data>
+  <data name="ChangeDateChildrenMissedDays" xml:space="preserve">
+    <value>Изменить срок</value>
+  </data>
+  <data name="ChangeEndDate" xml:space="preserve">
+    <value>Уменшить срок</value>
+  </data>
+  <data name="EndDateMustBeDecreased" xml:space="preserve">
+    <value>Дата окончания пропущенных дней не можно увелечивать</value>
+  </data>
+  <data name="DateCh" xml:space="preserve">
+    <value>Дата чека</value>
+  </data>
+  <data name="DateEntered" xml:space="preserve">
+    <value>Дата получен.</value>
+  </data>
+  <data name="DateIn" xml:space="preserve">
+    <value>Дата ввода</value>
+  </data>
+  <data name="DateOfCreatedss" xml:space="preserve">
+    <value>Дата обновления</value>
+  </data>
+  <data name="FinY" xml:space="preserve">
+    <value>Фин.Год</value>
+  </data>
+  <data name="PassportInfo" xml:space="preserve">
+    <value>Паспортные данные</value>
+  </data>
+  <data name="SN1" xml:space="preserve">
+    <value>Серия</value>
+  </data>
+  <data name="TotalChildren" xml:space="preserve">
+    <value>Кол-во детей : </value>
+  </data>
+  <data name="TotalForPayment" xml:space="preserve">
+    <value>К оплате : </value>
+  </data>
+  <data name="TotalPriceAmount" xml:space="preserve">
+    <value>Начисление : </value>
+  </data>
+  <data name="TotalReCalc" xml:space="preserve">
+    <value>Перерасчет :</value>
+  </data>
+  <data name="TimeSheetNumberNotCorrect" xml:space="preserve">
+    <value>№ табеля не указан</value>
+  </data>
+  <data name="PayrollSalary" xml:space="preserve">
+    <value>Начисление заработный платы</value>
+  </data>
+  <data name="NotSendOrganizationExist" xml:space="preserve">
+    <value>Есть организации не отправившие сметы</value>
+  </data>
+  <data name="NotSendOrganizations" xml:space="preserve">
+    <value>Организации не отправившие сметы в Центральную бухгалтерию</value>
+  </data>
+  <data name="EndNumber" xml:space="preserve">
+    <value>по:</value>
+  </data>
+  <data name="EndNumberNotCorrect" xml:space="preserve">
+    <value>Номер чека не указан</value>
+  </data>
+  <data name="InformationChecks" xml:space="preserve">
+    <value>Информация чека</value>
+  </data>
+  <data name="Prints" xml:space="preserve">
+    <value>Печать</value>
+  </data>
+  <data name="Serial" xml:space="preserve">
+    <value>Серия чека:</value>
+  </data>
+  <data name="SerialNotCorrect" xml:space="preserve">
+    <value>Серия чека не указан</value>
+  </data>
+  <data name="StartNumber" xml:space="preserve">
+    <value>Номер чека с:</value>
+  </data>
+  <data name="StartNumberNotCorrect" xml:space="preserve">
+    <value>Номер чека не указан</value>
+  </data>
+  <data name="Quarters1" xml:space="preserve">
+    <value>1-квартал</value>
+  </data>
+  <data name="Quarters2" xml:space="preserve">
+    <value>2-квартал</value>
+  </data>
+  <data name="Quarters3" xml:space="preserve">
+    <value>3-квартал</value>
+  </data>
+  <data name="Quarters4" xml:space="preserve">
+    <value>4-квартал</value>
+  </data>
+  <data name="DateOfCreateds" xml:space="preserve">
+    <value>Дата обновления</value>
+  </data>
+  <data name="DateOfModifieds" xml:space="preserve">
+    <value>Дата послд. измен.</value>
+  </data>
+  <data name="UZASBO-Invoice" xml:space="preserve">
+    <value>UZASBO – Фактура</value>
+  </data>
+  <data name="CurrencySumCr" xml:space="preserve">
+    <value>Сумма в Валюте (Кт)</value>
+  </data>
+  <data name="CurrencySumDb" xml:space="preserve">
+    <value>Сумма в Валюте (Дт)</value>
+  </data>
+  <data name="DateMustBeRight" xml:space="preserve">
+    <value>Не правильная дата. Остатки должны быть на 31.12, 31.03, 30.06, 30.09</value>
+  </data>
+  <data name="SumCr" xml:space="preserve">
+    <value>Сумма (Кт)</value>
+  </data>
+  <data name="SumDb" xml:space="preserve">
+    <value>Сумма (Дт)</value>
+  </data>
+  <data name="DbOrKtMustbe0" xml:space="preserve">
+    <value>ДТ или КТ должно быть (0)</value>
+  </data>
+  <data name="Andijon-03" xml:space="preserve">
+    <value>03-Андижанская область</value>
+  </data>
+  <data name="Buxoro-06" xml:space="preserve">
+    <value>06-Бухарская область</value>
+  </data>
+  <data name="Farg'ona-30" xml:space="preserve">
+    <value>30-Ферганская область</value>
+  </data>
+  <data name="Jizzax-08" xml:space="preserve">
+    <value>08-Джизакская область</value>
+  </data>
+  <data name="Namangan-14" xml:space="preserve">
+    <value>14-Наманганская область</value>
+  </data>
+  <data name="Navoiy-12" xml:space="preserve">
+    <value>12-Навоийская область</value>
+  </data>
+  <data name="Qashqadaryo-10" xml:space="preserve">
+    <value>10-Кашкадарьинская область</value>
+  </data>
+  <data name="Qoraqalpoq-35" xml:space="preserve">
+    <value>35-Республика Каракалпакстан</value>
+  </data>
+  <data name="ReconciliationReport" xml:space="preserve">
+    <value>Акт сверка</value>
+  </data>
+  <data name="Samarqand-18" xml:space="preserve">
+    <value>18-Самаркандская область</value>
+  </data>
+  <data name="Sirdaryo-24" xml:space="preserve">
+    <value>24-Сырдарьинская область</value>
+  </data>
+  <data name="Surxondaryo-22" xml:space="preserve">
+    <value>22-Сурхандарьинская область</value>
+  </data>
+  <data name="Toshkent shahar-26" xml:space="preserve">
+    <value>26-Город Ташкент</value>
+  </data>
+  <data name="Toshkent viloyati-27" xml:space="preserve">
+    <value>27-Ташкентская область</value>
+  </data>
+  <data name="Xorazm-33" xml:space="preserve">
+    <value>33-Хорезмская область</value>
+  </data>
+  <data name="FileIn" xml:space="preserve">
+    <value>Прием файлов</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>Название файла</value>
+  </data>
+  <data name="Result" xml:space="preserve">
+    <value>Результат</value>
+  </data>
+  <data name="LastAccessTime" xml:space="preserve">
+    <value>Последнее обращение</value>
+  </data>
+  <data name="LastIP" xml:space="preserve">
+    <value>Последнее IP</value>
+  </data>
+  <data name="VerifyEDS" xml:space="preserve">
+    <value>Проверка ЭЦП</value>
+  </data>
+  <data name="ControlSum" xml:space="preserve">
+    <value>Контрол. сумма</value>
+  </data>
+  <data name="DocumentSum" xml:space="preserve">
+    <value>Сумма документа</value>
+  </data>
+  <data name="Month1" xml:space="preserve">
+    <value>Январь</value>
+  </data>
+  <data name="Month10" xml:space="preserve">
+    <value>Октябрь</value>
+  </data>
+  <data name="Month11" xml:space="preserve">
+    <value>Ноябрь</value>
+  </data>
+  <data name="Month12" xml:space="preserve">
+    <value>Декабрь</value>
+  </data>
+  <data name="Month2" xml:space="preserve">
+    <value>Февраль</value>
+  </data>
+  <data name="Month3" xml:space="preserve">
+    <value>Март</value>
+  </data>
+  <data name="Month4" xml:space="preserve">
+    <value>Апрель</value>
+  </data>
+  <data name="Month5" xml:space="preserve">
+    <value>Май</value>
+  </data>
+  <data name="Month6" xml:space="preserve">
+    <value>Июнь</value>
+  </data>
+  <data name="Month7" xml:space="preserve">
+    <value>Июль</value>
+  </data>
+  <data name="Month8" xml:space="preserve">
+    <value>Август</value>
+  </data>
+  <data name="Month9" xml:space="preserve">
+    <value>Сентябрь</value>
+  </data>
+  <data name="MonthlyAllocation" xml:space="preserve">
+    <value>Помесячное распределение суммы сметы</value>
+  </data>
+  <data name="OrganizationFunctionalItem" xml:space="preserve">
+    <value>Раздел, глава</value>
+  </data>
+  <data name="Percentage" xml:space="preserve">
+    <value>Процент</value>
+  </data>
+  <data name="SettleCodeLevel" xml:space="preserve">
+    <value>Уровень бюджета</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Итого</value>
+  </data>
+  <data name="OKEDCodeNotCorrect" xml:space="preserve">
+    <value>Код ОКЭД не указан</value>
+  </data>
+  <data name="OKEDNotCorrect" xml:space="preserve">
+    <value>Наименование ОКЭД не указан</value>
+  </data>
+  <data name="ActualSum" xml:space="preserve">
+    <value>Фактические расходы</value>
+  </data>
+  <data name="BalanceTheBeginningOfTheYear" xml:space="preserve">
+    <value>Остаток на начало года:</value>
+  </data>
+  <data name="BeginDebitAmountTr" xml:space="preserve">
+    <value>Сумма в сумах</value>
+  </data>
+  <data name="BeginDebitCurrencyAmount" xml:space="preserve">
+    <value>Сумма в валюте</value>
+  </data>
+  <data name="DebitAmount" xml:space="preserve">
+    <value>Сумма (Дебет)</value>
+  </data>
+  <data name="DebitCurrencyAmount" xml:space="preserve">
+    <value>Сумма в валюте</value>
+  </data>
+  <data name="ExpenseCurrencySum" xml:space="preserve">
+    <value>Кассовые расходы(в валюте)</value>
+  </data>
+  <data name="ExpenseSum" xml:space="preserve">
+    <value>Кассовые расходы(в сумах) </value>
+  </data>
+  <data name="RevenuesInTheReportingPeriod" xml:space="preserve">
+    <value>Поступление доходов в отчетный период:</value>
+  </data>
+  <data name="PayerNotSelected" xml:space="preserve">
+    <value>Плательщик не выбран</value>
+  </data>
+  <data name="AssignInvNumberEachPA" xml:space="preserve">
+    <value>Разделить общее кол-во и присваивает каждому новый инв.номер</value>
+  </data>
+  <data name="PermanentAssetIntakeCharges" xml:space="preserve">
+    <value>Затраты на основные средства</value>
+  </data>
+  <data name="BudgetRequestTitleFor3Application" xml:space="preserve">
+    <value>ИНФОРМАЦИЯ &lt;br&gt; о расходах на реализацию программ и мероприятий, утвержденных решениями Президента Республики Узбекистан &lt;br&gt; и Кабинета Министров Республики Узбекистан</value>
+  </data>
+  <data name="BudgetRequestTitleFor4Application" xml:space="preserve">
+    <value>ИНФОРМАЦИЯ &lt;br&gt; о расходах на реализацию программ развития бюджетных средств первого уровня</value>
+  </data>
+  <data name="BudgetRequestTitleFor5Application" xml:space="preserve">
+    <value>ИНФОРМАЦИЯ &lt;br&gt; о дополнительных расходах, выделяемых новым создаваемым организациям на основании постановлений Президента Республики Узбекистан &lt;br&gt; и Кабинета Министров Республики Узбекистан</value>
+  </data>
+  <data name="OrganizationFunctionalItemCode" xml:space="preserve">
+    <value>Раздел, подраздел</value>
+  </data>
+  <data name="OrgName1" xml:space="preserve">
+    <value>Наименование организации</value>
+  </data>
+  <data name="SentBudgetRegister" xml:space="preserve">
+    <value>Отправленные сметы расходов (Область)</value>
+  </data>
+  <data name="ID(TreasID)" xml:space="preserve">
+    <value>ID (Казна клиент)</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Импорт</value>
+  </data>
+  <data name="SumNotFilled" xml:space="preserve">
+    <value>Сумма не совпадает</value>
+  </data>
+  <data name="Implement" xml:space="preserve">
+    <value>Ввод в экслуатацию</value>
+  </data>
+  <data name="PermanentAssetIntake" xml:space="preserve">
+    <value>Поступление ОС</value>
+  </data>
+  <data name="AgeingSum" xml:space="preserve">
+    <value>Ранее нач.износ</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Применить</value>
+  </data>
+  <data name="InpaymentPaymentOrderID" xml:space="preserve">
+    <value>ID (ПП)</value>
+  </data>
+  <data name="StudentCode" xml:space="preserve">
+    <value>Код студента</value>
+  </data>
+  <data name="StudentName" xml:space="preserve">
+    <value>Студент</value>
+  </data>
+  <data name="Accounter" xml:space="preserve">
+    <value>Глав. Бухгалтер</value>
+  </data>
+  <data name="BRParentOrganization" xml:space="preserve">
+    <value>Бюд.зап. Организация</value>
+  </data>
+  <data name="Director" xml:space="preserve">
+    <value>Директор</value>
+  </data>
+  <data name="DocumentTable" xml:space="preserve">
+    <value>Документ</value>
+  </data>
+  <data name="FinancingLevel" xml:space="preserve">
+    <value>Уровень финансирования</value>
+  </data>
+  <data name="FunctionalItem" xml:space="preserve">
+    <value>Раздел/глава</value>
+  </data>
+  <data name="FunctionalItemCode" xml:space="preserve">
+    <value>Код раздела&lt;br&gt;/главы</value>
+  </data>
+  <data name="HeaderOrganization" xml:space="preserve">
+    <value>Подотчетная организация</value>
+  </data>
+  <data name="IncomeNumber" xml:space="preserve">
+    <value>Входящий №</value>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>Актив?</value>
+  </data>
+  <data name="IsFullBudget" xml:space="preserve">
+    <value>Бюджетная&lt;br&gt;организация</value>
+  </data>
+  <data name="OrganizationsDocSettAccount" xml:space="preserve">
+    <value>Прикрепление документов к Л/С</value>
+  </data>
+  <data name="OrganizationsFunctionalItem" xml:space="preserve">
+    <value>Раздел/подраздел</value>
+  </data>
+  <data name="OrganizationSign" xml:space="preserve">
+    <value>Подписи</value>
+  </data>
+  <data name="OrganizationType" xml:space="preserve">
+    <value>Тип организации</value>
+  </data>
+  <data name="OrgID" xml:space="preserve">
+    <value>Орг. ID</value>
+  </data>
+  <data name="PleaseSelectOne1" xml:space="preserve">
+    <value>Выберите</value>
+  </data>
+  <data name="PositionNameRus" xml:space="preserve">
+    <value>Должность</value>
+  </data>
+  <data name="PositionNameUzb" xml:space="preserve">
+    <value>Лавозими</value>
+  </data>
+  <data name="Treasury" xml:space="preserve">
+    <value>Казначейство</value>
+  </data>
+  <data name="TreasuryBranch" xml:space="preserve">
+    <value>Филиал казначейства</value>
+  </data>
+  <data name="TreasuryDepartmentHeader" xml:space="preserve">
+    <value>(Казна) Начальник отдела</value>
+  </data>
+  <data name="TreasuryResPerson" xml:space="preserve">
+    <value>Исполнитель</value>
+  </data>
+  <data name="EnterUserNameAndPassword" xml:space="preserve">
+    <value>Введите имя пользователя и пароль &lt;br&gt; для входа в систему</value>
+  </data>
+  <data name="InvalidUserNameOrPassword" xml:space="preserve">
+    <value>Неправильное имя пользователя или пароль.</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Войти в систему</value>
+  </data>
+  <data name="OrganizationInfo" xml:space="preserve">
+    <value>Информация</value>
+  </data>
+  <data name="AccounterNotCorrect" xml:space="preserve">
+    <value>Ф.И.О. бухгалтера не введено</value>
+  </data>
+  <data name="BankNotSelect" xml:space="preserve">
+    <value>Банк не выбран</value>
+  </data>
+  <data name="CashierNotCorrect" xml:space="preserve">
+    <value>Ф.И.О. кассира не введено</value>
+  </data>
+  <data name="ChapterNotSelect" xml:space="preserve">
+    <value>Глава не выбрана</value>
+  </data>
+  <data name="DirectorNotCorrect" xml:space="preserve">
+    <value>Ф.И.О. директора не введено</value>
+  </data>
+  <data name="DocSettAccountOrganizationFunctionalItemNotCorrect" xml:space="preserve">
+    <value>Раздел, подраздел не выбрано</value>
+  </data>
+  <data name="DocSettAccountOrganizationsSettlementAccountNotCorrect" xml:space="preserve">
+    <value>Л/С не введено</value>
+  </data>
+  <data name="DocSettAccountOwnerNotCorrect" xml:space="preserve">
+    <value>Организация не выбран</value>
+  </data>
+  <data name="DocSettAccountSettleCodeLevelNotCorrect" xml:space="preserve">
+    <value>Уровень бюджета не введено</value>
+  </data>
+  <data name="DocSettAccountStateNotCorrect" xml:space="preserve">
+    <value>Статус не выбран</value>
+  </data>
+  <data name="DocSettAccountTableDocNotCorrect" xml:space="preserve">
+    <value>Документ не выбран</value>
+  </data>
+  <data name="FunctionalItemChapterNotCorrect" xml:space="preserve">
+    <value>Глава не введено</value>
+  </data>
+  <data name="FunctionalItemCodeNotCorrect" xml:space="preserve">
+    <value>Код раздела не введено</value>
+  </data>
+  <data name="FunctionalItemNotCorrect" xml:space="preserve">
+    <value>Функциональная классификация расходов не введено</value>
+  </data>
+  <data name="HeaderOrganizationNotCorrect" xml:space="preserve">
+    <value>Подотчетная организация не выбрано</value>
+  </data>
+  <data name="IncomeDateNotCorrect" xml:space="preserve">
+    <value>Дата не введено</value>
+  </data>
+  <data name="IncomeNumberNotCorrect" xml:space="preserve">
+    <value>Входящий номер не введено</value>
+  </data>
+  <data name="OblastNotCorrect" xml:space="preserve">
+    <value>Область не выбрана</value>
+  </data>
+  <data name="OrganizationFunctionalItemNotSelect" xml:space="preserve">
+    <value>Функциональный элемент организации не выбран</value>
+  </data>
+  <data name="OrganizationTypeNotCorrect" xml:space="preserve">
+    <value>Тип организации не выбрано</value>
+  </data>
+  <data name="RegionNotCorrect" xml:space="preserve">
+    <value>Регион не выбрана</value>
+  </data>
+  <data name="SettlementAccountCodeNotCorrect" xml:space="preserve">
+    <value>Расчетный счет не введено</value>
+  </data>
+  <data name="SettlementAccountIsActiveNotCorrect" xml:space="preserve">
+    <value>Статус не выбран</value>
+  </data>
+  <data name="SettlementAccountNameNotCorrect" xml:space="preserve">
+    <value>Название расчетного счета не введено</value>
+  </data>
+  <data name="SettlementAccountOrganizationFunctionalItemNotCorrect" xml:space="preserve">
+    <value>Раздел, подраздел не выбрано</value>
+  </data>
+  <data name="SettlementAccounttab1BankNotCorrect" xml:space="preserve">
+    <value>Банк не выбрано</value>
+  </data>
+  <data name="SettlementAccountTreasuryBranchNotCorrect" xml:space="preserve">
+    <value>Отделение казначейства не выбрано</value>
+  </data>
+  <data name="TreasuryBranchNotSelect" xml:space="preserve">
+    <value>Отделение казначейства не выбрано</value>
+  </data>
+  <data name="ZipCodeNotCorrect" xml:space="preserve">
+    <value>Почтовый индекс не введено</value>
+  </data>
+  <data name="FillFromTicket" xml:space="preserve">
+    <value>Заполнить с помощью лота ID</value>
+  </data>
+  <data name="FillFromTrease" xml:space="preserve">
+    <value>Заполнить с помощью казна клиент ID</value>
+  </data>
+  <data name="ActualExpenseAmount" xml:space="preserve">
+    <value>Фактические расходы</value>
+  </data>
+  <data name="CashExpenseAmount" xml:space="preserve">
+    <value>Кассовые расходы</value>
+  </data>
+  <data name="Forma" xml:space="preserve">
+    <value>Форма</value>
+  </data>
+  <data name="FormaRJ" xml:space="preserve">
+    <value>Очеты по внебюджетным счетам</value>
+  </data>
+  <data name="DocumentID" xml:space="preserve">
+    <value>Документ ID</value>
+  </data>
+  <data name="ItemOfExpensess" xml:space="preserve">
+    <value>Наименование расходов</value>
+  </data>
+  <data name="FormaDKTab1" xml:space="preserve">
+    <value>Дебиторская задолженность</value>
+  </data>
+  <data name="FormaDKTab2" xml:space="preserve">
+    <value>Кредиторская задолженность</value>
+  </data>
+  <data name="Debt" xml:space="preserve">
+    <value>Всего задол-сть</value>
+  </data>
+  <data name="Debt1" xml:space="preserve">
+    <value>Бюджет</value>
+  </data>
+  <data name="Debt2" xml:space="preserve">
+    <value>Вне Бюджет</value>
+  </data>
+  <data name="LongDebt" xml:space="preserve">
+    <value>Из них просроченна</value>
+  </data>
+  <data name="LongDebt1" xml:space="preserve">
+    <value>бюджет</value>
+  </data>
+  <data name="LongDebt2" xml:space="preserve">
+    <value>вне бюджет</value>
+  </data>
+  <data name="OffCountryDebt" xml:space="preserve">
+    <value>Из них за пределами респ.</value>
+  </data>
+  <data name="BudgetAmount" xml:space="preserve">
+    <value>По уточненной смете</value>
+  </data>
+  <data name="FinancingAmount" xml:space="preserve">
+    <value>Профинансировано</value>
+  </data>
+  <data name="HidingNullValues" xml:space="preserve">
+    <value>Скрытие нулевых значений:</value>
+  </data>
+  <data name="ThousandsOfAmounts" xml:space="preserve">
+    <value>Отчет заполняется бухгалтером в ручном виде в тысячах суммах</value>
+  </data>
+  <data name="PeriodsNotCorrect" xml:space="preserve">
+    <value>Квартал не выбран</value>
+  </data>
+  <data name="FormaDK" xml:space="preserve">
+    <value>Справка о дебиторской и кредиторской задолженностях</value>
+  </data>
+  <data name="Quarter" xml:space="preserve">
+    <value>Квартал</value>
+  </data>
+  <data name="LastActionOwnerName" xml:space="preserve">
+    <value>Ф.И.О. принятого</value>
+  </data>
+  <data name="DebtlessthanLongDebt" xml:space="preserve">
+    <value>Сумма просроченной задолженности не может быть больше общей суммы</value>
+  </data>
+  <data name="PrintAnalyzeFormaDK" xml:space="preserve">
+    <value>Анализ</value>
+  </data>
+  <data name="PrintFormDK" xml:space="preserve">
+    <value>Форма ДК</value>
+  </data>
+  <data name="CommentCancel" xml:space="preserve">
+    <value>Причина отказа</value>
+  </data>
+  <data name="FormaDKReceive" xml:space="preserve">
+    <value>Справка о дебиторской и кредиторской задолженностях (Принять)</value>
+  </data>
+  <data name="Closed" xml:space="preserve">
+    <value>Закрытый</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Открытый</value>
+  </data>
+  <data name="FormaDKTotal" xml:space="preserve">
+    <value>СПРАВКА о дебиторской и кредиторской задолженностях  &lt;b&gt;СВОД&lt;/b&gt;</value>
+  </data>
+  <data name="CurrencyConversion" xml:space="preserve">
+    <value>Конвертация валюты</value>
+  </data>
+  <data name="CauseType" xml:space="preserve">
+    <value>Причина покупки</value>
+  </data>
+  <data name="Auction" xml:space="preserve">
+    <value>Казна ресурс</value>
+  </data>
+  <data name="AuctionDurationInMinut" xml:space="preserve">
+    <value>Продолжительность &lt;br&gt; аукциона минутах</value>
+  </data>
+  <data name="AuctionTable" xml:space="preserve">
+    <value>Детали аукциона</value>
+  </data>
+  <data name="NormativDoc" xml:space="preserve">
+    <value>Нормативный документ</value>
+  </data>
+  <data name="ProposalDurationInDay" xml:space="preserve">
+    <value>Срок действия &lt;br&gt; предложения в днях</value>
+  </data>
+  <data name="RatePercentage" xml:space="preserve">
+    <value>Ставка &lt;br&gt; в процентах</value>
+  </data>
+  <data name="StartPercentage" xml:space="preserve">
+    <value>Начальный &lt;br&gt; процент</value>
+  </data>
+  <data name="DateOfBegin" xml:space="preserve">
+    <value>Дата начало</value>
+  </data>
+  <data name="PercentageSettlementAccount" xml:space="preserve">
+    <value>Л/С по процентам с депозитноного счета</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Источник средств</value>
+  </data>
+  <data name="TimeOfBegin" xml:space="preserve">
+    <value>Время начало</value>
+  </data>
+  <data name="DebtlessthanLongDebt1or2" xml:space="preserve">
+    <value>Сумма просроченной задолженности не может быть больше общей суммы (бюджет, внебюджет)</value>
+  </data>
+  <data name="DebtlessthanOffCountryDebt" xml:space="preserve">
+    <value>Сумма задолженности за пределами респ.  не может быть больше просроченной суммы</value>
+  </data>
+  <data name="FormaRJReceive" xml:space="preserve">
+    <value>Очеты по внебюджетным счетам Принять</value>
+  </data>
+  <data name="FormaRJTotal" xml:space="preserve">
+    <value>Отчет по внебюджетным счетам &lt;b&gt;СВОД&lt;/b&gt;</value>
+  </data>
+  <data name="SendToCentr" xml:space="preserve">
+    <value>В центр бух.</value>
+  </data>
+  <data name="SentTreasuryMemOrder" xml:space="preserve">
+    <value>Казначейские мемориальные ордера, отправленные в центральную бухгалтерию</value>
+  </data>
+  <data name="TMTables" xml:space="preserve">
+    <value>Список мемориальных ордеров</value>
+  </data>
+  <data name="TreasuryMemOrderRegistry" xml:space="preserve">
+    <value>Реестр казначейского мемориального ордера</value>
+  </data>
+  <data name="TreasuryMemOrderTypeName" xml:space="preserve">
+    <value>Тип казн. мем. ордера</value>
+  </data>
+  <data name="FormaDKByAccount" xml:space="preserve">
+    <value>Справка о дебиторской и кредиторской задолженностях (Л/C)</value>
+  </data>
+  <data name="PrintByChapters" xml:space="preserve">
+    <value>Печать по главам</value>
+  </data>
+  <data name="PrintByOrganization" xml:space="preserve">
+    <value>Печать по организациям</value>
+  </data>
+  <data name="PrintFormDKTotal" xml:space="preserve">
+    <value>Печать</value>
+  </data>
+  <data name="HeaderOrganizationINN" xml:space="preserve">
+    <value>ИНН Под. отч.</value>
+  </data>
+  <data name="Conditions" xml:space="preserve">
+    <value>Условия и &lt;br&gt;характеристики</value>
+  </data>
+  <data name="Term" xml:space="preserve">
+    <value>Сроки &lt;br&gt;выполнения работ</value>
+  </data>
+  <data name="PrintTimeSheet" xml:space="preserve">
+    <value>Печать табель</value>
+  </data>
+  <data name="TreasBudgetID" xml:space="preserve">
+    <value>ID смета Казна-Клиента</value>
+  </data>
+  <data name="ResponsiblePersonNotSelected" xml:space="preserve">
+    <value>Материально-ответственное лицо не выбран</value>
+  </data>
+  <data name="TreasBudgetType" xml:space="preserve">
+    <value>Тип смета Казна-Клиента</value>
+  </data>
+  <data name="ProcurementPlan" xml:space="preserve">
+    <value>План закупок</value>
+  </data>
+  <data name="StateNotSelected" xml:space="preserve">
+    <value>Статус не выбран</value>
+  </data>
+  <data name="FormaSetCommon" xml:space="preserve">
+    <value>Тип организации для информации сет, штат и контингентов</value>
+  </data>
+  <data name="FunctionalItemChapterNotSelected" xml:space="preserve">
+    <value>Раздел не выбран</value>
+  </data>
+  <data name="FunctionalItemOfExpenseChapterCode" xml:space="preserve">
+    <value>Код раздела</value>
+  </data>
+  <data name="OrganizationTypeCode" xml:space="preserve">
+    <value>Код организации</value>
+  </data>
+  <data name="OrganizationTypeCodeNotCorrect" xml:space="preserve">
+    <value>Код организации не указан</value>
+  </data>
+  <data name="OrganizationTypeName" xml:space="preserve">
+    <value>Тип организации</value>
+  </data>
+  <data name="OrganizationTypeNameNotCorrect" xml:space="preserve">
+    <value>Тип организации не указан</value>
+  </data>
+  <data name="CodeBank" xml:space="preserve">
+    <value>Банк</value>
+  </data>
+  <data name="StatesNotSelected" xml:space="preserve">
+    <value>Состояние не выбрано</value>
+  </data>
+  <data name="PrintList" xml:space="preserve">
+    <value>Инструкция</value>
+  </data>
+  <data name="IncomeUNC" xml:space="preserve">
+    <value>Cправочники УНС кодов</value>
+  </data>
+  <data name="PrintChildCalc" xml:space="preserve">
+    <value>Печать квитанции</value>
+  </data>
+  <data name="AccountBook" xml:space="preserve">
+    <value>Оборотная ведомостъ </value>
+  </data>
+  <data name="EndCreditAmount" xml:space="preserve">
+    <value>Конец (Кредит)</value>
+  </data>
+  <data name="EndDebitAmount" xml:space="preserve">
+    <value>Конец (Дебет)</value>
+  </data>
+  <data name="AccType" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="InfoAcc" xml:space="preserve">
+    <value>Справочник План счетов</value>
+  </data>
+  <data name="IsOffBalance" xml:space="preserve">
+    <value>Забалан.</value>
+  </data>
+  <data name="IsQuantity" xml:space="preserve">
+    <value>Кол-во</value>
+  </data>
+  <data name="SubCount1Name" xml:space="preserve">
+    <value>Субконта 1</value>
+  </data>
+  <data name="SubCount2Name" xml:space="preserve">
+    <value>Субконта 2</value>
+  </data>
+  <data name="SubCount3Name" xml:space="preserve">
+    <value>Субконта 3</value>
+  </data>
+  <data name="AccSystemType" xml:space="preserve">
+    <value>Документы</value>
+  </data>
+  <data name="AccSystemTypeName" xml:space="preserve">
+    <value>Испол. документы</value>
+  </data>
+  <data name="AccSystemTypeNotCorrect" xml:space="preserve">
+    <value>Часть документации не выбрана</value>
+  </data>
+  <data name="AccTypeNotCorrect" xml:space="preserve">
+    <value>Тип не указан</value>
+  </data>
+  <data name="PrintByAccount" xml:space="preserve">
+    <value>Печать по Л/С</value>
+  </data>
+  <data name="PrintFormaDKBySetCode" xml:space="preserve">
+    <value>По Л/С</value>
+  </data>
+  <data name="IsGroup" xml:space="preserve">
+    <value>Группируется</value>
+  </data>
+  <data name="Parent" xml:space="preserve">
+    <value>Вышестояший</value>
+  </data>
+  <data name="MustHaveStringValueMaximumLength2000" xml:space="preserve">
+    <value>Поле Comment должно иметь строковое значение, максимальная длина которого -2000.</value>
+  </data>
+  <data name="BudgetRegisteryID" xml:space="preserve">
+    <value>ID реестр смет</value>
+  </data>
+  <data name="IsAcc" xml:space="preserve">
+    <value>Выписка по всем лиц. счетам за 7 дней</value>
+  </data>
+  <data name="AORP" xml:space="preserve">
+    <value>А или Р</value>
+  </data>
+  <data name="CodesNotCorrect" xml:space="preserve">
+    <value>Код не указан</value>
+  </data>
+  <data name="ParentNotCorrect" xml:space="preserve">
+    <value>Вышестояший не указан</value>
+  </data>
+  <data name="Code1NotCorrect" xml:space="preserve">
+    <value>Главный раздел не указан</value>
+  </data>
+  <data name="Code2NotCorrect" xml:space="preserve">
+    <value>Раздел не указан</value>
+  </data>
+  <data name="Code3NotCorrect" xml:space="preserve">
+    <value>Малый раздел не указан</value>
+  </data>
+  <data name="RecalcAccAccountBook" xml:space="preserve">
+    <value>Перерасчет</value>
+  </data>
+  <data name="RecalcAccAccountBookSuccessfully" xml:space="preserve">
+    <value>Перерасчет успешно выполнен</value>
+  </data>
+  <data name="CanEdit" xml:space="preserve">
+    <value>Показать/Скрыть</value>
+  </data>
+  <data name="FormaDKPositionCanEdit" xml:space="preserve">
+    <value>Справка о дебиторской и кредиторской задолженности (настройка)</value>
+  </data>
+  <data name="AgeingSumMustBeLessThanSum" xml:space="preserve">
+    <value>Сумма износа не может быть больше чем суммы основного средства</value>
+  </data>
+  <data name="AccountBookByStudent" xml:space="preserve">
+    <value>Учет Дебиторов и кредиторов  (По студентам)</value>
+  </data>
+  <data name="AccountBookByContractor" xml:space="preserve">
+    <value>Учет дебиторов и кредиторов (по контрагентам)</value>
+  </data>
+  <data name="AccountBookByChildren" xml:space="preserve">
+    <value>Учет дебиторов и кредиторов (По детям)</value>
+  </data>
+  <data name="DebitAmount_1" xml:space="preserve">
+    <value>Оборот (Дебет)</value>
+  </data>
+  <data name="AccountBookByEmployee" xml:space="preserve">
+    <value>Учет дебиторов и кредитов (По сотрудникам)</value>
+  </data>
+  <data name="AccountBookByContarctorAct" xml:space="preserve">
+    <value>Акт сверки взаиморасчетов</value>
+  </data>
+  <data name="Doc_N" xml:space="preserve">
+    <value>№ Док.</value>
+  </data>
+  <data name="PostingReport" xml:space="preserve">
+    <value>Журнал проводок</value>
+  </data>
+  <data name="SubCountCr1Name" xml:space="preserve">
+    <value>Субконто 1 (Кт)</value>
+  </data>
+  <data name="SubCountCr2Name" xml:space="preserve">
+    <value>Субконто 2 (Кт)</value>
+  </data>
+  <data name="SubCountCr3Name" xml:space="preserve">
+    <value>Субконто 3 (Кт)</value>
+  </data>
+  <data name="SubCountDb1Name" xml:space="preserve">
+    <value>Субконто 1 (Дт)</value>
+  </data>
+  <data name="SubCountDb2Name" xml:space="preserve">
+    <value>Субконто 2 (Дт)</value>
+  </data>
+  <data name="SubCountDb3Name" xml:space="preserve">
+    <value>Субконто 3 (Дт)</value>
+  </data>
+  <data name="AccountCard" xml:space="preserve">
+    <value>Карточка счета</value>
+  </data>
+  <data name="ByEmployee" xml:space="preserve">
+    <value>Учет Дебиторов и кредиторов (По поставщикам)</value>
+  </data>
+  <data name="AccountBookByEmployeepitaniya" xml:space="preserve">
+    <value>Учет дебиторов и кредиторов (Питание сотрудников)</value>
+  </data>
+  <data name="AccountBookAsset" xml:space="preserve">
+    <value>Оборотная ведомость ОС</value>
+  </data>
+  <data name="beginsumma" xml:space="preserve">
+    <value>Расход(сумма)</value>
+  </data>
+  <data name="beginsummakol" xml:space="preserve">
+    <value>Расход(кол-во)</value>
+  </data>
+  <data name="endsumkol" xml:space="preserve">
+    <value>Конец(кол-во)</value>
+  </data>
+  <data name="endsumma" xml:space="preserve">
+    <value>Конец(сумма)</value>
+  </data>
+  <data name="invs" xml:space="preserve">
+    <value>Инв.</value>
+  </data>
+  <data name="nasumma" xml:space="preserve">
+    <value>Начало(сумма)</value>
+  </data>
+  <data name="nasummakol" xml:space="preserve">
+    <value>Начало(кол-во)</value>
+  </data>
+  <data name="os" xml:space="preserve">
+    <value>ОС</value>
+  </data>
+  <data name="pirxodsum" xml:space="preserve">
+    <value>Приход(сумма)</value>
+  </data>
+  <data name="prixodsumkol" xml:space="preserve">
+    <value>Приход(кол-во)</value>
+  </data>
+  <data name="balansstm" xml:space="preserve">
+    <value>Балансовая стоимость</value>
+  </data>
+  <data name="datapre" xml:space="preserve">
+    <value>Дата переоцен.</value>
+  </data>
+  <data name="date1" xml:space="preserve">
+    <value>Дата вв.экс.</value>
+  </data>
+  <data name="datepostup" xml:space="preserve">
+    <value>Дата поступ.</value>
+  </data>
+  <data name="dooiz" xml:space="preserve">
+    <value>Дооценки износ</value>
+  </data>
+  <data name="doost" xml:space="preserve">
+    <value>Дооценки стоимо</value>
+  </data>
+  <data name="iznosza" xml:space="preserve">
+    <value>Износ за отчетный период</value>
+  </data>
+  <data name="kpreosenki" xml:space="preserve">
+    <value>Коэф. пере-оценки</value>
+  </data>
+  <data name="nachislineiznos" xml:space="preserve">
+    <value>Начисленный ранее износ</value>
+  </data>
+  <data name="normiznos" xml:space="preserve">
+    <value>Норма износа</value>
+  </data>
+  <data name="oststmost" xml:space="preserve">
+    <value>Ост. Стоимость</value>
+  </data>
+  <data name="stepiznos" xml:space="preserve">
+    <value>Степень износа</value>
+  </data>
+  <data name="summaiznos" xml:space="preserve">
+    <value>Суммарный износ</value>
+  </data>
+  <data name="videmost" xml:space="preserve">
+    <value>Ведомость преоценки</value>
+  </data>
+  <data name="vidmostiznos" xml:space="preserve">
+    <value>Ведомость износа</value>
+  </data>
+  <data name="vostanoviz" xml:space="preserve">
+    <value>Восстанов. износ</value>
+  </data>
+  <data name="vostanovst" xml:space="preserve">
+    <value>Восстанов. стоимость</value>
+  </data>
+  <data name="SpecificationName1" xml:space="preserve">
+    <value>Наименования</value>
+  </data>
+  <data name="Forma2Send" xml:space="preserve">
+    <value>Отчет об исполнении сметы расходов (форма №2)(Принять)</value>
+  </data>
+  <data name="errorsaved" xml:space="preserve">
+    <value>Документ не заполнен.</value>
+  </data>
+  <data name="DepartmentCode" xml:space="preserve">
+    <value>Код отдела</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Имя пользователя</value>
+  </data>
+  <data name="DepartmentCodeTable" xml:space="preserve">
+    <value>Табличная часть кодов отделов</value>
+  </data>
+  <data name="PayrollSheetCash" xml:space="preserve">
+    <value>Ведомость наличных денежных средств</value>
+  </data>
+  <data name="PayrollSheetCashINotSelected" xml:space="preserve">
+    <value>Ведомость наличных денежных средств не выбран</value>
+  </data>
+  <data name="Year1" xml:space="preserve">
+    <value>Год</value>
+  </data>
+  <data name="AccountWearoutByDepartment" xml:space="preserve">
+    <value>Ведомость износа по отделам</value>
+  </data>
+  <data name="statya" xml:space="preserve">
+    <value>Статья</value>
+  </data>
+  <data name="Forma2" xml:space="preserve">
+    <value>Отчет об исполнении сметы расходов (Форма №2)</value>
+  </data>
+  <data name="Forma2Total" xml:space="preserve">
+    <value>Отчет об исполнении сметы расходов (Форма №2) &lt;b&gt;СВОД&lt;/b&gt;</value>
+  </data>
+  <data name="Stat1" xml:space="preserve">
+    <value>Разрешен. статьи</value>
+  </data>
+  <data name="Stat2" xml:space="preserve">
+    <value>Не разрешен. статьи</value>
+  </data>
+  <data name="btnAction" xml:space="preserve">
+    <value>Действия</value>
+  </data>
+  <data name="razresh" xml:space="preserve">
+    <value>Разреш. Исправ.</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Ид</value>
+  </data>
+  <data name="AddData" xml:space="preserve">
+    <value>Добавить данные</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="FilterType" xml:space="preserve">
+    <value>Тип фильтра</value>
+  </data>
+  <data name="OrganizationSettlementAccount" xml:space="preserve">
+    <value>Расчетный счет Организации</value>
+  </data>
+  <data name="PleaseInputValid" xml:space="preserve">
+    <value>Пожалуйста, введите правильную информацию</value>
+  </data>
+  <data name="PleaseSelect" xml:space="preserve">
+    <value>Пожалуйста, выберите</value>
+  </data>
+  <data name="SattleCodeLevel" xml:space="preserve">
+    <value>Уровень Расчетного Кода</value>
+  </data>
+  <data name="SelectStatus" xml:space="preserve">
+    <value>Выберите статус</value>
+  </data>
+  <data name="SelectTables" xml:space="preserve">
+    <value>Выберите Таблицы</value>
+  </data>
+  <data name="SettleAccList" xml:space="preserve">
+    <value>Список Расчетных счетов</value>
+  </data>
+  <data name="StateName" xml:space="preserve">
+    <value>Название штата</value>
+  </data>
+  <data name="SureToDelete" xml:space="preserve">
+    <value>Вы уверены, что удалите</value>
+  </data>
+  <data name="TableName" xml:space="preserve">
+    <value>Имя таблицы</value>
+  </data>
+  <data name="TreasureyBranch" xml:space="preserve">
+    <value>Казначейское отделение</value>
+  </data>
+  <data name="PrintSectionChapter" xml:space="preserve">
+    <value>Печать по разделу и главам</value>
+  </data>
+  <data name="PrintSectionChapter2" xml:space="preserve">
+    <value>Печать по разделу и главам (по листам)</value>
+  </data>
+  <data name="TreasOperCode" xml:space="preserve">
+    <value>Казначей. проводка</value>
+  </data>
+  <data name="AllowedTransactions" xml:space="preserve">
+    <value>Проводки</value>
+  </data>
+  <data name="actions" xml:space="preserve">
+    <value>Действия</value>
+  </data>
+  <data name="SaveInportBalans" xml:space="preserve">
+    <value>Импортировать поступление в баланс</value>
+  </data>
+  <data name="CashExpenseAmountSum" xml:space="preserve">
+    <value>(Бух.Учет) Кассовые расходы</value>
+  </data>
+  <data name="CodeRasxod" xml:space="preserve">
+    <value>Код расходов</value>
+  </data>
+  <data name="TreasSum" xml:space="preserve">
+    <value>Остаток по смете</value>
+  </data>
+  <data name="Utchotplan" xml:space="preserve">
+    <value>Уточнённый план</value>
+  </data>
+  <data name="FormN2" xml:space="preserve">
+    <value>Отчет об исполнении сметы расходов</value>
+  </data>
+  <data name="AllowedIP" xml:space="preserve">
+    <value>Разрешенные IP</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="attachedAccounts" xml:space="preserve">
+    <value>Прикрепленные л/счета</value>
+  </data>
+  <data name="notAttachedAccounts" xml:space="preserve">
+    <value>Не прикрепленные л/счета</value>
+  </data>
+  <data name="settlementAccountName" xml:space="preserve">
+    <value>Наим. л/счета</value>
+  </data>
+  <data name="parentorganizationName" xml:space="preserve">
+    <value>Выше.организация</value>
+  </data>
+  <data name="parentorganizationINN" xml:space="preserve">
+    <value>ИНН выше.организации</value>
+  </data>
+  <data name="organizationINN" xml:space="preserve">
+    <value>ИНН организации</value>
+  </data>
+  <data name="Saldo" xml:space="preserve">
+    <value>Сальдо</value>
+  </data>
+  <data name="Saldo2" xml:space="preserve">
+    <value>Сальдо в валюте</value>
+  </data>
+  <data name="AccountBookByItemOfExpense" xml:space="preserve">
+    <value>Оборотная ведомость по статьям</value>
+  </data>
+  <data name="Printforma1_1" xml:space="preserve">
+    <value>Баланс</value>
+  </data>
+  <data name="Printforma1_2" xml:space="preserve">
+    <value>Приложение к Балансу</value>
+  </data>
+  <data name="Printforma1_3" xml:space="preserve">
+    <value>Проверка остатков</value>
+  </data>
+  <data name="Printforma1_4" xml:space="preserve">
+    <value>Использованные исправительные проводки</value>
+  </data>
+  <data name="forma1balans" xml:space="preserve">
+    <value>Пояснительная к балансу</value>
+  </data>
+  <data name="forma1title" xml:space="preserve">
+    <value>Отчет заполняется программой автоматически в тысячи сумах.</value>
+  </data>
+  <data name="ContractorCr" xml:space="preserve">
+    <value>Контрагент(Кт)</value>
+  </data>
+  <data name="ContractorDb" xml:space="preserve">
+    <value>Контрагент(Дт)</value>
+  </data>
+  <data name="EmployeeCr" xml:space="preserve">
+    <value>Сотрудник(Кт)</value>
+  </data>
+  <data name="EmployeeDb" xml:space="preserve">
+    <value>Сотрудник(Дт)</value>
+  </data>
+  <data name="MemorialOrder11" xml:space="preserve">
+    <value>МЕМОРИАЛЬНЫЙ ОРДЕР № 11</value>
+  </data>
+  <data name="MemorialOrder12" xml:space="preserve">
+    <value>МЕМОРИАЛЬНЫЙ ОРДЕР № 12</value>
+  </data>
+  <data name="MemorialOrder5" xml:space="preserve">
+    <value>МЕМОРИАЛЬНЫЙ ОРДЕР № 5</value>
+  </data>
+  <data name="MemorialOrder6" xml:space="preserve">
+    <value>МЕМОРИАЛЬНЫЙ ОРДЕР № 6</value>
+  </data>
+  <data name="MemorialOrder8" xml:space="preserve">
+    <value>МЕМОРИАЛЬНЫЙ ОРДЕР № 8</value>
+  </data>
+  <data name="MemorialOrder9" xml:space="preserve">
+    <value>МЕМОРИАЛЬНЫЙ ОРДЕР № 9</value>
+  </data>
+  <data name="FormaFinRes" xml:space="preserve">
+    <value>Отчёт о финансовых результатах текущего года</value>
+  </data>
+  <data name="MemorialOrder13" xml:space="preserve">
+    <value>МЕМОРИАЛЬНЫЙ ОРДЕР № 13</value>
+  </data>
+  <data name="MemorialOrder17" xml:space="preserve">
+    <value>МЕМОРИАЛЬНЫЙ ОРДЕР № 17 (Износ)</value>
+  </data>
+  <data name="MemorialOrder18" xml:space="preserve">
+    <value>МЕМОРИАЛЬНЫЙ ОРДЕР № 18 (Переоценка)</value>
+  </data>
+  <data name="MemorialOrder19" xml:space="preserve">
+    <value>МЕМОРИАЛЬНЫЙ ОРДЕР № 19 (Заключительные проводки)</value>
+  </data>
+  <data name="MemorialOrder20" xml:space="preserve">
+    <value>МЕМОРИАЛЬНЫЙ ОРДЕР № 20 (Безвозмездно и централизованно полученные ТМЦ)</value>
+  </data>
+  <data name="MemorialOrder21" xml:space="preserve">
+    <value>МЕМОРИАЛЬНЫЙ ОРДЕР № 21 (Переоценка валюты)</value>
+  </data>
+  <data name="MemorialOrder22" xml:space="preserve">
+    <value>МЕМОРИАЛЬНЫЙ ОРДЕР № 22 (Прочие счета)</value>
+  </data>
+  <data name="MemorialOrder23" xml:space="preserve">
+    <value>МЕМОРИАЛЬНЫЙ ОРДЕР № 23 (Перемещение ТМЗ)</value>
+  </data>
+  <data name="MemorialOrder274" xml:space="preserve">
+    <value>МЕМОРИАЛЬНЫЙ ОРДЕР (Форма № 274)</value>
+  </data>
+  <data name="IsSubAcc" xml:space="preserve">
+    <value>По всем суб счетам</value>
+  </data>
+  <data name="FinanceYeartitle" xml:space="preserve">
+    <value>Отчет заполняется програмно автоматически кроме разбивки поступлений в тысячи суммах</value>
+  </data>
+  <data name="FormaFinResPositionName" xml:space="preserve">
+    <value>Наименование</value>
+  </data>
+  <data name="RowCode" xml:space="preserve">
+    <value>Код</value>
+  </data>
+  <data name="FormaFinResTotal" xml:space="preserve">
+    <value>Отчёт о финансовых результатах текущего года СВОД</value>
+  </data>
+  <data name="BeginAmount" xml:space="preserve">
+    <value>На начала года</value>
+  </data>
+  <data name="BeginAmountRecalc" xml:space="preserve">
+    <value>На начала года с Переоценк.</value>
+  </data>
+  <data name="EndAmount" xml:space="preserve">
+    <value>На конец года (квартал)</value>
+  </data>
+  <data name="Forma1" xml:space="preserve">
+    <value>Форма №1 Баланс</value>
+  </data>
+  <data name="FormaFinResReceive" xml:space="preserve">
+    <value>ОТЧЕТ о финансовюх резулктатах текушего года Принят</value>
+  </data>
+  <data name="EndAmount1" xml:space="preserve">
+    <value>На конец года</value>
+  </data>
+  <data name="Forma5" xml:space="preserve">
+    <value>ОТЧЕТ о движении нефинансовых активов (Форма 5)</value>
+  </data>
+  <data name="Forma51" xml:space="preserve">
+    <value>Отметьте внебюджетные субсчета</value>
+  </data>
+  <data name="Forma52" xml:space="preserve">
+    <value>Страница 1</value>
+  </data>
+  <data name="Forma53" xml:space="preserve">
+    <value>Страница 2</value>
+  </data>
+  <data name="Forma54" xml:space="preserve">
+    <value>Страница 3</value>
+  </data>
+  <data name="Izrasxod" xml:space="preserve">
+    <value>Израсходовано</value>
+  </data>
+  <data name="NActiv" xml:space="preserve">
+    <value>Нематериальные активы</value>
+  </data>
+  <data name="TMZ" xml:space="preserve">
+    <value>ТМЗ</value>
+  </data>
+  <data name="Return" xml:space="preserve">
+    <value>Вернуть</value>
+  </data>
+  <data name="Forma5Receive" xml:space="preserve">
+    <value>ОТЧЕТ о движении нефинансовых активов (Форма 5) Принять.</value>
+  </data>
+  <data name="Forma5Total" xml:space="preserve">
+    <value>ОТЧЕТ о движении нефинансовых активов (Форма 5) СВОД</value>
+  </data>
+  <data name="PrintpoOrg" xml:space="preserve">
+    <value>Печать по организациям</value>
+  </data>
+  <data name="DebitCurrencyAmount1" xml:space="preserve">
+    <value>Оборот(Дебет-валюта)</value>
+  </data>
+  <data name="BeginDebitCurrencyAmount1" xml:space="preserve">
+    <value>Начало (Дебет-валюта)</value>
+  </data>
+  <data name="RegisterCashOrderName" xml:space="preserve">
+    <value>Реестр кассовых ордеров</value>
+  </data>
+  <data name="RegisterDocumentOrderName" xml:space="preserve">
+    <value>Реестр документов.</value>
+  </data>
+  <data name="ContractorName1" xml:space="preserve">
+    <value>Поставщик</value>
+  </data>
+  <data name="EmployeeInfo" xml:space="preserve">
+    <value>Доверенность выдана</value>
+  </data>
+  <data name="RegisterPaymentOrderName" xml:space="preserve">
+    <value>Реестр платежных поручений</value>
+  </data>
+  <data name="RegisterWarrant" xml:space="preserve">
+    <value>Журнал учета выданных доверенностей</value>
+  </data>
+  <data name="Invoice№" xml:space="preserve">
+    <value>Инвойс</value>
+  </data>
+  <data name="AccountBookSetTransactionReport" xml:space="preserve">
+    <value>Отчет по проводкам</value>
+  </data>
+  <data name="CustomerInfo" xml:space="preserve">
+    <value>Заказчик</value>
+  </data>
+  <data name="DeadLine" xml:space="preserve">
+    <value>Дата окончания</value>
+  </data>
+  <data name="DocDate" xml:space="preserve">
+    <value>Дата документа</value>
+  </data>
+  <data name="ExpirationDate" xml:space="preserve">
+    <value>Дата окончания</value>
+  </data>
+  <data name="FilePath" xml:space="preserve">
+    <value>Выберите файл</value>
+  </data>
+  <data name="OrderFile" xml:space="preserve">
+    <value>Наименование файла</value>
+  </data>
+  <data name="OrderInfo" xml:space="preserve">
+    <value>Заказы вышестоящих</value>
+  </data>
+  <data name="ProjectTypeName" xml:space="preserve">
+    <value>Наименование проекта</value>
+  </data>
+  <data name="BudgetChapter" xml:space="preserve">
+    <value>Бюджетная глава</value>
+  </data>
+  <data name="OrdNumber" xml:space="preserve">
+    <value>Порядковый номер</value>
+  </data>
+  <data name="SetCategoryTypeInfo" xml:space="preserve">
+    <value>Информация по сет,штатам и контингентам</value>
+  </data>
+  <data name="IsLeaf" xml:space="preserve">
+    <value>Группируются</value>
+  </data>
+  <data name="LineCode" xml:space="preserve">
+    <value>Код Лины</value>
+  </data>
+  <data name="AccountBookMonetary" xml:space="preserve">
+    <value>Оборотная ведомостъ(Валютная)</value>
+  </data>
+  <data name="BeginCreditCurrencyAmount" xml:space="preserve">
+    <value>Начало (Кредит-валюта)</value>
+  </data>
+  <data name="CreditCurrencyAmount" xml:space="preserve">
+    <value>Оборот(Кредит-валюта)</value>
+  </data>
+  <data name="EndCreditCurrencyAmount" xml:space="preserve">
+    <value>Конец (Кредит-валюта)</value>
+  </data>
+  <data name="EndDebitCurrencyAmount" xml:space="preserve">
+    <value>Конец (Дебет-валюта)</value>
+  </data>
+  <data name="LedgerListPage" xml:space="preserve">
+    <value>Журнал главная (Главная книга )</value>
+  </data>
+  <data name="BookForm308" xml:space="preserve">
+    <value>Журнал главная (форма N308)</value>
+  </data>
+  <data name="SubAccCode" xml:space="preserve">
+    <value>Субсчет</value>
+  </data>
+  <data name="from whom or to whom" xml:space="preserve">
+    <value>От кого или кому</value>
+  </data>
+  <data name="sub-account" xml:space="preserve">
+    <value>N суб-счета</value>
+  </data>
+  <data name="summa" xml:space="preserve">
+    <value>Сумма</value>
+  </data>
+  <data name="№ Doc" xml:space="preserve">
+    <value>№ док</value>
+  </data>
+  <data name="SubAccName" xml:space="preserve">
+    <value>Отметте внебюджетный субсчета</value>
+  </data>
+  <data name="LedgerListPageIndex" xml:space="preserve">
+    <value>Журнал главная (Главная книга-свернутые)</value>
+  </data>
+  <data name="BookFormHorizontal308" xml:space="preserve">
+    <value>Журнал главная(форма N308 горизонтальный)</value>
+  </data>
+  <data name="Printtmz1" xml:space="preserve">
+    <value>Печать</value>
+  </data>
+  <data name="Printtmz2" xml:space="preserve">
+    <value>ИНВЕНТАРИЗАЦИОННАЯ ОПИСЬ</value>
+  </data>
+  <data name="AccountBookByIH" xml:space="preserve">
+    <value>Оборотная ведомость ТМЗ</value>
+  </data>
+  <data name="tipTMZ" xml:space="preserve">
+    <value>Тип ТМЗ</value>
+  </data>
+  <data name="NumberMo" xml:space="preserve">
+    <value>Номер МО</value>
+  </data>
+  <data name="InventoryHoldingCard" xml:space="preserve">
+    <value>Книга (карточка) количественно-суммового учета материальных ценностей</value>
+  </data>
+  <data name="CashBook" xml:space="preserve">
+    <value>Кассовая книга</value>
+  </data>
+  <data name="TotalFormN292" xml:space="preserve">
+    <value>Книга (Карточка) счета Форма N292</value>
+  </data>
+  <data name="TotalFormN292Print" xml:space="preserve">
+    <value>Форма N292 Печать</value>
+  </data>
+  <data name="TransactionName" xml:space="preserve">
+    <value>Операция</value>
+  </data>
+  <data name="FormN2Center" xml:space="preserve">
+    <value>ОТЧЕТ об исполнении сметы расходов (Централизованная)</value>
+  </data>
+  <data name="ReportFormRJ" xml:space="preserve">
+    <value>ОТЧЕТ о движении денежных средств по Фонду развития бюджетной организации</value>
+  </data>
+  <data name="ReportFormTMMRJ" xml:space="preserve">
+    <value>ОТЧЕТ о движении денежных средств по Фонду материального стимулирования и развития медицинских организаций</value>
+  </data>
+  <data name="ReportFormTK" xml:space="preserve">
+    <value>ОТЧЕТ о движении средств, поступивших от платно-контрактной формы обучения в образовательных учреждениях</value>
+  </data>
+  <data name="AccountBookByContract" xml:space="preserve">
+    <value>Учет дебиторов и кредиторов (по договорам)</value>
+  </data>
+  <data name="IntegralForDate" xml:space="preserve">
+    <value>Интервал дней</value>
+  </data>
+  <data name="UNS" xml:space="preserve">
+    <value>Прикрепить УНС Дохода</value>
+  </data>
+  <data name="Region1" xml:space="preserve">
+    <value>Прикрепить Регион</value>
+  </data>
+  <data name="Constant" xml:space="preserve">
+    <value>Константы</value>
+  </data>
+  <data name="AllChildren" xml:space="preserve">
+    <value>Все дети</value>
+  </data>
+  <data name="addSett" xml:space="preserve">
+    <value>Прикрепить Л/С</value>
+  </data>
+  <data name="addOrg" xml:space="preserve">
+    <value>Прикрепить Организация</value>
+  </data>
+  <data name="ENKTCode" xml:space="preserve">
+    <value>ЕНКТ код</value>
+  </data>
+  <data name="PropertiesName" xml:space="preserve">
+    <value>Наименование свойства</value>
+  </data>
+  <data name="PropertiesValuesName" xml:space="preserve">
+    <value>Наименование значения</value>
+  </data>
+  <data name="BankDocumentDocType1" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="BankDocumentDocType2" xml:space="preserve">
+    <value>Расход</value>
+  </data>
+  <data name="BankDocumentDocType3" xml:space="preserve">
+    <value>Поступления</value>
+  </data>
+  <data name="Forma1Receive" xml:space="preserve">
+    <value>Форма №1 Баланс Принять</value>
+  </data>
+  <data name="Printtmz3" xml:space="preserve">
+    <value>Карточка</value>
+  </data>
+  <data name="PermanentAssetIntakeChargesNotAdded" xml:space="preserve">
+    <value>Затраты на основные средства не заполнены</value>
+  </data>
+  <data name="Forma1Total" xml:space="preserve">
+    <value>Форма №1 Баланс СВОД</value>
+  </data>
+  <data name="SubAccCurrency" xml:space="preserve">
+    <value>Счет</value>
+  </data>
+  <data name="SubAccIncome" xml:space="preserve">
+    <value>Счет полож. курс разницы</value>
+  </data>
+  <data name="SubAccLoss" xml:space="preserve">
+    <value>Счет отрц. курс разницы</value>
+  </data>
+  <data name="ErrorMessage" xml:space="preserve">
+    <value>Текст ошибки</value>
+  </data>
+  <data name="Forma2Centr" xml:space="preserve">
+    <value>Форма 2 (центр)</value>
+  </data>
+  <data name="RecalcDate" xml:space="preserve">
+    <value>Дата пересчета</value>
+  </data>
+  <data name="RecalcNeed" xml:space="preserve">
+    <value>Пересчитать нужно</value>
+  </data>
+  <data name="RecalcNotNeed" xml:space="preserve">
+    <value>Пересчет не нужен</value>
+  </data>
+  <data name="OwnerID" xml:space="preserve">
+    <value>ID в ЦФБС</value>
+  </data>
+  <data name="ChildOrgForma1Total" xml:space="preserve">
+    <value>Свод (нижестоящих)</value>
+  </data>
+  <data name="OrgForma1Total" xml:space="preserve">
+    <value>Свод</value>
+  </data>
+  <data name="studentid" xml:space="preserve">
+    <value>Студент ID</value>
+  </data>
+  <data name="studentname1" xml:space="preserve">
+    <value>Студент Ф.И.О.</value>
+  </data>
+  <data name="Printformat1_1" xml:space="preserve">
+    <value>Печать</value>
+  </data>
+  <data name="Printformat1_2" xml:space="preserve">
+    <value>Печать по организациям</value>
+  </data>
+  <data name="Printformat1_3" xml:space="preserve">
+    <value>Приложение к Балансу</value>
+  </data>
+  <data name="Printformat1_4" xml:space="preserve">
+    <value>Приложение к Балансу по организациям</value>
+  </data>
+  <data name="Printformat1_5" xml:space="preserve">
+    <value>Перечень организации</value>
+  </data>
+  <data name="Printformat1_6" xml:space="preserve">
+    <value>Перечень Л/С</value>
+  </data>
+  <data name="AddRow" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="CreditAmount_1" xml:space="preserve">
+    <value>Оборот (Кредит)</value>
+  </data>
+  <data name="AutoAttach" xml:space="preserve">
+    <value>Автоприкрепление субсчетов</value>
+  </data>
+  <data name="AgeingAcc" xml:space="preserve">
+    <value>Счет износа</value>
+  </data>
+  <data name="CreditAmountCurrency" xml:space="preserve">
+    <value>Оборот (Кредит-валюта)</value>
+  </data>
+  <data name="DebitAmountCurrency" xml:space="preserve">
+    <value>Оборот (Дебет-валюта)</value>
+  </data>
+  <data name="ReportFormN2" xml:space="preserve">
+    <value>Отчет об исполнении сметы расходов (Форма № 2)</value>
+  </data>
+  <data name="InventoryList" xml:space="preserve">
+    <value>ИНВЕНТАРИЗАЦИОННАЯ ОПИСЬ</value>
+  </data>
+  <data name="MemorialOrder1" xml:space="preserve">
+    <value>МЕМОРИАЛЬНЫЙ ОРДЕР № 1</value>
+  </data>
+  <data name="MemorialOrder2" xml:space="preserve">
+    <value>МЕМОРИАЛЬНЫЙ ОРДЕР № 2</value>
+  </data>
+  <data name="MemorialOrder3" xml:space="preserve">
+    <value>МЕМОРИАЛЬНЫЙ ОРДЕР № 3</value>
+  </data>
+  <data name="NormativDocCorrect" xml:space="preserve">
+    <value>Нормативный документ не заполнен</value>
+  </data>
+  <data name="PercentageSettlementAccountNotSelected" xml:space="preserve">
+    <value>Л/С по процентам с депозитноного счета не заполнен</value>
+  </data>
+  <data name="PrintAct" xml:space="preserve">
+    <value>Акт сверки</value>
+  </data>
+  <data name="Printform285" xml:space="preserve">
+    <value>Печать (Форма №285)</value>
+  </data>
+  <data name="PropertiesNameNotCorrect" xml:space="preserve">
+    <value>Имя свойств не выбрано</value>
+  </data>
+  <data name="PropertiesValuesNameNotCorrect" xml:space="preserve">
+    <value>Блок свойств не выбран</value>
+  </data>
+  <data name="TypeNotSelected" xml:space="preserve">
+    <value>Тип информации не выбран</value>
+  </data>
+  <data name="ReportFormBMMJ" xml:space="preserve">
+    <value>Отчет о движении денежных средств по другим специальным фондам</value>
+  </data>
+  <data name="ContractSpecificationV2Split" xml:space="preserve">
+    <value>План-график закупок</value>
+  </data>
+  <data name="ContractSpecificationV2Table" xml:space="preserve">
+    <value>Параметры товара</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Страна</value>
+  </data>
+  <data name="DateOfIssue" xml:space="preserve">
+    <value>Дата выдачи</value>
+  </data>
+  <data name="ENKTValue" xml:space="preserve">
+    <value>ЕНКТ наименование</value>
+  </data>
+  <data name="GuaranteePeriod" xml:space="preserve">
+    <value>Срок гарантии</value>
+  </data>
+  <data name="License" xml:space="preserve">
+    <value>Лицензия</value>
+  </data>
+  <data name="Manufacturer" xml:space="preserve">
+    <value>Производитель</value>
+  </data>
+  <data name="Mark" xml:space="preserve">
+    <value>Отметка</value>
+  </data>
+  <data name="Paramerts" xml:space="preserve">
+    <value>Параметры</value>
+  </data>
+  <data name="OpenDocument" xml:space="preserve">
+    <value>Открыть документ</value>
+  </data>
+  <data name="TreasResourceStatus" xml:space="preserve">
+    <value>Состояние</value>
+  </data>
+  <data name="forma1Print3" xml:space="preserve">
+    <value>Проверено успешно</value>
+  </data>
+  <data name="forma1Print3_1" xml:space="preserve">
+    <value>Строка кода 010 не соответствует предыдущему периоду</value>
+  </data>
+  <data name="PrintByСhapter" xml:space="preserve">
+    <value>Печат по главам</value>
+  </data>
+  <data name="ChapterID" xml:space="preserve">
+    <value>Глава Код</value>
+  </data>
+  <data name="HeaderOrganizationID" xml:space="preserve">
+    <value>Под. организация Код</value>
+  </data>
+  <data name="HeaderOrganizationInfo" xml:space="preserve">
+    <value>Информация о Подотчетная организация </value>
+  </data>
+  <data name="Restriction" xml:space="preserve">
+    <value>Ограничение</value>
+  </data>
+  <data name="addAttachOrg" xml:space="preserve">
+    <value>Прикрепить Подотчетные орг.</value>
+  </data>
+  <data name="Name11" xml:space="preserve">
+    <value>Краткие наим</value>
+  </data>
+  <data name="CurrencyAccountBook" xml:space="preserve">
+    <value>Оборотная ведомость (Валютная)</value>
+  </data>
+  <data name="IsRecalcNeed" xml:space="preserve">
+    <value>Нуждается в перерасчете?</value>
+  </data>
+  <data name="Create_in_Invoice_Uzasbo" xml:space="preserve">
+    <value>Создать в invoice.uzasbo.uz</value>
+  </data>
+  <data name="CommentLength" xml:space="preserve">
+    <value>Длина комментарий должно быть меньше 200 символов</value>
+  </data>
+  <data name="ContractSpecificationV2" xml:space="preserve">
+    <value>Спецификация</value>
+  </data>
+  <data name="ENKTCodeNotCorrect" xml:space="preserve">
+    <value>Код ЕНКТ не выбран</value>
+  </data>
+  <data name="ENKTValueNotCorrect" xml:space="preserve">
+    <value>Наименование ЕНКТ не указано</value>
+  </data>
+  <data name="ItemOfExpensesCodeCorrect" xml:space="preserve">
+    <value>Статья расходов не выбрано</value>
+  </data>
+  <data name="PriceNotCorrect" xml:space="preserve">
+    <value>Цена не указано</value>
+  </data>
+  <data name="BudgetChapterForExample" xml:space="preserve">
+    <value>Для примера 7011401259</value>
+  </data>
+  <data name="PaymentOrderError" xml:space="preserve">
+    <value>Расходы по земельному налогу, налогу на имущество и оплате коммунальных услуг временно ограничены.‌‌</value>
+  </data>
+  <data name="IsFinal" xml:space="preserve">
+    <value>Индикатор конечного результата</value>
+  </data>
+  <data name="PlanAmount" xml:space="preserve">
+    <value>Годовой план</value>
+  </data>
+  <data name="Indicator" xml:space="preserve">
+    <value>Индикатор</value>
+  </data>
+  <data name="PrintBankDokument" xml:space="preserve">
+    <value>Печать с данными заголовок</value>
+  </data>
+  <data name="IsComplete1" xml:space="preserve">
+    <value>Выполнено</value>
+  </data>
+  <data name="IsComplete2" xml:space="preserve">
+    <value>Не выполнено</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Скачать</value>
+  </data>
+  <data name="IsComplete" xml:space="preserve">
+    <value>Выполнено ?</value>
+  </data>
+  <data name="CrSubAccNotCorrect" xml:space="preserve">
+    <value>К-Т не выбран</value>
+  </data>
+  <data name="DbSubAcNotCorrect" xml:space="preserve">
+    <value>Д-Т не выбран</value>
+  </data>
+  <data name="ApprovedPlan" xml:space="preserve">
+    <value>Утвержденный план</value>
+  </data>
+  <data name="DefinedPlan" xml:space="preserve">
+    <value>Уточненный план</value>
+  </data>
+  <data name="Difference" xml:space="preserve">
+    <value>Разница (-мен,+боль)</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>Исполнение</value>
+  </data>
+  <data name="IndicatorPositionName" xml:space="preserve">
+    <value>Название позиции индикатора</value>
+  </data>
+  <data name="Percents" xml:space="preserve">
+    <value>Проценты</value>
+  </data>
+  <data name="DocumentHistory" xml:space="preserve">
+    <value>История документа</value>
+  </data>
+  <data name="PayrollSheetID" xml:space="preserve">
+    <value>Ведомость ID</value>
+  </data>
+  <data name="PrintReport" xml:space="preserve">
+    <value>Отчеты печать </value>
+  </data>
+  <data name="PrintPoOrg2" xml:space="preserve">
+    <value>Печать(Организации)</value>
+  </data>
+  <data name="Agreed" xml:space="preserve">
+    <value>Согласование</value>
+  </data>
+  <data name="CreatedUser" xml:space="preserve">
+    <value>Создан пользователь</value>
+  </data>
+  <data name="ModifiedUser" xml:space="preserve">
+    <value>Измененный пользователь</value>
+  </data>
+  <data name="IndicatorReceive" xml:space="preserve">
+    <value>Индикатор Принять</value>
+  </data>
+  <data name="SettlementAccountActualSubAccNotFound" xml:space="preserve">
+    <value>Субсчет кассовых расходов не прикреплён к Лицевому Счету организации</value>
+  </data>
+  <data name="PrintOrg_1" xml:space="preserve">
+    <value>Список организаций (для администраторов)</value>
+  </data>
+  <data name="PrintOrg_2" xml:space="preserve">
+    <value>Список организаций (для банков)</value>
+  </data>
+  <data name="ItemOfExpensesName" xml:space="preserve">
+    <value>Вид расчета</value>
+  </data>
+  <data name="ItemOfExpensesNotCorrect1" xml:space="preserve">
+    <value>Вид расчета не выбран</value>
+  </data>
+  <data name="ReportPaymentOrder" xml:space="preserve">
+    <value>Отчет по начисленных и выплаченных сумм по заявке</value>
+  </data>
+  <data name="SubCalculationSum" xml:space="preserve">
+    <value>Сумма по заявке</value>
+  </data>
+  <data name="TableSUM" xml:space="preserve">
+    <value>Сумма по платежным документам</value>
+  </data>
+  <data name="IndicatorFile" xml:space="preserve">
+    <value>Пояснительное письмо к отчету</value>
+  </data>
+  <data name="PrintBankDokument1" xml:space="preserve">
+    <value>Печать выписки</value>
+  </data>
+  <data name="RusultETP" xml:space="preserve">
+    <value>Результаты объявлений по проведённым государственным закупкам</value>
+  </data>
+  <data name="ResultETP" xml:space="preserve">
+    <value>Результаты объявлений по проведённым государственным закупкам</value>
+  </data>
+  <data name="CurrencyType" xml:space="preserve">
+    <value>Тип конвертация</value>
+  </data>
+</root>
