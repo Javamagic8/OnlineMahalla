@@ -1,0 +1,14 @@
+{
+  "name": "bootstrap-checkbox",
+  "homepage": "https://github.com/vsn4ik/bootstrap-checkbox",
+  "version": "1.5.0",
+  "_release": "1.5.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.5.0",
+    "commit": "028a436a86e0b79a38ad333e68d2a344df3f404d"
+  },
+  "_source": "https://github.com/vsn4ik/bootstrap-checkbox.git",
+  "_target": "1.5.0",
+  "_originalSource": "bootstrap-checkbox"
+}
