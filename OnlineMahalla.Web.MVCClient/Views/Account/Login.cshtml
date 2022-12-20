@@ -1,0 +1,206 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Localization
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewData["AppTitle"]</title>
+    <!-- CSS -->
+    <environment names="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/@@fortawesome/fontawesome-free/css/all.css" />
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/lib/@@fortawesome/fontawesome-free/css/all.min.css" />
+    </environment>
+    <!-- Favicon and touch icons -->
+    <link rel="shortcut icon" href="~/favicon.ico">
+    <style>
+        body {
+            background-color: white;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="login-page">
+
+        <div align="center">
+
+            <div class="shadow p-3 mb-5 bg-light rounded" style="width:480px;background-color:white; margin-top:100px;">
+                <div class="text-center">
+                    <img src="~/images/logo.png" />
+                    <hr />
+                    <p>@SharedLocalizer["EnterUserNameAndPassword"]</p>
+                </div>
+                <div class="panel-body">
+                    <form role="form" asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-signin" style="color:red">
+                        @Html.AntiForgeryToken()
+                        <div asp-validation-summary="All"></div>
+                        <input type="hidden" name="returnUrl" />
+                        <fieldset>
+                            <label for="inputusername"></label>
+                            <div class="input-group" style="width:100%">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input class="form-control" placeholder="Имя пользователя" id="inputusername" name="username" required autofocus>
+                            </div>
+                            <label for="password"></label>
+                            <div class="input-group" style="width:100%">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                <input type="password" class="form-control" placeholder="@SharedLocalizer["Пароль"]" id="password" name="password" required autocomplete="off">
+                            </div>
+                            <br>
+                            <br>
+                            <div class="form-group">
+                                <button class="btn btn-primary col-md-12"><b>@SharedLocalizer["SignIn"]</b></button>
+                            </div>
+                        </fieldset>
+                        <hr />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <br />
+    <div class="text-center">
+        @await Html.PartialAsync("_SelectLanguagePartial")
+    </div>
+    <br />
+    <p class="mt-5 mb-3 text-muted text-center">&copy; @DateTime.Today.Year - ПК "Online Mahalla"</p>
+    <script type="text/javascript">
+        localStorage.removeItem("loggeduser");
+    </script>
+</body>
+
+</html>
+
+@section scripts
+    {
+    <environment names="Development">
+        <script src="~/lib/knockout/dist/knockout.debug.js"></script>
+        <script src="~/lib/knockout-mapping/knockout.mapping.js"></script>
+        <script src="~/lib/bootbox.js/bootbox.js"></script>
+        <script src="~/js/KEY.js"></script>
+        <script src="~/js/yt-capi-ws.js"></script>
+        <script src="~/js/utility.js"></script>
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/lib/knockout/dist/knockout.js"></script>
+        <script src="~/lib/knockout-mapping/knockout.mapping.js"></script>
+        <script src="~/lib/bootbox.js/bootbox.js"></script>
+        <script src="~/js/KEY.js"></script>
+        <script src="~/js/yt-capi-ws.js"></script>
+        <script src="~/js/utility.js"></script>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    </environment>
+
+
+    <script type="text/javascript">
+
+        localStorage.removeItem("loggeduser");
+        var ItemModel = function () {
+
+            var self = this;
+            self.Esp = ko.observable(false);
+            self.keyinfo = ko.observable('');
+            self.espchange = function (item) {
+                if (self.Esp() == false) {
+                    $('#changeRow').hide();
+                } else {
+                    $('#changeRow').show();
+                    self.keyinfo(item);
+                }
+
+                console.log(self.keyinfo());
+                console.log(self.Esp());
+
+            }
+
+        }
+        $(document).ready(function () {
+            var itemModel = new ItemModel();
+            ko.applyBindings(itemModel);
+            itemModel.espchange();
+
+            dataforsign = [];
+            selectedrow = [];
+            $('#signdata').click(function () {
+                loadkeys('key', setSignedData, selectedrow, dataforsign);
+            });
+            $('#changeRow').click(function () { changeRow(); });
+
+            function changeRow() {
+                var sendid = selectedrow;
+                if (true) {
+                    $.ajax({
+                        headers: {
+                            Accept: "application/json",
+                            "Content-Type": "application/json; charset=utf-8",
+                        },
+                        type: "GET"//,
+                        // url: "Url.Action("Login", "Account")"// + "/?ID=" + sendid
+                    }).done(function (data, status, xhr) {
+                        dataforsign = data;
+
+                        $('#keyWindow').modal('show');
+                        loadKeysToSelect('key');
+                    })
+                        .fail(function (xhr, status, error) {
+                            alert(xhr.responseText + " Error:" + error);
+                        });
+                }
+                console.log('This was logged in the callback: ' + true);
+
+            }
+
+            function setSignedData(sendid, datahash, signeddata) {
+                var x = document.getElementById('key').options[document.getElementById('key').selectedIndex].text;
+                itemModel.espchange(x);
+                tmp = {
+                    'ID': sendid,
+                    'DataHash': datahash,
+                    'SignedData': signeddata,
+                    'INN': x.substring(0, 9)
+                };
+                var datatosave = JSON.stringify(tmp);
+                console.log(x);
+                $.ajax({
+                    headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json; charset=utf-8",
+                    },
+                    type: "POST",
+                    data: x.substring(0, 9),
+                    url: "@Url.Action("Signeds", "Account")" + "/?SignInfo=" + x
+                }).done(function (data, status, xhr) {
+                    alert("Успешно");
+                    $('#keyWindow').modal('hide');
+
+
+                    $("#target").click();
+
+
+                })
+                    .fail(function (xhr, status, error) {
+                        alert(xhr.responseText + " Error:" + error);
+                    });
+                window.focus();
+            }
+        });
+    </script>
+}

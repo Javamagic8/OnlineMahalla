@@ -1,23 +1,27 @@
-var builder = WebApplication.CreateBuilder(args);
+using Microsoft.AspNetCore;
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
 
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+namespace OnlineMahalla.Web.MVCClient
 {
-    app.UseExceptionHandler("/Home/Error");
+    public class Program
+    {
+
+        public static void Main(string[] args)
+        {
+            Console.Title = "Online Mahalla.Web.MVCClient";
+            CreateWebHostBuilder(args).UseContentRoot(Directory.GetCurrentDirectory()).Build().Run();
+        }
+
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .UseStartup<Startup>()
+                .ConfigureKestrel(o =>
+                {
+                    o.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(2);
+                    o.Limits.RequestHeadersTimeout = TimeSpan.FromMinutes(1);
+                    o.Limits.MaxConcurrentConnections = 3000;
+                    o.Limits.MaxConcurrentUpgradedConnections = 3000;
+                    o.Limits.Http2.MaxStreamsPerConnection = 3000;
+                });
+    }
 }
-app.UseStaticFiles();
-
-app.UseRouting();
-
-app.UseAuthorization();
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-
-app.Run();

@@ -7,15 +7,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineMahalla.Web.MVCClient
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{0D5D9A82-C4A0-42AB-B5AC-129F80540E19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineMahalla.Common.Model", "OnlineMahalla.Common.Model\OnlineMahalla.Common.Model.csproj", "{B03C70B6-6467-41A8-8586-1B357129D9CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineMahalla.Common.Model", "OnlineMahalla.Common.Model\OnlineMahalla.Common.Model.csproj", "{B03C70B6-6467-41A8-8586-1B357129D9CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineMahalla.Common.Utility", "OnlineMahalla.Common.Utility\OnlineMahalla.Common.Utility.csproj", "{EDECBA40-CF3F-4D7D-B57D-2127A861D79C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineMahalla.Common.Utility", "OnlineMahalla.Common.Utility\OnlineMahalla.Common.Utility.csproj", "{EDECBA40-CF3F-4D7D-B57D-2127A861D79C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineMahalla.Common.Signer", "OnlineMahalla.Common.Signer\OnlineMahalla.Common.Signer.csproj", "{27603F2C-9482-4677-B8D6-99F0134C6C0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineMahalla.Common.Signer", "OnlineMahalla.Common.Signer\OnlineMahalla.Common.Signer.csproj", "{27603F2C-9482-4677-B8D6-99F0134C6C0F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{32EBDDE4-3E03-484E-97B8-4871597A02C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineMahalla.Data.Model", "OnlineMahalla.Data.Model\OnlineMahalla.Data.Model.csproj", "{CED8F3D2-ADF8-48E1-B566-E567562601F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineMahalla.Data.Model", "OnlineMahalla.Data.Model\OnlineMahalla.Data.Model.csproj", "{CED8F3D2-ADF8-48E1-B566-E567562601F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineMahalla.Data.Repository.SqlServer", "OnlineMahalla.Data.Repository.SqlServer\OnlineMahalla.Data.Repository.SqlServer.csproj", "{0FD219EB-7E74-4FF7-84CF-6278BFA10F47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +45,10 @@ Global
 		{CED8F3D2-ADF8-48E1-B566-E567562601F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CED8F3D2-ADF8-48E1-B566-E567562601F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CED8F3D2-ADF8-48E1-B566-E567562601F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FD219EB-7E74-4FF7-84CF-6278BFA10F47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FD219EB-7E74-4FF7-84CF-6278BFA10F47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FD219EB-7E74-4FF7-84CF-6278BFA10F47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FD219EB-7E74-4FF7-84CF-6278BFA10F47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,6 +58,7 @@ Global
 		{EDECBA40-CF3F-4D7D-B57D-2127A861D79C} = {0D5D9A82-C4A0-42AB-B5AC-129F80540E19}
 		{27603F2C-9482-4677-B8D6-99F0134C6C0F} = {0D5D9A82-C4A0-42AB-B5AC-129F80540E19}
 		{CED8F3D2-ADF8-48E1-B566-E567562601F8} = {32EBDDE4-3E03-484E-97B8-4871597A02C3}
+		{0FD219EB-7E74-4FF7-84CF-6278BFA10F47} = {32EBDDE4-3E03-484E-97B8-4871597A02C3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B26C7E44-A6F4-4DCD-ACDD-75F0FB1C991F}

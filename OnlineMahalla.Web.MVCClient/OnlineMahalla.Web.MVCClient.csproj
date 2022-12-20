@@ -7,7 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="6.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.DataProtection.EntityFrameworkCore" Version="6.0.12" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.12" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.11" />
+    <PackageReference Include="NickBuhro.Translit" Version="1.4.5" />
+    <PackageReference Include="NLog" Version="5.1.0" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="5.2.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
@@ -16,6 +25,7 @@
     <ProjectReference Include="..\OnlineMahalla.Common.Signer\OnlineMahalla.Common.Signer.csproj" />
     <ProjectReference Include="..\OnlineMahalla.Common.Utility\OnlineMahalla.Common.Utility.csproj" />
     <ProjectReference Include="..\OnlineMahalla.Data.Model\OnlineMahalla.Data.Model.csproj" />
+    <ProjectReference Include="..\OnlineMahalla.Data.Repository.SqlServer\OnlineMahalla.Data.Repository.SqlServer.csproj" />
   </ItemGroup>
 
 </Project>
