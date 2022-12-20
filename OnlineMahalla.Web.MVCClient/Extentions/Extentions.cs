@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OnlineMahalla.Data.Model;
 
-namespace UZASBO.Web.MVCClient.Extentions
+namespace OnlineMahalla.Web.MVCClient.Extentions
 {
 
     public static class AppConst
