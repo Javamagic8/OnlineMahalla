@@ -7,8 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.12" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\OnlineMahalla.Common.Model\OnlineMahalla.Common.Model.csproj" />
     <ProjectReference Include="..\OnlineMahalla.Data.Model\OnlineMahalla.Data.Model.csproj" />
+    <ProjectReference Include="..\OnlineMahalla.Data.Utility\OnlineMahalla.Data.Utility.csproj" />
   </ItemGroup>
 
 </Project>
