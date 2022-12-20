@@ -17,7 +17,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{32EBDDE4-3
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineMahalla.Data.Model", "OnlineMahalla.Data.Model\OnlineMahalla.Data.Model.csproj", "{CED8F3D2-ADF8-48E1-B566-E567562601F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineMahalla.Data.Repository.SqlServer", "OnlineMahalla.Data.Repository.SqlServer\OnlineMahalla.Data.Repository.SqlServer.csproj", "{0FD219EB-7E74-4FF7-84CF-6278BFA10F47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineMahalla.Data.Repository.SqlServer", "OnlineMahalla.Data.Repository.SqlServer\OnlineMahalla.Data.Repository.SqlServer.csproj", "{0FD219EB-7E74-4FF7-84CF-6278BFA10F47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineMahalla.Data.Utility", "OnlineMahalla.Data.Utility\OnlineMahalla.Data.Utility.csproj", "{495A7FFB-A004-4016-9A57-D89871782378}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,10 @@ Global
 		{0FD219EB-7E74-4FF7-84CF-6278BFA10F47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FD219EB-7E74-4FF7-84CF-6278BFA10F47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FD219EB-7E74-4FF7-84CF-6278BFA10F47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{495A7FFB-A004-4016-9A57-D89871782378}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{495A7FFB-A004-4016-9A57-D89871782378}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{495A7FFB-A004-4016-9A57-D89871782378}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{495A7FFB-A004-4016-9A57-D89871782378}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +65,7 @@ Global
 		{27603F2C-9482-4677-B8D6-99F0134C6C0F} = {0D5D9A82-C4A0-42AB-B5AC-129F80540E19}
 		{CED8F3D2-ADF8-48E1-B566-E567562601F8} = {32EBDDE4-3E03-484E-97B8-4871597A02C3}
 		{0FD219EB-7E74-4FF7-84CF-6278BFA10F47} = {32EBDDE4-3E03-484E-97B8-4871597A02C3}
+		{495A7FFB-A004-4016-9A57-D89871782378} = {32EBDDE4-3E03-484E-97B8-4871597A02C3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B26C7E44-A6F4-4DCD-ACDD-75F0FB1C991F}
