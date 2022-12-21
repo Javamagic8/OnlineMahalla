@@ -37,6 +37,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             _connectionString = config.Value.ConnectionString;
             _databaseExt = new DatabaseExt(_connectionString);
         }
+
         private User GetUserCore(string username, int id)
         {
             User _user = null;
@@ -223,7 +224,6 @@ namespace OnlineMahalla.Data.Repository.SqlServer
         public int EspContractorID { get { return GetContractorID(UserName); } }
 
         public int CentralOrganizationID { get { return (int)_databaseExt.ExecuteScalar("SELECT CentralOrganizationID FROM  info_Organization WHERE ID=@OrganizationID", new string[] { "OrganizationID" }, new object[] { OrganizationID }); } }
-
 
     }
 }

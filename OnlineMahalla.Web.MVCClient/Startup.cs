@@ -153,9 +153,6 @@ namespace OnlineMahalla.Web.MVCClient
 
                 c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
                 // Set the comments path for the Swagger JSON and UI.
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                c.IncludeXmlComments(xmlPath);
             });
             services.ConfigureSwaggerGen(options =>
             {
@@ -186,8 +183,6 @@ namespace OnlineMahalla.Web.MVCClient
                     c.SwaggerEndpoint($"/swagger/{Constants.ApiGroup.DEFAULT}/swagger.json", "UZASBO v1");
                 });
 
-                // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
-                // specifying the Swagger JSON endpoint.
                 app.UseSwaggerUI(c =>
                 {
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "OnlineMahalla");

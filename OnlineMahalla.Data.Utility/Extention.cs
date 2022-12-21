@@ -1,4 +1,4 @@
-﻿using OnlineMahalla.Common.Model.Interface;
+﻿using OnlineMahalla.Common.Model.Models;
 using OnlineMahalla.Common.Model.Models.doc;
 using System.Dynamic;
 
