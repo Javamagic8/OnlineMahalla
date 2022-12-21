@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using OnlineMahalla.Common.Model.Interface;
+using OnlineMahalla.Common.Model.Models.sys;
 using OnlineMahalla.Web.MVCClient.Extentions;
 using System.Security.Claims;
 
@@ -32,6 +33,19 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
                 useragent = httpContextAccessor.HttpContext.Request.Headers["User-Agent"];
             _localizer = localizer;
             _hostingEnvironment = hostingEnvironment;
+            _dataRepository.UpdateUser(new User
+            {
+                ID = 0,
+                Name = "Javohir98",
+                DisplayName = "Javohir Buzrukov",
+                Password = "123456+",
+                PasswordConfirm = "123456+",
+                Email = "javamagic6515@gmail.com",
+                CreatedUserID = 1,
+                StateID = 1,
+                OrganizationID = 1
+
+            });
 
         }
         [HttpGet]
@@ -60,17 +74,6 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
             {
                 // issue authentication cookie with subject ID and username
                 var user = _dataRepository.GetUser(userName, userip, useragent);
-
-                //int organizationid = 0;
-                //if (_dataRepository.UserIsInRole("CentralAccountingChild", user.ID))
-                //{
-                //    organizationid = (user.TempOrganizationID != null && user.TempOrganizationID.Value != 0) ? user.TempOrganizationID.Value : user.OrganizationID;
-                //}
-                //else
-                //{
-                //    organizationid = user.OrganizationID;
-
-                //}
 
                 AuthenticationProperties props = new AuthenticationProperties
                 {

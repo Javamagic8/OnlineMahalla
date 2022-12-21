@@ -27,6 +27,8 @@ namespace OnlineMahalla.Web.MVCClient
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
             _env = env;
+
+         
         }
 
         public IWebHostEnvironment _env { get; }
@@ -94,8 +96,6 @@ namespace OnlineMahalla.Web.MVCClient
                     });
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            Extentions.AppConst.AuthServiceUrl = Configuration.GetSection("UZASBOAuthService:url").Value; //e-imzo
-
             services.AddAuthentication(options =>
             {
                 options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -119,7 +119,7 @@ namespace OnlineMahalla.Web.MVCClient
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc(Constants.ApiGroup.DEFAULT, new OpenApiInfo { Title = "UZASBO", Version = "v1" });
+                c.SwaggerDoc(Constants.ApiGroup.DEFAULT, new OpenApiInfo { Title = "Online Mahalla", Version = "v1" });
 
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {

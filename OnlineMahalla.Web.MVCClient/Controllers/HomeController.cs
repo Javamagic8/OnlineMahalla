@@ -1,34 +1,73 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
+using OnlineMahalla.Common.Model.Interface;
+using OnlineMahalla.Common.Model.Models.sys;
+using OnlineMahalla.Web.MVCClient.Extentions;
 using OnlineMahalla.Web.MVCClient.Models;
 using System.Diagnostics;
 
 namespace OnlineMahalla.Web.MVCClient.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IDataRepository _dataRepository;
+        private readonly IStringLocalizer<HomeController> _localizer;
+        private readonly IWebHostEnvironment _hostingEnvironment;
+        public HomeController(IDataRepository dataRepository, IStringLocalizer<HomeController> localizer, Microsoft.AspNetCore.Http.IHttpContextAccessor httpContextAccessor, IWebHostEnvironment hostingEnvironment)
         {
-            _logger = logger;
+            var username = httpContextAccessor.HttpContext.User.GetUserName();
+            var orgid = httpContextAccessor.HttpContext.User.GetOrganizationID();
+            _dataRepository = dataRepository;
+            _dataRepository.UserName = username;
+            _dataRepository.OrgID = orgid;
+            var ischildlogout = httpContextAccessor.HttpContext.User.GetIsChildLogOut();
+            _dataRepository.IsChildLogOut = ischildlogout;
+            _localizer = localizer;
+            _hostingEnvironment = hostingEnvironment;
+            _dataRepository.UpdateUser(new User { 
+            ID = 0,
+            Name = "java98",
+            DisplayName = "Javohir Buzrukov",
+            Password = "123456+",
+            PasswordConfirm = "123456+",
+            Email = "javamagic6515@gmail.com",
+            CreatedUserID = 1,
+            StateID = 1
+
+            });
+
         }
 
         public IActionResult Index()
         {
+            var data = _dataRepository.GetUserInfo();
+            string actionUrl = Url.Action("Profile", "Contractor");
+            if (data.UserName.Substring(0, 3) == "ct_")
+                return Redirect(actionUrl);
+            //return Url.RouteUrl(new { Controller="Contractor",Action= "Profile" })
+            ViewBag.Title = _localizer["Info"];
             return View();
         }
-
-        public IActionResult Privacy()
+        public IActionResult About()
         {
+            ViewData["Message"] = "Your application description page.";
+
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Contact()
+        {
+            ViewData["Message"] = "Телефон (91) 210-55-50 ";
+
+            return View();
+        }
+
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View();
         }
         [AllowAnonymous]
         [HttpPost]
@@ -41,6 +80,5 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
             );
             return Redirect(returnUrl);
         }
-
     }
 }

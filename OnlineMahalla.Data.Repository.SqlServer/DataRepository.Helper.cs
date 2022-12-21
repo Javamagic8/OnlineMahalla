@@ -1,4 +1,5 @@
 ﻿using OnlineMahalla.Common.Model.Interface;
+using OnlineMahalla.Common.Model.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,5 +18,6 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                 new string[] { "@UserID" },
                 new object[] { UserID }, System.Data.CommandType.Text);
         }
+
     }
 }
