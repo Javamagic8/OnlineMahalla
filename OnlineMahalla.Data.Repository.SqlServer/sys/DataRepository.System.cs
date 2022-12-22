@@ -44,7 +44,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
 
             UserInfo userInfo = new UserInfo()
             {
-                OrgInfo = GetOrganization(OrgID).Name + "(" + OrgID + ")", //(UserName.StartsWith("ct_") && UserName.Length == 12) ? (EspContractorName + "(" + EspContractorID + ")") : (data.TempName == "" ? data.Name + "(" + data.ID + ")" : data.TempName + "(" + data.ID + ")"),
+                OrgInfo = GetOrganization(OrgID).Name + "(" + OrgID + ")",
                 UserID = userID,
                 OrgID = OrgID,//data.ID,
                 OrgTempID = data.TempOrganizationID,
@@ -63,14 +63,11 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             if (ID == 0)
                 ID = OrganizationID;
             var data = _databaseExt.GetDataFromSql(@"SELECT Organization.*,
-            FinancingLevel.DisplayName FinancingLevelName,
-            Chapter.Name ChapterName,
-            Chapter.Code ChapterCode,
-            HeaderOrganization.Name HeaderOrganizationName
-            FROM info_Organization Organization 
-            LEFT JOIN enum_FinancingLevel FinancingLevel ON FinancingLevel.ID = Organization.FinancingLevelID      
-            LEFT JOIN info_HeaderOrganization HeaderOrganization ON HeaderOrganization.ID = Organization.HeaderOrganizationID      
-            LEFT JOIN info_Chapter Chapter ON Chapter.ID = Organization.ChapterID      
+            'FinancingLevel.DisplayName' FinancingLevelName,
+            'Chapter.Name' ChapterName,
+            'Chapter.Code' ChapterCode,
+            'HeaderOrganization.Name' HeaderOrganizationName
+            FROM info_Organization Organization      
             WHERE Organization.ID=@ID", new string[] { "@ID" }, new object[] { ID }).First();
             Organization Organization = new Organization()
             {
