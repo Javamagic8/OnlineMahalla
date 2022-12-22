@@ -33,19 +33,6 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
                 useragent = httpContextAccessor.HttpContext.Request.Headers["User-Agent"];
             _localizer = localizer;
             _hostingEnvironment = hostingEnvironment;
-            _dataRepository.UpdateUser(new User
-            {
-                ID = 0,
-                Name = "Javohir98",
-                DisplayName = "Javohir Buzrukov",
-                Password = "123456+",
-                PasswordConfirm = "123456+",
-                Email = "javamagic6515@gmail.com",
-                CreatedUserID = 1,
-                StateID = 1,
-                OrganizationID = 1
-
-            });
 
         }
         [HttpGet]
