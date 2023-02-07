@@ -95,58 +95,6 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
 
             return View();
         }
-        [HttpPost]
-        public async Task<IActionResult> SelectedOrg(int SelectedOrganizationID)
-        {
-            try
-            {
-                // _dataRepository.GetUserOrganizations(SelectedOrganizationID);
-
-                var user = _dataRepository.GetUser(User.GetUserName(), userip, useragent);
-                int organizationid = 0;
-                if (_dataRepository.UserIsInRole("CentralAccountingChild", user.ID))
-                {
-                    organizationid = SelectedOrganizationID;
-                }
-                else
-                {
-                    organizationid = user.OrganizationID;
-
-                }
-
-                AuthenticationProperties props = new AuthenticationProperties
-                {
-                    IsPersistent = true,
-                    ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(20),
-                };
-
-                var claims = new List<Claim>
-                {
-                new Claim("sub", user.Name),
-                new Claim(ClaimTypes.Name, user.Name),
-                new Claim("name", user.DisplayName),
-                new Claim("userid", user.ID.ToString(),ClaimValueTypes.Integer),
-                new Claim("orgid", organizationid.ToString(),ClaimValueTypes.Integer),
-                new Claim("orginn", user.OrganizationINN),
-                new Claim("orgname", user.OrganizationName),
-                new Claim("temporgid", SelectedOrganizationID.ToString(),ClaimValueTypes.Integer),
-                new Claim("temporginn", user.TempOrganizationINN),
-                new Claim("temporgname", user.TempOrganizationName),
-                new Claim("ischildlogout", "false",ClaimValueTypes.Boolean),
-                };
-
-                var id = new ClaimsIdentity(claims, "password");
-                var p = new ClaimsPrincipal(id);
-
-                await HttpContext.SignInAsync("Cookies", p);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
-
-        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]

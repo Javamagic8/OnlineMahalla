@@ -110,7 +110,6 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                 }
             }
             return _user;
-
         }
         public User GetUser(string username, string ipadress, string useragent)
         {

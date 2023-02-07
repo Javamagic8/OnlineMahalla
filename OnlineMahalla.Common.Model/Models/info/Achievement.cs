@@ -10,5 +10,9 @@ namespace OnlineMahalla.Common.Model.Models.info
     {
         public long Id { get; set; }
 
+        public string? Comment { get; set; }
+
+        public DateTime GetDate { get; set; }
+
     }
 }

@@ -2,11 +2,6 @@
 using OnlineMahalla.Common.Model.Models;
 using OnlineMahalla.Common.Model.Models.sys;
 using OnlineMahalla.Common.Utility;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineMahalla.Data.Repository.SqlServer
 {
