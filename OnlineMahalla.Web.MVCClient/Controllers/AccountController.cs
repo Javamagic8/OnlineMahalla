@@ -59,6 +59,7 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
 
             if (!string.IsNullOrWhiteSpace(userName) && !string.IsNullOrWhiteSpace(password) && _dataRepository.ValidatePassword(userName, password, userip, useragent))
             {
+                
                 // issue authentication cookie with subject ID and username
                 var user = _dataRepository.GetUser(userName, userip, useragent);
 

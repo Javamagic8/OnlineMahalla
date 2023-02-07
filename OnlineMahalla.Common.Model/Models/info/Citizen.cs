@@ -10,11 +10,11 @@ namespace OnlineMahalla.Common.Model.Models.info
     {
         public long Id { get; set; }
 
-        public string FirstName { get; set; }
+        public string? FirstName { get; set; }
 
-        public string LastName { get; set; }
+        public string? LastName { get; set; }
 
-        public string FamilyName { get; set; }
+        public string? FamilyName { get; set; }
 
         public DateTime DateOfBirthday { get; set; }
 
