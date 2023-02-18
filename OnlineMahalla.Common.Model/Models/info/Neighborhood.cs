@@ -26,6 +26,8 @@ namespace OnlineMahalla.Common.Model.Models.info
 
         public string PhoneNumber { get; set; }
 
+        public int TypeOrganizationID { get; set; }
+
 
     }
 }

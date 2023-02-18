@@ -46,7 +46,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"><img src="~/images/logo.png" width="130" height="40" style="margin-top:-10px"></a>
+                        <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"><img src="~/images/icon.png" width="130" height="40" style="margin-top:-10px"></a>
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
@@ -266,10 +266,10 @@
                     localStorage.removeItem("loggeduser");
                     localStorage.setItem("loggeduser", JSON.stringify(logininfo));
             });
-            getajaxjson("@Url.Action("GetOperDateInfo", "Helper")", function (data) {
-                operdate = data;
-                document.getElementById("oper").innerHTML = operdate.OperDate;
-            });
+            //getajaxjson("@Url.Action("GetOperDateInfo", "Helper")", function (data) {
+            //    operdate = data;
+            //    document.getElementById("oper").innerHTML = operdate.OperDate;
+            //});
 
            var rolelinks = document.querySelectorAll('[data-roleview]');
 
@@ -296,9 +296,9 @@
             }
         });
 
-        $(window).on('load', function () {
-            createselectfromurlcomp($('#userorganization'), "@Url.Action("GetUserOrganizationList", "Helper")", false);
-        });
+        //$(window).on('load', function () {
+        //    createselectfromurlcomp($('#userorganization'), "@Url.Action("GetUserOrganizationList", "Helper")", false);
+        //});
 
         function reloadPage() {
 

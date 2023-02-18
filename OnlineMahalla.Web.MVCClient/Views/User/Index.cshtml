@@ -987,11 +987,11 @@
                 });
             };
 
-            self.loadorg = function (id) {
-                getajaxjson("@Url.Action("GetUserOrg", "User")" + "?id=" + id, function (data) {
-                    ko.mapping.fromJS(data, {}, self.user);
-                });
-            };
+            //self.loadorg = function (id) {
+            //    getajaxjson("@Url.Action("GetUserOrg", "User")" + "?id=" + id, function (data) {
+            //        ko.mapping.fromJS(data, {}, self.user);
+            //    });
+            //};
 
             self.loadattachorg = function (id) {
                 getajaxjson("@Url.Action("GetAttachOrg", "User")" + "?id=" + id, function (data) {

@@ -1,0 +1,1617 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@{
+    ViewData["Title"] = "Index";
+}
+<environment names="Development">
+    <link rel="stylesheet" href="~/lib/bootstrap-table/dist/bootstrap-table.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-datepicker/dist/css/bootstrap-datepicker.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-select/dist/css/bootstrap-select.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</environment>
+<environment names="Staging,Production">
+    <link rel="stylesheet" href="~/lib/bootstrap-table/dist/bootstrap-table.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-select/dist/css/bootstrap-select.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</environment>
+
+<style>
+    .bootstrap-table .table:not(.table-condensed), .bootstrap-table .table:not(.table-condensed) > tbody > tr > th, .bootstrap-table .table:not(.table-condensed) > tfoot > tr > th, .bootstrap-table .table:not(.table-condensed) > thead > tr > td, .bootstrap-table .table:not(.table-condensed) > tbody > tr > td, .bootstrap-table .table:not(.table-condensed) > tfoot > tr > td {
+        padding: 8px;
+        white-space: pre-wrap;
+    }
+</style>
+
+<h3 style="text-align:center">@SharedLocalizer["Organization"]</h3>
+<div class="panel panel-primary"></div>
+<div id="custom-toolbar" class="bs-bars pull-center">
+    <div class="form-group form-inline" align="center">
+        <div class="input-group">
+            <input id="filterid" style="font-size:13px;width:100px" class="form-control input-sm" type="number" placeholder="@SharedLocalizer["ID"]" />
+        </div>
+        <div class="input-group">
+            <input id="filterinn" style="font-size:13px;width:100px" maxlength="9" class="form-control input-sm" placeholder="@SharedLocalizer["INN"]" />
+        </div>
+        <div class="input-group">
+            <input id="filtername" style="font-size:13px;width:300px" class="form-control input-sm" placeholder="@SharedLocalizer["Name"]" />
+        </div>
+        <div class="input-group">
+            <input id="filteroblast" style="font-size:13px;width:200px" class="form-control input-sm" placeholder="@SharedLocalizer["Oblast"]" />
+        </div>
+        <div class="input-group">
+            <input id="filterregion" style="font-size:13px;width:200px" class="form-control input-sm" placeholder="@SharedLocalizer["Region"]" />
+        </div>
+        <div class="input-group">
+            <div class="btn-toolbar">
+                <button id="refreshdata" class="btn btn-success btn-sm" data-toggle="popover" data-content="@SharedLocalizer["Refresh"]" data-trigger="hover"><span class="glyphicon glyphicon-refresh"></span></button>
+                <button id="addRow" class="btn btn-primary btn-sm" data-toggle="popover" data-trigger="hover" data-content="@SharedLocalizer["Create"]"><span class="glyphicon glyphicon-plus"></span></button>
+                <button id="cloneRow" type="button" data-toggle="popover" class="btn btn-primary btn-sm" data-trigger="hover" data-content="@SharedLocalizer["Clone"]"><span class="glyphicon glyphicon-duplicate"></span></button>
+                <button id="editRow" class="btn btn-primary btn-sm" data-toggle="popover" data-trigger="hover" data-content="@SharedLocalizer["Edit"]"><span class="glyphicon glyphicon-edit"></span></button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <table id="table"
+           data-toolbar="#toolbar"
+           data-search="false"
+           data-show-refresh="false"
+           data-show-toggle="false"
+           data-show-columns="false"
+           data-show-export="true"
+           data-detail-view="false"
+           data-minimum-count-columns="2"
+           data-show-pagination-switch="false"
+           data-pagination="true"
+           data-id-field="ID"
+           data-page-list="[50,100,150,200]"
+           data-show-footer="false"
+           data-side-pagination="server"
+           data-url="@Url.Action("GetList", "Organization")"
+           data-query-params="queryParams"
+           class="table table-striped">
+        <thead>
+            <tr>
+                <th data-field="ID" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["ID"]</th>
+                <th data-field="Name" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["Name"]</th>
+                <th data-field="INN" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["INN"]</th>
+                <th data-field="Oblast" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["Oblast"]</th>
+                <th data-field="Region" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["Region"]</th>
+                <th data-field="CentralOrganization" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["CentralOrganization"]</th>
+                <th data-field="OrganizationType" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["OrganizationType"]</th>
+                <th data-field="State" data-align="center" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["State"]</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+<div id="editWindow" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg" style="width:95%">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <br />
+                <div class="container-fluid">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2 class="panel-title" style="text-align:center"><b>@SharedLocalizer["Organization"]</b></h2>
+                        </div>
+                        <div align="center">
+                            <div class="form-horizontal">
+                                <br />
+                                <div class="form-group" align="center">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label" style="font-size:12px">@SharedLocalizer["IncomeNumber"]</label>
+                                        <div class="col-sm-1">
+                                            <input placeholder="@SharedLocalizer["Number"]" style="font-size:15px" data-bind="value:organization.IncomeNumber" class="text-center form-control input-sm" data-width="100%" />
+                                        </div>
+                                        <label class="col-md-1 control-label" required style="font-size:12px;text-align:right">@SharedLocalizer["Date"]</label>
+                                        <div class="col-md-1">
+                                            <input placeholder="@SharedLocalizer["Date"]" data-bind="value:organization.IncomeDate,valueUpdate:'afterkeydown'" required class="text-center form-control input-sm" data-provide="datepicker" data-date-format="dd.mm.yyyy" data-date-autoclose="true" data-date-language="ru" data-width="100%" />
+                                        </div>
+                                        <form class="form-inline">
+                                            <label class="col-md-1 control-label" style="font-size:12px;text-align:right">@SharedLocalizer["INN"]</label>
+                                            <div class="col-sm-2">
+                                                <input class="form-control input-sm" data-bind="value:organization.INN,valueUpdate:'afterkeydown'" type="number" style="width:56%">
+                                                <button type="button" id="btncheckinn" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-check"></span></button>
+                                            </div>
+                                        </form>
+                                        <label class="col-md-1 control-label" style="font-size:12px">@SharedLocalizer["Chapter"]</label>
+                                        <div class="col-sm-2">
+                                            <select style="font-size:12px" data-bind='options: chapterlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:organization.ChapterID,selectPicker: {}' data-live-search="true" class="" data-width="100%" data-size="15"></select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label" style="font-size:12px">@SharedLocalizer["Name"]</label>
+                                        <div class="col-sm-9">
+                                            <input placeholder="@SharedLocalizer["Name"]" style="font-size:15px" data-bind="value:organization.Name, event:{change: trimchange}" class="form-control input-sm" data-width="100%" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label" style="font-size:12px">@SharedLocalizer["FullName"]</label>
+                                        <div class="col-sm-6">
+                                            <input placeholder="@SharedLocalizer["FullName"]" style="font-size:15px" data-bind="value:organization.FullName, event:{change: trimchange}" class="form-control input-sm" data-width="100%" />
+                                        </div>
+                                        <label class="col-md-1 control-label" style="font-size:12px">@SharedLocalizer["OKED"]</label>
+                                        <div class="col-sm-2">
+                                            <select style="font-size:12px" data-bind='options: okedlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:organization.OKONHID,selectPicker: {}' data-live-search="true" class="" data-width="100%" data-size="15"></select>
+                                        </div>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <div class="table">
+                                            <!-- Only required for left/right tabs -->
+                                            <ul class="nav nav-tabs">
+                                                <li class="active"><a href="#tab0" data-toggle="tab">@SharedLocalizer["OrganizationInfo"]</a></li>
+                                                <li><a href="#tab1" data-toggle="tab">@SharedLocalizer["TrOrganizationAccount"]</a></li>
+                                                <li><a href="#tab2" data-toggle="tab">@SharedLocalizer["OrganizationsFunctionalItem"]</a></li>
+                                                <li><a href="#tab3" data-toggle="tab">@SharedLocalizer["OrganizationSign"]</a></li>
+                                                <li><a href="#tab4" data-toggle="tab">@SharedLocalizer["OrganizationsDocSettAccount"]</a></li>
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div class="tab-pane active" id="tab0">
+                                                    <br>
+                                                    <div class="form-group">
+                                                        <div class="form-group">
+                                                            <label class="col-md-2 control-label" style="font-size:12px">@SharedLocalizer["Oblast"]</label>
+                                                            <div class="col-sm-3">
+                                                                <select data-bind='options: oblastlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:organization.OblastID,selectPicker: {},event:{ change: oblastchange}' data-live-search="true" class="" data-width="100%"> </select>
+                                                            </div>
+                                                            <label class="col-md-1 control-label" style="font-size:12px">@SharedLocalizer["Region"]</label>
+                                                            <div class="col-md-3">
+                                                                <select data-bind='options: regionlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:organization.RegionID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
+                                                            </div>
+                                                            <label class="col-md-1 control-label" style="font-size:12px">@SharedLocalizer["ZipCode"]</label>
+                                                            <div class="col-sm-1">
+                                                                <input placeholder="@SharedLocalizer["ZipCode"]" style="font-size:15px" data-bind="value:organization.ZipCode" type="number" class="text-center form-control input-sm" data-width="100%" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-md-2 control-label" style="font-size:12px">@SharedLocalizer["Adress"]</label>
+                                                            <div class="col-sm-3">
+                                                                <input placeholder="@SharedLocalizer["Adress"]" style="font-size:15px" data-bind="value:organization.Adress, event:{change: trimchange}" class="form-control input-sm" data-width="100%" />
+                                                            </div>
+                                                            <label class="col-md-1 control-label" style="font-size:12px">@SharedLocalizer["ContactInfo"]</label>
+                                                            <div class="col-sm-3">
+                                                                <input placeholder="@SharedLocalizer["ContactInfo"]" style="font-size:15px" data-bind="value:organization.ContactInfo, event:{change: trimchange}" class="form-control input-sm" data-width="100%" />
+                                                            </div>
+                                                            <label class="col-md-1 control-label" style="font-size:12px"  >@SharedLocalizer["State"]</label>
+                                            <div class="col-sm-1">
+                                                <select style="font-size:15px"
+                                                    data-bind='options: statelist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:organization.StateID,selectPicker: {}'
+                                                    data-live-search="true" class="" data-width="95%"></select>
+                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-md-2 control-label" style="font-size:12px">@SharedLocalizer["Director"]</label>
+                                                            <div class="col-sm-3">
+                                                                <input placeholder="@SharedLocalizer["Director"]" style="font-size:15px" data-bind="value:organization.Director, event:{change: trimchange}" class="form-control input-sm" data-width="100%" />
+                                                            </div>
+                                                            <label class="col-md-1 control-label" style="font-size:12px">@SharedLocalizer["Accounter"]</label>
+                                                            <div class="col-sm-3">
+                                                                <input placeholder="@SharedLocalizer["Accounter"]" style="font-size:15px" data-bind="value:organization.Accounter, event:{change: trimchange}" class="form-control input-sm" data-width="100%" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-md-2 control-label" style="font-size:12px">@SharedLocalizer["Cashier"]</label>
+                                                            <div class="col-sm-3">
+                                                                <input placeholder="@SharedLocalizer["Cashier"]" style="font-size:15px" data-bind="value:organization.Cashier, event:{change: trimchange}" class="form-control input-sm" data-width="100%" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-md-2 control-label" style="font-size:12px">@SharedLocalizer["TreasuryDepartmentHeader"]</label>
+                                                            <div class="col-sm-3">
+                                                                <input style="font-size:15px" data-bind="value:organization.TreasuryDepartmentHeader" class="form-control input-sm" data-width="100%" />
+                                                            </div>
+                                                            <label class="col-md-1 control-label" style="font-size:12px">@SharedLocalizer["TreasuryResPerson"]</label>
+                                                            <div class="col-sm-3">
+                                                                <input style="font-size:15px" data-bind="value:organization.TreasuryResPerson" class="form-control input-sm" data-width="100%" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-md-2 control-label" style="font-size:12px">@SharedLocalizer["OrganizationType"]</label>
+                                                            <div class="col-sm-3">
+                                                                <select style="font-size:12px" data-bind='options: organizationtypelist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:organization.OrganizationTypeID,selectPicker: {}' data-live-search="true" class="" data-width="100%"></select>
+                                                            </div>
+                                                            <label class="col-md-1 control-label" style="font-size:12px">@SharedLocalizer["HeaderOrganization"]</label>
+                                                            <div class="col-sm-3">
+                                                                <select style="font-size:12px" data-bind='options: headerorganizationlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:organization.HeaderOrganizationID,selectPicker: {}' data-live-search="true" class="" data-width="100%"></select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <form class="form-inline">
+                                                                <label class="col-md-2 control-label" style="font-size:12px;text-align:right">@SharedLocalizer["CentralOrganization"]</label>
+                                                                <div class="col-sm-4">
+                                                                    <input class="form-control input-sm" data-bind="value:organization.CentralOrganizationName,valueUpdate:'afterkeydown'" style="width:86%">
+                                                                    <button type="button" id="btnCentralOrganization" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search"></span></button>
+                                                                    <button type="button" id="btnselectreset"  class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span></button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane" style="overflow-x:auto; overflow-y:scroll; height:300px; z-index:auto" id="tab1">
+                                                    <div class="panel panel-default">
+                                                        <br>
+                                                        <div class="form-group col-md-12" align="center">
+                                                            <div>
+                                                                <button align="center" type="button" data-bind='click: filldata' class="btn btn-primary btn-sm"><span>@SharedLocalizer["Fill"]</span></button>
+                                                            </div>
+                                                        </div>
+
+                                                        <table class="table table-striped table-bordered table-condensed"
+                                                               align="center" id='filterTableRole'>
+                                                            <thead style="position:sticky; top:0; z-index: 2">
+                                                                <tr>
+                                                                    <th style="text-align:center">@SharedLocalizer["ID"]</th>
+                                                                    <th style="text-align:center">@SharedLocalizer["Name"]</th>
+                                                                    <th style="text-align:center">@SharedLocalizer["TrOrganizationAccount"]</th>
+                                                                    <th style="text-align:center">@SharedLocalizer["Treasury"]</th>
+                                                                    <th style="text-align:center">@SharedLocalizer["Bank"]</th>
+                                                                    <th style="text-align:center">@SharedLocalizer["FunctionalItem"]</th>
+                                                                    <th style="text-align:center">@SharedLocalizer["State"]</th>
+                                                                    <th style="text-align:center">@SharedLocalizer["OutOfBalance"]</th>
+                                                                    <th style="text-align:center;width:10%">@SharedLocalizer["OrgID"]</th>
+                                                                    <th style="text-align:center;width:3%"><span class="label label-primary"></span></th>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="background-color:aquamarine" width="30px"></td>
+                                                                    <td style="background-color:aquamarine" width="30px"></td>
+                                                                    <td style="background-color:aquamarine" width="30px">
+                                                                        <input class="form-control" type="text" id="settleInputRole" onkeyup="settleFilterRole()" placeholder="@SharedLocalizer["TrOrganizationAccount"]" title="@SharedLocalizer["TrOrganizationAccount"]">
+                                                                    </td>
+                                                                    <td style="background-color:aquamarine">
+                                                                        <select data-bind='options: treasurybranchlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:addtreasurybranchid,selectPicker:{}' data-live-search="true" class=""> </select>
+                                                                    </td>
+                                                                    <td style="background-color:aquamarine" width="30px">
+                                                                        <select data-bind='options: banklist, optionsText: "Code",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:addbankid,selectPicker:{}' data-live-search="true" data-width="80px"> </select>
+                                                                    </td>
+                                                                    <td style="background-color:aquamarine" width="30px">
+                                                                        <select data-bind='options: organizationfunctionalitemlist, optionsText: "Code",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:addorganizationfunctionalitemid1,selectPicker:{}' data-live-search="true" class="" data-width="100"> </select>
+
+                                                                    </td>
+                                                                    <td style="background-color:aquamarine" width="100px"></td>
+                                                                    <td style="background-color:aquamarine" width="100px"></td>
+                                                                    <td style="background-color:aquamarine" width="10px"></td>
+                                                                    <td style="background-color:aquamarine" width="100px" align="center">
+                                                                        <button type="button" data-bind='click: addRow1' class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-plus"></span></button>
+                                                                    </td>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody data-bind="foreach:organization.SettlementAccount">
+                                                                <!-- ko if: !(Status()===3) -->
+                                                                <tr>
+                                                                    <td style="width:5%">
+                                                                        <span style="font-size:15px" data-bind='text:ID'></span>
+                                                                    </td>
+                                                                    <td>
+                                                                        <!-- ko if: (Status()===1||Status()===2) -->
+                                                                        <input data-bind="value:Name,valueUpdate:'afterkeydown'" class="form-control input-sm" type="text" />
+                                                                        <!-- /ko -->
+                                                                        <!-- ko if: (Status()===0) -->
+                                                                        <span data-bind='text:Name'></span>
+                                                                        <!-- /ko -->
+                                                                    </td>
+                                                                    <td style="width:18%">
+                                                                        <!-- ko if: (Status()===1||Status()===2) -->
+                                                                        <input data-bind="value:Code,valueUpdate:'afterkeydown'" class="form-control input-sm" type="text" />
+                                                                        <!-- /ko -->
+                                                                        <!-- ko if: (Status()===0) -->
+                                                                        <span data-bind='text:Code'></span>
+                                                                        <!-- /ko -->
+                                                                    </td>
+                                                                    <td>
+                                                                        <span data-bind='text:TreasuryBranchName'></span>
+                                                                    </td>
+                                                                    <td>
+                                                                        <span data-bind='text:BankCode'></span>
+                                                                    </td>
+                                                                    <td>
+                                                                        <!-- ko if: (Status()===1||Status()===0) -->
+                                                                        <span data-bind='text:OrganizationFunctionalItemCode'></span>
+                                                                        <!-- /ko -->
+
+                                                                       @*  <!-- ko if: ((Status()===1||Status()===0) && OrganizationFunctionalItemCode() === null) -->
+                                                                        <select data-bind='options: $root.organizationfunctionalitemlist, optionsText: "Code",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:OrganizationFunctionalItemID,selectPicker: {}' data-live-search="true" data-width="120px" class=""> </select>
+                                                                        <!-- /ko -->*@
+                                                                        <!-- ko if: (Status()===2) -->
+                                                                        <select data-bind='options: $root.organizationfunctionalitemlist, optionsText: "Code",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:OrganizationFunctionalItemID,selectPicker: {}' data-live-search="true" data-width="120px" class=""> </select>
+                                                                        <!-- /ko -->
+                                                                    </td>
+                                                                    <td>
+                                                                        <!-- ko if: (Status()===1||Status()===2) -->
+                                                                        <input data-bind="value:StateID,valueUpdate:'afterkeydown'" class="form-control input-sm" type="number" />
+
+                                                                        @*<input data-bind="checked:IsActive,valueUpdate:'afterkeydown'" class="form-control input-sm" type="checkbox" />*@
+                                                                        <!-- /ko -->
+                                                                        <!-- ko if: (Status()===0) -->
+                                                                        @*<input disabled data-bind='checked:IsActive' class="form-control input-sm" type="checkbox" />*@
+                                                                        <input disabled data-bind="value:StateID,valueUpdate:'afterkeydown'" class="form-control input-sm" type="number" />
+
+                                                                        <!-- /ko -->
+                                                                    </td>
+                                                                    <td>
+                                                                        <!-- ko if: (Status()===1||Status()===2) -->
+                                                                        <input data-bind="checked:OutOfBalance,valueUpdate:'afterkeydown'" class="form-control input-sm" type="checkbox" />
+                                                                        <!-- /ko -->
+                                                                        <!-- ko if: (Status()===0) -->
+                                                                        <input disabled data-bind='checked:OutOfBalance' class="form-control input-sm" type="checkbox" />
+                                                                        <!-- /ko -->
+                                                                    </td>
+                                                                    <td>
+                                                                        <!-- ko if: (Status()===1||Status()===2) -->
+                                                                        <input data-bind="value:OrganizationID,valueUpdate:'afterkeydown'" class="form-control input-sm" type="text" />
+                                                                        <!-- /ko -->
+                                                                        <!-- ko if: (Status()===0) -->
+                                                                        <span data-bind='text:OrganizationID'></span>
+                                                                        <!-- /ko -->
+                                                                    </td>
+                                                                    <td>
+                                                                        <span type="button" data-bind='click: $root.editaccountRow' class="btn btn-default btn-xs" data-toggle="popover" data-trigger="hover"><i class="glyphicon glyphicon-edit"> </i></span>
+                                                                        @*<span type="button" data-bind='click: $root.removeaccountRow' class="btn btn-danger btn-xs" data-toggle="popover" data-trigger="hover"><i class="glyphicon glyphicon-trash"> </i></span>*@
+                                                                    </td>
+                                                                </tr>
+                                                                <!-- /ko -->
+                                                            </tbody>
+
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane" style="overflow-x:auto; overflow-y:scroll; height:300px; z-index:auto" id="tab2">
+                                                    <br />
+                                                    <hr />
+                                                    <table class="table table-striped table-bordered table-condensed" align="center">
+                                                        <thead>
+                                                            <tr>
+                                                                <th style="text-align:center">@SharedLocalizer["ID"]</th>
+                                                                <th style="text-align:center">@SharedLocalizer["FunctionalItemCode"]</th>
+                                                                <th style="text-align:center ;width:20%">@SharedLocalizer["FunctionalItemOfExpense"]</th>
+                                                                <th style="text-align:center">@SharedLocalizer["Chapter"]</th>
+                                                                <th style="text-align:center"><span class="label label-primary"></span></th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="background-color:aquamarine"></td>
+                                                                <td style="background-color:aquamarine"></td>
+                                                                <td style="background-color:aquamarine">
+                                                                    <select data-bind='options: functionalitemlist, optionsText: "Code",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:addfunctionalitemid,selectPicker:{}' data-live-search="true" class="" data-width="500px"> </select>
+                                                                </td>
+                                                                <td style="background-color:aquamarine">
+                                                                    <select data-bind='options: chapterlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:addchapterid,selectPicker:{}' data-live-search="true" class="" data-width="150px"> </select>
+                                                                </td>
+                                                                <td align="center">
+                                                                    <button type="button" data-bind='click:addRow2' class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-plus"></span></button>
+                                                                </td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody data-bind="foreach:organization.FunctionalItem">
+                                                            <!-- ko if: !(Status()===3) -->
+                                                            <tr>
+                                                                <td style="width:5%">
+                                                                    <!-- ko if: (Status()===1||Status()===2||Status()===0) -->
+                                                                    <span style="font-size:15px" data-bind='text:ID'></span>
+                                                                    <!-- /ko -->
+                                                                </td>
+                                                                <td style="width:15%">
+                                                                    <!-- ko if: (Status()===1||Status()===2||Status()===0) -->
+                                                                    <input data-bind="value:Code,valueUpdate:'afterkeydown'" class="form-control input-sm" type="text" />
+                                                                    <!-- /ko -->
+                                                                </td>
+                                                                <td style="width:55%">
+                                                                    <!-- ko if: (Status()===1||Status()===0) -->
+                                                                    <span data-bind='text:FunctionalItemCode'></span>
+                                                                    <!-- /ko -->
+                                                                     <!-- ko if: (Status()===2) -->
+                                                                  <select data-bind='options: $root.functionalitemlist, optionsText: "Code",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:FunctionalItemID,selectPicker:{}' data-live-search="true" class="" data-width="500px"> </select>
+                                                                    <!-- /ko -->
+                                                                </td>
+                                                                <td style="width:15%">
+                                                                    <!-- ko if: (Status()===1||Status()===0) -->
+                                                                    <span data-bind='text:ChapterCode'></span>
+                                                                    <!-- /ko -->
+
+                                                                    <!-- ko if: (Status()===2) -->
+                                                               <select data-bind='options: $root.chapterlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:ChapterID,selectPicker:{}' data-live-search="true" class="" data-width="150px"> </select>
+                                                                    <!-- /ko -->
+                                                                </td>
+                                                                <td style="width:10%">
+                                                                    <span type="button" data-bind='click: $root.edititemRow' class="btn btn-default btn-xs" data-toggle="popover" data-trigger="hover"><i class="glyphicon glyphicon-edit"> </i></span>
+                                                                    @*<span type="button" data-bind='click: $root.removeitemRow' class="btn btn-danger btn-xs" data-toggle="popover" data-trigger="hover"><i class="glyphicon glyphicon-trash"> </i></span>*@
+                                                                </td>
+                                                            </tr>
+                                                            <!-- /ko -->
+                                                        </tbody>
+
+                                                    </table>
+                                                </div>
+                                                <div class="tab-pane" id="tab3">
+                                                    <br />
+                                                    <hr />
+                                                    <table class="table table-striped table-bordered table-condensed" align="center">
+                                                        <thead>
+                                                            <tr>
+                                                                <th style="text-align:center;width:300px">@SharedLocalizer["ID"]</th>
+                                                                <th style="text-align:center;width:300px">@SharedLocalizer["F.I.O."]</th>
+                                                                <th style="text-align:center;width:300px">@SharedLocalizer["№"]</th>
+                                                                <th style="text-align:center;width:200px">@SharedLocalizer["PositionNameRus"]</th>
+                                                                <th style="text-align:center;width:200px">@SharedLocalizer["PositionNameUzb"]</th>
+                                                                <th style="text-align:center;width:50px"><span class="label label-primary"></span></th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="background-color:aquamarine" width="30px"></td>
+                                                                <td style="background-color:aquamarine" width="30px"></td>
+                                                                <td style="background-color:aquamarine" width="30px"></td>
+                                                                <td style="background-color:aquamarine" width="30px"></td>
+                                                                <td style="background-color:aquamarine" width="30px"></td>
+                                                                <td align="center">
+                                                                    <button type="button" data-bind='click: addRow3' class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-plus"></span></button>
+                                                                </td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody data-bind="foreach:organization.Sign">
+                                                            <!-- ko if: !(Status()===3) -->
+                                                            <tr>
+                                                                <td style="width:5%">
+                                                                    <!-- ko if: (Status()===1||Status()===2||Status()===0) -->
+                                                                    <span style="font-size:15px" data-bind='text:ID'></span>
+                                                                    <!-- /ko -->
+                                                                </td>
+                                                                <td>  
+                                                                    <!-- ko if: (Status()===1||Status()===2) -->
+                                                                    <input data-bind="value:FIO,valueUpdate:'afterkeydown',event:{ change: $root.myfunction}" class="form-control input-sm" type="text" />
+                                                                    <!-- /ko -->
+                                                                    <!-- ko if: (Status()===0) -->
+                                                                    <span data-bind='text:FIO'></span>
+                                                                    <!-- /ko -->
+                                                                </td>
+                                                                <td style="width:5%">
+                                                                    <!-- ko if: (Status()===1||Status()===2) -->
+                                                                    <input data-bind="value:SignNumber,valueUpdate:'afterkeydown'" class="form-control input-sm" type="text" />
+                                                                    <!-- /ko -->
+                                                                    <!-- ko if: (Status()===0) -->
+                                                                    <span data-bind='text:SignNumber'></span>
+                                                                    <!-- /ko -->
+                                                                </td>
+                                                                <td>
+                                                                    <!-- ko if: (Status()===1||Status()===2) -->
+                                                                    <input data-bind="value:PositionNameRus,valueUpdate:'afterkeydown'" class="form-control input-sm" type="text" />
+                                                                    <!-- /ko -->
+                                                                    <!-- ko if: (Status()===0) -->
+                                                                    <span data-bind='text:PositionNameRus'></span>
+                                                                    <!-- /ko -->
+                                                                </td>
+                                                                <td>
+                                                                    <!-- ko if: (Status()===1||Status()===2) -->
+                                                                    <input data-bind="value:PositionNameUzb,valueUpdate:'afterkeydown'" class="form-control input-sm" type="text" />
+                                                                    <!-- /ko -->
+                                                                    <!-- ko if: (Status()===0) -->
+                                                                    <span data-bind='text:PositionNameUzb'></span>
+                                                                    <!-- /ko -->
+                                                                </td>
+                                                                <td>
+                                                                    <span type="button" data-bind='click: $root.editsignRow' class="btn btn-default btn-xs" data-toggle="popover" data-trigger="hover"><i class="glyphicon glyphicon-edit"> </i></span>
+                                                                    <span type="button" data-bind='click: $root.removesignRow' class="btn btn-danger btn-xs" data-toggle="popover" data-trigger="hover"><i class="glyphicon glyphicon-trash"> </i></span>
+                                                                </td>
+                                                            </tr>
+                                                            <!-- /ko -->
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="tab-pane" style="overflow-x:auto; overflow-y:scroll; height:300px; z-index:auto" id="tab4">
+                                                    <table class="table table-striped table-bordered table-condensed"
+                                                           align="center">
+                                                        <thead>
+                                                            <tr>
+                                                                <th style="text-align:center">@SharedLocalizer["ID"]</th>
+                                                                <th style="text-align:center">@SharedLocalizer["Organization"]</th>
+                                                                <th style="text-align:center">@SharedLocalizer["DocumentTable"]</th>
+                                                                <th style="text-align:center">@SharedLocalizer["OrganizationsSettlementAccount"]</th>
+                                                                <th style="text-align:center">@SharedLocalizer["OrganizationFunctionalItemCode"]</th>
+                                                                <th style="text-align:center">@SharedLocalizer["SettleCodeLevel"]</th>
+                                                                <th style="text-align:center">@SharedLocalizer["StateID"]</th>
+                                                                <th style="text-align:center;width:80px"><span class="label label-primary"></span></th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="background-color:aquamarine" width="5%"></td>
+                                                                <td style="background-color:aquamarine" width="20px">
+                                                                    <form class="form-inline">
+                                                                        <div class="form-group">
+                                                                            <input disabled data-bind="value:addorgidname,valueUpdate:'afterkeydown'" class="form-control input-sm" />
+                                                                        </div>
+                                                                        <button type="button" id="btnselectorg" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search"></span></button>
+                                                                    </form>
+                                                                </td>
+                                                                <td style="background-color:aquamarine" width="20px">
+                                                                    <select data-bind='options: tablelist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:addtableid,selectPicker:{}' data-live-search="true" class="form-control" data-width="250px"> </select>
+                                                                </td>
+                                                                <td style="background-color:aquamarine" width="30px">
+                                                                    <select data-bind='options: organizationsettleaccountlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:addorganizationsettleaccountid,selectPicker:{},event:{change: functionalitemchange}' data-live-search="true" class="form-control" style="width:inherit"> </select>
+                                                                </td>
+                                                                <td style="background-color:aquamarine" width="30px">
+                                                                    <select data-bind='options: orgfunctionalitemlist, optionsText: "Code",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:addfunctionalitemdocsetid,selectPicker:{}' data-live-search="true" class="form-control" style="width:inherit"> </select>
+                                                                </td>
+                                                                <td style="background-color:aquamarine" width="30px"></td>
+                                                                <td style="background-color:aquamarine" width="10px">
+                                                                    <select data-bind='options: boollist, optionsText: "name", optionsValue:"code", optionsCaption: "@SharedLocalizer["PleaseSelectOne1"]" , value:addstateid,selectPicker: {}' data-live-search="true" class="form-control" style="width:inherit"></select>
+                                                                </td>
+                                                                <td align="center">
+                                                                    <button type="button" data-bind='click: addRow4' class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-plus"></span></button>
+                                                                </td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody data-bind="foreach:organization.DocSettAccount">
+                                                            <!-- ko if: !(Status()===3) -->
+                                                            <tr>
+                                                                <td style="width:5%">
+                                                                    <!-- ko if: (Status()===1||Status()===2||Status()===0) -->
+                                                                    <span style="font-size:15px" data-bind='text:ID'></span>
+                                                                    <!-- /ko -->
+                                                                </td>
+                                                                <td>
+                                                                    <!-- ko if: (Status()===1||Status()===2||Status()===0) -->
+                                                                    <span data-bind='text:OrganizationName'></span>
+                                                                    <!-- /ko -->
+                                                                </td>
+                                                                <td>
+                                                                    <!-- ko if: (Status()===1||Status()===2||Status()===0) -->
+                                                                    <span data-bind='text:TableName'></span>
+                                                                    <!-- /ko -->
+                                                                </td>
+                                                                <td>
+                                                                    <!-- ko if: (Status()===1||Status()===2||Status()===0) -->
+                                                                    <span data-bind='text:OrganizationsSettlementAccountCode'></span>
+                                                                    <!-- /ko -->
+                                                                </td>
+                                                                <td>
+                                                                    <!-- ko if: (Status()===1||Status()===2||Status()===0) -->
+                                                                    <span data-bind='text:OrganizationFunctionalItemCode'></span>
+                                                                    <!-- /ko -->
+                                                                </td>
+                                                                <td>
+                                                                    <!-- ko if: (Status()===1||Status()===2) -->
+                                                                    <input data-bind="value:SettleCodeLevel,valueUpdate:'afterkeydown'" class="form-control input-sm" type="text" />
+                                                                    <!-- /ko -->
+                                                                    <!-- ko if: (Status()===0) -->
+                                                                    <span data-bind='text:SettleCodeLevel'></span>
+                                                                    <!-- /ko -->
+                                                                </td>
+
+                                                                <td style="width:10px">
+                                                                    <!-- ko if: (Status()===1||Status()===2||Status()===0) -->
+                                                                    <input disabled data-bind="value:State,valueUpdate:'afterkeydown'" class="form-control input-sm" type="text" />
+                                                                    <!-- /ko -->
+                                                                </td>
+                                                                <td>
+                                                                    <span type="button" data-bind='click: $root.editdocsetRow' class="btn btn-default btn-xs" data-toggle="popover" data-trigger="hover"><i class="glyphicon glyphicon-edit"> </i></span>
+                                                                    <span type="button" data-bind='click: $root.removedocsetRow' class="btn btn-danger btn-xs" data-toggle="popover" data-trigger="hover"><i class="glyphicon glyphicon-trash"> </i></span>
+                                                                </td>
+                                                            </tr>
+                                                            <!-- /ko -->
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div style="align-content:center">
+                                            <button type="button" data-bind="click:closewindow" class="btn btn-default btn-sm"> @SharedLocalizer["Close"]</button>
+                                            @*<button type="button" data-bind="click:fillwindow" class="btn btn-default btn-sm"> @SharedLocalizer["Fill"]</button>*@
+                                            <button type="button" data-bind="click:savedata" class="btn btn-primary btn-sm"> @SharedLocalizer["Save"]</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal CentralOrganization -->
+<div id="centralorganizationWindow" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="width:98%">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">@SharedLocalizer["Protocol"]</h4>
+            </div>
+            <div class="form-inline" align="center">
+                 <div class="input-group">
+                    <input id="filterid1" style="font-size:12px" class="form-control input-sm" placeholder="@SharedLocalizer["ID"]" />
+                </div>
+                <div class="input-group">
+                    <input id="filtername1" style="font-size:12px" class="form-control input-sm" placeholder="@SharedLocalizer["INN"]" />
+                </div>
+                <div class="input-group">
+                    <button id="refreshdata1" class="btn btn-primary btn-sm" data-toggle="popover" data-content="@SharedLocalizer["Search"]" data-trigger="hover"><span class="glyphicon glyphicon-search"></span></button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <table id="tableCentralOrganization"
+                           data-toolbar="#toolbar"
+                           data-search="false"
+                           data-show-refresh="false"
+                           data-show-toggle="false"
+                           data-show-columns="false"
+                           data-show-export="true"
+                           data-detail-view="false"
+                           data-minimum-count-columns="2"
+                           data-show-pagination-switch="false"
+                           data-pagination="true"
+                           data-id-field="ID"
+                           data-page-list="[50,100,150,200]"
+                           data-page-size="50"
+                           data-show-footer="false"
+                           data-side-pagination="server"
+                           data-query-params="queryParams1"
+                           style="font-size:12px"
+                           class="table table-striped"> 
+                        <thead style="font-size:12px">
+                            <tr>
+                                <th data-field="ID">@SharedLocalizer["ID"]</th>
+                                <th data-field="Name">@SharedLocalizer["Name"]</th>
+                                <th data-field="INN">@SharedLocalizer["INN"]</th>
+                                <th data-field="Chapter">@SharedLocalizer["Chapter"]</th>
+                                <th data-field="FinancingLevel">@SharedLocalizer["FinancingLevel"]</th>
+                                <th data-field="HeaderOrganizationName">@SharedLocalizer["HeaderOrganizationName"]</th>
+                                <th data-field="CentralOrganization">@SharedLocalizer["CentralOrganization"]</th>
+                                <th data-field="State">@SharedLocalizer["State"]</th>
+                                <th data-field="IsFullBudget">@SharedLocalizer["IsFullBudget"]</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btncentralorganizationselect" type="button" class="btn btn-sm btn-primary">@SharedLocalizer["Select"]</button>
+                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">@SharedLocalizer["Close"]</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="datepickerWindow" class="modal fade bd-example-modal-lg">
+    <div class="modal-dialog modal-lg" style="width:500px">
+        <div class="modal-content">
+            <div style="background-color:#e0e0e0" class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3 style="text-align:center" id="myModalLabel">@SharedLocalizer["RecalcAccAccountBook"]</h3>
+            </div>
+            <div style="background-color:#e0e0e0" class="form-horizontal">
+                <div class="form-group">
+                    <label style="font-size:14px" class="col-md-4 col-xs-6 control-label">@SharedLocalizer["BeginDate"]</label>
+                    <input id="acceptselectedbdate" style="width:110px" placeholder="@SharedLocalizer["BeginDate"]" data-provide="datepicker" data-date-format="dd.mm.yyyy" value="01.01.2021"  data-date-autoclose="true" data-date-language="ru" class="form-control input-sm">
+                </div>
+                <div class="form-group" style="margin-bottom:0">
+                    <label style="font-size:14px" class="col-md-4 col-xs-6 control-label">@SharedLocalizer["EndDate"]</label>
+                    <input id="acceptselectededate" style="width:110px" placeholder="@SharedLocalizer["EndDate"]" data-provide="datepicker" data-date-format="dd.mm.yyyy" value="30.09.2021" data-date-autoclose="true" data-date-language="ru" class="form-control input-sm">
+                </div>
+            </div>
+            <div style="text-align:center;background-color:#e0e0e0" class="modal-footer">
+                <button class="btn btn-primary" data-dismiss="modal">@SharedLocalizer["Close"]</button>
+                <button id="acceptRow" class="btn btn-success">@SharedLocalizer["ToApply"]</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts
+    {
+    <environment names="Development">
+        <script src="~/lib/bootstrap-table/dist/bootstrap-table.js"></script>
+        <script src="~/lib/bootstrap-table/src/locale/bootstrap-table-ru-RU.js"></script>
+        <script src="~/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+        <script src="~/lib/bootstrap-datepicker/dist/locales/bootstrap-datepicker.ru.min.js"></script>
+        <script src="~/lib/bootstrap-select/dist/js/bootstrap-select.js"></script>
+        <script src="~/lib/bootstrap-select/dist/js/bootstrap-select.js"></script>
+        <script src="~/js/utility.js"></script>
+        <script src="~/lib/knockout/dist/knockout.debug.js"></script>
+        <script src="~/lib/knockout-mapping/knockout.mapping.js"></script>
+        <script src="~/js/ko.utility.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/lib/bootstrap-table/dist/bootstrap-table.min.js"></script>
+        <script src="~/lib/bootstrap-table/src/locale/bootstrap-table-ru-RU.js"></script>
+        <script src="~/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+        <script src="~/lib/bootstrap-datepicker/dist/locales/bootstrap-datepicker.ru.min.js"></script>
+        <script src="~/lib/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+        <script src="~/js/utility.js"></script>
+        <script src="~/lib/knockout/dist/knockout.js"></script>
+        <script src="~/lib/knockout-mapping/knockout.mapping.js"></script>
+        <script src="~/js/ko.utility.js" asp-append-version="true"></script>
+    </environment>
+
+    <script type="text/javascript">
+        let Clone=false;
+        function queryParams(params) {
+            params.id = $('#filterid').val();
+            params.name = $('#filtername').val();
+            params.inn = $('#filterinn').val();
+            params.oblast = $('#filteroblast').val();
+            params.region = $('#filterregion').val();
+            return params;
+        }
+        function queryParams1(params1) {
+            params1.inn = $('#filtername1').val();
+            params1.id = $('#filterid1').val();
+            return params1;
+        }
+
+        function cellStyle(value, row, index) {
+            if (row.Restriction === "Да") {
+                return {
+                    css: {
+                        "background-color": "red",
+                        "color": "black",
+                    }
+                };
+            }
+            return {};
+        }
+
+        function settleFilterRole() {
+            input = document.getElementById("settleInputRole");
+            filter = input.value.toUpperCase().trim();
+            table = document.getElementById("filterTableRole");
+            trs = table.querySelectorAll("tbody tr");
+              for (let i = 0; i < trs.length; i++) {
+                if (trs[i].textContent.toUpperCase().includes(filter)) {
+                    trs[i].classList.remove('hidden')
+                } else {
+                    trs[i].classList.add('hidden')
+                }
+              }            
+        }
+
+        
+
+        var ItemModel = function () {
+            var self = this;
+            self.organization = {};
+            self.chapterlist = ko.mapping.fromJS([]);
+            self.okedlist = ko.mapping.fromJS([]);
+            self.oblastlist = ko.mapping.fromJS([]);
+            self.regionlist = ko.mapping.fromJS([]);
+            self.statelist = ko.mapping.fromJS([]);
+            self.organizationtypelist = ko.mapping.fromJS([]);
+            self.headerorganizationlist = ko.mapping.fromJS([]);
+            self.banklist = ko.mapping.fromJS([]);
+            self.functionalitemlist = ko.mapping.fromJS([]);
+            self.organizationfunctionalitemlist = ko.mapping.fromJS([]);
+            self.treasurybranchlist = ko.mapping.fromJS([]);
+            self.tablelist = ko.mapping.fromJS([]);
+            self.organizationlist = ko.mapping.fromJS([]);
+            self.organizationsettleaccountlist = ko.mapping.fromJS([]);
+            self.orgfunctionalitemlist = ko.mapping.fromJS([]);
+            // SettlementAccount
+            self.addtreasurybranchid = ko.observable(0);
+            self.addbankid = ko.observable(0);
+            self.addorganizationfunctionalitemid1 = ko.observable(0);
+            self.addorganizationfunctionalitemid2 = ko.observable(0);
+            // FunctionalItem
+            self.addfunctionalitemid = ko.observable(0);
+            self.addchapterid = ko.observable(0);
+            // DocSettAccount
+            self.addorgidname = ko.observable();
+            self.addorgid = ko.observable(0);
+            self.addtableid = ko.observable(0);
+            self.addorganizationsettleaccountid = ko.observable(0);
+            self.addfunctionalitemdocsetid = ko.observable(0);
+            self.addstateid = ko.observable(1);
+            self.myfunction = function () {
+                var str = "";
+                ko.utils.arrayForEach(self.organization.Sign(), function (item) {
+                    str = item.FIO().replace(/ +/g, ' ').trim();
+                    item.FIO(str);
+                });
+            };
+            self.trimchange = function () {
+                var str1 = "";
+                var str2 = "";
+                var str3 = "";
+                var str4 = "";
+                var str5 = "";
+                var str6 = "";
+                var str7 = "";
+                str1 = self.organization.Name().replace(/ +/g, ' ').trim();
+                self.organization.Name(str1);
+                str2 = self.organization.FullName().replace(/ +/g, ' ').trim();
+                self.organization.FullName(str2);
+                str3 = self.organization.Adress().replace(/ +/g, ' ').trim();
+                self.organization.Adress(str3);
+                str4 = self.organization.ContactInfo().replace(/ +/g, ' ').trim();
+                self.organization.ContactInfo(str4);
+                str5 = self.organization.Director().replace(/ +/g, ' ').trim();
+                self.organization.Director(str5);
+                str6 = self.organization.Accounter().replace(/ +/g, ' ').trim();
+                self.organization.Accounter(str6);
+                str7 = self.organization.Cashier().replace(/ +/g, ' ').trim();
+                self.organization.Cashier(str7);
+            }
+            self.loaddata = function (id,clone) {
+                getajaxjson("@Url.Action("Get", "Organization")" + "?id=" + id+ "&IsClone="+clone, function (data) {
+                    ko.mapping.fromJS(data, {}, self.organization);
+                });
+                getajaxjson("@Url.Action("GetAllRegionList", "Helper")" + "?OblastID=" + self.organization.OblastID() , function (data) {
+                    ko.mapping.fromJS(data, self.regionlist);
+                });
+
+                if (self.organization.OblastID() > 0){
+                    self.oblastchange();
+                }
+                getajaxjson("@Url.Action("GetOblastList", "Helper")", function (data) {
+                    ko.mapping.fromJS(data, self.oblastlist);
+                });
+
+                getajaxjson("@Url.Action("GetStateList", "Helper")", function (data) {
+                ko.mapping.fromJS(data, self.statelist);
+                });
+                getajaxjson("@Url.Action("GetOrganizationTypeList", "Helper")", function (data) {
+                    ko.mapping.fromJS(data, self.organizationtypelist);
+                });
+                getajaxjson("@Url.Action("GetHeaderOrganizationList", "Helper")", function (data) {
+                    ko.mapping.fromJS(data, self.headerorganizationlist);
+                });
+                getajaxjson("@Url.Action("GetTableList", "Helper")", function (data) {
+                    ko.mapping.fromJS(data, self.tablelist);
+                });
+                getajaxjson("@Url.Action("GetOrganizationList", "Helper")", function (data) {
+                    ko.mapping.fromJS(data, self.organizationlist);
+                });
+            };
+            self.addRow1 = function () {
+
+                if (!self.addtreasurybranchid()) {
+                    alert("@SharedLocalizer["TreasuryBranchNotSelect"]");
+                    return;
+                }
+                if (!self.addbankid()) {
+                    alert("@SharedLocalizer["BankNotSelect"]");
+                    return;
+                }
+                if (!self.addorganizationfunctionalitemid1()) {
+                    alert("@SharedLocalizer["OrganizationFunctionalItemNotSelect"]");
+                    return;
+                }
+                var text1 = '';
+                ko.utils.arrayForEach(self.treasurybranchlist(), function (item) {
+                    if (item.ID() === self.addtreasurybranchid()) {
+                        text1 = item.Name;
+                        return;
+                    }
+                });
+                var text2 = '';
+                ko.utils.arrayForEach(self.banklist(), function (item) {
+                    if (item.ID() === self.addbankid()) {
+                        text2 = item.Code;
+                        return;
+                    }
+                });
+                var text3 = '';
+                ko.utils.arrayForEach(self.organizationfunctionalitemlist(), function (item) {
+                    if (item.ID() === self.addorganizationfunctionalitemid1()) {
+                        text3 = item.Code;
+                        return;
+                    }
+                });
+                self.organization.SettlementAccount.push({
+                    ID: ko.observable(0),
+                    BankID: ko.observable(self.addbankid()),
+                    BankCode: text2,
+                    OrganizationFunctionalItemID: ko.observable(self.addorganizationfunctionalitemid1()),
+                    OrganizationID: ko.observable(0),
+                    OrganizationFunctionalItemCode: text3,
+                    TreasuryBranchID: ko.observable(self.addtreasurybranchid()),
+                    TreasuryBranchName: text1,
+                    Code: ko.observable(''),
+                    Name: ko.observable('Счет'),
+                    StateID: ko.observable(1),
+                    IsActive: ko.observable(true),
+                    OutOfBalance: ko.observable(false),
+                    Status: ko.observable(1)
+                });
+                self.addorganizationfunctionalitemid1('');
+                self.addbankid('');
+                self.addtreasurybranchid('');
+            };
+            self.addRow2 = function () {
+                if (!self.addfunctionalitemid()) {
+                    alert("@SharedLocalizer["OrganizationFunctionalItemNotSelect"]");
+                    return;
+                }
+                if (!self.addchapterid()) {
+                    alert("@SharedLocalizer["ChapterNotSelect"]");
+                    return;
+                }
+                var text1 = '';
+                ko.utils.arrayForEach(self.functionalitemlist(), function (item) {
+                    if (item.ID() === self.addfunctionalitemid()) {
+                        text1 = item.Code();
+                        return;
+                    }
+                    console.log(typeof text1);
+                });
+                var text2 = '';
+                ko.utils.arrayForEach(self.chapterlist(), function (item) {
+                    if (item.ID() === self.addchapterid()) {
+                        text2 = item.Name();
+                        return;
+                    }
+                });
+                self.organization.FunctionalItem.push({
+                    ID: ko.observable(0),
+                    Code: text1.substring(0, 7) + text2.substring(0, 3),
+                    FunctionalItemID: ko.observable(self.addfunctionalitemid()),
+                    FunctionalItemCode: text1,
+                    ChapterID: ko.observable(self.addchapterid()),
+                    ChapterCode: text2,
+                    OrganizationID: selectedid > 0 ? selectedid : 2,
+                    Status: ko.observable(1)
+                });
+                self.addfunctionalitemid('')
+                self.addchapterid('')
+            };
+            self.addRow3 = function () {
+                self.organization.Sign.push({
+                    ID: ko.observable(0),
+                    FIO: ko.observable(''),
+                    SignNumber: ko.observable(1),
+                    StateID: ko.observable(1),
+                    OrganizationID: selectedid > 0 ? selectedid : 5,
+                    PositionNameRus: ko.observable('Руководитель'),
+                    PositionNameUzb: ko.observable('Раҳбар'),
+                    Status: ko.observable(1)
+                });
+            };
+            self.addRow4 = function () {
+
+                if (!self.addorgid()) {
+                    alert("@SharedLocalizer["OrganizationNotSelect"]");
+                    return;
+                }
+                if (!self.addtableid()) {
+                    alert("@SharedLocalizer["DocTableNotSelect"]");
+                    return;
+                }
+                if (!self.addfunctionalitemdocsetid()) {
+                    alert("@SharedLocalizer["FunctionalItemNotSelect"]");
+                    return;
+                }
+                var text2 = '';
+                ko.utils.arrayForEach(self.tablelist(), function (item) {
+                    if (item.ID() === self.addtableid()) {
+                        text2 = item.Name;
+                        return;
+                    }
+                });
+                var text3 = '';
+                if (self.addorganizationsettleaccountid()) {
+                    ko.utils.arrayForEach(self.organizationsettleaccountlist(), function (item) {
+                        if (item.ID() === self.addorganizationsettleaccountid()) {
+                            text3 = item.Name();
+                            return;
+                        }
+                    });
+
+                };
+                var text4 = '';
+                ko.utils.arrayForEach(self.orgfunctionalitemlist(), function (item) {
+                    if (item.ID() === self.addfunctionalitemdocsetid()) {
+                        text4 = item.Code;
+                        return;
+                    }
+                });
+                var text5 = '';
+
+                if (self.addorganizationsettleaccountid()) {
+                    ko.utils.arrayForEach(self.organizationsettleaccountlist(), function (item) {
+                        if (item.ID() === self.addorganizationsettleaccountid()) {
+                            text5 = item.Name();
+                            return;
+                        }
+                    });
+                }
+                else {
+                    text5 = '';
+                };
+                var bool = '';
+
+                    ko.utils.arrayForEach(self.boollist(), function (item) {
+                        if (item.code === self.addstateid()) {
+                            bool = item.name;
+                            return;
+                        }
+                    });
+                self.organization.DocSettAccount.push({
+                    ID: ko.observable(0),
+                    OwnerID: selectedid > 0 ? selectedid : 111111111111111,
+                    OrganizationID: ko.observable(self.addorgid()),
+                    OrganizationName: ko.observable(self.addorgidname()),
+                    TableID: ko.observable(self.addtableid()),
+                    TableName: text2,
+                    OrganizationsSettlementAccountID: ko.observable(self.addorganizationsettleaccountid()),
+                    OrganizationsSettlementAccountCode: text3,
+                    OrganizationFunctionalItemID: ko.observable(self.addfunctionalitemdocsetid()),
+                    OrganizationFunctionalItemCode: text4,
+                    SettleCodeLevel: text5.substring(0, 6),
+                    StateID: ko.observable(self.addstateid()),
+                    State: bool,
+                    Status: ko.observable(1)
+                });
+                self.addorgidname('');
+                self.addorgid('');
+                self.addtableid('');
+                self.addorganizationsettleaccountid('');
+                self.addfunctionalitemdocsetid('');
+                self.addstateid('');
+            };
+            self.organizationchange = function () {
+                getajaxjson("@Url.Action("GetSettlementAccountListForOrganization", "Helper")" + "/?OrganizationID=" + self.addorgid(), function (data) {
+                    ko.mapping.fromJS(data, self.organizationsettleaccountlist);
+                });
+
+                getajaxjson("@Url.Action("GetOrganizationFunctionalItemList", "Helper")" + "/?OrganizationID=" + self.addorgid(), function (data) {
+                    ko.mapping.fromJS(data, self.orgfunctionalitemlist);
+                });
+            };
+            self.functionalitemchange = function () {
+                ko.utils.arrayForEach(self.organizationsettleaccountlist(), function (item) {
+                    if (item.ID() === self.addorganizationsettleaccountid()) {
+                        self.addfunctionalitemdocsetid(item.OrganizationFunctionalItemID());
+                        return;
+                    }
+                });
+            };
+            self.oblastchange = function () {
+                console.log('oblchange');
+                getajaxjson("@Url.Action("GetRegionList", "Helper")" + "/?OblastID=" + self.organization.OblastID(), function (data) {
+                    ko.mapping.fromJS(data, self.regionlist);
+                });
+            };
+            self.editaccountRow = function (row) {
+                console.log(self.organizationfunctionalitemlist());
+                if (row.Status() === 0) {
+                    row.Status(2);
+                }
+            };
+            self.removeaccountRow = function (row) {
+                if (row.Status() === 1) {
+                    self.organization.SettlementAccount.remove(row);
+                    return;
+                }
+                row.Status(3);
+            };
+            self.edititemRow = function (row) {
+                if (row.Status() === 0) {
+                    row.Status(2);
+                }
+            };
+            self.removeitemRow = function (row) {
+                if (row.Status() === 1) {
+                    self.organization.FunctionalItem.remove(row);
+                    return;
+                }
+                row.Status(3);
+            };
+            self.removesignRow = function (row) {
+                if (row.Status() === 1) {
+                    self.organization.Sign.remove(row);
+                    return;
+                }
+                row.Status(3);
+            };
+            self.editsignRow = function (row) {
+                if (row.Status() === 0) {
+                    row.Status(2);
+                }
+            };
+            self.removedocsetRow = function (row) {
+                if (row.Status() === 1) {
+                    self.organization.DocSettAccount.remove(row);
+                    return;
+                }
+                row.Status(3);
+            };
+            self.editdocsetRow = function (row) {
+                if (row.Status() === 0) {
+                    row.Status(2);
+                }
+            };
+            self.Reset = function () {
+                self.organization.CentralOrganizationName('');
+                self.organization.CentralOrganizationID(0);
+            }
+            self.boollist = ko.observableArray([{ code: 1, name: 'Актив' }, { code: 2, name: 'Пассив' }]);
+            self.checkdata = function () {
+                if (self.organization.IncomeNumber() === null || self.organization.IncomeNumber() === undefined || self.organization.IncomeNumber() === 0) {
+                    alert("@SharedLocalizer["IncomeNumberNotCorrect"]");
+                    return false;
+                }
+                if (self.organization.IncomeDate() === null || self.organization.IncomeDate() === undefined || self.organization.IncomeDate() === 0) {
+                    alert("@SharedLocalizer["IncomeDateNotCorrect"]");
+                    return false;
+                }
+                if (self.organization.INN() === null || self.organization.INN() === undefined || self.organization.INN() === 0) {
+                    alert("@SharedLocalizer["INNNotCorrect"]");
+                    return false;
+                }
+                if (self.organization.ChapterID() === null || self.organization.ChapterID() === undefined || self.organization.ChapterID() === 0) {
+                    alert("@SharedLocalizer["ChapterNotCorrect"]");
+                    return false;
+                }
+                if (self.organization.Name() === null || self.organization.Name() === undefined || self.organization.Name() === 0) {
+                    alert("@SharedLocalizer["IncomeDateNotCorrect"]");
+                    return false;
+                }
+                if (self.organization.FullName() === null || self.organization.FullName() === undefined || self.organization.FullName() === 0) {
+                    alert("@SharedLocalizer["FullNameNotCorrect"]");
+                    return false;
+                }
+                if (self.organization.OKONHID() === null || self.organization.OKONHID() === undefined || self.organization.OKONHID() === 0) {
+                    alert("@SharedLocalizer["OKEDNotCorrect"]");
+                    return false;
+                }
+                if (self.organization.OblastID() === null || self.organization.OblastID() === undefined || self.organization.OblastID() === 0) {
+                    alert("@SharedLocalizer["OblastNotCorrect"]");
+                    return false;
+                }
+                if (self.organization.RegionID() === null || self.organization.RegionID() === undefined || self.organization.RegionID() === 0) {
+                    alert("@SharedLocalizer["RegionNotCorrect"]");
+                    return false;
+                }
+                if (self.organization.ZipCode() === null || self.organization.ZipCode() === undefined || self.organization.ZipCode() === 0) {
+                    alert("@SharedLocalizer["ZipCodeNotCorrect"]");
+                    return false;
+                }
+                if (self.organization.Adress() === null || self.organization.Adress() === undefined || self.organization.Adress() === 0) {
+                    alert("@SharedLocalizer["AdressNotCorrect"]");
+                    return false;
+                }
+                if (self.organization.ContactInfo() === null || self.organization.ContactInfo() === undefined || self.organization.ContactInfo() === 0) {
+                    alert("@SharedLocalizer["ContactInfoNotCorrect"]");
+                    return false;
+                }
+                if (self.organization.Director() === null || self.organization.Director() === undefined || self.organization.Director() === 0) {
+                    alert("@SharedLocalizer["DirectorNotCorrect"]");
+                    return false;
+                }
+                if (self.organization.Accounter() === null || self.organization.Accounter() === undefined || self.organization.Accounter() === 0) {
+                    alert("@SharedLocalizer["AccounterNotCorrect"]");
+                    return false;
+                }
+                if (self.organization.OrganizationTypeID() === null || self.organization.OrganizationTypeID() === undefined || self.organization.OrganizationTypeID() === 0) {
+                    alert("@SharedLocalizer["OrganizationTypeNotCorrect"]");
+                    return false;
+                }
+                var tab1Name = 0;
+                var tab1Code = 0;
+                var tab1BankID = 0;
+                var tab1OrganizationFunctionalItemID = 0;
+                var tab1TreasuryBranchID = 0;
+                var tab1IsActive = 0;
+                ko.utils.arrayFilter(self.organization.SettlementAccount(), function (item) {
+                    if (item.Name() === "" || item.Name() === undefined || item.Name() === 0) {
+                        tab1Name = tab1Name + 1;
+                    }
+                });
+                if (tab1Name > 0) {
+                    alert("@SharedLocalizer["SettlementAccountNameNotCorrect"]");
+                    return false;
+                    }
+                ko.utils.arrayFilter(self.organization.SettlementAccount(), function (item) {
+                    if (item.Code() === "" || item.Code() === undefined || item.Code() === 0) {
+                        tab1Code = tab1Code + 1;
+                    }
+                });
+                if (tab1Code > 0) {
+                    alert("@SharedLocalizer["SettlementAccountCodeNotCorrect"]");
+                    return false;
+                    }
+
+                ko.utils.arrayFilter(self.organization.SettlementAccount(), function (item) {
+                    if (item.BankID() === "" || item.BankID() === undefined || item.BankID() === 0) {
+                        tab1BankID = tab1BankID + 1;
+                    }
+                });
+                if (tab1BankID > 0) {
+                    alert("@SharedLocalizer["SettlementAccounttab1BankNotCorrect"]");
+                    return false;
+                    }
+                ko.utils.arrayFilter(self.organization.SettlementAccount(), function (item) {
+                    if (!item.Code().includes('000000000000')) {
+                        if (item.OrganizationFunctionalItemID() === "" || item.OrganizationFunctionalItemID() === undefined || item.OrganizationFunctionalItemID() === 0) {
+                            tab1OrganizationFunctionalItemID = tab1OrganizationFunctionalItemID + 1;
+                        }
+                    }
+                });
+                if (tab1OrganizationFunctionalItemID > 0) {
+                    alert("@SharedLocalizer["SettlementAccountOrganizationFunctionalItemNotCorrect"]");
+                    return false;
+                    }
+                ko.utils.arrayFilter(self.organization.SettlementAccount(), function (item) {
+                    if (item.TreasuryBranchID() === "" || item.TreasuryBranchID() === undefined || item.TreasuryBranchID() === 0) {
+                        tab1TreasuryBranchID = tab1TreasuryBranchID + 1;
+                    }
+                });
+                if (tab1TreasuryBranchID > 0) {
+                    alert("@SharedLocalizer["SettlementAccountTreasuryBranchNotCorrect"]");
+                    return false;
+                    }
+                ko.utils.arrayFilter(self.organization.SettlementAccount(), function (item) {
+                    if (item.IsActive() === "" || item.IsActive() === undefined || item.IsActive() === 0) {
+                        tab1IsActive = tab1IsActive + 1;
+                    }
+                });
+                if (tab1Name > 0) {
+                    alert("@SharedLocalizer["SettlementAccountIsActiveNotCorrect"]");
+                    return false;
+                    }
+                var tab2Code = 0;
+                var tab2FunctionalItemID = 0;
+                var tab2ChapterID = 0;
+
+                ko.utils.arrayFilter(self.organization.FunctionalItem(), function (item) {
+                    if (item.Code === "" || item.Code === undefined || item.Code === 0) {
+                        tab2Code = tab2Code + 1;
+                    }
+                });
+                if (tab2Code > 0) {
+                    alert("@SharedLocalizer["FunctionalItemCodeNotCorrect"]");
+                    return false;
+                    }
+
+                ko.utils.arrayFilter(self.organization.FunctionalItem(), function (item) {
+                    if (item.FunctionalItemID() === "" || item.FunctionalItemID() === undefined || item.FunctionalItemID() === 0) {
+                        tab2FunctionalItemID = tab2FunctionalItemID + 1;
+                    }
+                });
+                if (tab2FunctionalItemID > 0) {
+                    alert("@SharedLocalizer["FunctionalItemNotCorrect"]");
+                    return false;
+                    }
+                ko.utils.arrayFilter(self.organization.FunctionalItem(), function (item) {
+                    if (item.ChapterID() === "" || item.ChapterID() === undefined || item.ChapterID() === 0) {
+                        tab2ChapterID = tab2ChapterID + 1;
+                    }
+                });
+                if (tab2ChapterID > 0) {
+                    alert("@SharedLocalizer["FunctionalItemChapterNotCorrect"]");
+                    return false;
+                    }
+                var tab4OwnerID = 0;
+                var tab4TableID = 0;
+                var tab4OrganizationsSettlementAccountID = 0;
+                var tab4OrganizationFunctionalItemID = 0;
+                var tab4SettleCodeLevel = 0;
+                var tab4StateID = 0;
+
+                ko.utils.arrayForEach(self.organization.DocSettAccount(), function (item) {
+                    if (item.OwnerID === "" || item.OwnerID === undefined || item.OwnerID === 0) {
+                        tab4OwnerID = tab4OwnerID + 1;
+                    }
+                });
+                if (tab4OwnerID > 0) {
+                    alert("@SharedLocalizer["DocSettAccountOwnerNotCorrect"]");
+                    return false;
+                    }
+                ko.utils.arrayFilter(self.organization.DocSettAccount(), function (item) {
+                    if (item.TableID === "" || item.TableID === undefined || item.TableID === 0) {
+                        tab4TableID = tab4TableID + 1;
+                    }
+                });
+                if (tab4TableID > 0) {
+                    alert("@SharedLocalizer["DocSettAccountTableDocNotCorrect"]");
+                    return false;
+                    }
+
+                ko.utils.arrayFilter(self.organization.DocSettAccount(), function (item) {
+                    if (item.OrganizationsSettlementAccountID === "" || item.OrganizationsSettlementAccountID === undefined || item.OrganizationsSettlementAccountID === 0) {
+                        tab4OrganizationsSettlementAccountID = tab4OrganizationsSettlementAccountID + 1;
+                    }
+                });
+                if (tab4OrganizationsSettlementAccountID > 0) {
+                    alert("@SharedLocalizer["DocSettAccountOrganizationsSettlementAccountNotCorrect"]");
+                    return false;
+                    }
+
+                ko.utils.arrayFilter(self.organization.DocSettAccount(), function (item) {
+                    if (item.OrganizationFunctionalItemID === "" || item.OrganizationFunctionalItemID === undefined || item.OrganizationFunctionalItemID === 0) {
+                        tab4OrganizationFunctionalItemID = tab4OrganizationFunctionalItemID + 1;
+                    }
+                });
+                if (tab4OrganizationFunctionalItemID > 0) {
+                    alert("@SharedLocalizer["DocSettAccountOrganizationFunctionalItemNotCorrect"]");
+                    return false;
+                    }
+
+                ko.utils.arrayFilter(self.organization.DocSettAccount(), function (item) {
+                    if (item.SettleCodeLevel === "" || item.SettleCodeLevel === undefined || item.SettleCodeLevel === 0) {
+                        tab4SettleCodeLevel = tab4SettleCodeLevel + 1;
+                    }
+                });
+                if (tab4SettleCodeLevel > 0) {
+                    alert("@SharedLocalizer["DocSettAccountSettleCodeLevelNotCorrect"]");
+                    return false;
+                    }
+
+                ko.utils.arrayFilter(self.organization.DocSettAccount(), function (item) {
+                    if (item.StateID === "" || item.StateID === undefined || item.StateID === 0) {
+                        tab4StateID = tab4StateID + 1;
+                    }
+                });
+                if (tab4StateID > 0) {
+                    alert("@SharedLocalizer["DocSettAccountStateNotCorrect"]");
+                    return false;
+                    }
+                return true;
+            };
+            self.checkinn = function () {
+                getajaxjson("@Url.Action("CheckINNOrganization", "Helper")" + "/?INN=" + self.organization.INN(), function (data) {
+                    ko.mapping.fromJS(data);
+                    console.log(data);
+                });
+            };
+            self.savedata = function () {
+                if (!self.checkdata()) {
+                    return;
+                }
+
+                var datatosave = ko.mapping.toJSON(self.organization);
+                $.ajax({
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json; charset=utf-8"
+                    },
+                    type: "POST",
+                    url: "@Url.Action("Update", "Organization")",
+                    data: datatosave
+                }).done(function (data, status, xhr) {
+                    alert("@SharedLocalizer["SavedSuccessfully"]");
+                    $("#editWindow").modal('hide');
+                    $('#table').bootstrapTable('refresh');
+                })
+                .fail(function (xhr, status, error) {
+                    alert(xhr.responseText);
+                });
+            }
+            self.filldata = function () {
+                if (!self.checkdata()) {
+                    return;
+                }
+
+                var datatosave = ko.mapping.toJSON(self.organization);
+                $.ajax({
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json; charset=utf-8"
+                    },
+                    type: "POST",
+                    url: "@Url.Action("FillOrganizationSettings", "Organization")",
+                    data: datatosave
+                }).done(function (data, status, xhr) {
+                    self.loaddata(data.ID,false);
+                })
+                .fail(function (xhr, status, error) {
+                    alert(xhr.responseText);
+                });
+            }
+            self.closewindow = function () {
+                $("#editWindow").modal('hide');
+                $('#table').bootstrapTable('refresh');
+            };
+        };
+        $(document).ready(function () {
+            $('[data-toggle="popover"]').popover({
+                placement: 'top'
+            });
+            var $table = $('#table');
+            selectedid = [];
+            selectedoblastid = [];
+            selectedrow = [];
+            selectedcenorgrow = [];
+            initTable();
+            function refreshdata() {
+                $('#table').bootstrapTable('refresh');
+            }
+            function refreshdata1() {
+                $('#tableCentralOrganization').bootstrapTable('refresh');
+            }
+            $('#tableCentralOrganization').bootstrapTable({ height: 500 });
+            $('#refreshdata').click(function () { refreshdata(); });
+            $('#refreshdata1').click(function () { refreshdata1(); });
+            $('#refreshdata2').click(function () { refreshdata2(); });
+            $('#acceptRow').click(function () {
+                $('#datepickerWindow').modal('hide');
+                acceptRow($('#acceptselectedbdate').val());
+                //acceptRow($('#acceptselectededate').val());
+            });
+            $('#acceptRowShowModal').click(function ()
+            {
+                $('#datepickerWindow').modal('show');
+            });
+
+           
+            $('#addRow').click(function () { addRow(); });
+            $('#editRow').click(function () { editRow(); });
+            $('#cloneRow').click(function () { cloneRow(); });
+            $('#restrictionRow').click(function () { restrictionRow(); });
+            $('#btncheckinn').click(function () { btncheckinn(); });
+            $('#table').on('dblclick', function () { editRow(); });
+
+            function selectdata() {
+                if (typ == 1) {
+                    itemModel.organization.CentralOrganizationID(selectedcenorgrow.ID);
+                    itemModel.organization.CentralOrganizationName(selectedcenorgrow.Name);
+                }
+                if (typ == 2) {
+                    itemModel.addorgid(selectedcenorgrow.ID);
+                    itemModel.addorgidname(selectedcenorgrow.Name);
+                }
+            }
+            $('#tableCentralOrganization').on('dblclick', function () {
+                selectdata();
+                itemModel.organizationchange();
+                $("#centralorganizationWindow").modal('hide');
+            });
+
+            $('#btncentralorganizationselect').click(function () {
+                selectdata();
+                itemModel.organizationchange();
+                refreshdata1();
+                $("#centralorganizationWindow").modal('hide');
+            });
+            $('#printRow1').click(function () {
+                window.location = "@Url.Action("GetOrgListForBank", "Report")";
+            });
+
+            $('#printRow3').click(function () {
+                console.log($('#filteroblast').val());
+                if ($('#filteroblast').val().length == 0)
+                alert('Viloyatni tanlang !!!');
+                window.location = "@Url.Action("PrintContractorList", "Report")" + "/?Oblast=" + $('#filteroblast').val();
+            });
+
+            $('#printRow2').click(function () {
+                window.location = "@Url.Action("GetOrganizationList", "Organization")"+ "/?ID=" + $('#filterid').val()
+                + "&INN=" + $('#filterinn').val() 
+                + "&Name=" + $('#filtername').val()
+                + "&Oblast=" + $('#filteroblast').val()
+                + "&Region=" + $('#filterregion').val()
+                + "&HeaderOrganization=" + $('#filterheader').val()
+                ;
+            });
+
+            $('#btnCentralOrganization').click(function () {
+                typ = 1;
+                $('#filtername1').val('');
+                $('#tableCentralOrganization').bootstrapTable('resetSearch');
+                $('#tableCentralOrganization').bootstrapTable('refresh', { url: "@Url.Action("GetList", "Organization")" });
+                $('#centralorganizationWindow').modal('show');
+            });
+            $('#btnselectreset').click(function () {
+                itemModel.Reset();
+            });
+            
+
+            $('#btnselectorg').click(function () {
+                typ = 2;
+                $('#filtername1').val('');
+                $('#tableCentralOrganization').bootstrapTable('resetSearch');
+                $('#tableCentralOrganization').bootstrapTable('refresh', { url: "@Url.Action("GetList", "Organization")" });
+                $('#centralorganizationWindow').modal('show');
+                  refreshdata1();
+            });
+            var itemModel = new ItemModel();
+            itemModel.loaddata(0, 0, 0, 0);
+            ko.applyBindings(itemModel);
+
+            $("#tableCentralOrganization").on('click-row.bs.table', function (e, row, $element) {
+                $('#tableCentralOrganization').find('.success').each(function () {
+                    $(this).removeClass("success");
+                });
+                $($element).addClass('success');
+                selectedcenorgrow = row;
+            });
+
+            function addRow() {
+                itemModel.loaddata(0,false);
+                Clone=false;
+                $("#editWindow").modal('show');
+            }
+
+            function cloneRow() {
+                itemModel.loaddata(selectedid,true);
+                Clone=true;
+
+
+                //itemModel.oblastchange();
+                $("#editWindow").modal('show');
+            }
+
+            function editRow() {
+                itemModel.loaddata(selectedid,false);
+                Clone=false;
+
+                //itemModel.oblastchange();
+                $("#editWindow").modal('show');
+              
+            }
+            function acceptRow(date) {
+                console.log(selectedid);
+                    if (date === null || date === undefined || date === '') {
+                        alert("@SharedLocalizer["DateNotCorrect"]");
+                        return;
+                    }
+                    $.ajax({
+                        headers: {
+                            Accept: "application/json",
+                            "Content-Type": "application/json; charset=utf-8",
+                        },
+                        type: "POST",
+                        url: "@Url.Action("RecalcAccAccountBookOrganization", "Organization")" + "/?id=" + selectedid + "&BeginDate=" + $('#acceptselectedbdate').val() + "&EndDate=" + $('#acceptselectededate').val()
+                    }).done(function (data, status, xhr) {
+                        alert("@SharedLocalizer["RecalcAccAccountBookSuccessfully"]");
+                        $table.bootstrapTable('refresh')
+                    })
+                        .fail(function (xhr, status, error) {
+                            alert(xhr.responseText);
+                        });
+            }
+            function restrictionRow() {
+                    $.ajax({
+                        headers: {
+                            Accept: "application/json",
+                            "Content-Type": "application/json; charset=utf-8",
+                        },
+                        type: "POST",
+                        url: "@Url.Action("RestrictionOrganization", "Organization")" + "/?id=" + selectedid
+                    }).done(function (data, status, xhr) {
+                        alert("@SharedLocalizer["RestrictionSuccessfully"]");
+                        $table.bootstrapTable('refresh')
+                    })
+                        .fail(function (xhr, status, error) {
+                            alert(xhr.responseText);
+                        });
+            }
+
+            function btncheckinn() {
+                itemModel.checkinn();
+            }
+
+        function initTable() {
+            $table.bootstrapTable({
+                pageSize: 50,
+                height: getHeight()
+            });
+            $table.on('click-row.bs.table', function (e, row, $element) {
+                $('.success').removeClass('success');
+                $($element).addClass('success');
+                selectedid = row.ID;
+                selectedoblastid = row.OblastID;
+                selectedrow = row;
+            });
+            setTimeout(function () {
+                $table.bootstrapTable('resetView');
+            }, 200);
+            $(window).resize(function () {
+                $table.bootstrapTable('resetView', {
+                    height: getHeight()
+                });
+            });
+        }
+
+        function getHeight() {
+            return $(window).height() - $('h3').outerHeight(true) * 2.5 - $('#custom-toolbar').outerHeight(true) * 2.5;
+        }
+        });
+            $(document).keypress(function (e) {
+                if (e.which == 13) {
+                    $("#refreshdata").click();
+                }
+            });
+    </script>
+}
