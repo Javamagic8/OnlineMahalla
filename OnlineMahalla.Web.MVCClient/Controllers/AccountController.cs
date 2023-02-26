@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using OnlineMahalla.Common.Model.Interface;
-using OnlineMahalla.Common.Model.Models.sys;
 using OnlineMahalla.Web.MVCClient.Extentions;
 using System.Security.Claims;
 

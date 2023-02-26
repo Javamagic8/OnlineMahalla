@@ -36,4 +36,22 @@ namespace OnlineMahalla.Common.Model.Models
         public const int FormaSetCommon = 358;
         public const int User = 200;
     }
+
+    public static class HelperStruct
+    {
+        public const int Contract = 173;
+        public const int Contractor = 174;
+        public const int ContractorsSettlementAccount = 175;
+        public const int Department = 176;
+        public const int Employee = 177;
+        public const int InventoryHolding = 178;
+        public const int MBP = 179;
+        public const int PermanentAsset = 180;
+        public const int ResponsiblePerson = 181;
+        public const int SubAcc = 182;
+        public const int Children = 248;
+        public const int ConstantValue = 264;
+        public const int Student = 10003;
+        public const int ContractProtocol = 342;
+    }
 }

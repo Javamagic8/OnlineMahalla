@@ -1,0 +1,289 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+
+@{
+    ViewData["Title"] = "Create";
+}
+<environment names="Development">
+    <link rel="stylesheet" href="~/lib/bootstrap-table/dist/bootstrap-table.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-select/dist/css/bootstrap-select.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-datepicker/dist/css/bootstrap-datepicker.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</environment>
+<environment names="Staging,Production">
+    <link rel="stylesheet" href="~/lib/bootstrap-table/dist/bootstrap-table.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-select/dist/css/bootstrap-select.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</environment>
+
+<div class="panel panel-primary"></div>
+<div class="container">
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title" style="text-align:center"><b>@SharedLocalizer["Employee"]</b></h2>
+            </div>
+            <div class="form-horizontal">
+                <br />
+                <div class="form-group">
+                    <label class="col-md-3 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["F.I.O."]</label>
+                    <div class="col-md-3">
+                        <input placeholder="@SharedLocalizer["F.I.O."]" data-bind="value:employee.Name,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="50" style="max-width:inherit" />
+
+                    </div>
+                    <div class="col-md-1 col-md-offset-1" align="left" style="margin-left:-14px;padding-left:0px">
+                        <button type="button" id="btnselectdatahistoryFIO" class="btn btn-group btn-sm"><span class="glyphicon glyphicon-option-horizontal"></span></button>
+                    </div>
+                    <label class="col-md-1 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["INNorPINFL"]</label>
+                    <div class="col-md-1">
+                        <input placeholder="@SharedLocalizer["INNorPINFL"]" data-bind="value:employee.INN,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="100" style="max-width:inherit" />
+                    </div>
+                    <div class="col-md-1 col-md-offset-1" align="left" style="margin-left:-14px;padding-left:0px">
+                        <button type="button" id="btnselectdatahistoryINN" class="btn btn-group btn-sm"><span class="glyphicon glyphicon-option-horizontal"></span></button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["Occupation"]</label>
+                    <div class="col-md-3">
+                        <input placeholder="@SharedLocalizer["Occupation"]" data-bind="value:employee.Occupation,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="100" style="max-width:inherit" />
+                    </div>
+                    <div class="col-md-1 col-md-offset-1" align="left" style="margin-left:-14px;padding-left:0px">
+                    </div>
+                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["State"]</label>
+                    <div class="col-sm-1">
+                        <select data-bind='options: statelist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:employee.StateID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label" required style="font-size:13px">@SharedLocalizer["Department"]</label>
+                    <div class="col-sm-3">
+                        <select data-bind='options: departmentlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:employee.DepartmentID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
+                    </div>
+                    <div class="col-md-1 col-md-offset-1" align="left" style="margin-left:-14px;padding-left:0px">
+                        <button type="button" id="btnselectdatahistoryDepartment" class="btn btn-group btn-sm"><span class="glyphicon glyphicon-option-horizontal"></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<div class="form-horizontal">
+    <div class="form-group">
+        <div align="center">
+            <button type="button" data-bind="click:checkdata" class="btn btn-primary btn-sm"> @SharedLocalizer["Check"]</button>
+            <button type="button" data-bind="click:savedata" class="btn btn-primary btn-sm"> @SharedLocalizer["Save"]</button>
+            <a asp-controller="Employee" asp-action="Index" class="btn btn-default btn-sm">@SharedLocalizer["Back to List"]</a>
+        </div>
+    </div>
+</div>
+<!-- Modal Select DataHistory -->
+<div id="datahistoryselectWindow" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">@SharedLocalizer["DataHistory"]</h4>
+            </div>
+            <p></p>
+            <div class="modal-body">
+                <div class="container">
+                    <table id="tableDataHistorySelect"
+                           data-search="false"
+                           data-show-refresh="false"
+                           data-show-toggle="false"
+                           data-show-columns="false"
+                           data-show-export="true"
+                           data-pagination="true"
+                           data-page-list="[50,100,150,200]"
+                           data-detail-view="false"
+                           data-minimum-count-columns="2"
+                           data-show-pagination-switch="false"
+                           data-side-pagination="server"
+                           data-query-params="queryParams"
+                           data-id-field="ID">
+                        <thead>
+                            <tr>
+                                <th data-field="Value" data-sortable="true">@SharedLocalizer["Value"]</th>
+                                <th data-field="DateOfCreated" data-sortable="true">@SharedLocalizer["DateOfCreated"]</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">@SharedLocalizer["Close"]</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts
+    {
+    <environment names="Development">
+        <script src="~/lib/bootstrap-table/dist/bootstrap-table.js"></script>
+        <script src="~/lib/bootstrap-table/dist/locale/bootstrap-table-ru-RU.js"></script>
+        <script src="~/lib/bootstrap-select/dist/js/bootstrap-select.js"></script>
+        <script src="~/lib/knockout/dist/knockout.debug.js"></script>
+        <script src="~/lib/knockout-mapping/knockout.mapping.js"></script>
+        <script src="~/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+        <script src="~/lib/bootstrap-datepicker/dist/locales/bootstrap-datepicker.ru.min.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/lib/bootstrap-table/dist/bootstrap-table.min.js"></script>
+        <script src="~/lib/bootstrap-table/dist/locale/bootstrap-table-ru-RU.min.js"></script>
+        <script src="~/lib/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+        <script src="~/lib/knockout/dist/knockout.js"></script>
+        <script src="~/lib/knockout-mapping/knockout.mapping.js"></script>
+        <script src="~/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+        <script src="~/lib/bootstrap-datepicker/dist/locales/bootstrap-datepicker.ru.min.js"></script>
+    </environment>
+
+    <script type="text/javascript">
+
+        var ItemModel = function () {
+            var self = this;
+            self.employee = {};
+            self.statelist = ko.mapping.fromJS([]);
+            self.departmentlist = ko.mapping.fromJS([]);
+
+                self.loaddata = function () {
+
+                    getajaxjson("@Url.Action("Get", "Employee", new { ID=ViewBag.ID})", function (data) {
+                        ko.mapping.fromJS(data, {}, self.employee);
+                        console.log(self.employee);
+                    });
+                 getajaxjson("@Url.Action("GetStateList", "Helper")", function (data) {
+                     ko.mapping.fromJS(data, self.statelist);
+                    });
+                    getajaxjson("@Url.Action("GetDepartmentList", "Helper")", function (data) {
+                     ko.mapping.fromJS(data, self.departmentlist);
+                    });
+            };
+
+            self.checkdata = function () {
+                if (self.employee.Name() === null || self.employee.Name() === undefined || self.employee.Name() === 0 || self.employee.Name() === ''|| self.employee.Name() === "") {
+                    alert("@SharedLocalizer["NameNotSelected"]");
+                    console.log(self.employee.Name());
+                    return false;
+                }
+                if (self.employee.DepartmentID() === null || self.employee.DepartmentID() === undefined || self.employee.DepartmentID() === '') {
+                    alert("@SharedLocalizer["DepartmentNotSelected"]");
+                    return;
+                }
+                return true;
+            };
+            self.savedata = function () {
+                if (!self.checkdata()) {
+                    return;
+                }
+                var datatosave = JSON.stringify(ko.toJS(self.employee), null, 2)
+                console.log(datatosave);
+                $.ajax({
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json; charset=utf-8",
+                    },
+                    type: "POST",
+                    url: "@Url.Action("Update", "Employee")",
+                    data: datatosave
+                }).done(function (data, status, xhr) {
+                    alert("@SharedLocalizer["SavedSuccessfully"]");
+                    window.location.href = "@Url.Action("Index", "Employee")";
+                })
+                    .fail(function (xhr, status, error) {
+                        alert(xhr.responseText);
+                    });
+            };
+            ko.bindingHandlers.selectPicker = {
+                after: ['options'],   /* KO 3.0 feature to ensure binding execution order */
+                init: function (element, valueAccessor, allBindingsAccessor) {
+                    var $element = $(element);
+                    $element.addClass('selectpicker').selectpicker();
+
+                    var doRefresh = function () {
+                        $element.selectpicker('refresh');
+                    }, subscriptions = [];
+
+                    var addSubscription = function (bindingKey) {
+                        var targetObs = allBindingsAccessor.get(bindingKey);
+
+                        if (targetObs && ko.isObservable(targetObs)) {
+                            subscriptions.push(targetObs.subscribe(doRefresh));
+                        }
+                    };
+                    addSubscription('options');
+                    addSubscription('value');           // Single
+                    addSubscription('selectedOptions'); // Multiple
+                    ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
+                        while (subscriptions.length) {
+                            subscriptions.pop().dispose();
+                        }
+                    });
+                },
+                update: function (element, valueAccessor, allBindingsAccessor) {
+                }
+            };
+        }
+
+        function getajaxjson(apiurl,handleData)
+        {
+            $.ajax({
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json; charset=utf-8",
+                    },
+                    type: "GET",
+                    async: false,
+                    url: apiurl,
+                }).done(function (data, status, xhr) {
+                    handleData(data);
+                    })
+                    .fail(function (xhr, status, error)
+                    {
+                        alert(xhr.responseText);
+                     });
+        }
+
+        $(document).ready(function () {
+            var itemModel = new ItemModel();
+            itemModel.loaddata();
+            ko.applyBindings(itemModel);
+
+             $('#tableDataHistorySelect').bootstrapTable({ height: 500 });
+
+            function refreshdata() {
+                $('#tableDataHistorySelect').bootstrapTable('refresh');
+            }
+            $('#refreshdata').click(function () {
+                refreshdata();
+            });
+        
+            $('#btnselectdatahistoryFIO').click(function (value) {
+            console.log(value);
+                $('#tableDataHistorySelect').bootstrapTable('resetSearch');
+                $('#tableDataHistorySelect').bootstrapTable('refresh', { url: "@Url.Action("GetTableDataHistory", "Helper")" + "\?DataID=" + itemModel.employee.ID() + "&TableID=177&ColumnName=" + "Name" });
+            $("#datahistoryselectWindow").modal('show');
+            });
+            $('#btnselectdatahistoryINN').click(function (value) {
+            console.log(value);
+                $('#tableDataHistorySelect').bootstrapTable('resetSearch');
+                $('#tableDataHistorySelect').bootstrapTable('refresh', { url: "@Url.Action("GetTableDataHistory", "Helper")" + "\?DataID=" + itemModel.employee.ID() + "&TableID=177&ColumnName=" + "INN" });
+            $("#datahistoryselectWindow").modal('show');
+            });
+            $('#btnselectdatahistoryDepartment').click(function (value) {
+            console.log(value);
+                $('#tableDataHistorySelect').bootstrapTable('resetSearch');
+                $('#tableDataHistorySelect').bootstrapTable('refresh', { url: "@Url.Action("GetTableDataHistory", "Helper")" + "\?DataID=" + itemModel.employee.ID() + "&TableID=177&ColumnName=" + "DepartmentID" });
+            $("#datahistoryselectWindow").modal('show');
+            });
+
+
+    });
+    </script>
+}
+
+
