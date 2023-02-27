@@ -8,7 +8,11 @@ namespace OnlineMahalla.Common.Model.Models.info
 {
     public class Citizen
     {
-        public long Id { get; set; }
+        public Citizen()
+        {
+            this.PassportData = new List<PassportData>();
+        }
+        public long ID { get; set; }
 
         public string? FirstName { get; set; }
 
@@ -18,32 +22,32 @@ namespace OnlineMahalla.Common.Model.Models.info
 
         public DateTime DateOfBirthday { get; set; }
 
-        public int NationId { get; set; }
+        public int NationID { get; set; }
 
-        public int GenderId { get; set; }
+        public int GenderID { get; set; }
 
-        public int? EducationId { get; set; }
+        public int? EducationID { get; set; }
 
-        public int? AcademicDegreeId { get; set; }
+        public int? AcademicDegreeID { get; set; }
 
-        public int? AcademicTitleId { get; set; }
+        public int? AcademicTitleID { get; set; }
 
-        public int MarriedId { get; set; }
+        public int MarriedID { get; set; }
 
         public int CountChild { get; set; } = 0;
 
-        public int CitizenEmploymentId { get; set; }
+        public int CitizenEmploymentID { get; set; }
 
         public bool IsLowIncome { get; set; }
 
         public bool IsConvicted { get; set; }
 
-        public int RegionID { get; set; }
+        public int BirthdayRegionID { get; set; }
 
-        public int DistrictId { get; set; }
-
-        public int NeighborhoodId { get; set; }
+        public int BirthdayDistrictID { get; set; }
 
         public int MemberTypeFamilyId { get; set; }
+
+        public List<PassportData> PassportData { get; set; }
     }
 }
