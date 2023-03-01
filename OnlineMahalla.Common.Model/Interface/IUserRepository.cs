@@ -24,23 +24,7 @@ namespace OnlineMahalla.Common.Model.Interface
 
         void UpdateUserUNS(User user);
 
-        void UpdateUserUNS1(User user);
-
         void UpdateUserRegion(User user);
-
-        void UpdateUserRegion1(User user);
-
-        void UpdateSettlementAccount(User user);
-
-        void UpdateUserAttachOrg1(User user);
-
-        void UpdateUserAttachOrg(User user);
-
-        void UpdateUserOrg1(User user);
-
-        void UpdateUserOrg(User user);
-
-        void UpdateSettlementAccount1(User user);
 
     }
 }
