@@ -48,6 +48,9 @@ namespace OnlineMahalla.Common.Model.Models.sys
         public int OrganizationID { get; set; }
         public string OrganizationName { get; set; }
         public int MobileAccessCount { get; set; }
+        public int NeighborhoodID { get; set; }
+        public string NeighborhoodName { get; set; }
+        public string NeighborhoodINN { get; set; }
         public bool VerifyEDS { get; set; }
         public DateTime? LastActivityDate { get; set; }
         public int? TempOrganizationID { get; set; }

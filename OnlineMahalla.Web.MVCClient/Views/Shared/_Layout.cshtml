@@ -219,6 +219,7 @@
                                                     getajaxjson("@Url.Action( "GetUserInfo","User")", function (data) {
                                     logininfo = data;
                                     document.getElementById("loginspan").innerHTML = logininfo.OrgInfo;
+                                    document.getElementById("loginspan").innerHTML = logininfo.NeigInfo;
                                     document.getElementById("usernamespan").innerHTML = logininfo.UserName + "(" + logininfo.UserID+")";
                                     localStorage.removeItem("loggeduser");
                                     localStorage.setItem("loggeduser", JSON.stringify(logininfo));
@@ -262,6 +263,7 @@
                 getajaxjson("@Url.Action( "GetUserInfo","User")", function (data) {
                     logininfo = data;
                     document.getElementById("loginspan").innerHTML = logininfo.OrgInfo;
+                    document.getElementById("loginspan").innerHTML = logininfo.NeigInfo;
                     document.getElementById("usernamespan").innerHTML = logininfo.UserName + "(" + logininfo.UserID+")";
                     localStorage.removeItem("loggeduser");
                     localStorage.setItem("loggeduser", JSON.stringify(logininfo));

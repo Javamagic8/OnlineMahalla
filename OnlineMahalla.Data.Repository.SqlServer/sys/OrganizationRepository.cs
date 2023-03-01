@@ -378,14 +378,14 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                         if (oldinfo.Name != organization.Name)
                             LogDataHistory(InfoStruct.Organization, organization.ID, "Name", organization.Name, OrganizationID, UserID);
 
-                        if (oldinfo.Director != organization.Director)
-                            LogDataHistory(InfoStruct.Organization, organization.ID, "Director", organization.Director, OrganizationID, UserID);
+                        //if (oldinfo.Director != organization.Director)
+                        //    LogDataHistory(InfoStruct.Organization, organization.ID, "Director", organization.Director, OrganizationID, UserID);
 
-                        if (oldinfo.Accounter != organization.Accounter)
-                            LogDataHistory(InfoStruct.Organization, organization.ID, "Accounter", organization.Accounter, OrganizationID, UserID);
-
-                        if (oldinfo.INN != organization.INN)
-                            LogDataHistory(InfoStruct.Organization, organization.ID, "INN", organization.INN, OrganizationID, UserID);
+                       // if (oldinfo.Accounter != organization.Accounter)
+                       //     LogDataHistory(InfoStruct.Organization, organization.ID, "Accounter", organization.Accounter, OrganizationID, UserID);
+                       //
+                       // if (oldinfo.INN != organization.INN)
+                         //   LogDataHistory(InfoStruct.Organization, organization.ID, "INN", organization.INN, OrganizationID, UserID);
                     }
 
                     if (organization.ID == 0)

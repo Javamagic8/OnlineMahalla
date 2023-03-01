@@ -11,6 +11,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
     {
         private string username = "";
         private int orgid = 0;
+        private int neigid = 0;
         private bool ischildlogout = true;
         public string UserName { get { return username; } set { username = value; } }
         private string ipadress = "";
@@ -29,6 +30,17 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                 orgid = value;
             }
         }
+        public int NeigID
+        {
+            get
+            {
+                return neigid;
+            }
+            set
+            {
+                neigid = value;
+            }
+        }
         public bool IsChildLogOut { get { return ischildlogout; } set { ischildlogout = value; } }
         private string _connectionString = "Users";
         private DatabaseExt _databaseExt;
@@ -45,15 +57,35 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             {
                 _db.Open();
 
-                string selcommand = @"SELECT us.ID UserID,us.Name UserName,us.DisplayName,us.Email,PasswordHash,PasswordSalt,us.StateID
-                                    ,org.ID OrganizationID,org.INN OrganizationINN,org.Name OrganizationName ,ISNULL(us.TempOrganizationID,0) TempOrganizationID,IIF(us.TempOrganizationID is null,'',(SELECT Name FROM info_Organization where ID=us.TempOrganizationID)) TempOrganizationName 
-                                    ,IIF(us.TempOrganizationID is null,'',(SELECT INN FROM info_Organization where ID=us.TempOrganizationID)) TempOrganizationINN 
-                                    FROM sys_User us,info_Organization org WHERE us.OrganizationID=org.ID AND us.Name=@Name AND us.StateID = 1";
+                string selcommand = @"SELECT 
+                                            [User].ID UserID,
+                                            [User].Name UserName,
+                                            [User].DisplayName,
+                                            [User].Email,
+                                            PasswordHash,
+                                            PasswordSalt,
+                                            [User].StateID,
+                                            Neighborhood.ID NeighborhoodID,
+                                            Neighborhood.INN NeighborhoodINN,
+                                            Neighborhood.Name NeighborhoodName
+                                            FROM sys_User [User]
+                                            JOIN info_Neighborhood Neighborhood ON [User].NeighborhoodID = Neighborhood.ID
+                                            WHERE [User].Name = @Name AND [User].StateID = 1";
                 if (id > 0)
-                    selcommand = @"SELECT us.ID UserID,us.Name UserName,us.DisplayName,us.Email,PasswordHash,PasswordSalt,us.StateID
-                                    ,org.ID OrganizationID,org.INN OrganizationINN,org.Name OrganizationName  ,ISNULL(us.TempOrganizationID,0) TempOrganizationID,IIF(us.TempOrganizationID is null,'',(SELECT Name FROM info_Organization where ID=us.TempOrganizationID)) TempOrganizationName 
-                                    ,IIF(us.TempOrganizationID is null,'',(SELECT INN FROM info_Organization where ID=us.TempOrganizationID)) TempOrganizationINN 
-                                    FROM sys_User us,info_Organization org WHERE us.OrganizationID=org.ID AND us.ID=@UserID AND us.StateID = 1";
+                    selcommand = @"SELECT 
+                                         [User].ID UserID,
+                                         [User].Name UserName,
+                                         [User].DisplayName,
+                                         [User].Email,
+                                         PasswordHash,
+                                         PasswordSalt,
+                                         [User].StateID,
+                                         Neighborhood.ID NeighborhoodID,
+                                         Neighborhood.INN NeighborhoodINN,
+                                         Neighborhood.Name NeighborhoodName
+                                         FROM sys_User [User]
+                                         JOIN info_Neighborhood Neighborhood ON [User].NeighborhoodID = Neighborhood.ID
+                                         WHERE [User].ID=@UserID AND [User].StateID = 1";
                 using (System.Data.SqlClient.SqlCommand myCommand = new System.Data.SqlClient.SqlCommand(selcommand, _db))
                 {
                     if (id > 0)
@@ -76,12 +108,9 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                                 PasswordHash = myReader["PasswordHash"].ToString(),
                                 DisplayName = myReader["DisplayName"].ToString(),
                                 IsActive = ((int)myReader["StateID"] == 1),
-                                OrganizationID = (int)myReader["OrganizationID"],
-                                OrganizationName = myReader["OrganizationName"].ToString(),
-                                OrganizationINN = myReader["OrganizationINN"].ToString(),
-                                TempOrganizationID = (int)myReader["TempOrganizationID"],
-                                TempOrganizationName = myReader["TempOrganizationName"].ToString(),
-                                TempOrganizationINN = myReader["TempOrganizationINN"].ToString(),
+                                NeighborhoodID = (int)myReader["NeighborhoodID"],
+                                NeighborhoodName = myReader["NeighborhoodName"].ToString(),
+                                NeighborhoodINN = myReader["NeighborhoodINN"].ToString(),
                                 Roles = new List<string>()
                             };
                         }
@@ -215,8 +244,19 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             {
                 if (OrgID > 0)
                     return OrgID;
-                OrgID = (int)_databaseExt.ExecuteScalar("SELECT OrganizationID FROM sys_User WHERE Name=@Name", new string[] { "@Name" }, new object[] { UserName });
+                OrgID = (int)_databaseExt.ExecuteScalar("SELECT NeighborhoodID FROM sys_User WHERE Name=@Name", new string[] { "@Name" }, new object[] { UserName });
                 return OrgID;
+            }
+        }
+
+        public int NeighborhoodID
+        {
+            get
+            {
+                if (NeigID > 0)
+                    return NeigID;
+                NeigID = (int)_databaseExt.ExecuteScalar("SELECT NeighborhoodID FROM sys_User WHERE Name=@Name", new string[] { "@Name" }, new object[] { UserName });
+                return NeigID;
             }
         }
 

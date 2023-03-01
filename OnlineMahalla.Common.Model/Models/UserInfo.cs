@@ -9,8 +9,10 @@ namespace OnlineMahalla.Common.Model.Models
     public class UserInfo
     {
         public string OrgInfo { get; set; }
+        public string NeigInfo { get; set; }
         public int UserID { get; set; }
         public int OrgID { get; set; }
+        public int NeigID { get; set; }
         public string UserName { get; set; }
         public int? OrgTempID { get; set; }
         public List<string> Roles { get; set; }

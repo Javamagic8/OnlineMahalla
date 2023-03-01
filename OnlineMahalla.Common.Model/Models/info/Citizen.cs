@@ -20,6 +20,8 @@ namespace OnlineMahalla.Common.Model.Models.info
 
         public string? FamilyName { get; set; }
 
+        public string PINFL { get; set; }
+
         public DateTime DateOfBirthday { get; set; }
 
         public int NationID { get; set; }

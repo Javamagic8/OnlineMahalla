@@ -9,6 +9,8 @@ namespace OnlineMahalla.Common.Model.Interface
         string UserAgent { get; set; }
 
         int OrgID { get; set; }
+        int NeigID { get; set; }
+        int NeighborhoodID { get; }
         int OrganizationID { get; }
         bool IsChildLogOut { get; set; }
         User GetUser(string username, string ipadress, string useragent);

@@ -1,5 +1,6 @@
 ﻿using OnlineMahalla.Common.Model.Interface;
 using OnlineMahalla.Common.Model.Models;
+using OnlineMahalla.Common.Model.Models.info;
 using OnlineMahalla.Common.Model.Models.sys;
 using OnlineMahalla.Common.Utility;
 using System;
@@ -21,92 +22,60 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             return (hasdata != null && hasdata != DBNull.Value);
         }
 
-        public UserInfo GetUserInfo(int userID = 0, int organinzationID = 0)
+        public UserInfo GetUserInfo(int userID = 0, int neighborhoodID = 0)
 
         {
             if (userID == 0)
                 userID = UserID;
-            if (organinzationID == 0)
-                organinzationID = OrganizationID;
+            if (neighborhoodID == 0)
+                neighborhoodID = NeighborhoodID;
 
-            //if (EspContractorID == 15215 && userID == 29361)
-            //    throw new Exception("Нет доступа.");
-
-            var data = _databaseExt.GetDataFromSql(@"SELECT 
-                org.ID OrgID,
-                org.FullName OrgName,           
-                us.TempOrganizationID
+            var data = _databaseExt.GetDataFromSql(@"SELECT
+                neig.ID NeigID,
+                neig.Name NeigName
                 FROM 
                 sys_User us
-                JOIN info_Organization org ON org.ID=us.OrganizationID                
+                JOIN info_Neighborhood neig ON neig.ID=us.NeighborhoodID
                 WHERE us.Name=@UserName", new string[] { "@UserName" }, new object[] { (UserName.StartsWith("ct_") && UserName.Length == 12) ? "ct" : UserName }).FirstOrDefault();
-            //var EspContractorName = _databaseExt.ExecuteScalar("SELECT Name  FROM hl_Contractor WHERE ID=@EspContractorID", new string[] { "@EspContractorID" }, new object[] { EspContractorID });
 
             UserInfo userInfo = new UserInfo()
             {
-                OrgInfo = GetOrganization(OrgID).Name + "(" + OrgID + ")",
+                NeigInfo = GetOrganization(NeigID).Name + "(" + NeigID + ")",
                 UserID = userID,
-                OrgID = OrgID,//data.ID,
-                OrgTempID = data.TempOrganizationID,
+                NeigID = NeigID,
                 UserName = UserName,
                 Roles = _databaseExt.GetDataFromSql("SELECT dbo.sys_Module.Name FROM dbo.sys_Module INNER JOIN dbo.sys_RoleModule ON dbo.sys_Module.ID = dbo.sys_RoleModule.ModuleID INNER JOIN dbo.sys_Role ON dbo.sys_RoleModule.RoleID = dbo.sys_Role.ID INNER JOIN dbo.sys_UserRole ON dbo.sys_Role.ID = dbo.sys_UserRole.RoleID WHERE (dbo.sys_UserRole.UserID =@UserID AND dbo.sys_UserRole.StateID=1)",
                 new string[] { "@UserID" }, new object[] { userID }).Select(x => (string)x.Name).ToList(),
                 Date = DateTime.Today.ToString("dd.MM.yyyy"),
                 IsChildLogOut = IsChildLogOut
             };
-
             return userInfo;
         }
 
-        public Organization GetOrganization(int ID)
+        public Neighborhood GetOrganization(int ID)
         {
             if (ID == 0)
-                ID = OrganizationID;
-            var data = _databaseExt.GetDataFromSql(@"SELECT Organization.*,
-            'FinancingLevel.DisplayName' FinancingLevelName,
-            'Chapter.Name' ChapterName,
-            'Chapter.Code' ChapterCode,
-            'HeaderOrganization.Name' HeaderOrganizationName
-            FROM info_Organization Organization      
-            WHERE Organization.ID=@ID", new string[] { "@ID" }, new object[] { ID }).First();
-            Organization Organization = new Organization()
+                ID = NeighborhoodID;
+            var data = _databaseExt.GetDataFromSql(@"SELECT * FROM info_Neighborhood Neighborhood
+            WHERE Neighborhood.ID=2", new string[] { "@ID" }, new object[] { ID }).First();
+            Neighborhood Neighborhood = new Neighborhood()
             {
                 ID = data.ID,
                 Name = data.Name,
-                FullName = data.FullName,
-                INN = data.INN,
-                OKONHID = data.OKONHID,
-                FinancingLevelID = data.FinancingLevelID,
-                FinancingLevelName = data.FinancingLevelName,
-                TreasuryBranchID = data.TreasuryBranchID,
-                TreasuryDepartmentHeader = data.TreasuryDepartmentHeader,
-                TreasuryResPerson = data.TreasuryResPerson,
-                OblastID = data.OblastID,
+                ChairmanName = data.ChairmanName,
+                CountFamily = data.CountFamily,
+                CountHome = data.CountHome,
                 RegionID = data.RegionID,
-                ZipCode = data.ZipCode,
-                Adress = data.Adress,
-                ContactInfo = data.ContactInfo,
-                Director = data.Director,
-                Accounter = data.Accounter,
-                Cashier = data.Cashier,
-                IncomeNumber = data.IncomeNumber,
-                IncomeDate = DateTimeUtility.ToNullable(data.IncomeDate),
-                CreatedUserID = data.CreatedUserID,
-                OrganizationTypeID = data.OrganizationTypeID,
+                DistrictID = data.DistrictID,
                 StateID = data.StateID,
-                IsFullBudget = data.IsFullBudget,
-                HeaderOrganizationID = data.HeaderOrganizationID,
-                HeaderOrganizationName = data.HeaderOrganizationName,
-                ChapterID = data.ChapterID,
-                ChapterName = data.ChapterName,
-                ChapterCode = data.ChapterCode,
-                CentralOrganizationID = data.CentralOrganizationID,
-                CentralOrganizationName = data.CentralOrganizationName,
-                BRParentOranizationID = data.BRParentOranizationID,
-                Restriction = data.Restriction
+                Address = data.Address,
+                PhoneNumber = data.PhoneNumber,
+                INN = data.INN,
+                TypeOrganizationID = data.TypeOrganizationID,
+                DistrictTypeID = data.DistrictTypeID
             };
 
-            return Organization;
+            return Neighborhood;
         }
         internal void LogDataHistory(int TableID, long DataID, string ColumnName, string Value, int OrganizationID, int UserID)
         {

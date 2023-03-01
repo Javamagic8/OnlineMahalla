@@ -75,13 +75,9 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
                 new Claim(ClaimTypes.Name, user.Name),
                 new Claim("name", user.DisplayName),
                 new Claim("userid", user.ID.ToString(),ClaimValueTypes.Integer),
-                new Claim("orgid", user.OrganizationID.ToString(),ClaimValueTypes.Integer),
-                new Claim("orginn", user.OrganizationINN),
-                new Claim("orgname", user.OrganizationName),
-                new Claim("temporgid", user.TempOrganizationID.ToString(),ClaimValueTypes.Integer),
-                new Claim("temporginn", user.TempOrganizationINN),
-                new Claim("temporgname", user.TempOrganizationName),
-                new Claim("ischildlogout", "true",ClaimValueTypes.Boolean),
+                new Claim("neigid", user.NeighborhoodID.ToString(),ClaimValueTypes.Integer),
+                new Claim("neiginn", user.NeighborhoodINN),
+                new Claim("neigname", user.NeighborhoodName)
                 };
 
                 var id = new ClaimsIdentity(claims, "password");
