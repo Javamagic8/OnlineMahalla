@@ -16,15 +16,7 @@ namespace OnlineMahalla.Common.Model.Interface
 
         User GetUserRole(int id);
 
-        User GetAttachOrg(int id);
-
-        User GetUserUNS(int id);
-
         User GetUserRegion(int id);
-
-        User GetSettlement(int id);
-
-        User GetUserOrg(int id);
 
         void UpdateUserRole(User user);
 

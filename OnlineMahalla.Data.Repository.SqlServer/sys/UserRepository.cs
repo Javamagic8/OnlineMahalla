@@ -10,7 +10,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
     {
         public IEnumerable<dynamic> GetAllOrgUser()
         {
-            var UserList = _databaseExt.GetDataFromSql("SELECT ID, (DisplayName+'('+ Name +')') Name FROM sys_User WHERE OrganizationID=@OrganizationID AND StateID = 1", new string[] { "@OrganizationID" }, new object[] { OrganizationID }).ToList();
+            var UserList = _databaseExt.GetDataFromSql("SELECT ID, (DisplayName+'('+ Name +')') Name FROM sys_User WHERE NeighborhoodID=@NeighborhoodID AND StateID = 1", new string[] { "@NeighborhoodID" }, new object[] { NeighborhoodID }).ToList();
             return UserList;
         }
 
@@ -147,62 +147,6 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             return user;
         }
 
-        public User GetAttachOrg(int id)
-        {
-
-
-            var userUNS = _databaseExt.GetDataFromSql(@"select sysinfo.ID,info.ID infoid,info.Name from sys_UserHeaderOrganization sysinfo
-                                                                        inner join info_HeaderOrganization info on info.ID=sysinfo.HeaderOrganizationID
-                                                                        where UserID=@UserID", new string[] { "@UserID" }, new object[] { id }).ToList();
-            string s1 = string.Join(",", userUNS.Select(x => x.infoid).ToList());
-            string sql1 = @"select info.ID,info.Name,chap.Code,info.INN	
-                                from info_HeaderOrganization info
-                                inner join info_Chapter chap on chap.ID = info.ChapterID";
-            if (s1.Length > 0)
-                sql1 += " where info.ID not in (" + s1 + ")";
-
-
-
-
-            User user = new User()
-            {
-                ID = id,
-                AttachOrg = _databaseExt.GetDataFromSql(sql1, new string[] { }, new object[] { }).Select(x => new HeaderOrganization() { ID = x.ID, ShortName = x.Name, ChapterCode = x.Code, INN = x.INN }).ToList(),
-                AttachOrg1 = _databaseExt.GetDataFromSql(@"select sysinfo.ID,info.ID infoid,info.Name from sys_UserHeaderOrganization sysinfo
-                                                                inner join info_HeaderOrganization info on info.ID=sysinfo.HeaderOrganizationID
-                                                                where UserID=@UserID", new string[] { "@UserID" }, new object[] { id }).Select(x => new HeaderOrganization() { ID = x.ID, ParentName = x.Name, ParentID = x.infoid, Check = false }).ToList(),
-            };
-
-            return user;
-        }
-
-        public User GetUserUNS(int id)
-        {
-
-
-            var userUNS = _databaseExt.GetDataFromSql(@"select info.ID from info_IncomeUNC info  
-                            inner join sys_UserIncomeUNC uns on uns.IncomeUNCID=info.ID 
-                            where  uns.UserID=@UserID", new string[] { "@UserID" }, new object[] { id }).ToList();
-            string s1 = string.Join(",", userUNS.Select(x => x.ID).ToList());
-            string sql1 = "select info.ID,info.Code,info.Name from info_IncomeUNC info";
-            if (s1.Length > 0)
-                sql1 += " where info.ID not in (" + s1 + ")";
-
-
-
-
-            User user = new User()
-            {
-                ID = id,
-                IncomeModel = _databaseExt.GetDataFromSql(sql1, new string[] { }, new object[] { }).Select(x => new IncomeUNC() { ID = x.ID, Code = x.Code, Name = x.Name, }).ToList(),
-                IncomeModel1 = _databaseExt.GetDataFromSql(@"select uns.ID,info.Code from info_IncomeUNC info  
-                                                             inner join sys_UserIncomeUNC uns on uns.IncomeUNCID=info.ID 
-                                                             where  uns.UserID=@UserID", new string[] { "@UserID" }, new object[] { id }).Select(x => new IncomeUNC() { ID = x.ID, Code = x.Code, Check = false }).ToList(),
-            };
-
-            return user;
-        }
-
         public User GetUserRegion(int id)
         {
             string UserRegionID = "";
@@ -240,88 +184,27 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                     UserRegionID = "0";
                     break;
             }
-            var dRegionIDlist = _databaseExt.GetDataFromSql("select RegionID from sys_UserRegion where UserID=@ID", new string[] { "@ID" }, new object[] { id }).Select(x => x.RegionID).ToList();
+            var dRegionIDlist = _databaseExt.GetDataFromSql("select DistrictID from sys_UserDistrict where UserID=@ID", new string[] { "@ID" }, new object[] { id }).Select(x => x.RegionID).ToList();
             string ss = string.Join(',', dRegionIDlist);
 
 
 
-            string region = "";
+            string district = "";
             if (UserRegionID.Length == 4)
-                region = @"select O.ID OblastID, O.Name Oblast,R.ID RegionID,R.Name Region from info_Region R JOIN info_Oblast O ON O.ID=R.OblastID where 1=1 ";
+                district = @"SELECT Region.ID RegionID, Region.Name Region,District.ID DistrictID,District.Name District from info_District District JOIN info_Region Region ON Region.ID=District.RegionID where 1=1 ";
             else
-                region = @"select O.ID OblastID, O.Name Oblast,R.ID RegionID,R.Name Region from info_Region R JOIN info_Oblast O ON O.ID=R.OblastID where R.OblastID=" + UserRegionID;
+                district = @"SELECT Region.ID RegionID, Region.Name Region,District.ID DistrictID,District.Name District from info_District District JOIN info_Region Region ON Region.ID=District.RegionID WHERE District.RegionID=" + UserRegionID;
 
 
             if (dRegionIDlist.Count > 0)
-                region += " AND R.ID not in(" + ss + ")";
+                district += " AND District.ID not in(" + ss + ")";
 
             User user = new User()
             {
                 ID = id,
-                RegionModel = _databaseExt.GetDataFromSql(region, new string[] { }, new object[] { }).Select(x => new IncomeUNC() { ID = x.RegionID, Code = x.Oblast, Name = x.Region }).ToList(),
+                RegionModel = _databaseExt.GetDataFromSql(district, new string[] { }, new object[] { }).Select(x => new IncomeUNC() { ID = x.RegionID, Code = x.Oblast, Name = x.Region }).ToList(),
                 RegionModel1 = _databaseExt.GetDataFromSql(@"select u.ID,reg.Name Region,info.Name Oblast from sys_UserRegion u,info_Region reg,info_Oblast info
                                                                         where u.UserID=@UserID and reg.ID = RegionID and reg.OblastID=info.ID", new string[] { "@UserID" }, new object[] { id }).Select(x => new IncomeUNC() { ID = x.ID, Code = x.Region, Name = x.Oblast }).ToList()
-            };
-
-            return user;
-        }
-
-
-        public User GetSettlement(int id)
-        {
-            var settlementAccountAll = _databaseExt.GetDataFromSql(@"select suser.ID,sorg.Code,sorg.ID FID from sys_UserSettlementAccount suser
-                                            inner join info_OrganizationsSettlementAccount sorg on sorg.ID=suser.OrganizationsSettlementAccountID
-                                            where UserID=@ID", new string[] { "@ID" }, new object[] { id }).Select(x => new IncomeUNC() { ID = x.ID, Code = x.Code, StateID = x.FID }).ToList();
-
-            string fID = string.Join(',', settlementAccountAll.Select(x => x.StateID).ToList());
-            string sqlorg = @"SELECT distinct ss.ID,ss.Code,ss.OrganizationID
-                                                                        FROM info_OrganizationsSettlementAccount ss
-                                                                        left join sys_UserSettlementAccount s on
-                                                                        s.OrganizationsSettlementAccountID = ss.ID
-                                                                        where ss.OrganizationID = @ID and ss.StateID = 1";
-            if (fID.Length > 0)
-                sqlorg += " and ss.ID not in (" + fID + ")";
-
-
-            var userOrg = _databaseExt.GetDataFromSql("select OrganizationID from sys_User where ID = @ID", new string[] { "@ID" }, new object[] { id }).FirstOrDefault();
-            var settlementAccount = _databaseExt.GetDataFromSql(sqlorg,
-                                                                        new string[] { "@ID" }, new object[] { userOrg.OrganizationID }).Select(x => new IncomeUNC() { ID = x.ID, Code = x.Code, Name = x.OrganizationID.ToString(), Check = false }).ToList();
-
-
-
-
-            User user = new User()
-            {
-                ID = id,
-                SettlementAccount = settlementAccount,
-                SettlementAccount1 = settlementAccountAll
-            };
-
-            return user;
-        }
-
-        public User GetUserOrg(int id)
-        {
-            var orgList = _databaseExt.GetDataFromSql(@"select us.ID,info.ID st,info.INN,info.Name
-                                                    from sys_UserOrganization us
-                                                    inner join info_Organization info on info.ID=us.OrganizationID
-                                                    where us.UserID=@ID and us.StateID=1", new string[] { "@ID" }, new object[] { id }).Select(x => new IncomeUNC() { Check = false, Code = x.INN, Name = x.Name, ID = x.ID, StateID = x.st }).ToList();
-
-            string s22 = string.Join(',', orgList.Select(x => x.StateID).ToList());
-            string s23 = @"select 
-                                org.ID,
-                                org.INN,
-                                org.Name 
-                                from sys_User us,info_Organization org
-                                where us.OrganizationID= org.CentralOrganizationID 
-                                and us.id= @ID and org.StateID=1";
-            if (s22.Length > 0)
-                s23 += " and org.ID not in (" + s22 + ")";
-            User user = new User()
-            {
-                ID = id,
-                Org = _databaseExt.GetDataFromSql(s23, new string[] { "@ID" }, new object[] { id }).Select(x => new IncomeUNC() { Check = false, Code = x.INN, Name = x.Name, ID = x.ID }).ToList(),
-                Org1 = orgList
             };
 
             return user;

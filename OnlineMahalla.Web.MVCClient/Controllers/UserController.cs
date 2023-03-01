@@ -99,40 +99,6 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAttachOrg(int? id)
-        {
-            if (!_dataRepository.UserIsInRole("HeaderOrganizationInfoEdit"))
-                return BadRequest("Нет доступа");
-
-            User user = new User();
-            if (id.HasValue && id.Value > 0)
-            {
-                user = _dataRepository.GetAttachOrg(id.Value);
-            }
-
-            if (id == 0)
-                user.StateID = 1;
-            return new JsonResult(user);
-        }
-
-        [HttpGet]
-        public IActionResult GetUNS(int? id)
-        {
-            if (!_dataRepository.UserIsInRole("UserEdit"))
-                return BadRequest("Нет доступа");
-
-            User user = new User();
-            if (id.HasValue && id.Value > 0)
-            {
-                user = _dataRepository.GetUserUNS(id.Value);
-            }
-
-            if (id == 0)
-                user.StateID = 1;
-            return new JsonResult(user);
-        }
-
-        [HttpGet]
         public IActionResult GetRegion(int? id)
         {
             if (!_dataRepository.UserIsInRole("UserEdit"))
@@ -149,39 +115,6 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
             return new JsonResult(user);
         }
 
-        [HttpGet]
-        public IActionResult GetSettlement(int? id)
-        {
-            if (!_dataRepository.UserIsInRole("UserEdit"))
-                return BadRequest("Нет доступа");
-
-            User user = new User();
-            if (id.HasValue && id.Value > 0)
-            {
-                user = _dataRepository.GetSettlement(id.Value);
-            }
-
-            if (id == 0)
-                user.StateID = 1;
-            return new JsonResult(user);
-        }
-
-        [HttpGet]
-        public IActionResult GetUserOrg(int? id)
-        {
-            if (!_dataRepository.UserIsInRole("UserEdit"))
-                return BadRequest("Нет доступа");
-
-            User user = new User();
-            if (id.HasValue && id.Value > 0)
-            {
-                user = _dataRepository.GetUserOrg(id.Value);
-            }
-
-            if (id == 0)
-                user.StateID = 1;
-            return new JsonResult(user);
-        }
         [HttpPost]
         public IActionResult Update([FromBody] User user)
         {
