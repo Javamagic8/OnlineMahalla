@@ -218,7 +218,6 @@
                                 }).done(function (data, status, xhr) {
                                                     getajaxjson("@Url.Action( "GetUserInfo","User")", function (data) {
                                     logininfo = data;
-                                    document.getElementById("loginspan").innerHTML = logininfo.OrgInfo;
                                     document.getElementById("loginspan").innerHTML = logininfo.NeigInfo;
                                     document.getElementById("usernamespan").innerHTML = logininfo.UserName + "(" + logininfo.UserID+")";
                                     localStorage.removeItem("loggeduser");
@@ -262,7 +261,6 @@
 
                 getajaxjson("@Url.Action( "GetUserInfo","User")", function (data) {
                     logininfo = data;
-                    document.getElementById("loginspan").innerHTML = logininfo.OrgInfo;
                     document.getElementById("loginspan").innerHTML = logininfo.NeigInfo;
                     document.getElementById("usernamespan").innerHTML = logininfo.UserName + "(" + logininfo.UserID+")";
                     localStorage.removeItem("loggeduser");
@@ -297,10 +295,6 @@
 
             }
         });
-
-        //$(window).on('load', function () {
-        //    createselectfromurlcomp($('#userorganization'), "@Url.Action("GetUserOrganizationList", "Helper")", false);
-        //});
 
         function reloadPage() {
 

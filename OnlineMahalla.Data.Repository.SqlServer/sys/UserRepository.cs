@@ -1,5 +1,6 @@
 ﻿using OnlineMahalla.Common.Model.Interface;
 using OnlineMahalla.Common.Model.Models;
+using OnlineMahalla.Common.Model.Models.info;
 using OnlineMahalla.Common.Model.Models.sys;
 using OnlineMahalla.Common.Utility;
 
@@ -13,58 +14,27 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             return UserList;
         }
 
-        public PagedDataEx GetUserList(int ID, string Name, string DisplayName, string State, string OrganizationName, string OrganizationINN, int OrganizationID, string Search, string Sort, string Order, int Offset, int Limit)
+        public PagedDataEx GetUserList(int ID, string Name, string DisplayName, string State, string NeighborhoodName, string NeighborhoodINN, int NeighborhoodID, string Search, string Sort, string Order, int Offset, int Limit)
         {
             PagedDataEx data = new PagedDataEx();
             Dictionary<string, object> sqlparamas = new Dictionary<string, object>();
-            string sqlselect = "";
-            sqlselect += " SELECT";
-            sqlselect += " usr.ID,";
-            sqlselect += " usr.Name,";
-            sqlselect += " usr.DisplayName,";
-            sqlselect += " st.DisplayName as State,";
-            sqlselect += " CASE WHEN usr.VerifyEDS = '1' THEN 'Да' ELSE 'Нет' END VerifyEDS,";
-            sqlselect += " org.INN as INN,";
-            sqlselect += " org.Name as Organization,";
-            sqlselect += " org.ID as OrganizationID,";
-            sqlselect += " usr.LastAccessTime,";
-            sqlselect += " usr.LastIP,";
-            sqlselect += " usr.Email,";
-            sqlselect += " usr.DateOfModified";
-            string sqlfrom = " FROM sys_User usr, info_Organization org, enum_State st";
-            string sqlwhere = " WHERE usr.OrganizationID=org.ID AND usr.StateID=st.ID ";
+            string sqlselect = @"SELECT 
+                                       [User].ID, [User].Name, [User].DisplayName, [State].DisplayName State,
+                                       CASE WHEN [User].VerifyEDS = '1' THEN 'Да' ELSE 'Нет' END VerifyEDS,
+                                       Neighborhood.INN, Neighborhood.Name Neighborhood, Neighborhood.ID NeighborhoodID,
+                                       [User].LastAccessTime, [User].LastIP, [User].Email, [User].DateOfModified ";
+
+            string sqlfrom = @" FROM 
+                                   sys_User [User] 
+                                   JOIN info_Neighborhood Neighborhood ON Neighborhood.ID = [User].NeighborhoodID
+                                   JOIN enum_State [State] ON State.ID = [User].StateID";
+            string sqlwhere = " ";
             string UserRegionID = "";
 
             switch (UserID)
             {
-
-                case 28877: UserRegionID = "6"; break;//Кошжанов Жаксылык Алимбаевич
-                case 27894: UserRegionID = "5"; break;//Паршинцев Н.В.
-                case 56: UserRegionID = "10"; break;//Хазраткулов С.
-                case 27895: UserRegionID = "8"; break;//Бобохолов Сайфиддин Холмуродович
-                case 366: UserRegionID = "0000"; break;//hilola 
-                case 29007: UserRegionID = "0000"; break;//Султанов Яшнар Бокижонович
-                case 41544: UserRegionID = "0000"; break;//Агевнина Т. Н.
-                case 92444: UserRegionID = "0000"; break;//Бегимов С. Ф.
-                case 86501: UserRegionID = "4"; break;//Мухамедов Замонжон Замирович
-                case 71856: UserRegionID = "11"; break;//Шопиев Зокир
-                case 28819: UserRegionID = "14"; break;//Жуманиязов Музаффар
-                case 28480: UserRegionID = "7"; break;//Рахимов Сардор Уралович
-                case 28458: UserRegionID = "13"; break;//Ахроров Жасурбек Абдутоирович
-                case 28151: UserRegionID = "3"; break;//Юсупов Акромжон Акылжонович
-                case 28028: UserRegionID = "12"; break;//Курбонов Хамза Холбутаевич
-                case 28025: UserRegionID = "0000"; break;//Сидиков Бекзод Бахрамович
-                case 26910: UserRegionID = "10"; break;//Шукуров Шерзод Мамарасулович
-                case 1583: UserRegionID = "9"; break;//Юлдашев Адхамжон Нурматжонович
-                case 1888: UserRegionID = "0000"; break;//Обид Абдукодиров
-                case 22412: UserRegionID = "0000"; break;//Фарход Мухамедкаримов
-                case 29388: UserRegionID = "0000"; break;//Хасанов А. Э.
-                case 29661: UserRegionID = "0000"; break;//Умиров Даврон
-                case 41503: UserRegionID = "0000"; break;//Узаков Хасан
-                case 91796: UserRegionID = "0000"; break;//Eshpolatov Kamol
-                case 92357: UserRegionID = "0000"; break;//Boymanov E
-                case 91775: UserRegionID = "0000"; break;//javohir
-                case 23071: UserRegionID = "0000"; break;//Тошев Ф.
+                case 8: UserRegionID = "0000"; break;//Adiba
+                case 7: UserRegionID = "5"; break;//Buzrukov Н.В.
                 default:
                     UserRegionID = "0";
                     break;
@@ -72,62 +42,62 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             bool check = false;
             if (UserRegionID == "0" && UserIsInRole("FinancialAuthority"))
             {
-                var list = _databaseExt.GetDataFromSql(@"select RegionID from sys_UserRegion where UserID=@UserID", new string[] { "@UserID" }, new object[] { UserID }).ToList();
+                var list = _databaseExt.GetDataFromSql(@"select DistrictID from sys_UserDistrict where UserID=@UserID", new string[] { "@UserID" }, new object[] { UserID }).ToList();
                 if (list.Count > 0)
                 {
                     UserRegionID = String.Join(",", list.Select(x => x.RegionID).ToList());
-                    sqlwhere += " AND org.RegionID in(" + UserRegionID + ")";
+                    sqlwhere += " AND Neighborhood.District in(" + UserRegionID + ")";
                 }
                 else
-                    sqlwhere += " AND org.RegionID in(" + 0 + ")";
+                    sqlwhere += " AND Neighborhood.District in(" + 0 + ")";
                 check = true;
 
             }
 
             if ((UserRegionID.Length != 4 && UserRegionID != "0") && !check)  //&& !UserIsInRole("FinancialAuthority")
-                sqlwhere += " AND org.OblastID in( " + UserRegionID + ")";
+                sqlwhere += " AND Neighborhood.RegionID in( " + UserRegionID + ")";
 
             if (ID > 0)
             {
-                sqlwhere += " AND usr.ID = @ID";
+                sqlwhere += " AND [User].ID = @ID";
                 sqlparamas.Add("@ID", ID);
             }
             if (!String.IsNullOrEmpty(Name))
             {
-                sqlwhere += " AND (usr.Name like '%' + @Name + '%')";
+                sqlwhere += " AND ([User].Name like '%' + @Name + '%')";
                 sqlparamas.Add("@Name", Name);
             }
             if (!String.IsNullOrEmpty(DisplayName))
             {
-                sqlwhere += " AND (usr.DisplayName like '%' + @DisplayName + '%')";
+                sqlwhere += " AND ([User].DisplayName like '%' + @DisplayName + '%')";
                 sqlparamas.Add("@DisplayName", DisplayName);
             }
             if (!String.IsNullOrEmpty(State))
             {
-                sqlwhere += " AND (st.DisplayName like '%' + @State + '%')";
+                sqlwhere += " AND (State.DisplayName like '%' + @State + '%')";
                 sqlparamas.Add("@State", State);
             }
-            if (!String.IsNullOrEmpty(OrganizationName))
+            if (!String.IsNullOrEmpty(NeighborhoodName))
             {
                 sqlwhere += " AND (org.Name like '%' + @OrganizationName + '%')";
-                sqlparamas.Add("@OrganizationName", OrganizationName);
+                sqlparamas.Add("@OrganizationName", NeighborhoodName);
             }
-            if (!String.IsNullOrEmpty(OrganizationINN))
+            if (!String.IsNullOrEmpty(NeighborhoodINN))
             {
-                sqlwhere += " AND (org.INN like '%' + @OrganizationINN + '%')";
-                sqlparamas.Add("@OrganizationINN", OrganizationINN);
+                sqlwhere += " AND (Neighborhood.INN like '%' + @NeighborhoodINN + '%')";
+                sqlparamas.Add("@NeighborhoodINN", NeighborhoodINN);
             }
-            if (OrganizationID > 0)
+            if (NeighborhoodID > 0)
             {
-                sqlwhere += " AND usr.OrganizationID = @OrganizationID";
-                sqlparamas.Add("@OrganizationID", OrganizationID);
+                sqlwhere += " AND [User].NeighborhoodID = @NeighborhoodID";
+                sqlparamas.Add("@NeighborhoodID", NeighborhoodID);
             }
-            string sqlcount = "SELECT Count(usr.ID) " + sqlfrom + sqlwhere;
+            string sqlcount = "SELECT Count([User].ID) " + sqlfrom + sqlwhere;
 
             if (!String.IsNullOrEmpty(Sort))
                 sqlwhere += " ORDER BY " + Sort + " " + (Order == "asc" ? " " : " DESC");
             else
-                sqlwhere += " ORDER BY usr.ID DESC";
+                sqlwhere += " ORDER BY [User].ID DESC";
             if (Limit > 0)
                 sqlwhere += " OFFSET " + Offset + " ROWS FETCH NEXT " + Limit + " ROWS ONLY";
             string sql = sqlselect + sqlfrom + sqlwhere;
