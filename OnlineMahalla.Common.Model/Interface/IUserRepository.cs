@@ -22,8 +22,6 @@ namespace OnlineMahalla.Common.Model.Interface
 
         void UpdateUserRole1(User user);
 
-        void UpdateUserUNS(User user);
-
         void UpdateUserRegion(User user);
 
     }

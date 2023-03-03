@@ -68,18 +68,19 @@
            data-page-list="[50,100,150,200]"
            data-show-footer="false"
            data-side-pagination="server"
-           data-url="@Url.Action("GetList", "Organization")"
+           data-url="@Url.Action("GetList", "Neighborhood")"
            data-query-params="queryParams"
            class="table table-striped">
         <thead>
             <tr>
                 <th data-field="ID" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["ID"]</th>
                 <th data-field="Name" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["Name"]</th>
+                <th data-field="ChairmanName" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["ChairmanName"]</th>
                 <th data-field="INN" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["INN"]</th>
-                <th data-field="Oblast" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["Oblast"]</th>
-                <th data-field="Region" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["Region"]</th>
-                <th data-field="CentralOrganization" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["CentralOrganization"]</th>
-                <th data-field="OrganizationType" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["OrganizationType"]</th>
+                <th data-field="RegionName" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["RegionName"]</th>
+                <th data-field="DistrictName" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["DistrictName"]</th>
+                <th data-field="Address" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["DistrictName"]</th>
+                <th data-field="PhoneNumber" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["PhoneNumber"]</th>
                 <th data-field="State" data-align="center" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["State"]</th>
             </tr>
         </thead>
@@ -729,10 +730,10 @@
         let Clone=false;
         function queryParams(params) {
             params.id = $('#filterid').val();
-            params.name = $('#filtername').val();
             params.inn = $('#filterinn').val();
-            params.oblast = $('#filteroblast').val();
-            params.region = $('#filterregion').val();
+            params.name = $('#filtername').val();
+            params.region = $('#filteroblast').val();
+            params.district = $('#filterregion').val();
             return params;
         }
         function queryParams1(params1) {
@@ -833,7 +834,7 @@
                 self.organization.Cashier(str7);
             }
             self.loaddata = function (id,clone) {
-                getajaxjson("@Url.Action("Get", "Organization")" + "?id=" + id+ "&IsClone="+clone, function (data) {
+                getajaxjson("@Url.Action("Get", "Neighborhood")" + "?id=" + id + "&IsClone=" + clone, function (data) {
                     ko.mapping.fromJS(data, {}, self.organization);
                 });
                 getajaxjson("@Url.Action("GetAllRegionList", "Helper")" + "?OblastID=" + self.organization.OblastID() , function (data) {

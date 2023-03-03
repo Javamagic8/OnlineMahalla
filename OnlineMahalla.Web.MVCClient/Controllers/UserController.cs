@@ -182,28 +182,6 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
         }
 
         [HttpPost]
-        public IActionResult UpdateUNS([FromBody] User user)
-        {
-            if (!_dataRepository.UserIsInRole("UserEdit"))
-                return BadRequest("Нет доступа");
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _dataRepository.UpdateUserUNS(user);
-                }
-                catch (Exception ex)
-                {
-                    return StatusCode(500, ex.Message);
-                }
-            }
-            else
-                return StatusCode(500, ModelState);
-            return new JsonResult(user);
-        }
-
-        [HttpPost]
         public IActionResult UpdateRegion([FromBody] User user)
         {
             if (!_dataRepository.UserIsInRole("UserEdit"))

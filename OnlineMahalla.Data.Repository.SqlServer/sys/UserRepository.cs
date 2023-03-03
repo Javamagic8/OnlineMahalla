@@ -254,31 +254,6 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             ts.Commit();
         }
 
-        public void UpdateUserUNS(User user)
-        {
-            using System.Data.SqlClient.SqlConnection myConn = new System.Data.SqlClient.SqlConnection(_connectionString);
-            myConn.Open();
-            using var ts = myConn.BeginTransaction();
-            string sql = "";
-
-            var list = user.IncomeModel.Where(x => x.Check).ToList();
-
-            if (list.Count > 0)
-            {
-                for (int i = 0; i < list.Count; i++)
-                {
-                    sql = "INSERT INTO [sys_UserIncomeUNC] ([UserID],[IncomeUNCID]) " +
-                             "VALUES (@UserID,@IncomeUNCID) SELECT [ID] FROM [sys_UserIncomeUNC] " +
-                             "WHERE @@ROWCOUNT > 0 and [ID] = scope_identity()";
-                    _databaseExt.ExecuteNonQuery(sql,
-                   new string[] { "@UserID", "@IncomeUNCID" },
-                   new object[] { user.ID, list[i].ID }, System.Data.CommandType.Text, ts);
-                }
-            }
-
-            ts.Commit();
-        }
-
         public void UpdateUserRegion(User user)
         {
             using System.Data.SqlClient.SqlConnection myConn = new System.Data.SqlClient.SqlConnection(_connectionString);

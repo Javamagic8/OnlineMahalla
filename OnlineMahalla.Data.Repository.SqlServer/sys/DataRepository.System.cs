@@ -90,7 +90,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             var data = _databaseExt.GetDataFromSql(@"SELECT [User].ID,[User].Name,[User].DisplayName,[User].DateOfModified,
                                                             [User].Email,[User].ExpirationDate,[User].CreatedUserID,[User].ModifiedUserID,
                                                             [User].StateID,[State].DisplayName as StateName,[User].AllowedIP,[User].LastIP,[User].LastAccessTime,
-                                                            [User].AccessCount,[User].TableTimeStamp,[User].NeighborhoodID,
+                                                            [User].AccessCount,[User].TableTimeStamp,[User].NeighborhoodID,[User].PNFL,[User].PhoneNumber,
                                                             [User].MobileAccessCount,[User].VerifyEDS,[User].LastActivityDate, Neighborhood.Name NeighborhoodName
                                                             FROM sys_User [User]
                                                             JOIN enum_State [State] ON [State].ID = [User].StateID
@@ -105,6 +105,8 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                 Email = data.Email,
                 ExpirationDate = data.ExpirationDate,
                 StateID = data.StateID,
+                PNFL = data.PNFL,
+                PhoneNumber = data.PhoneNumber,
                 StateName = data.StateName,
                 NeighborhoodName = data.NeighborhoodName,
                 NeighborhoodID = data.NeighborhoodID,

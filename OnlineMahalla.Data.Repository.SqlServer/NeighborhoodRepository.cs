@@ -2,151 +2,111 @@
 using OnlineMahalla.Common.Model.Models;
 using OnlineMahalla.Common.Model.Models.sys;
 using OnlineMahalla.Common.Utility;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace OnlineMahalla.Data.Repository.SqlServer
 {
     public partial class DataRepository : IDataRepository
     {
-        public PagedDataEx GetAdminOrganizationList(int ID, string INN, string Name, string Oblast, string Region, string HeaderOrganization, string Chapter, int OrganizationType, string Search, string Sort, string Order, int Offset, int Limit)
+        public PagedDataEx GetAdminNeighborhoodList(int ID, string INN, string Name, string Region, string District, int OrganizationType, string Search, string Sort, string Order, int Offset, int Limit)
         {
-            string sql = "SELECT usr.RegionID FROM sys_UserRegion usr WHERE usr.UserID=@UserID";
+            string sql = "SELECT UserDistrict.DistrictID FROM sys_UserDistrict UserDistrict WHERE UserDistrict.UserID=8";
             var userregionlist = _databaseExt.GetDataFromSql(sql,
                 new string[] { "@UserID" },
                 new object[] { UserID }, System.Data.CommandType.Text).ToList();
             PagedDataEx data = new PagedDataEx();
             Dictionary<string, object> sqlparamas = new Dictionary<string, object>();
-            string sqlselect = "SELECT";
-            sqlselect += " org.ID,";
-            sqlselect += " org.Name,";
-            sqlselect += " org.INN,";
-            sqlselect += " org.OblastID,";
-            sqlselect += " chap.Code [Chapter],";
-            sqlselect += " fin.DisplayName [FinancingLevel],";
-            sqlselect += " tre.Name	[TreasuryBranch],";
-            sqlselect += " reg.Name[Region],";
-            sqlselect += " usr1.Name [RestrictionModifiedUser],";
-            sqlselect += " obl.Name[Oblast],";
-            sqlselect += " org.Accounter,";
-            sqlselect += " oked.Code as OKED,";
-            sqlselect += " CASE WHEN recalcorg.IsRecalcNeed = 1 THEN 'Да' ELSE 'Нет' END IsRecalcNeed,";
-            sqlselect += " recalcorg.EndDate RecalcDate,";
-            sqlselect += " horg.Name HeaderOrganizationName,";
-            sqlselect += " centerorg.Name CentralOrganization,";
-            sqlselect += " OrganizationType.Name OrganizationType,";
-            sqlselect += " CASE WHEN org.StateID = '1' THEN 'Актив' ELSE 'Пассив' END [State],";
-            sqlselect += " CASE WHEN org.IsFullBudget = '1' THEN 'Да' ELSE 'Нет' END [IsFullBudget],";
-            sqlselect += " CASE WHEN org.Restriction = '1' THEN 'Да' ELSE 'Нет' END [Restriction]";
-            string sqlfrom = @" FROM info_Organization org 
-                                         LEFT JOIN info_Oblast obl ON obl.ID=org.OblastID
-                                         LEFT JOIN info_Region reg ON reg.ID=org.RegionID 
-                                         LEFT JOIN sys_User usr1 ON usr1.ID=org.RestrictionModifiedUserID 
-                                         LEFT JOIN info_Chapter chap ON chap.ID=org.ChapterID 
-                                         LEFT JOIN enum_FinancingLevel fin ON fin.ID=org.FinancingLevelID 
-                                         LEFT JOIN info_TreasuryBranch tre ON tre.ID=org.TreasuryBranchID 
-                                         LEFT JOIN info_OKONH oked ON oked.ID=org.OKONHID
-                                         LEFT JOIN info_OrganizationHeaderInfo headerorg ON headerorg.OrganizationID=org.ID AND headerorg.EndDate is null
-                                         LEFT JOIN info_HeaderOrganization horg ON horg.ID=headerorg.HeaderOrganizationID
-                                         LEFT JOIN enum_OrganizationType OrganizationType ON OrganizationType.ID=org.OrganizationTypeID
-                                         LEFT JOIN info_Organization centerorg ON centerorg.ID=org.CentralOrganizationID
-                                         LEFT JOIN WB_sys_Should_ReCalc_Org recalcorg ON recalcorg.OrganizationID=org.ID";
+            string sqlselect = @"SELECT 
+                                        Neighborhood.ID,
+                                        Neighborhood.Name,
+                                        Neighborhood.ChairmanName,
+                                        Neighborhood.CountFamily,
+                                        Region.Name RegionName,
+                                        District.Name DistrictName,
+                                        Neighborhood.CountHome,
+                                        Neighborhood.Address,
+                                        Neighborhood.PhoneNumber,
+                                        Neighborhood.INN,
+                                        OrganizationType.Name OrganizationType,
+                                        DistrictType.DisplayName DistrictType ";
+            string sqlfrom = @" FROM info_Neighborhood Neighborhood
+                                        JOIN info_Region Region ON Region.ID = Neighborhood.RegionID
+                                        JOIN info_District District ON District.ID = Neighborhood.DistrictID
+                                        join enum_DistrictType DistrictType ON DistrictType.ID = Neighborhood.DistrictTypeID
+                                        JOIN enum_OrganizationType OrganizationType ON OrganizationType.ID = Neighborhood.TypeOrganizationID ";
+            
             string sqlwhere = " WHERE 1=1";
-            string UserRegionID = "";
+            string UserDistrictID = "";
             switch (UserID)
             {
 
-                case 28877: UserRegionID = "6"; break;//Кошжанов Жаксылык Алимбаевич
-                case 27894: UserRegionID = "5"; break;//Паршинцев Н.В.
-                case 56: UserRegionID = "10"; break;//Хазраткулов С.
-                case 27895: UserRegionID = "8"; break;//Бобохолов Сайфиддин Холмуродович
-                case 366: UserRegionID = "0000"; break;//hilola 
-                case 29007: UserRegionID = "0000"; break;//Султанов Яшнар Бокижонович
-                case 41544: UserRegionID = "0000"; break;//Агевнина Т. Н.
-                case 92444: UserRegionID = "0000"; break;//Бегимов С. Ф.
-                case 86501: UserRegionID = "4"; break;//Мухамедов Замонжон Замирович
-                case 71856: UserRegionID = "11"; break;//Шопиев Зокир
-                case 28819: UserRegionID = "14"; break;//Жуманиязов Музаффар
-                case 28480: UserRegionID = "7"; break;//Рахимов Сардор Уралович
-                case 28458: UserRegionID = "13"; break;//Ахроров Жасурбек Абдутоирович
-                case 28151: UserRegionID = "3"; break;//Юсупов Акромжон Акылжонович
-                case 28028: UserRegionID = "12"; break;//Курбонов Хамза Холбутаевич
-                case 28025: UserRegionID = "0000"; break;//Сидиков Бекзод Бахрамович
-                case 26910: UserRegionID = "10"; break;//Шукуров Шерзод Мамарасулович
-                case 1583: UserRegionID = "9"; break;//Юлдашев Адхамжон Нурматжонович
-                case 1888: UserRegionID = "0000"; break;//Обид Абдукодиров
-                case 22412: UserRegionID = "0000"; break;//Фарход Мухамедкаримов
-                case 29388: UserRegionID = "0000"; break;//Хасанов А. Э.
-                case 29661: UserRegionID = "0000"; break;//Умиров Даврон
-                case 41503: UserRegionID = "0000"; break;//Узаков Хасан
-                case 91796: UserRegionID = "0000"; break;//Eshpolatov Kamol
-                case 92357: UserRegionID = "0000"; break;//Boymanov E
-                case 91775: UserRegionID = "0000"; break;//javohir
-                case 23071: UserRegionID = "0000"; break;//Тошев Ф.
+                case 28877: UserDistrictID = "6"; break;
+                
                 default:
-                    UserRegionID = "0";
+                    UserDistrictID = "0";
                     break;
             }
             bool check = false;
-            if (UserRegionID == "0" && UserIsInRole("FinancialAuthority"))
+            if (UserDistrictID == "0" && UserIsInRole("FinancialAuthority"))
             {
-                var list = _databaseExt.GetDataFromSql(@"select RegionID from sys_UserRegion where UserID=@UserID", new string[] { "@UserID" }, new object[] { UserID }).ToList();
+                var list = _databaseExt.GetDataFromSql(@"SELECT ID FROM sys_UserDistrict where UserID = @UserID", new string[] { "@UserID" }, new object[] { UserID }).ToList();
                 if (list.Count > 0)
                 {
-                    UserRegionID = String.Join(",", list.Select(x => x.RegionID).ToList());
-                    sqlwhere += " AND org.RegionID in(" + UserRegionID + ")";
+                    UserDistrictID = String.Join(",", list.Select(x => x.DistrictID).ToList());
+                    sqlwhere += " AND Neighborhood.DistrictID in(" + UserDistrictID + ")";
                 }
                 else
-                    sqlwhere += " AND org.RegionID in(" + 0 + ")";
+                    sqlwhere += " AND Neighborhood.DistrictID in(" + 0 + ")";
                 check = true;
 
             }
 
-            if ((UserRegionID.Length != 4 && UserRegionID != "0") && !check)  //&& !UserIsInRole("FinancialAuthority")
-                sqlwhere += " AND org.OblastID in( " + UserRegionID + ")";
+            if ((UserDistrictID.Length != 4 && UserDistrictID != "0") && !check)
+                sqlwhere += " AND Neighborhood.RegionID in( " + UserDistrictID + ")";
 
 
 
             if (userregionlist.Count() != 0)
             {
-                sqlfrom += ", sys_UserRegion usr ";
-                sqlwhere += " AND usr.RegionID=reg.ID AND usr.UserID=@UserID ";
+                sqlfrom += "JOIN sys_UserDistrict UserDistrict ON UserDistrict.DistrictID=District.ID ";
+                sqlwhere += " AND usr.UserID=@UserID ";
                 sqlparamas.Add("@UserID", UserID);
             }
             if (ID > 0)
             {
-                sqlwhere += " AND org.ID=@ID";
+                sqlwhere += " AND Neighborhood.ID=@ID";
                 sqlparamas.Add("@ID", ID);
             }
             if (!String.IsNullOrEmpty(Name))
             {
-                sqlwhere += " AND org.Name LIKE '%' + @Name + '%'";
+                sqlwhere += " AND Neighborhood.Name LIKE '%' + @Name + '%'";
                 sqlparamas.Add("@Name", Name);
             }
             if (!String.IsNullOrEmpty(INN) && INN.Length == 9)
             {
-                sqlwhere += " AND org.INN = @INN";
+                sqlwhere += " AND Neighborhood.INN = @INN";
                 sqlparamas.Add("@INN", INN);
-            }
-            if (!String.IsNullOrEmpty(Oblast))
-            {
-                sqlwhere += " AND obl.Name LIKE '%' + @Oblast + '%'";
-                sqlparamas.Add("@Oblast", Oblast);
             }
             if (!String.IsNullOrEmpty(Region))
             {
-                sqlwhere += " AND reg.Name LIKE '%' + @Region + '%'";
-                sqlparamas.Add("@Region", Region);
+                sqlwhere += " AND Region.Name LIKE '%' + @Region + '%'";
+                sqlparamas.Add("@District", District);
             }
-            if (!String.IsNullOrEmpty(HeaderOrganization))
+            if (!String.IsNullOrEmpty(Region))
             {
-                sqlfrom += ", info_HeaderOrganization hed";
-                sqlwhere += " AND org.HeaderOrganizationID=hed.ID AND hed.Name LIKE '%' + @HeaderOrganization + '%'";
-                sqlparamas.Add("@HeaderOrganization", HeaderOrganization);
+                sqlwhere += " AND District.Name LIKE '%' + @District + '%'";
+                sqlparamas.Add("@District", Region);
             }
-            string sqlcount = "SELECT Count(org.ID) " + sqlfrom + sqlwhere;
+
+            string sqlcount = "SELECT Count(Neighborhood.ID) " + sqlfrom + sqlwhere;
             if (!String.IsNullOrEmpty(Sort))
                 sqlwhere += " ORDER BY " + Sort + " " + (Order == "asc" ? " " : " DESC");
             else
-                sqlwhere += " ORDER BY org.ID DESC";
+                sqlwhere += " ORDER BY Neighborhood.ID DESC";
             if (Offset == 1)
                 Offset = 0;
             if (Limit > 0)
@@ -158,7 +118,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             return data;
         }
 
-        public Organization GetAdminOrganization(int ID, bool? IsClone = false)
+        public Organization GetAdminNeighborhood(int ID, bool? IsClone = false)
         {
             if (ID == 0)
                 ID = OrganizationID;
@@ -338,14 +298,14 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             return Organization;
         }
 
-        public dynamic GetAdminOrganizationRecalc(int ID)
+        public dynamic GetAdminNeighborhoodRecalc(int ID)
         {
             if (ID == 0)
                 ID = OrganizationID;
             return _databaseExt.GetFirstDataFromSql("SELECT IsRecalcNeed,EndDate Date FROM WB_sys_Should_ReCalc_Org WHERE OrganizationID=@OrganizationID", new string[] { "@OrganizationID" }, new object[] { ID });
         }
 
-        public dynamic GetAllOrganizationForIndicator()
+        public dynamic GetAllNeighborhoodForIndicator()
         {
             string sql = "SELECT ";
             sql += " ID,";
@@ -356,7 +316,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             return data;
         }
 
-        public Organization UpdateAdminOrganization(Organization organization)
+        public Organization UpdateAdminNeighborhood(Organization organization)
         {
             if (!UserIsInRole("OrganizationEdit"))
                 throw new Exception("Нет доступа.");
@@ -366,8 +326,8 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                 myConn.Open();
                 using (var ts = myConn.BeginTransaction())
                 {
-                    CheckOrganization(organization.INN);
-                    CheckOrganizationINN(organization.INN, organization.ID);
+                    CheckNeighborhood(organization.INN);
+                    CheckNeighborhoodINN(organization.INN, organization.ID);
 
                     string sql = "";
 
@@ -381,11 +341,11 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                         //if (oldinfo.Director != organization.Director)
                         //    LogDataHistory(InfoStruct.Organization, organization.ID, "Director", organization.Director, OrganizationID, UserID);
 
-                       // if (oldinfo.Accounter != organization.Accounter)
-                       //     LogDataHistory(InfoStruct.Organization, organization.ID, "Accounter", organization.Accounter, OrganizationID, UserID);
-                       //
-                       // if (oldinfo.INN != organization.INN)
-                         //   LogDataHistory(InfoStruct.Organization, organization.ID, "INN", organization.INN, OrganizationID, UserID);
+                        // if (oldinfo.Accounter != organization.Accounter)
+                        //     LogDataHistory(InfoStruct.Organization, organization.ID, "Accounter", organization.Accounter, OrganizationID, UserID);
+                        //
+                        // if (oldinfo.INN != organization.INN)
+                        //   LogDataHistory(InfoStruct.Organization, organization.ID, "INN", organization.INN, OrganizationID, UserID);
                     }
 
                     if (organization.ID == 0)
@@ -694,7 +654,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             return organization;
         }
 
-        public void FillOrganizationSettings(int organizationID, bool ReFill)
+        public void FillNeighborhoodSettings(int organizationID, bool ReFill)
         {
             using (System.Data.SqlClient.SqlConnection myConn = new System.Data.SqlClient.SqlConnection(_connectionString))
             {
@@ -853,7 +813,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             }
         }
 
-        public void RecalcAccAccountBookOrganization(int id, DateTime BeginDate, DateTime EndDate)
+        public void RecalcAccAccountBookNeighborhood(int id, DateTime BeginDate, DateTime EndDate)
         {
             using (System.Data.SqlClient.SqlConnection myConn = new System.Data.SqlClient.SqlConnection(_connectionString))
             {
@@ -870,7 +830,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             }
         }
 
-        public void RestrictionOrganization(int id)
+        public void RestrictionNeighborhood(int id)
         {
             if (!(UserIsInRole("DepartmentOfBudget") || UserIsInRole("FinancialAuthority")))
                 throw new Exception("Нет доступа.");
@@ -920,7 +880,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             ts.Commit();
         }
 
-        public PagedDataEx GetAdminOrganizationList2(int ID, string INN, string Name, string Oblast, string Region, string HeaderOrganization)
+        public PagedDataEx GetAdminNeighborhoodList2(int ID, string INN, string Name, string Oblast, string Region, string HeaderOrganization)
         {
             PagedDataEx data = new PagedDataEx();
             Dictionary<string, object> sqlparamas = new Dictionary<string, object>();
@@ -1048,7 +1008,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             return data;
         }
 
-        private void CheckOrganization(string INN)
+        private void CheckNeighborhood(string INN)
         {
             if (UserIsInRole("OrganizationDuplicate"))
                 return;
@@ -1060,7 +1020,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                 throw new Exception("Неправылные ИНН: " + INN);
         }
 
-        private void CheckOrganizationINN(string INN, int ID)
+        private void CheckNeighborhoodINN(string INN, int ID)
         {
             if (UserIsInRole("OrganizationDuplicate"))
                 return;

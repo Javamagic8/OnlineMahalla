@@ -28,4 +28,8 @@
     <ProjectReference Include="..\OnlineMahalla.Data.Repository.SqlServer\OnlineMahalla.Data.Repository.SqlServer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Organization\" />
+  </ItemGroup>
+
 </Project>
