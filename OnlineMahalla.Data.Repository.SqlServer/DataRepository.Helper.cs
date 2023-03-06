@@ -111,6 +111,33 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                              FROM [Online_Mahalla].[dbo].[enum_Status]";
             return _databaseExt.GetDataFromSql(sql, new string[] { }, new object[] { });
         }
+        public IEnumerable<dynamic> GetAllDistrict(int? RegionID)
+        {
+            string sql = "SELECT ID,Name FROM info_District ";
+            if (RegionID.HasValue && RegionID > 0)
+                sql += " WHERE RegionID=@RegionID";
+            return _databaseExt.GetDataFromSql(sql, new string[] { "@RegionID" }, new object[] { RegionID }).ToList();
+        }
+
+        public IEnumerable<dynamic> GetRegionList()
+        {
+            string sql = "SELECT ID,Name FROM info_Region ";
+            return _databaseExt.GetDataFromSql(sql, new string[] {}, new object[] { }).ToList();
+        }
+
+        public IEnumerable<dynamic> GetNeighborhoodList()
+        {
+            string sql = "SELECT top(100) ID, (INN + ' - ' + Name) Name FROM info_Neighborhood WHERE StateID=1";
+            return _databaseExt.GetDataFromSql(sql,
+                new string[] { },
+                new object[] { });
+        }
+
+        public IEnumerable<dynamic> GetTableList()
+        {
+            string sql = "SELECT ID,  DisplayName as Name FROM sys_Table where ID = 356";
+            return _databaseExt.GetDataFromSql(sql, new string[] { }, new object[] { });
+        }
 
     }
 }

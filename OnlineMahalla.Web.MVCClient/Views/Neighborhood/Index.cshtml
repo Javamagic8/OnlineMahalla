@@ -837,14 +837,14 @@
                 getajaxjson("@Url.Action("Get", "Neighborhood")" + "?id=" + id + "&IsClone=" + clone, function (data) {
                     ko.mapping.fromJS(data, {}, self.organization);
                 });
-                getajaxjson("@Url.Action("GetAllRegionList", "Helper")" + "?OblastID=" + self.organization.OblastID() , function (data) {
+                getajaxjson("@Url.Action("GetDistrictList", "Helper")" + "?DistrictID=" + self.organization.OblastID() , function (data) {
                     ko.mapping.fromJS(data, self.regionlist);
                 });
 
                 if (self.organization.OblastID() > 0){
                     self.oblastchange();
                 }
-                getajaxjson("@Url.Action("GetOblastList", "Helper")", function (data) {
+                getajaxjson("@Url.Action("GetRegionList", "Helper")", function (data) {
                     ko.mapping.fromJS(data, self.oblastlist);
                 });
 
@@ -854,13 +854,10 @@
                 getajaxjson("@Url.Action("GetOrganizationTypeList", "Helper")", function (data) {
                     ko.mapping.fromJS(data, self.organizationtypelist);
                 });
-                getajaxjson("@Url.Action("GetHeaderOrganizationList", "Helper")", function (data) {
-                    ko.mapping.fromJS(data, self.headerorganizationlist);
-                });
                 getajaxjson("@Url.Action("GetTableList", "Helper")", function (data) {
                     ko.mapping.fromJS(data, self.tablelist);
                 });
-                getajaxjson("@Url.Action("GetOrganizationList", "Helper")", function (data) {
+                getajaxjson("@Url.Action("GetNeighborhoodList", "Helper")", function (data) {
                     ko.mapping.fromJS(data, self.organizationlist);
                 });
             };

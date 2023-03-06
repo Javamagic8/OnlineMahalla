@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using OnlineMahalla.Common.Model.Interface;
+using OnlineMahalla.Data.Utility;
 using OnlineMahalla.Web.MVCClient;
 using OnlineMahalla.Web.MVCClient.Extentions;
 
@@ -35,8 +36,32 @@ namespace UZASBO.Web.MVCClient.Controllers
             return new JsonResult(_dataRepository.GetStateList());
         }
 
+        [HttpGet]
+        public IActionResult GetDistrictList(int? RegionID)
+        {
+            return new JsonResult(_dataRepository.GetAllDistrict(RegionID));
+        }
+        [HttpGet]
+        public IActionResult GetRegionList()
+        {
+            return new JsonResult(_dataRepository.GetRegionList());
+        }
 
+        [HttpGet]
+        public IActionResult GetNeighborhoodList()
+        {
+            return new JsonResult(_dataRepository.GetNeighborhoodList());
+        }
 
+        public IActionResult GetTableList()
+        {
+            return new JsonResult(_dataRepository.GetTableList());
+        }
 
+        [HttpGet]
+        public IActionResult GetOrganizationTypeList()
+        {
+            return new JsonResult(_dataRepository.GetOrganizationTypeList());
+        }
     }
 }
