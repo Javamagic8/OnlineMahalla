@@ -94,12 +94,12 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             if (!String.IsNullOrEmpty(Region))
             {
                 sqlwhere += " AND Region.Name LIKE '%' + @Region + '%'";
-                sqlparamas.Add("@District", District);
+                sqlparamas.Add("@Region", Region);
             }
-            if (!String.IsNullOrEmpty(Region))
+            if (!String.IsNullOrEmpty(District))
             {
                 sqlwhere += " AND District.Name LIKE '%' + @District + '%'";
-                sqlparamas.Add("@District", Region);
+                sqlparamas.Add("@District", District);
             }
 
             string sqlcount = "SELECT Count(Neighborhood.ID) " + sqlfrom + sqlwhere;

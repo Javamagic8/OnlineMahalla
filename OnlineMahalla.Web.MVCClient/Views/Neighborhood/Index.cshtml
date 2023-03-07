@@ -37,7 +37,7 @@
             <input id="filtername" style="font-size:13px;width:300px" class="form-control input-sm" placeholder="@SharedLocalizer["Name"]" />
         </div>
         <div class="input-group">
-            <input id="filteroblast" style="font-size:13px;width:200px" class="form-control input-sm" placeholder="@SharedLocalizer["Oblast"]" />
+            <input id="filterRegion" style="font-size:13px;width:200px" class="form-control input-sm" placeholder="@SharedLocalizer["Oblast"]" />
         </div>
         <div class="input-group">
             <input id="filterregion" style="font-size:13px;width:200px" class="form-control input-sm" placeholder="@SharedLocalizer["Region"]" />
@@ -732,7 +732,7 @@
             params.id = $('#filterid').val();
             params.inn = $('#filterinn').val();
             params.name = $('#filtername').val();
-            params.region = $('#filteroblast').val();
+            params.region = $('#filter').val();
             params.district = $('#filterregion').val();
             return params;
         }
@@ -1467,17 +1467,17 @@
             });
 
             $('#printRow3').click(function () {
-                console.log($('#filteroblast').val());
-                if ($('#filteroblast').val().length == 0)
+                console.log($('#filterRegion').val());
+                if ($('#filterRegion').val().length == 0)
                 alert('Viloyatni tanlang !!!');
-                window.location = "@Url.Action("PrintContractorList", "Report")" + "/?Oblast=" + $('#filteroblast').val();
+                window.location = "@Url.Action("PrintContractorList", "Report")" + "/?Oblast=" + $('#filterRegion').val();
             });
 
             $('#printRow2').click(function () {
                 window.location = "@Url.Action("GetOrganizationList", "Organization")"+ "/?ID=" + $('#filterid').val()
                 + "&INN=" + $('#filterinn').val() 
                 + "&Name=" + $('#filtername').val()
-                + "&Oblast=" + $('#filteroblast').val()
+                    + "&Oblast=" + $('#filterRegion').val()
                 + "&Region=" + $('#filterregion').val()
                 + "&HeaderOrganization=" + $('#filterheader').val()
                 ;
