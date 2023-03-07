@@ -135,7 +135,11 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="basic-addon3">@SharedLocalizer["Name"]</span>
                                             </div>
-                                            <input data-bind="value:role.Name,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="70" style="max-width:inherit" />
+                                            <input data-bind="value:nation.Name,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="70" style="max-width:inherit" />
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon4">@SharedLocalizer["DisplayName"]</span>
+                                            </div>
+                                            <input data-bind="value:nation.DisplayName,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="70" style="max-width:inherit" />
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-md-offset-4 col-md-10">
@@ -268,7 +272,7 @@
                                 <th style="text-align: center; position: sticky; top: -1px; width: auto">@SharedLocalizer["Name"]</th>
                             </tr>
                         </thead>
-                        <tbody data-bind="foreach:role.ModulesLeft">
+                        @*<tbody data-bind="foreach:role.ModulesLeft">
                             <!-- ko if: (1==1) -->
 
                             <tr>
@@ -289,7 +293,7 @@
                             </tr>
                             <!-- /ko -->
 
-                        </tbody>
+                        </tbody>*@
                     </table>
                 </div>
                 <div class='exchange-btns'>
@@ -321,7 +325,7 @@
                                 <th style="text-align: center; position: sticky; top: -1px; width: auto">@SharedLocalizer["Name"]</th>
                             </tr>
                         </thead>
-                        <tbody data-bind="foreach:role.ModulesRight">
+                        @*<tbody data-bind="foreach:role.ModulesRight">
                             <!-- ko if: (1==1) -->
 
                             <tr>
@@ -343,7 +347,7 @@
                             </tr>
                             <!-- /ko -->
 
-                        </tbody>
+                        </tbody>*@
                     </table>
                     </div>
                 </div>
@@ -491,9 +495,11 @@
             });
             $('#addRow').click(function () {
                 addRow();
+                console.log("Hammasi yaxshi");
             });
             $('#editRow').click(function () {
                 editRow();
+                console.log("Hammasi yaxshi");
             });
             $('#modulRow').click(function () {
                 $("#ihselectWindow").modal('show');
