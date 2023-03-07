@@ -1041,4 +1041,7 @@
   <data name="RusultETP" xml:space="preserve">
     <value>Результаты объявлений по проведённым государственным закупкам</value>
   </data>
+  <data name="Nation" xml:space="preserve">
+    <value>Нация</value>
+  </data>
 </root>

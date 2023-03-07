@@ -14,9 +14,9 @@ namespace OnlineMahalla.Common.Model.Models.info
         public int StatusID { get; set; }
         public int StateID { get; set; }
         public DateTime DateOfCreate { get; set; }
-        public DateTime DateOfModified { get; set; }
+        public DateTime? DateOfModified { get; set; }
         public int CreateUserID { get; set; }
-        public int ModifiedUserID { get; set; }
+        public int? ModifiedUserID { get; set; }
         
     }
 }

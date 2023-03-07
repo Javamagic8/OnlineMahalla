@@ -987,4 +987,7 @@
   <data name="RusultETP" xml:space="preserve">
     <value>Давлат харидларини амалга ошириш бўйича эълонлар натижалари</value>
   </data>
+  <data name="Nation" xml:space="preserve">
+    <value>Миллат</value>
+  </data>
 </root>

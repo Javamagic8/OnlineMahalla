@@ -621,8 +621,7 @@
   <data name="Names" xml:space="preserve">
     <value>Номи </value>
   </data>
-
-	<data name="NamesCon" xml:space="preserve">
+  <data name="NamesCon" xml:space="preserve">
     <value>Номи ёки СТИР</value>
   </data>
   <data name="Navoiy" xml:space="preserve">
@@ -4719,5 +4718,8 @@
   </data>
   <data name="CurrencyType" xml:space="preserve">
     <value>Конвертация типи</value>
+  </data>
+  <data name="Nation" xml:space="preserve">
+    <value>Миллат</value>
   </data>
 </root>
