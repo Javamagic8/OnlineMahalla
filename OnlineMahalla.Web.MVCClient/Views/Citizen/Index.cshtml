@@ -17,12 +17,12 @@
 </environment>
 <body>
     <div style="clear:both;"></div>
-    <h3 style="text-align:center">@SharedLocalizer["Employee"]</h3>
+    <h3 style="text-align:center">@SharedLocalizer["Citizen"]</h3>
     <div class="panel panel-primary"></div>
     <div id="custom-toolbar" class="bs-bars pull-center">
         <div class="form-group form-inline" align="center">
             <div class="input-group">
-                <input id="filtername" style="font-size:12px" class="form-control input-sm" placeholder="@SharedLocalizer["Employee"]" />
+                <input id="filtername" style="font-size:12px" class="form-control input-sm" placeholder="@SharedLocalizer["Citizen"]" />
             </div>
             <button id="refreshdata" class="btn btn-success btn-sm" data-toggle="popover" data-content="@SharedLocalizer["Refresh"]" data-trigger="hover"><span class="glyphicon glyphicon-refresh"></span></button>
             <div class="input-group">
@@ -50,17 +50,18 @@
            data-page-list="[50,100,150,200]"
            data-show-footer="false"
            data-side-pagination="server"
-           data-url="@Url.Action("GetList", "Employee")"
+           data-url="@Url.Action("GetList", "Citizen")"
            data-query-params="queryParams"
            class="table table-striped">
         <thead>
             <tr>
                 <th data-field="ID" data-align="center" data-valign="middle" data-sortable="true">@SharedLocalizer["ID"]</th>
-                <th data-field="Name" data-align="left" data-valign="middle" data-sortable="true">@SharedLocalizer["Name"]</th>
-                <th data-field="INN" data-align="center" data-valign="middle" data-sortable="true">@SharedLocalizer["INN"]</th>
-                <th data-field="Occupation" data-align="left" data-valign="middle" data-sortable="true">@SharedLocalizer["Occupation"]</th>
-                <th data-field="State" data-align="center" data-valign="middle" data-sortable="true">@SharedLocalizer["State"]</th>
-                <th data-field="Department" data-align="left" data-valign="middle" data-sortable="true">@SharedLocalizer["Department"]</th>
+                <th data-field="FullName" data-align="left" data-valign="middle" data-sortable="true">@SharedLocalizer["FullName"]</th>
+                <th data-field="PINFL" data-align="center" data-valign="middle" data-sortable="true">@SharedLocalizer["PINFL"]</th>
+                <th data-field="PhoneNumber" data-align="left" data-valign="middle" data-sortable="true">@SharedLocalizer["PhoneNumber"]</th>
+                <th data-field="AcademicDegree" data-align="center" data-valign="middle" data-sortable="true">@SharedLocalizer["AcademicDegree"]</th>
+                <th data-field="AcademicTitle" data-align="left" data-valign="middle" data-sortable="true">@SharedLocalizer["AcademicTitle"]</th>
+                <th data-field="Neighborhood" data-align="left" data-valign="middle" data-sortable="true">@SharedLocalizer["Neighborhood"]</th>
             </tr>
         </thead>
     </table>

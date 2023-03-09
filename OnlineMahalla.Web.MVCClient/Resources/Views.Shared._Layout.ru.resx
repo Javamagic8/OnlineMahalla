@@ -1044,4 +1044,7 @@
   <data name="Nation" xml:space="preserve">
     <value>Нация</value>
   </data>
+  <data name="Citizen" xml:space="preserve">
+    <value>Гражданин</value>
+  </data>
 </root>

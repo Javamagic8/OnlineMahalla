@@ -1,38 +1,54 @@
-﻿using OnlineMahalla.Common.Model.Interface;
+﻿using Microsoft.Extensions.Options;
+using OnlineMahalla.Common.Model.Interface;
 using OnlineMahalla.Common.Model.Models;
 using OnlineMahalla.Common.Model.Models.info;
+using OnlineMahalla.Common.Model.Models.sys;
 using OnlineMahalla.Common.Utility;
+using OnlineMahalla.Data.Model;
+using OnlineMahalla.Data.Utility;
 
 namespace OnlineMahalla.Data.Repository.SqlServer
 {
     public partial class DataRepository : IDataRepository
     {
-        public PagedDataEx GetEmployeeList(string Name, string Search, string Sort, string Order, int Offset, int Limit)
+        public PagedDataEx GeCitizenList(string Name, string Search, string Sort, string Order, int Offset, int Limit)
         {
             PagedDataEx data = new PagedDataEx();
             Dictionary<string, object> sqlparamas = new Dictionary<string, object>();
-            string sqlselect = "";
-            sqlselect += " SELECT";
-            sqlselect += " emp.ID,";
-            sqlselect += " emp.Name,";
-            sqlselect += " emp.Name NameCode,";
-            sqlselect += " emp.INN,";
-            sqlselect += " emp.Occupation,";
-            sqlselect += " st.DisplayName [State],";
-            sqlselect += " (Select dep.Name from hl_Department dep where emp.DepartmentID=dep.ID) Department";
-            string sqlfrom = " FROM hl_Employee emp, enum_State st";
-            string sqlwhere = " WHERE emp.OrganizationID=@OrganizationID AND emp.StateID=st.ID ";
-            sqlparamas.Add("@OrganizationID", OrganizationID);
+            string sqlselect = @"SELECT 
+                                        Citizen.ID ID,
+                                        Citizen.FullName,
+                                        Citizen.PINFL,
+                                        Citizen.PhoneNumber,
+                                        AcademicDegree.Name AcademicDegree,
+                                        AcademicTitle.Name AcademicTitle,
+                                        Neighborhood.Name Neighborhood ";
+
+            string sqlfrom = @" FROM hl_Citizen Citizen 
+                                     JOIN info_Nation Nationality ON Nationality.ID = Citizen.NationID
+                                     JOIN enum_Gender Gender ON Gender.ID = Citizen.GenderID
+                                     JOIN enum_Education Education ON Education.ID = Citizen.EducationID
+                                     JOIN enum_AcademicTitle AcademicTitle ON AcademicTitle.ID = Citizen.AcademicTitleID
+                                     JOIN enum_AcademicDegree AcademicDegree ON AcademicDegree.ID = Citizen.AcademicDegreeID
+                                     JOIN enum_Married Married ON Married.ID = Citizen.MarriedID
+                                     JOIN enum_CitizenEmployment CitizenEmployment ON CitizenEmployment.ID = Citizen.CitizenEmploymentID
+                                     JOIN info_Region Region ON Region.ID = Citizen.BirthRegionID
+                                     JOIN info_District District ON District.ID = Citizen.BirthDistrictID
+                                     JOIN info_Neighborhood Neighborhood ON Neighborhood.ID = Citizen.NeighborhoodID
+                                     JOIN enum_State [State] ON [State].ID = Citizen.StateID";
+            string sqlwhere = " WHERE Citizen.NeighborhoodID=@NeighborhoodID ";
+
+            sqlparamas.Add("@NeighborhoodID", NeighborhoodID);
             if (!String.IsNullOrEmpty(Name))
             {
-                sqlwhere += " AND emp.Name LIKE '%' + @Name + '%'";
-                sqlparamas.Add("@Name", Name);
+                sqlwhere += " AND Citizen.FullName LIKE '%' + @FullName + '%'";
+                sqlparamas.Add("@FullName", Name);
             }
-            string sqlcount = "SELECT Count(emp.ID)" + sqlfrom + sqlwhere;
+            string sqlcount = "SELECT Count(Citizen.ID)" + sqlfrom + sqlwhere;
             if (!String.IsNullOrEmpty(Sort))
                 sqlwhere += " ORDER BY " + Sort + " " + (Order == "asc" ? " " : " DESC");
             else
-                sqlwhere += " ORDER BY emp.ID " + (Order == "asc" ? " " : " DESC");
+                sqlwhere += " ORDER BY Citizen.ID " + (Order == "asc" ? " " : " DESC");
 
             if (Limit > 0)
                 sqlwhere += " OFFSET " + Offset + " ROWS FETCH NEXT " + Limit + " ROWS ONLY";
@@ -42,25 +58,37 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             data.total = (int)_databaseExt.ExecuteScalar(sqlcount, sqlparamas);
             return data;
         }
-        public Employee GetEmployee(int id)
+        public Citizen GetCitizen(int id)
         {
-            var data = _databaseExt.GetDataFromSql("SELECT * FROM [hl_Employee] WHERE ID=@ID", new string[] { "@ID" }, new object[] { id }).First();
-            Employee employee = new Employee()
+            
+            var data = _databaseExt.GetDataFromSql("SELECT * FROM hl_Citizen WHERE ID=@ID", new string[] { "@ID" }, new object[] { id }).First();
+            Citizen citizen = new Citizen()
             {
-                ID = data.ID,
-                Name = data.Name,
-                Occupation = data.Occupation,
-                StateID = data.StateID,
-                OrganizationID = data.OrganizationID,
-                DateOfModified = data.DateOfModified,
-                INN = data.INN,
-                DepartmentID = data.DepartmentID,
-                Department = data.DepartmentID > 0 ? _databaseExt.ExecuteScalar("SELECT Name FROM hl_Department WHERE ID=@DepartmentID", new string[] { "@DepartmentID" }, new object[] { data.DepartmentID }).ToString() : "",
+             ID = data.ID,
+             FirstName = data.FirstName,
+             LastName = data.LastName,
+             FamilyName = data.FamilyName,
+             PINFL = data.PINFL,
+             DateOfBirthday = data.DateOfBirthday,
+             NationID = data.NationID,
+             GenderID = data.GenderID,
+             EducationID = data.EducationID,
+             AcademicDegreeID = data.AcademicDegreeID,
+             AcademicTitleID = data.AcademicTitleID,
+             MarriedID = data.MarriedID,
+             CountChild = data.CountChild,
+             CitizenEmploymentID = data.CitizenEmploymentID,
+             IsLowIncome = data.IsLowIncome,
+             IsConvicted = data.IsConvicted,
+             BirthdayDistrictID = data.BirthdayDistrictID,
+             BirthdayRegionID = data.BirthdayRegionID,
+             MemberTypeFamilyId = data.MemberTypeFamilyID
             };
-            return employee;
+            return citizen;
         }
-        public void UpdateEmployee(Employee employee)
+        public void UpdateCitizen(Citizen citizen)
         {
+            Employee employee = new Employee();
             if (!UserIsInRole("EmployeeEdit"))
                 throw new Exception("Нет доступа.");
 

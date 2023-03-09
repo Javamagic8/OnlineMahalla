@@ -4722,4 +4722,7 @@
   <data name="Nation" xml:space="preserve">
     <value>Миллат</value>
   </data>
+  <data name="Citizen" xml:space="preserve">
+    <value>Фуқаро</value>
+  </data>
 </root>
