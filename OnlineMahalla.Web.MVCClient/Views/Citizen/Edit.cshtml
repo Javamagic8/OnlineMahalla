@@ -65,6 +65,99 @@
                     </div>
                 </div>
             </div>
+            <div class="form-horizontal">
+                <br />
+                <div class="form-group">
+                    <label class="col-md-3 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["F.I.O."]</label>
+                    <div class="col-md-3">
+                        <input placeholder="@SharedLocalizer["F.I.O."]" data-bind="value:employee.Name,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="50" style="max-width:inherit" />
+
+                    </div>
+                    <div class="col-md-1 col-md-offset-1" align="left" style="margin-left:-14px;padding-left:0px">
+                        <button type="button" id="btnselectdatahistoryFIO" class="btn btn-group btn-sm"><span class="glyphicon glyphicon-option-horizontal"></span></button>
+                    </div>
+                    <label class="col-md-1 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["INNorPINFL"]</label>
+                    <div class="col-md-1">
+                        <input placeholder="@SharedLocalizer["INNorPINFL"]" data-bind="value:employee.INN,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="100" style="max-width:inherit" />
+                    </div>
+                    <div class="col-md-1 col-md-offset-1" align="left" style="margin-left:-14px;padding-left:0px">
+                        <button type="button" id="btnselectdatahistoryINN" class="btn btn-group btn-sm"><span class="glyphicon glyphicon-option-horizontal"></span></button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["Occupation"]</label>
+                    <div class="col-md-3">
+                        <input placeholder="@SharedLocalizer["Occupation"]" data-bind="value:employee.Occupation,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="100" style="max-width:inherit" />
+                    </div>
+                    <div class="col-md-1 col-md-offset-1" align="left" style="margin-left:-14px;padding-left:0px">
+                    </div>
+                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["State"]</label>
+                    <div class="col-sm-1">
+                        <select data-bind='options: statelist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:employee.StateID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label" required style="font-size:13px">@SharedLocalizer["Department"]</label>
+                    <div class="col-sm-3">
+                        <select data-bind='options: departmentlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:employee.DepartmentID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
+                    </div>
+                    <div class="col-md-1 col-md-offset-1" align="left" style="margin-left:-14px;padding-left:0px">
+                        <button type="button" id="btnselectdatahistoryDepartment" class="btn btn-group btn-sm"><span class="glyphicon glyphicon-option-horizontal"></span></button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-horizontal">
+                <br />
+                <div class="form-group">
+                    
+                    <label class="col-sm-1 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["F.I.O."]</label>
+                    <div class="col-md-1">
+                        <input placeholder="@SharedLocalizer["F.I.O."]" data-bind="value:employee.Name,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="50" style="max-width:inherit" />
+
+                    </div>
+                    <div class="col-md-1 col-md-offset-1" align="left" style="margin-left:-14px;padding-left:0px">
+                        <button type="button" id="btnselectdatahistoryFIO" class="btn btn-group btn-sm"><span class="glyphicon glyphicon-option-horizontal"></span></button>
+                    </div>
+                    
+                    <label class="col-md-1 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["INNorPINFL"]</label>
+                    <div class="col-md-1">
+                        <input placeholder="@SharedLocalizer["INNorPINFL"]" data-bind="value:employee.INN,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="100" style="max-width:inherit" />
+                    </div>
+                    <div class="col-md-1 col-md-offset-1" align="left" style="margin-left:-14px;padding-left:0px">
+                        <button type="button" id="btnselectdatahistoryINN" class="btn btn-group btn-sm"><span class="glyphicon glyphicon-option-horizontal"></span></button>
+                    </div>
+                    
+                    <label class="col-md-2 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["F.I.O."]</label>
+                    <div class="col-md-2">
+                        <input placeholder="@SharedLocalizer["F.I.O."]" data-bind="value:employee.Name,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="50" style="max-width:inherit" />
+
+                    </div>
+                    <div class="col-md-1 col-md-offset-1" align="left" style="margin-left:-14px;padding-left:0px">
+                        <button type="button" id="btnselectdatahistoryFIO" class="btn btn-group btn-sm"><span class="glyphicon glyphicon-option-horizontal"></span></button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["Occupation"]</label>
+                    <div class="col-md-3">
+                        <input placeholder="@SharedLocalizer["Occupation"]" data-bind="value:employee.Occupation,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="100" style="max-width:inherit" />
+                    </div>
+                    <div class="col-md-1 col-md-offset-1" align="left" style="margin-left:-14px;padding-left:0px">
+                    </div>
+                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["State"]</label>
+                    <div class="col-sm-1">
+                        <select data-bind='options: statelist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:employee.StateID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label" required style="font-size:13px">@SharedLocalizer["Department"]</label>
+                    <div class="col-sm-3">
+                        <select data-bind='options: departmentlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:employee.DepartmentID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
+                    </div>
+                    <div class="col-md-1 col-md-offset-1" align="left" style="margin-left:-14px;padding-left:0px">
+                        <button type="button" id="btnselectdatahistoryDepartment" class="btn btn-group btn-sm"><span class="glyphicon glyphicon-option-horizontal"></span></button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

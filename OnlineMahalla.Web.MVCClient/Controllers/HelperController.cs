@@ -63,5 +63,57 @@ namespace UZASBO.Web.MVCClient.Controllers
         {
             return new JsonResult(_dataRepository.GetOrganizationTypeList());
         }
+
+        [HttpGet]
+        public IActionResult GetNationList(int id)
+        {
+            return new JsonResult(_dataRepository.GetStateList());
+        }
+        [HttpGet]
+        public IActionResult GetGenderList(int id)
+        {
+            return new JsonResult(_dataRepository.GetStateList());
+        }
+        [HttpGet]
+        public IActionResult GetEducationList(int id)
+        {
+            return new JsonResult(_dataRepository.GetStateList());
+        }
+        [HttpGet]
+        public IActionResult GetAcademicDegreeList(int id)
+        {
+            return new JsonResult(_dataRepository.GetStateList());
+        }
+        [HttpGet]
+        public IActionResult GetAcademicTitleList(int id)
+        {
+            return new JsonResult(_dataRepository.GetStateList());
+        }
+        [HttpGet]
+        public IActionResult GetMarriedList(int id)
+        {
+            return new JsonResult(_dataRepository.GetStateList());
+        }
+        [HttpGet]
+        public IActionResult GetCitizenEmploymentList(int id)
+        {
+            return new JsonResult(_dataRepository.GetStateList());
+        }
+        [HttpGet]
+        public IActionResult GetRegionList(int id)
+        {
+            return new JsonResult(_dataRepository.GetStateList());
+        }
+        [HttpGet]
+        public IActionResult GetDistrictList(int id)
+        {
+            return new JsonResult(_dataRepository.GetStateList());
+        }
+        [HttpGet]
+        public IActionResult GetMemberTypeFamilyList(int id)
+        {
+            return new JsonResult(_dataRepository.GetStateList());
+        }
+
     }
 }
