@@ -12,7 +12,7 @@ namespace OnlineMahalla.Common.Model.Interface
     public partial interface IDataRepository
     {
         PagedDataEx GeCitizenList(string Name, string Search, string Sort, string Order, int Offset, int Limit);
-        Citizen GetCitizen(int id);
+        Citizen GetCitizen(int? id);
         void UpdateCitizen(Citizen citizen);
     }
 }

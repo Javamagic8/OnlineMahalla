@@ -39,14 +39,23 @@ namespace OnlineMahalla.Common.Model.Models.info
         public int CountChild { get; set; } = 0;
 
         public int CitizenEmploymentID { get; set; }
+        public bool IsCheckCityzen { get; set; }
 
         public bool IsLowIncome { get; set; }
 
+        public string PhoneNumber { get; set; }
+
+        public bool IsForeignCitizen { get; set; }
+
         public bool IsConvicted { get; set; }
+
+        public int StateID { get; set; }
 
         public int BirthdayRegionID { get; set; }
 
         public int BirthdayDistrictID { get; set; }
+
+        public string BirthPlace { get; set; }
 
         public int MemberTypeFamilyId { get; set; }
 

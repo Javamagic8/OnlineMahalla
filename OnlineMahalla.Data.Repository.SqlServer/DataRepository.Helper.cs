@@ -43,9 +43,9 @@ namespace OnlineMahalla.Data.Repository.SqlServer
         public IEnumerable<dynamic> GetAcademicDegreeList()
         {
             string sql = @"SELECT [ID]
-    `                            ,[Name]
-    `                            ,[DisplayName]
-    `                        FROM [Online_Mahalla].[dbo].[enum_AcademicDegree]";
+                                ,[Name]
+                                ,[DisplayName]
+                            FROM [Online_Mahalla].[dbo].[enum_AcademicDegree]";
             return _databaseExt.GetDataFromSql(sql, new string[] { }, new object[] { });
         }
 
@@ -122,7 +122,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
         public IEnumerable<dynamic> GetRegionList()
         {
             string sql = "SELECT ID,Name FROM info_Region ";
-            return _databaseExt.GetDataFromSql(sql, new string[] {}, new object[] { }).ToList();
+            return _databaseExt.GetDataFromSql(sql, new string[] { }, new object[] { }).ToList();
         }
 
         public IEnumerable<dynamic> GetNeighborhoodList()
@@ -136,6 +136,20 @@ namespace OnlineMahalla.Data.Repository.SqlServer
         public IEnumerable<dynamic> GetTableList()
         {
             string sql = "SELECT ID,  DisplayName as Name FROM sys_Table where ID = 356";
+            return _databaseExt.GetDataFromSql(sql, new string[] { }, new object[] { });
+        }
+        public IEnumerable<dynamic> GetNationList()
+        {
+            string sql = @"SELECT [ID]
+                                 ,[Name]
+                                 ,[DisplayName]
+                                 ,[StatusID]
+                                 ,[StateID]
+                                 ,[DateOfCreate]
+                                 ,[DateOfModified]
+                                 ,[CreateUserID]
+                                 ,[ModifiedUserID]
+                             FROM[dbo].[info_Nation]";
             return _databaseExt.GetDataFromSql(sql, new string[] { }, new object[] { });
         }
 

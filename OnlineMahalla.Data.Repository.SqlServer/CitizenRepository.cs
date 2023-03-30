@@ -58,37 +58,39 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             data.total = (int)_databaseExt.ExecuteScalar(sqlcount, sqlparamas);
             return data;
         }
-        public Citizen GetCitizen(int id)
+        public Citizen GetCitizen(int? id)
         {
-            
+
             var data = _databaseExt.GetDataFromSql("SELECT * FROM hl_Citizen WHERE ID=@ID", new string[] { "@ID" }, new object[] { id }).First();
             Citizen citizen = new Citizen()
             {
-             ID = data.ID,
-             FirstName = data.FirstName,
-             LastName = data.LastName,
-             FamilyName = data.FamilyName,
-             PINFL = data.PINFL,
-             DateOfBirthday = data.DateOfBirthday,
-             NationID = data.NationID,
-             GenderID = data.GenderID,
-             EducationID = data.EducationID,
-             AcademicDegreeID = data.AcademicDegreeID,
-             AcademicTitleID = data.AcademicTitleID,
-             MarriedID = data.MarriedID,
-             CountChild = data.CountChild,
-             CitizenEmploymentID = data.CitizenEmploymentID,
-             IsLowIncome = data.IsLowIncome,
-             IsConvicted = data.IsConvicted,
-             BirthdayDistrictID = data.BirthdayDistrictID,
-             BirthdayRegionID = data.BirthdayRegionID,
-             MemberTypeFamilyId = data.MemberTypeFamilyID
+                ID = data.ID,
+                FirstName = data.FirstName,
+                LastName = data.LastName,
+                FamilyName = data.FamilyName,
+                PINFL = data.PINFL,
+                DateOfBirthday = data.DateOfBirth,
+                NationID = data.NationID,
+                GenderID = data.GenderID,
+                EducationID = data.EducationID,
+                AcademicDegreeID = data.AcademicDegreeID,
+                AcademicTitleID = data.AcademicTitleID,
+                MarriedID = data.MarriedID,
+                CountChild = data.CountChild,
+                CitizenEmploymentID = data.CitizenEmploymentID,
+                IsLowIncome = data.IsLowIncome,
+                IsConvicted = data.IsConvicted,
+                BirthPlace = data.BithPlace,
+                StateID = data.StateID,
+                PhoneNumber = data.PhoneNumber,
+                BirthdayDistrictID = data.BirthDistrictID,
+                BirthdayRegionID = data.BirthRegionID,
+                MemberTypeFamilyId = data.MemberTypeFamilyID
             };
             return citizen;
         }
         public void UpdateCitizen(Citizen citizen)
         {
-            Employee employee = new Employee();
             if (!UserIsInRole("EmployeeEdit"))
                 throw new Exception("Нет доступа.");
 
@@ -97,71 +99,74 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                 myConn.Open();
                 using (var ts = myConn.BeginTransaction())
                 {
-                    //if (employee.INN != "000000000")
-                    //{
-                    if (employee.INN == "" || employee.INN == null || employee.INN.Length != 14)
+                    if (citizen.PINFL == "" || citizen.PINFL == null || citizen.PINFL.Length != 14)
                         throw new Exception("Длина PINFL не 14 символов");
 
-                    if (!NumberToWord.IsNumber(employee.INN))
+                    if (!NumberToWord.IsNumber(citizen.PINFL))
                         throw new Exception("В PINFL не цифровые символы");
 
-                    //if (!CheckModelUtil.CheckINNAlgorithm(employee.INN) /*|| (employee.INN.Substring(0, 1) != "4" && employee.INN.Substring(0, 1) != "5" && employee.INN.Substring(0, 1) != "6")*/)
-                    //    throw new Exception("Неправильные ИНН. Зайдите my.soliq.uz раздел: Узнайте свой ИНН (http://my.soliq.uz)");
 
-                    string sql0 = "SELECT ID FROM [hl_Employee] WHERE ID<>@ID AND INN=@INN  AND OrganizationID=@OrganizationID";
+                    string sql0 = "SELECT ID FROM [hl_Citizen] WHERE ID<>@ID AND PINFL=@PINFL  AND NeighborhoodID=@NeighborhoodID";
 
                     var q = _databaseExt.GetDataFromSql(sql0,
-                        new string[] { "@ID", "@INN", "@OrganizationID" },
-                        new object[] { employee.ID, employee.INN, OrganizationID }).Any();
+                        new string[] { "@ID", "@PINFL", "@NeighborhoodID" },
+                        new object[] { citizen.ID, citizen.PINFL, NeighborhoodID }).Any();
                     if (q)
-                        throw new Exception("Сотрудник с этим PINFL(" + employee.INN + ") уже существует.");
+                        throw new Exception("Сотрудник с этим PINFL(" + citizen.PINFL + ") уже существует.");
                     //}
 
-                    string sql2 = "SELECT ID FROM [hl_Employee] WHERE ID<>@ID AND Name=@Name  AND OrganizationID=@OrganizationID";
-
-                    var v = _databaseExt.GetDataFromSql(sql2,
-                        new string[] { "@ID", "@Name", "@OrganizationID" },
-                        new object[] { employee.ID, employee.Name, OrganizationID }).Any();
-                    if (v)
-                        throw new Exception("Этот сотрудник уже добавлен.");
-
                     //int ID = 0;
-                    if (employee.ID == 0)
+                    if (citizen.ID == 0)
                     {
-                        string sql = "INSERT INTO [hl_Employee] ([Name],[Occupation],[StateID],[OrganizationID],[INN],[DepartmentID],[DateOfModified]) VALUES (@Name,@Occupation,@StateID,@OrganizationID,@INN,@DepartmentID,GETDATE()) select [ID] FROM [hl_Employee] WHERE @@ROWCOUNT > 0 and [ID] = scope_identity()";
+                        string sql = @"INSERT INTO [dbo].[hl_Citizen]
+                                                   ([FirstName],[LastName],[FamilyName],[FullName],[FIOTranslate],[PINFL],[DateOfBirth]
+                                                   ,[NationID],[GenderID],[EducationID],[AcademicDegreeID],[AcademicTitleID],[PhoneNumber]
+                                                   ,[MarriedID],[IsForeignCitizen],[CountChild],[CitizenEmploymentID],[IsLowIncome]
+                                                   ,[IsConvicted],[IsCheckCityzen],[BirthRegionID],[BirthDistrictID],[BithPlace]
+                                                   ,[NeighborhoodID],[CreateUserID])
+                                             VALUES
+                                                   (@FirstName,@LastName,@FamilyName,@FullName,@FIOTranslate,@PINFL,@DateOfBirth
+                                                   ,@NationID,@GenderID,@EducationID,@AcademicDegreeID,@AcademicTitleID,@PhoneNumber
+                                                   ,@MarriedID,@IsForeignCitizen,@CountChild,@CitizenEmploymentID,@IsLowIncome
+                                                   ,@IsConvicted,@IsCheckCityzen,@BirthRegionID,@BirthDistrictID,@BithPlace
+                                                   ,@NeighborhoodID,@CreateUserID) select [ID] FROM [hl_Citizen] WHERE @@ROWCOUNT > 0 and [ID] = scope_identity()";
                         var NewID = _databaseExt.ExecuteScalar(sql,
-                            new string[] { "Name", "@Occupation", "@StateID", "@OrganizationID", "@INN", "@DepartmentID" },
-                            new object[] { employee.Name, employee.Occupation, employee.StateID, OrganizationID, employee.INN, employee.DepartmentID }, System.Data.CommandType.Text, ts);
-                        employee.ID = Convert.ToInt32(NewID);
+                            new string[] {"@FirstName","@LastName","@FamilyName","@FullName","@FIOTranslate","@PINFL","@DateOfBirth"
+                                                   ,"@NationID","@GenderID","@EducationID","@AcademicDegreeID","@AcademicTitleID","@PhoneNumber"
+                                                   ,"@MarriedID","@IsForeignCitizen","@CountChild","@CitizenEmploymentID","@IsLowIncome"
+                                                   ,"@IsConvicted","@IsCheckCityzen","@BirthRegionID","@BirthDistrictID","@BithPlace"
+                                                   ,"@NeighborhoodID","@CreateUserID"},
+                            new object[] { citizen.FirstName,citizen.LastName,citizen.FamilyName,citizen.FirstName +" " + citizen.LastName + " " + citizen.FamilyName,citizen.FirstName +" " + citizen.LastName + " " + citizen.FamilyName,citizen.PINFL,citizen.DateOfBirthday
+                                                   ,citizen.NationID,citizen.GenderID,citizen.EducationID,citizen.AcademicDegreeID,citizen.AcademicTitleID,citizen.PhoneNumber
+                                                   ,citizen.MarriedID,citizen.IsForeignCitizen,citizen.CountChild,citizen.CitizenEmploymentID,citizen.IsLowIncome
+                                                   ,citizen.IsConvicted,citizen.IsCheckCityzen,citizen.BirthdayRegionID,citizen.BirthdayDistrictID,citizen.BirthPlace
+                                                   ,NeighborhoodID,UserID}, System.Data.CommandType.Text, ts);
+                        citizen.ID = Convert.ToInt32(NewID);
                     }
                     else
                     {
-                        string sql1 = "SELECT Name FROM hl_Department WHERE ID=@DepartmentID";
-                        var Department1 = _databaseExt.ExecuteScalar(sql1,
-                            new string[] { "@DepartmentID" },
-                            new object[] { employee.DepartmentID }, System.Data.CommandType.Text, ts);
-
-                        Employee currentemp = GetEmployee(employee.ID);
-                        if (employee.Name != currentemp.Name)
-                            LogDataHistory(HelperStruct.Employee, employee.ID, "Name", currentemp.Name + "--->" + employee.Name, OrganizationID, UserID);
-                        if (employee.INN != currentemp.INN)
-                            LogDataHistory(HelperStruct.Employee, employee.ID, "INN", currentemp.INN + "--->" + employee.INN, OrganizationID, UserID);
-                        if (employee.DepartmentID != currentemp.DepartmentID)
-                            LogDataHistory(HelperStruct.Employee, employee.ID, "DepartmentID", currentemp.Department + "--->" + Department1, OrganizationID, UserID);
-
-
-                        string sql = "UPDATE [hl_Employee] SET [Name]=@Name, [Occupation]=@Occupation, [StateID]=@StateID, [INN]=@INN, [DepartmentID]=@DepartmentID, [DateOfModified]=GETDATE() WHERE ID=@ID ";
+                        string sql = @"UPDATE [dbo].[hl_Citizen]
+                                                      SET [FirstName] = @FirstName,[LastName] = @LastName,[FamilyName] = @FamilyName
+                                                         ,[FullName] = @FullName,[FIOTranslate] = @FIOTranslate,[PINFL] = @PINFL
+                                                         ,[DateOfBirth] = @DateOfBirth,[NationID] = @NationID,[GenderID] = @GenderID
+                                                         ,[EducationID] = @EducationID,[AcademicDegreeID] = @AcademicDegreeID,[AcademicTitleID] = @AcademicTitleID
+                                                         ,[PhoneNumber] = @PhoneNumber,[MarriedID] = @MarriedID,[IsForeignCitizen] = @IsForeignCitizen
+                                                         ,[CountChild] = @CountChild,[CitizenEmploymentID] = @CitizenEmploymentID,[IsLowIncome] = @IsLowIncome
+                                                         ,[IsConvicted] = @IsConvicted,[IsCheckCityzen] = @IsCheckCityzen,[BirthRegionID] = @BirthRegionID
+                                                         ,[BirthDistrictID] = @BirthDistrictID,[BithPlace] = @BithPlace,[StateID] = @StateID
+                                                         ,[DateOfModified] = GETDATE(),[ModifiedUserID] = @ModifiedUserID
+                                                    WHERE ID = @ID";
                         _databaseExt.ExecuteNonQuery(sql,
-                            new string[] { "@Name", "@Occupation", "StateID", "@INN", "DepartmentID", "@ID" },
-                            new object[] { employee.Name, employee.Occupation, employee.StateID, employee.INN, employee.DepartmentID, employee.ID }, System.Data.CommandType.Text, ts);
-                        var resPersonInfo = _databaseExt.GetFirstDataFromSql("SELECT ID FROM hl_ResponsiblePerson WHERE OrganizationID=@OrganizationID AND EmployeeID=@EmployeeID", new string[] { "@OrganizationID", "@EmployeeID" }, new object[] { OrganizationID, employee.ID }, System.Data.CommandType.Text, ts);
-                        if (resPersonInfo != null)
-                        {
-                            _databaseExt.ExecuteNonQuery("UpdateSubCountName",
-       new string[] { "@Value", "@TableID", "@Name" },
-       new object[] { resPersonInfo.ID, HelperStruct.ResponsiblePerson, employee.Name }, System.Data.CommandType.StoredProcedure, ts);
-                        }
-
+                            new string[] {                "@FirstName","@LastName","@FamilyName"
+                                                         ,"@FullName","@FIOTranslate","@PINFL"
+                                                         ,"@DateOfBirth","@NationID","@GenderID"
+                                                         ,"@EducationID","@AcademicDegreeID","@AcademicTitleID"
+                                                         ,"@PhoneNumber","@MarriedID","@IsForeignCitizen"
+                                                         ,"@CountChild","@CitizenEmploymentID","@IsLowIncome"
+                                                         ,"@IsConvicted","@IsCheckCityzen","@BirthRegionID"
+                                                         ,"@BirthDistrictID","@BithPlace","@StateID"
+                                                         ,"@ModifiedUserID","@ID"},
+                            new object[] { citizen.FirstName, citizen.LastName, citizen.FamilyName, citizen.FirstName + " " + citizen.LastName + " " + citizen.FamilyName, citizen.FirstName + " " + citizen.LastName + " " + citizen.FamilyName, citizen.PINFL, citizen.DateOfBirthday, citizen.NationID, citizen.GenderID, citizen.EducationID, citizen.AcademicDegreeID, citizen.AcademicTitleID, citizen.PhoneNumber, citizen.MarriedID, citizen.IsForeignCitizen, citizen.CountChild, citizen.CitizenEmploymentID, citizen.IsLowIncome, citizen.IsConvicted, citizen.IsCheckCityzen, citizen.BirthdayRegionID, citizen.BirthdayDistrictID, citizen.BirthPlace, citizen.StateID, UserID, citizen.ID }, System.Data.CommandType.Text, ts);
                     }
                     ts.Commit();
                 }

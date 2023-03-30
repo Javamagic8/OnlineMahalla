@@ -22,142 +22,118 @@
     <div class="row">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h2 class="panel-title" style="text-align:center"><b>@SharedLocalizer["Employee"]</b></h2>
+                <h2 class="panel-title" style="text-align:center"><b>@SharedLocalizer["Citizen"]</b></h2>
             </div>
             <div class="form-horizontal">
                 <br />
                 <div class="form-group">
-                    <label class="col-md-3 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["F.I.O."]</label>
-                    <div class="col-md-3">
-                        <input placeholder="@SharedLocalizer["F.I.O."]" data-bind="value:employee.Name,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="50" style="max-width:inherit" />
-
-                    </div>
-                    <div class="col-md-1 col-md-offset-1" align="left" style="margin-left:-14px;padding-left:0px">
-                        <button type="button" id="btnselectdatahistoryFIO" class="btn btn-group btn-sm"><span class="glyphicon glyphicon-option-horizontal"></span></button>
-                    </div>
-                    <label class="col-md-1 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["INNorPINFL"]</label>
-                    <div class="col-md-1">
-                        <input placeholder="@SharedLocalizer["INNorPINFL"]" data-bind="value:employee.INN,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="100" style="max-width:inherit" />
-                    </div>
-                    <div class="col-md-1 col-md-offset-1" align="left" style="margin-left:-14px;padding-left:0px">
-                        <button type="button" id="btnselectdatahistoryINN" class="btn btn-group btn-sm"><span class="glyphicon glyphicon-option-horizontal"></span></button>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["Occupation"]</label>
-                    <div class="col-md-3">
-                        <input placeholder="@SharedLocalizer["Occupation"]" data-bind="value:employee.Occupation,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="100" style="max-width:inherit" />
-                    </div>
-                    <div class="col-md-1 col-md-offset-1" align="left" style="margin-left:-14px;padding-left:0px">
-                    </div>
-                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["State"]</label>
-                    <div class="col-sm-1">
-                        <select data-bind='options: statelist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:employee.StateID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label" required style="font-size:13px">@SharedLocalizer["Department"]</label>
-                    <div class="col-sm-3">
-                        <select data-bind='options: departmentlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:employee.DepartmentID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
-                    </div>
-                    <div class="col-md-1 col-md-offset-1" align="left" style="margin-left:-14px;padding-left:0px">
-                        <button type="button" id="btnselectdatahistoryDepartment" class="btn btn-group btn-sm"><span class="glyphicon glyphicon-option-horizontal"></span></button>
-                    </div>
-                </div>
-            </div>
-            <div class="form-horizontal">
-                <br />
-                <div class="form-group">
-                    <label class="col-md-3 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["F.I.O."]</label>
-                    <div class="col-md-3">
-                        <input placeholder="@SharedLocalizer["F.I.O."]" data-bind="value:employee.Name,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="50" style="max-width:inherit" />
-
-                    </div>
-                    <div class="col-md-1 col-md-offset-1" align="left" style="margin-left:-14px;padding-left:0px">
-                        <button type="button" id="btnselectdatahistoryFIO" class="btn btn-group btn-sm"><span class="glyphicon glyphicon-option-horizontal"></span></button>
-                    </div>
-                    <label class="col-md-1 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["INNorPINFL"]</label>
-                    <div class="col-md-1">
-                        <input placeholder="@SharedLocalizer["INNorPINFL"]" data-bind="value:employee.INN,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="100" style="max-width:inherit" />
-                    </div>
-                    <div class="col-md-1 col-md-offset-1" align="left" style="margin-left:-14px;padding-left:0px">
-                        <button type="button" id="btnselectdatahistoryINN" class="btn btn-group btn-sm"><span class="glyphicon glyphicon-option-horizontal"></span></button>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["Occupation"]</label>
-                    <div class="col-md-3">
-                        <input placeholder="@SharedLocalizer["Occupation"]" data-bind="value:employee.Occupation,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="100" style="max-width:inherit" />
-                    </div>
-                    <div class="col-md-1 col-md-offset-1" align="left" style="margin-left:-14px;padding-left:0px">
-                    </div>
-                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["State"]</label>
-                    <div class="col-sm-1">
-                        <select data-bind='options: statelist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:employee.StateID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label" required style="font-size:13px">@SharedLocalizer["Department"]</label>
-                    <div class="col-sm-3">
-                        <select data-bind='options: departmentlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:employee.DepartmentID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
-                    </div>
-                    <div class="col-md-1 col-md-offset-1" align="left" style="margin-left:-14px;padding-left:0px">
-                        <button type="button" id="btnselectdatahistoryDepartment" class="btn btn-group btn-sm"><span class="glyphicon glyphicon-option-horizontal"></span></button>
-                    </div>
-                </div>
-            </div>
-            <div class="form-horizontal">
-                <br />
-                <div class="form-group">
-                    
-                    <label class="col-sm-1 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["F.I.O."]</label>
-                    <div class="col-md-1">
-                        <input placeholder="@SharedLocalizer["F.I.O."]" data-bind="value:employee.Name,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="50" style="max-width:inherit" />
-
-                    </div>
-                    <div class="col-md-1 col-md-offset-1" align="left" style="margin-left:-14px;padding-left:0px">
-                        <button type="button" id="btnselectdatahistoryFIO" class="btn btn-group btn-sm"><span class="glyphicon glyphicon-option-horizontal"></span></button>
-                    </div>
-                    
-                    <label class="col-md-1 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["INNorPINFL"]</label>
-                    <div class="col-md-1">
-                        <input placeholder="@SharedLocalizer["INNorPINFL"]" data-bind="value:employee.INN,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="100" style="max-width:inherit" />
-                    </div>
-                    <div class="col-md-1 col-md-offset-1" align="left" style="margin-left:-14px;padding-left:0px">
-                        <button type="button" id="btnselectdatahistoryINN" class="btn btn-group btn-sm"><span class="glyphicon glyphicon-option-horizontal"></span></button>
-                    </div>
-                    
-                    <label class="col-md-2 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["F.I.O."]</label>
+                    <label class="col-md-1 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["Name"]</label>
                     <div class="col-md-2">
-                        <input placeholder="@SharedLocalizer["F.I.O."]" data-bind="value:employee.Name,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="50" style="max-width:inherit" />
-
+                        <input placeholder="@SharedLocalizer["Name"]" data-bind="value:citizen.FirstName,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="50" style="max-width:inherit" />
                     </div>
-                    <div class="col-md-1 col-md-offset-1" align="left" style="margin-left:-14px;padding-left:0px">
-                        <button type="button" id="btnselectdatahistoryFIO" class="btn btn-group btn-sm"><span class="glyphicon glyphicon-option-horizontal"></span></button>
+                    <label class="col-md-1 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["FamilyName"]</label>
+                    <div class="col-md-2 col-md-offset-1" align="left" style="margin-left:-1px;padding-left:0px">
+                        <input placeholder="@SharedLocalizer["FamilyName"]" data-bind="value:citizen.FamilyName,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="50" style="max-width:inherit" />
+                    </div>
+                    <label class="col-md-1 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["Surname"]</label>
+                    <div class="col-md-1">
+                        <input placeholder="@SharedLocalizer["Surname"]" data-bind="value:citizen.LastName,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="100" style="max-width:inherit" />
+                    </div>
+                    <label class="col-md-1 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["PINFL"]</label>
+                    <div class="col-md-2">
+                        <input placeholder="@SharedLocalizer["PINFL"]" data-bind="value:citizen.PINFL,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="100" style="max-width:inherit" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-3 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["Occupation"]</label>
-                    <div class="col-md-3">
-                        <input placeholder="@SharedLocalizer["Occupation"]" data-bind="value:employee.Occupation,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="100" style="max-width:inherit" />
+                    <label class="col-md-1 col-xs-6 control-label" required style="font-size:13px;text-align:right">@SharedLocalizer["DateOfBirthday"]</label>
+                    <div class="col-md-1 col-xs-4">
+                        <input placeholder="@SharedLocalizer["DateOfBirthday"]" data-bind="value:citizen.DateOfBirthday,valueUpdate:'afterkeydown'" required class="form-control input-sm" data-provide="datepicker" data-date-format="dd.mm.yyyy" data-date-autoclose="true" data-date-language="ru" />
                     </div>
-                    <div class="col-md-1 col-md-offset-1" align="left" style="margin-left:-14px;padding-left:0px">
+                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Nation"]</label>
+                    <div class="col-md-2">
+                        <select data-bind='options: nationlist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:citizen.NationID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
+                    </div>
+                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Gender"]</label>
+                    <div class="col-sm-1">
+                        <select data-bind='options: genderlist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:citizen.GenderID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
+                    </div>
+                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Education"]</label>
+                    <div class="col-sm-2">
+                        <select data-bind='options: educationlist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:citizen.EducationID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["AcademicDegree"]</label>
+                    <div class="col-sm-2">
+                        <select data-bind='options: academicdegreelist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:citizen.AcademicDegreeID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
+                    </div>
+                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Married"]</label>
+                    <div class="col-sm-2">
+                        <select data-bind='options: marriedlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:citizen.MarriedID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
+                    </div>
+                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["AcademicTitle"]</label>
+                    <div class="col-sm-2">
+                        <select data-bind='options: academictitlelist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:citizen.AcademicTitleID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-horizontal">
+                <br />
+                <div class="form-group">
+                    <label class="col-md-1 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["PhoneNumber"]</label>
+                    <div class="col-md-2">
+                        <input placeholder="@SharedLocalizer["PhoneNumber"]" data-bind="value:citizen.PhoneNumber,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="50" style="max-width:inherit" />
+                    </div>
+                    <label class="col-md-1 col-xs-6 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["IsForeignCitizen"]</label>
+                    <div class="col-md-1 col-xs-1">
+                        <input placeholder="@SharedLocalizer["IsForeignCitizen"]" style="width: 30px" data-bind="checked:citizen.IsForeignCitizen,valueUpdate:'afterkeydown'" type="checkbox" class="form-control input-sm" />
+                    </div>
+                    <label class="col-md-1 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["CountChild"]</label>
+                    <div class="col-md-1">
+                        <input placeholder="@SharedLocalizer["CountChild"]" data-bind="value:citizen.CountChild,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="100" style="max-width:inherit" />
+                    </div>
+                    <label class="col-md-1 col-xs-6 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["IsConvicted"]</label>
+                    <div class="col-md-1 col-xs-1">
+                        <input placeholder="@SharedLocalizer["IsConvicted"]" style="width: 30px" data-bind="checked:citizen.IsConvicted,valueUpdate:'afterkeydown'" type="checkbox" class="form-control input-sm" />
+                    </div>
+                    <label class="col-md-1 col-xs-6 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["IsLowIncome"]</label>
+                    <div class="col-md-1 col-xs-1">
+                        <input placeholder="@SharedLocalizer["IsLowIncome"]" style="width: 30px" data-bind="checked:citizen.IsLowIncome,valueUpdate:'afterkeydown'" type="checkbox" class="form-control input-sm" />
+                    </div>
+                   
+                </div>
+                <div class="form-group">
+                     <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["CitizenEmployment"]</label>
+                    <div class="col-sm-2">
+                        <select data-bind='options: citizenemploymentlist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:citizen.CitizenEmploymentID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
+                    </div>
+                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["BirthRegion"]</label>
+                    <div class="col-sm-2">
+                        <select data-bind='options: regionlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:citizen.BirthdayRegionID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
+                    </div>
+                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["BirthDistrict"]</label>
+                    <div class="col-sm-2">
+                        <select data-bind='options: districtlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:citizen.BirthdayDistrictID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
+                    </div>
+                    
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-1 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["BirthPlace"]</label>
+                    <div class="col-md-3">
+                        <input placeholder="@SharedLocalizer["BirthPlace"]" data-bind="value:citizen.BirthPlace,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="50" style="max-width:inherit" />
                     </div>
                     <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["State"]</label>
                     <div class="col-sm-1">
-                        <select data-bind='options: statelist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:employee.StateID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
+                        <select data-bind='options: statelist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:citizen.StateID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label" required style="font-size:13px">@SharedLocalizer["Department"]</label>
-                    <div class="col-sm-3">
-                        <select data-bind='options: departmentlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:employee.DepartmentID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
-                    </div>
-                    <div class="col-md-1 col-md-offset-1" align="left" style="margin-left:-14px;padding-left:0px">
-                        <button type="button" id="btnselectdatahistoryDepartment" class="btn btn-group btn-sm"><span class="glyphicon glyphicon-option-horizontal"></span></button>
+                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["TypeOfFamily"]</label>
+                    <div class="col-sm-2">
+                        <select data-bind='options: typeoffamilylist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:citizen.MemberTypeFamilyId,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
 </div>
@@ -167,7 +143,7 @@
         <div align="center">
             <button type="button" data-bind="click:checkdata" class="btn btn-primary btn-sm"> @SharedLocalizer["Check"]</button>
             <button type="button" data-bind="click:savedata" class="btn btn-primary btn-sm"> @SharedLocalizer["Save"]</button>
-            <a asp-controller="Employee" asp-action="Index" class="btn btn-default btn-sm">@SharedLocalizer["Back to List"]</a>
+            <a asp-controller="Citizen" asp-action="Index" class="btn btn-default btn-sm">@SharedLocalizer["Back to List"]</a>
         </div>
     </div>
 </div>
@@ -237,71 +213,100 @@
 
     <script type="text/javascript">
 
-        var ItemModel = function () {
+        var ItemModel = function() {
             var self = this;
-            self.employee = {};
+            self.citizen = {};
             self.statelist = ko.mapping.fromJS([]);
-            self.departmentlist = ko.mapping.fromJS([]);
+            self.nationlist = ko.mapping.fromJS([]);
+            self.educationlist = ko.mapping.fromJS([]);
+            self.genderlist = ko.mapping.fromJS([]);
+            self.academicdegreelist = ko.mapping.fromJS([]);
+            self.marriedlist = ko.mapping.fromJS([]);
+            self.academictitlelist = ko.mapping.fromJS([]);
+            self.citizenemploymentlist = ko.mapping.fromJS([]);
+            self.regionlist = ko.mapping.fromJS([]);
+            self.districtlist = ko.mapping.fromJS([]);
+            self.typeoffamilylist = ko.mapping.fromJS([]);
 
-                self.loaddata = function () {
+            self.loaddata = function() {
 
-                    getajaxjson("@Url.Action("Get", "Employee", new { ID=ViewBag.ID})", function (data) {
-                        ko.mapping.fromJS(data, {}, self.employee);
-                        console.log(self.employee);
-                    });
-                 getajaxjson("@Url.Action("GetStateList", "Helper")", function (data) {
-                     ko.mapping.fromJS(data, self.statelist);
-                    });
-                    getajaxjson("@Url.Action("GetDepartmentList", "Helper")", function (data) {
-                     ko.mapping.fromJS(data, self.departmentlist);
-                    });
+                getajaxjson("@Url.Action("Get", "Citizen", new { ID=ViewBag.ID})", function(data) {
+                    ko.mapping.fromJS(data, {}, self.citizen);
+                });
+                getajaxjson("@Url.Action("GetStateList", "Helper")", function(data) {
+                    ko.mapping.fromJS(data, self.statelist);
+                });
+                getajaxjson("@Url.Action("GetNationList", "Helper")", function(data) {
+                    ko.mapping.fromJS(data, self.nationlist);
+                });
+                getajaxjson("@Url.Action("GetEducationList", "Helper")", function(data) {
+                    ko.mapping.fromJS(data, self.educationlist);
+                });
+                getajaxjson("@Url.Action("GetGenderList", "Helper")", function(data) {
+                    ko.mapping.fromJS(data, self.genderlist);
+                });
+                getajaxjson("@Url.Action("GetAcademicDegreeList", "Helper")", function(data) {
+                    ko.mapping.fromJS(data, self.academicdegreelist);
+                });
+                getajaxjson("@Url.Action("GetMarriedList", "Helper")", function(data) {
+                    ko.mapping.fromJS(data, self.marriedlist);
+                });
+                getajaxjson("@Url.Action("GetAcademicTitleList", "Helper")", function(data) {
+                    ko.mapping.fromJS(data, self.academictitlelist);
+                });
+                getajaxjson("@Url.Action("GetCitizenEmploymentList", "Helper")", function(data) {
+                    ko.mapping.fromJS(data, self.citizenemploymentlist);
+                });
+                getajaxjson("@Url.Action("GetRegionList", "Helper")", function(data) {
+                    ko.mapping.fromJS(data, self.regionlist);
+                });
+                getajaxjson("@Url.Action("GetDistrictList", "Helper")", function(data) {
+                    ko.mapping.fromJS(data, self.districtlist);
+                });
+                getajaxjson("@Url.Action("GetMemberTypeFamilyList", "Helper")", function(data) {
+                    ko.mapping.fromJS(data, self.typeoffamilylist);
+                });
             };
-
-            self.checkdata = function () {
-                if (self.employee.Name() === null || self.employee.Name() === undefined || self.employee.Name() === 0 || self.employee.Name() === ''|| self.employee.Name() === "") {
+            self.checkdata = function() {
+                if (self.citizen.FirstName === null || self.citizen.FirstName === undefined || self.citizen.FirstName === 0 || self.citizen.FirstName === '' || self.citizen.FirstName === "") {
                     alert("@SharedLocalizer["NameNotSelected"]");
-                    console.log(self.employee.Name());
+                    console.log(self.citizen.FirstName);
                     return false;
-                }
-                if (self.employee.DepartmentID() === null || self.employee.DepartmentID() === undefined || self.employee.DepartmentID() === '') {
-                    alert("@SharedLocalizer["DepartmentNotSelected"]");
-                    return;
                 }
                 return true;
             };
-            self.savedata = function () {
+            self.savedata = function() {
                 if (!self.checkdata()) {
                     return;
                 }
-                var datatosave = JSON.stringify(ko.toJS(self.employee), null, 2)
-                console.log(datatosave);
+                var datatosave = JSON.stringify(ko.toJS(self.citizen), null, 2)
                 $.ajax({
                     headers: {
                         "Accept": "application/json",
                         "Content-Type": "application/json; charset=utf-8",
                     },
                     type: "POST",
-                    url: "@Url.Action("Update", "Employee")",
+                    url: "@Url.Action("Update", "Citizen")",
                     data: datatosave
-                }).done(function (data, status, xhr) {
+                }).done(function(data, status, xhr) {
                     alert("@SharedLocalizer["SavedSuccessfully"]");
-                    window.location.href = "@Url.Action("Index", "Employee")";
+                    window.location.href = "@Url.Action("Index", "Citizen")";
                 })
-                    .fail(function (xhr, status, error) {
+                    .fail(function(xhr, status, error) {
                         alert(xhr.responseText);
                     });
             };
             ko.bindingHandlers.selectPicker = {
                 after: ['options'],   /* KO 3.0 feature to ensure binding execution order */
-                init: function (element, valueAccessor, allBindingsAccessor) {
+                init: function(element, valueAccessor, allBindingsAccessor) {
                     var $element = $(element);
                     $element.addClass('selectpicker').selectpicker();
 
-                    var doRefresh = function () {
+                    var doRefresh = function() {
                         $element.selectpicker('refresh');
                     }, subscriptions = [];
 
-                    var addSubscription = function (bindingKey) {
+                    var addSubscription = function(bindingKey) {
                         var targetObs = allBindingsAccessor.get(bindingKey);
 
                         if (targetObs && ko.isObservable(targetObs)) {
@@ -311,71 +316,56 @@
                     addSubscription('options');
                     addSubscription('value');           // Single
                     addSubscription('selectedOptions'); // Multiple
-                    ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
+                    ko.utils.domNodeDisposal.addDisposeCallback(element, function() {
                         while (subscriptions.length) {
                             subscriptions.pop().dispose();
                         }
                     });
                 },
-                update: function (element, valueAccessor, allBindingsAccessor) {
+                update: function(element, valueAccessor, allBindingsAccessor) {
                 }
             };
         }
 
-        function getajaxjson(apiurl,handleData)
-        {
+        function getajaxjson(apiurl, handleData) {
             $.ajax({
-                    headers: {
-                        "Accept": "application/json",
-                        "Content-Type": "application/json; charset=utf-8",
-                    },
-                    type: "GET",
-                    async: false,
-                    url: apiurl,
-                }).done(function (data, status, xhr) {
-                    handleData(data);
-                    })
-                    .fail(function (xhr, status, error)
-                    {
-                        alert(xhr.responseText);
-                     });
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json; charset=utf-8",
+                },
+                type: "GET",
+                async: false,
+                url: apiurl,
+            }).done(function(data, status, xhr) {
+                handleData(data);
+            })
+                .fail(function(xhr, status, error) {
+                    alert(xhr.responseText);
+                });
         }
 
-        $(document).ready(function () {
+        $(document).ready(function() {
             var itemModel = new ItemModel();
             itemModel.loaddata();
             ko.applyBindings(itemModel);
 
-             $('#tableDataHistorySelect').bootstrapTable({ height: 500 });
+            $('#tableDataHistorySelect').bootstrapTable({ height: 500 });
 
             function refreshdata() {
                 $('#tableDataHistorySelect').bootstrapTable('refresh');
             }
-            $('#refreshdata').click(function () {
+            $('#refreshdata').click(function() {
                 refreshdata();
             });
-        
-            $('#btnselectdatahistoryFIO').click(function (value) {
-            console.log(value);
+
+            $('#btnselectdatahistoryDepartment').click(function(value) {
                 $('#tableDataHistorySelect').bootstrapTable('resetSearch');
-                $('#tableDataHistorySelect').bootstrapTable('refresh', { url: "@Url.Action("GetTableDataHistory", "Helper")" + "\?DataID=" + itemModel.employee.ID() + "&TableID=177&ColumnName=" + "Name" });
-            $("#datahistoryselectWindow").modal('show');
-            });
-            $('#btnselectdatahistoryINN').click(function (value) {
-            console.log(value);
-                $('#tableDataHistorySelect').bootstrapTable('resetSearch');
-                $('#tableDataHistorySelect').bootstrapTable('refresh', { url: "@Url.Action("GetTableDataHistory", "Helper")" + "\?DataID=" + itemModel.employee.ID() + "&TableID=177&ColumnName=" + "INN" });
-            $("#datahistoryselectWindow").modal('show');
-            });
-            $('#btnselectdatahistoryDepartment').click(function (value) {
-            console.log(value);
-                $('#tableDataHistorySelect').bootstrapTable('resetSearch');
-                $('#tableDataHistorySelect').bootstrapTable('refresh', { url: "@Url.Action("GetTableDataHistory", "Helper")" + "\?DataID=" + itemModel.employee.ID() + "&TableID=177&ColumnName=" + "DepartmentID" });
-            $("#datahistoryselectWindow").modal('show');
+                $('#tableDataHistorySelect').bootstrapTable('refresh', { url: "@Url.Action("GetTableDataHistory", "Helper")" + "\?DataID=" + itemModel.citizen.ID() + "&TableID=177&ColumnName=" + "DepartmentID" });
+                $("#datahistoryselectWindow").modal('show');
             });
 
 
-    });
+        });
     </script>
 }
 

@@ -37,6 +37,7 @@ namespace OnlineMahalla.Common.Model.Interface
         IEnumerable<dynamic> GetRegionList();
         IEnumerable<dynamic> GetNeighborhoodList();
         IEnumerable<dynamic> GetTableList();
+        IEnumerable<dynamic> GetNationList();
 
 
     }

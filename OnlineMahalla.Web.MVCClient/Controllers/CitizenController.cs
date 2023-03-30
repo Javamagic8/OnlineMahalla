@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using OnlineMahalla.Common.Model.Interface;
 using OnlineMahalla.Common.Model.Models;
+using OnlineMahalla.Common.Model.Models.info;
 using OnlineMahalla.Web.MVCClient.Extentions;
 
 namespace OnlineMahalla.Web.MVCClient.Controllers
@@ -41,12 +42,12 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
         }
         public IActionResult Get(int? id)
         {
-            Employee employee = new Employee();
+            Citizen citizen = new Citizen();
             if (id.HasValue && id.Value > 0)
             {
-                employee = _dataRepository.GetEmployee(id.Value);
+                citizen = _dataRepository.GetCitizen(id.Value);
             }
-            return new JsonResult(employee);
+            return new JsonResult(citizen);
         }
         [HttpGet]
         public IActionResult Edit(int? id)
@@ -55,13 +56,13 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Update([FromBody] Employee Employee)
+        public IActionResult Update([FromBody] Citizen Citizen)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _dataRepository.UpdateEmployee(Employee);
+                    _dataRepository.UpdateCitizen(Citizen);
                 }
                 catch (Exception ex)
                 {
@@ -70,7 +71,7 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
             }
             else
                 return StatusCode(500, ModelState.FirstOrDefault().Value.Errors.FirstOrDefault().ErrorMessage);
-            return new JsonResult(Employee);
+            return new JsonResult(Citizen);
         }
     }
 }

@@ -65,54 +65,44 @@ namespace UZASBO.Web.MVCClient.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetNationList(int id)
+        public IActionResult GetNationList()
         {
-            return new JsonResult(_dataRepository.GetStateList());
+            return new JsonResult(_dataRepository.GetNationList());
         }
         [HttpGet]
-        public IActionResult GetGenderList(int id)
+        public IActionResult GetGenderList()
         {
-            return new JsonResult(_dataRepository.GetStateList());
+            return new JsonResult(_dataRepository.GetGenderList());
         }
         [HttpGet]
-        public IActionResult GetEducationList(int id)
+        public IActionResult GetEducationList()
         {
-            return new JsonResult(_dataRepository.GetStateList());
+            return new JsonResult(_dataRepository.GetEducationList());
         }
         [HttpGet]
-        public IActionResult GetAcademicDegreeList(int id)
+        public IActionResult GetAcademicDegreeList()
         {
-            return new JsonResult(_dataRepository.GetStateList());
+            return new JsonResult(_dataRepository.GetAcademicDegreeList());
         }
         [HttpGet]
-        public IActionResult GetAcademicTitleList(int id)
+        public IActionResult GetAcademicTitleList()
         {
-            return new JsonResult(_dataRepository.GetStateList());
+            return new JsonResult(_dataRepository.GetAcademicTitleList());
         }
         [HttpGet]
-        public IActionResult GetMarriedList(int id)
+        public IActionResult GetMarriedList()
         {
-            return new JsonResult(_dataRepository.GetStateList());
+            return new JsonResult(_dataRepository.GetMarriedList());
         }
         [HttpGet]
-        public IActionResult GetCitizenEmploymentList(int id)
+        public IActionResult GetCitizenEmploymentList()
         {
-            return new JsonResult(_dataRepository.GetStateList());
+            return new JsonResult(_dataRepository.GetCitizenEmploymentList());
         }
         [HttpGet]
-        public IActionResult GetRegionList(int id)
+        public IActionResult GetMemberTypeFamilyList()
         {
-            return new JsonResult(_dataRepository.GetStateList());
-        }
-        [HttpGet]
-        public IActionResult GetDistrictList(int id)
-        {
-            return new JsonResult(_dataRepository.GetStateList());
-        }
-        [HttpGet]
-        public IActionResult GetMemberTypeFamilyList(int id)
-        {
-            return new JsonResult(_dataRepository.GetStateList());
+            return new JsonResult(_dataRepository.GetMemberTypeFamilyList());
         }
 
     }
