@@ -31,13 +31,15 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                                         Neighborhood.Address,
                                         Neighborhood.PhoneNumber,
                                         Neighborhood.INN,
+[state].DisplayName State,
                                         OrganizationType.Name OrganizationType,
                                         DistrictType.DisplayName DistrictType ";
             string sqlfrom = @" FROM info_Neighborhood Neighborhood
                                         JOIN info_Region Region ON Region.ID = Neighborhood.RegionID
                                         JOIN info_District District ON District.ID = Neighborhood.DistrictID
                                         join enum_DistrictType DistrictType ON DistrictType.ID = Neighborhood.DistrictTypeID
-                                        JOIN enum_OrganizationType OrganizationType ON OrganizationType.ID = Neighborhood.TypeOrganizationID ";
+                                        JOIN enum_OrganizationType OrganizationType ON OrganizationType.ID = Neighborhood.TypeOrganizationID
+										JOIN enum_State [state] ON [state].ID = Neighborhood.StateID ";
             
             string sqlwhere = " WHERE 1=1";
             string UserDistrictID = "";

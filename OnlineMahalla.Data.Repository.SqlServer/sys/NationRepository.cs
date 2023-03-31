@@ -113,7 +113,8 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                 myConn.Open();
                 using (var ts = myConn.BeginTransaction())
                 {
-                    _databaseExt.ExecuteNonQuery("UPDATE info_Nation set StateID = 2 WHERE ID=@ID", new string[] { "@ID" }, new object[] { id }, System.Data.CommandType.Text, ts);
+                    _databaseExt.ExecuteNonQuery("DELETE from info_Nation WHERE ID = @ID", new string[] { "@ID" }, new object[] { id }, System.Data.CommandType.Text, ts);
+                    ts.Commit();
                 }
             }
         }

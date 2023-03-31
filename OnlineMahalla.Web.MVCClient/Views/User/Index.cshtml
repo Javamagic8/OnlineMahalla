@@ -1416,27 +1416,11 @@
 
             var selectedRows = '';
 
-
-            $('#table').on('dblclick', function () { editRow(); });
-
-
-
-            $('#btnselectdatahistoryName').click(function (value) {
-                $('#tableDataHistorySelect').bootstrapTable('resetSearch');
-                $('#tableDataHistorySelect').bootstrapTable('refresh', { url: "@Url.Action("GetTableDataHistory", "Helper")" + "\?DataID=" + itemModel.user.ID() + "&TableID=200&ColumnName=" + "Name" });
-                $("#datahistoryselectWindow").modal('show');
-            });
-
-            $('#btnselectdatahistoryDisplayName').click(function (value) {
-                $('#tableDataHistorySelect').bootstrapTable('resetSearch');
-                $('#tableDataHistorySelect').bootstrapTable('refresh', { url: "@Url.Action("GetTableDataHistory", "Helper")" + "\?DataID=" + itemModel.user.ID() + "&TableID=200&ColumnName=" + "DisplayName" });
-                $("#datahistoryselectWindow").modal('show');
-            });
-
             $('#btnOrganization').click(function () {
                 $('#tableOrganization').bootstrapTable('resetSearch');
-                $('#tableOrganization').bootstrapTable('refresh', { url: "@Url.Action("GetList", "Organization")" });
+                $('#tableOrganization').bootstrapTable('refresh', { url: "@Url.Action("GetList", "Neighborhood")" });
                 $('#organizationWindow').modal('show');
+                console.log("asdasd");
             });
 
             $('#tableOrganization').on('dblclick', function () {
