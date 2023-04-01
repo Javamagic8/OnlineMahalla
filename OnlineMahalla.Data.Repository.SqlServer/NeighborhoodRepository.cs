@@ -31,7 +31,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                                         Neighborhood.Address,
                                         Neighborhood.PhoneNumber,
                                         Neighborhood.INN,
-[state].DisplayName State,
+                                        [state].DisplayName State,
                                         OrganizationType.Name OrganizationType,
                                         DistrictType.DisplayName DistrictType ";
             string sqlfrom = @" FROM info_Neighborhood Neighborhood
