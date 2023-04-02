@@ -142,20 +142,15 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
         {
             if (!_dataRepository.UserIsInRole("UserEdit"))
                 return BadRequest("Нет доступа");
-
-            if (ModelState.IsValid)
+            try
             {
-                try
-                {
-                    _dataRepository.UpdateUserRole(user);
-                }
-                catch (Exception ex)
-                {
-                    return StatusCode(500, ex.Message);
-                }
+                _dataRepository.UpdateUserRole(user);
             }
-            else
-                return StatusCode(500, ModelState);
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+
             return new JsonResult(user);
         }
 
@@ -165,19 +160,14 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
             if (!_dataRepository.UserIsInRole("UserEdit"))
                 return BadRequest("Нет доступа");
 
-            if (ModelState.IsValid)
+            try
             {
-                try
-                {
-                    _dataRepository.UpdateUserRole1(user);
-                }
-                catch (Exception ex)
-                {
-                    return StatusCode(500, ex.Message);
-                }
+                _dataRepository.UpdateUserRole1(user);
             }
-            else
-                return StatusCode(500, ModelState);
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
             return new JsonResult(user);
         }
 

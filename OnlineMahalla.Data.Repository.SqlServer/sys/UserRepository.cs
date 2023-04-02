@@ -223,27 +223,6 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             {
                 for (int i = 0; i < list.Count; i++)
                 {
-                    #region Moliyalar uchun
-                    if (UserIsInRole("FinancialAuthority"))
-                    {
-                        sql = "SELECT usr.ID FROM sys_User usr, sys_UserRole rol, info_Organization org WHERE usr.OrganizationID = org.ID AND usr.ID = rol.UserID and rol.RoleID = 80 AND org.INN in (201036154, 200237885, 201512543, 201672836, 202330524, 200006452, 200056447, 201212727, 200475685, 202337958, 200837645, 200151005, 201574522, 201992192,201122919) AND usr.ID=@UserID";
-                        var moliya = _databaseExt.ExecuteScalar(sql,
-                             new string[] { "@UserID" },
-                             new object[] { UserID }, System.Data.CommandType.Text, ts);
-                        if (moliya != null)
-                        {
-                            if (list[i].Name != "Изменит прошлый период после Баланса")
-                                throw new Exception("Нет доступа.");
-                        }
-                        else
-                            throw new Exception("Нет доступа.");
-                    }
-                    else
-                    {
-                        if (list[i].Name == "Изменит прошлый период после Баланса")
-                            throw new Exception("Нет доступа.");
-                    }
-                    #endregion
                     sql = "INSERT INTO [sys_UserRole] ([UserID],[RoleID],[StateID],[CreatedUserID],[DateOfCreated],[ModifiedUserID]) " +
                      "VALUES (@UserID,@RoleID,1,@CreatedUserID,GETDATE(),@ModifiedUserID)";
                     _databaseExt.ExecuteNonQuery(sql,
