@@ -371,6 +371,77 @@
         </div>
     </div>
 </div>
+<!-- Modal Organization -->
+<div id="organizationWindow" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="width:98%">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">@SharedLocalizer["Organizations"]</h4>
+            </div>
+            <br />
+            <div class="form-inline" align="center">
+                <div class="input-group">
+                    <input type="number" id="filterOrgID" style="font-size:12px" class="form-control input-sm"
+                        placeholder="@SharedLocalizer["ID"]" />
+                </div>
+                <div class="input-group">
+                    <input type="number" id="filterOrgINN" style="font-size:12px" class="form-control input-sm"
+                        placeholder="@SharedLocalizer["INN"]" />
+                </div>
+                <div class="input-group">
+                    <input type="text" id="filterOrgName" style="font-size:12px" class="form-control input-sm"
+                        placeholder="@SharedLocalizer["Name"]" />
+                </div>
+                <div class="input-group">
+                    <input type="text" id="filterOrgOblast" style="font-size:12px" class="form-control input-sm"
+                        placeholder="@SharedLocalizer["Oblast"]" />
+                </div>
+                <div class="input-group">
+                    <input type="text" id="filterOrgRegion" style="font-size:12px" class="form-control input-sm"
+                        placeholder="@SharedLocalizer["Region"]" />
+                </div>
+                <div class="input-group">
+                    <button id="refreshorgdata" class="btn btn-primary btn-sm" data-toggle="popover"
+                        data-content="@SharedLocalizer["Search"]" data-trigger="hover"><span
+                            class="fa fa-search"></span></button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <table id="tableOrganization" data-toolbar="#toolbar" data-search="false" data-show-refresh="false"
+                        data-show-toggle="false" data-show-columns="false" data-show-export="true"
+                        data-detail-view="false" data-minimum-count-columns="2" data-show-pagination-switch="false"
+                        data-pagination="true" data-id-field="ID" data-page-list="[50,100,150,200]" data-page-size="50"
+                        data-show-footer="false" data-side-pagination="server" data-query-params="queryParamsOrg"
+                        style="font-size:12px" class="table table-striped">
+                        <thead style="font-size:12px">
+                            <tr>
+                                <th data-field="ID">@SharedLocalizer["ID"]</th>
+                                <th data-field="Name">@SharedLocalizer["Name"]</th>
+                                <th data-field="INN">@SharedLocalizer["INN"]</th>
+                                <th data-field="ChairmanName    ">@SharedLocalizer["ChairmanName"]</th>
+                                <th data-field="CountFamily">@SharedLocalizer["CountFamily"]</th>s
+                                <th data-field="PhoneNumber">@SharedLocalizer["PhoneNumber"]</th>
+                                <th data-field="DistrictName">@SharedLocalizer["DistrictName"]</th>
+                                <th data-field="State">@SharedLocalizer["State"]</th>
+                                <th data-field="RegionName">@SharedLocalizer["RegionName"]</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-default"
+                    data-dismiss="modal">@SharedLocalizer["Close"]</button>
+                <button id="btnorganizationselect" type="button"
+                    class="btn btn-sm btn-primary">@SharedLocalizer["Select"]</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div id="ihselectWindow" class="modal fade" role="dialog">
     <div class="modal-dialog modal-xl" style="width:100%;display: flex;justify-content: center;">
@@ -1424,14 +1495,14 @@
             });
 
             $('#tableOrganization').on('dblclick', function () {
-                itemModel.user.OrganizationID(selectedorgrow.ID);
-                itemModel.user.OrganizationName(selectedorgrow.Name);
+                itemModel.user.NeighborhoodID(selectedorgrow.ID);
+                itemModel.user.NeighborhoodName(selectedorgrow.Name);
                 itemModel.user.DisplayName(selectedorgrow.Accounter);
                 $("#organizationWindow").modal('hide');
             });
             $('#btnorganizationselect').click(function () {
-                itemModel.user.OrganizationID(selectedorgrow.ID);
-                itemModel.user.OrganizationName(selectedorgrow.Name);
+                itemModel.user.NeighborhoodID(selectedorgrow.ID);
+                itemModel.user.NeighborhoodName(selectedorgrow.Name);
                 itemModel.user.DisplayName(selectedorgrow.Accounter);
                 $("#organizationWindow").modal('hide');
             });

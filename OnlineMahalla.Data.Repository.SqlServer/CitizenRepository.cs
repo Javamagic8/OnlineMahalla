@@ -85,7 +85,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                 PhoneNumber = data.PhoneNumber,
                 BirthdayDistrictID = data.BirthDistrictID,
                 BirthdayRegionID = data.BirthRegionID,
-                MemberTypeFamilyId = data.MemberTypeFamilyID
+                MemberTypeFamilyId = data.MemberTypeFamilyId
             };
             return citizen;
         }
@@ -122,24 +122,24 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                                                    ([FirstName],[LastName],[FamilyName],[FullName],[FIOTranslate],[PINFL],[DateOfBirth]
                                                    ,[NationID],[GenderID],[EducationID],[AcademicDegreeID],[AcademicTitleID],[PhoneNumber]
                                                    ,[MarriedID],[IsForeignCitizen],[CountChild],[CitizenEmploymentID],[IsLowIncome]
-                                                   ,[IsConvicted],[IsCheckCityzen],[BirthRegionID],[BirthDistrictID],[BithPlace]
+                                                   ,[IsConvicted],[IsCheckCityzen],[BirthRegionID],[MemberTypeFamilyId],[BirthDistrictID],[BithPlace]
                                                    ,[NeighborhoodID],[CreateUserID])
                                              VALUES
                                                    (@FirstName,@LastName,@FamilyName,@FullName,@FIOTranslate,@PINFL,@DateOfBirth
                                                    ,@NationID,@GenderID,@EducationID,@AcademicDegreeID,@AcademicTitleID,@PhoneNumber
                                                    ,@MarriedID,@IsForeignCitizen,@CountChild,@CitizenEmploymentID,@IsLowIncome
-                                                   ,@IsConvicted,@IsCheckCityzen,@BirthRegionID,@BirthDistrictID,@BithPlace
+                                                   ,@IsConvicted,@IsCheckCityzen,@BirthRegionID,@BirthDistrictID,@MemberTypeFamilyId,@BithPlace
                                                    ,@NeighborhoodID,@CreateUserID) select [ID] FROM [hl_Citizen] WHERE @@ROWCOUNT > 0 and [ID] = scope_identity()";
                         var NewID = _databaseExt.ExecuteScalar(sql,
                             new string[] {"@FirstName","@LastName","@FamilyName","@FullName","@FIOTranslate","@PINFL","@DateOfBirth"
                                                    ,"@NationID","@GenderID","@EducationID","@AcademicDegreeID","@AcademicTitleID","@PhoneNumber"
                                                    ,"@MarriedID","@IsForeignCitizen","@CountChild","@CitizenEmploymentID","@IsLowIncome"
-                                                   ,"@IsConvicted","@IsCheckCityzen","@BirthRegionID","@BirthDistrictID","@BithPlace"
+                                                   ,"@IsConvicted","@IsCheckCityzen","@BirthRegionID","@BirthDistrictID","@MemberTypeFamilyId","@BithPlace"
                                                    ,"@NeighborhoodID","@CreateUserID"},
                             new object[] { citizen.FirstName,citizen.LastName,citizen.FamilyName,citizen.FirstName +" " + citizen.LastName + " " + citizen.FamilyName,citizen.FirstName +" " + citizen.LastName + " " + citizen.FamilyName,citizen.PINFL,citizen.DateOfBirthday
                                                    ,citizen.NationID,citizen.GenderID,citizen.EducationID,citizen.AcademicDegreeID,citizen.AcademicTitleID,citizen.PhoneNumber
                                                    ,citizen.MarriedID,citizen.IsForeignCitizen,citizen.CountChild,citizen.CitizenEmploymentID,citizen.IsLowIncome
-                                                   ,citizen.IsConvicted,citizen.IsCheckCityzen,citizen.BirthdayRegionID,citizen.BirthdayDistrictID,citizen.BirthPlace
+                                                   ,citizen.IsConvicted,citizen.IsCheckCityzen,citizen.BirthdayRegionID,citizen.BirthdayDistrictID,citizen.MemberTypeFamilyId,citizen.BirthPlace
                                                    ,NeighborhoodID,UserID}, System.Data.CommandType.Text, ts);
                         citizen.ID = Convert.ToInt32(NewID);
                     }

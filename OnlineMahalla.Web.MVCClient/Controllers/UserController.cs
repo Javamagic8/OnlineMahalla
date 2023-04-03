@@ -121,8 +121,6 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
             if (!_dataRepository.UserIsInRole("UserEdit"))
                 return BadRequest("Нет доступа");
 
-            if (ModelState.IsValid)
-            {
                 try
                 {
                     _dataRepository.UpdateUser(user);
@@ -131,9 +129,6 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
                 {
                     return StatusCode(500, ex.Message);
                 }
-            }
-            else
-                return StatusCode(500, ModelState);
             return new JsonResult(user);
         }
 
