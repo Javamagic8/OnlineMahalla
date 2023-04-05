@@ -28,7 +28,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                                    sys_User [User] 
                                    JOIN info_Neighborhood Neighborhood ON Neighborhood.ID = [User].NeighborhoodID
                                    JOIN enum_State [State] ON State.ID = [User].StateID";
-            string sqlwhere = " [user].StatusID <> 5 ";
+            string sqlwhere = " WHERE  [User].StatusID <> 5 ";
             string UserRegionID = "";
 
             switch (UserID)

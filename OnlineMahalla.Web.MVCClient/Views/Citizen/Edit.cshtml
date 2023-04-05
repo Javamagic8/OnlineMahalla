@@ -22,58 +22,58 @@
     <div class="row">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h2 class="panel-title" style="text-align:center"><b>@SharedLocalizer["Citizen"]</b></h2>
+                <h2 class="panel-title" style="text-align:center"><b>@SharedLocalizer["Fuqaro"]</b></h2>
             </div>
             <div class="form-horizontal">
                 <br />
                 <div class="form-group">
-                    <label class="col-md-1 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["Name"]</label>
+                    <label class="col-md-1 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["Ism"]</label>
                     <div class="col-md-2">
-                        <input placeholder="@SharedLocalizer["Name"]" data-bind="value:citizen.FirstName,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="50" style="max-width:inherit" />
+                        <input placeholder="@SharedLocalizer["Ism"]" data-bind="value:citizen.FirstName,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="50" style="max-width:inherit" />
                     </div>
-                    <label class="col-md-1 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["FamilyName"]</label>
+                    <label class="col-md-1 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["Familiya"]</label>
                     <div class="col-md-2 col-md-offset-1" align="left" style="margin-left:-1px;padding-left:0px">
-                        <input placeholder="@SharedLocalizer["FamilyName"]" data-bind="value:citizen.FamilyName,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="50" style="max-width:inherit" />
+                        <input placeholder="@SharedLocalizer["Familiya"]" data-bind="value:citizen.FamilyName,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="50" style="max-width:inherit" />
                     </div>
-                    <label class="col-md-1 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["Surname"]</label>
+                    <label class="col-md-1 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["Otasining ismi"]</label>
                     <div class="col-md-1">
                         <input placeholder="@SharedLocalizer["Surname"]" data-bind="value:citizen.LastName,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="100" style="max-width:inherit" />
                     </div>
-                    <label class="col-md-1 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["PINFL"]</label>
+                    <label class="col-md-1 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["JSHSHIR"]</label>
                     <div class="col-md-2">
                         <input placeholder="@SharedLocalizer["PINFL"]" data-bind="value:citizen.PINFL,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="100" style="max-width:inherit" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-1 col-xs-6 control-label" required style="font-size:13px;text-align:right">@SharedLocalizer["DateOfBirthday"]</label>
+                    <label class="col-md-1 col-xs-6 control-label" required style="font-size:13px;text-align:right">@SharedLocalizer["Tug'ilgan sanasi"]</label>
                     <div class="col-md-1 col-xs-4">
                         <input placeholder="@SharedLocalizer["DateOfBirthday"]" data-bind="value:citizen.DateOfBirthday,valueUpdate:'afterkeydown'" required class="form-control input-sm" data-provide="datepicker" data-date-format="dd.mm.yyyy" data-date-autoclose="true" data-date-language="ru" />
                     </div>
-                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Nation"]</label>
+                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Millati"]</label>
                     <div class="col-md-2">
-                        <select data-bind='options: nationlist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:citizen.NationID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
+                        <select data-bind='options: nationlist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:citizen.NationID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
                     </div>
-                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Gender"]</label>
+                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Jinsi"]</label>
                     <div class="col-sm-1">
-                        <select data-bind='options: genderlist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:citizen.GenderID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
+                        <select data-bind='options: genderlist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:citizen.GenderID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
                     </div>
-                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Education"]</label>
+                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Ma'lumoti"]</label>
                     <div class="col-sm-2">
-                        <select data-bind='options: educationlist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:citizen.EducationID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
+                        <select data-bind='options: educationlist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:citizen.EducationID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["AcademicDegree"]</label>
+                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Akademik darajasi"]</label>
                     <div class="col-sm-2">
-                        <select data-bind='options: academicdegreelist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:citizen.AcademicDegreeID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
+                        <select data-bind='options: academicdegreelist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:citizen.AcademicDegreeID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
                     </div>
-                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Married"]</label>
+                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Oilasi"]</label>
                     <div class="col-sm-2">
-                        <select data-bind='options: marriedlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:citizen.MarriedID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
+                        <select data-bind='options: marriedlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:citizen.MarriedID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
                     </div>
-                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["AcademicTitle"]</label>
+                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Akademik unvoni"]</label>
                     <div class="col-sm-2">
-                        <select data-bind='options: academictitlelist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:citizen.AcademicTitleID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
+                        <select data-bind='options: academictitlelist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:citizen.AcademicTitleID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
                     </div>
 
                 </div>
@@ -81,55 +81,55 @@
             <div class="form-horizontal">
                 <br />
                 <div class="form-group">
-                    <label class="col-md-1 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["PhoneNumber"]</label>
+                    <label class="col-md-1 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["Telefon raqam"]</label>
                     <div class="col-md-2">
-                        <input placeholder="@SharedLocalizer["PhoneNumber"]" data-bind="value:citizen.PhoneNumber,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="50" style="max-width:inherit" />
+                        <input placeholder="@SharedLocalizer["Telefon raqam"]" data-bind="value:citizen.PhoneNumber,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="50" style="max-width:inherit" />
                     </div>
-                    <label class="col-md-1 col-xs-6 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["IsForeignCitizen"]</label>
+                    <label class="col-md-1 col-xs-6 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["Chetel Fuqarosi"]</label>
                     <div class="col-md-1 col-xs-1">
-                        <input placeholder="@SharedLocalizer["IsForeignCitizen"]" style="width: 30px" data-bind="checked:citizen.IsForeignCitizen,valueUpdate:'afterkeydown'" type="checkbox" class="form-control input-sm" />
+                        <input placeholder="@SharedLocalizer["Chetel Fuqarosi"]" style="width: 30px" data-bind="checked:citizen.IsForeignCitizen,valueUpdate:'afterkeydown'" type="checkbox" class="form-control input-sm" />
                     </div>
-                    <label class="col-md-1 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["CountChild"]</label>
+                    <label class="col-md-1 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["Bolalar soni"]</label>
                     <div class="col-md-1">
-                        <input placeholder="@SharedLocalizer["CountChild"]" data-bind="value:citizen.CountChild,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="100" style="max-width:inherit" />
+                        <input placeholder="@SharedLocalizer["Bolalar soni"]" data-bind="value:citizen.CountChild,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="100" style="max-width:inherit" />
                     </div>
-                    <label class="col-md-1 col-xs-6 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["IsConvicted"]</label>
+                    <label class="col-md-1 col-xs-6 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["Sudlangan"]</label>
                     <div class="col-md-1 col-xs-1">
-                        <input placeholder="@SharedLocalizer["IsConvicted"]" style="width: 30px" data-bind="checked:citizen.IsConvicted,valueUpdate:'afterkeydown'" type="checkbox" class="form-control input-sm" />
+                        <input placeholder="@SharedLocalizer["Sudlangan"]" style="width: 30px" data-bind="checked:citizen.IsConvicted,valueUpdate:'afterkeydown'" type="checkbox" class="form-control input-sm" />
                     </div>
-                    <label class="col-md-1 col-xs-6 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["IsLowIncome"]</label>
+                    <label class="col-md-1 col-xs-6 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["Kamtaminlangan"]</label>
                     <div class="col-md-1 col-xs-1">
-                        <input placeholder="@SharedLocalizer["IsLowIncome"]" style="width: 30px" data-bind="checked:citizen.IsLowIncome,valueUpdate:'afterkeydown'" type="checkbox" class="form-control input-sm" />
+                        <input placeholder="@SharedLocalizer["Kamtaminlangan"]" style="width: 30px" data-bind="checked:citizen.IsLowIncome,valueUpdate:'afterkeydown'" type="checkbox" class="form-control input-sm" />
                     </div>
                    
                 </div>
                 <div class="form-group">
-                     <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["CitizenEmployment"]</label>
+                     <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Fuqaroning bandligi"]</label>
                     <div class="col-sm-2">
-                        <select data-bind='options: citizenemploymentlist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:citizen.CitizenEmploymentID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
+                        <select data-bind='options: citizenemploymentlist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:citizen.CitizenEmploymentID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
                     </div>
-                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["BirthRegion"]</label>
+                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Tug'ilgan Viloyati"]</label>
                     <div class="col-sm-2">
-                        <select data-bind='options: regionlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:citizen.BirthdayRegionID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
+                        <select data-bind='options: regionlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:citizen.BirthdayRegionID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
                     </div>
-                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["BirthDistrict"]</label>
+                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Tug'ilgan viloyati"]</label>
                     <div class="col-sm-2">
                         <select data-bind='options: districtlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:citizen.BirthdayDistrictID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
                     </div>
                     
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-1 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["BirthPlace"]</label>
+                    <label class="col-sm-1 control-label" style="font-size:13px;text-align:right">@SharedLocalizer["Tug'ilgan joyi"]</label>
                     <div class="col-md-3">
-                        <input placeholder="@SharedLocalizer["BirthPlace"]" data-bind="value:citizen.BirthPlace,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="50" style="max-width:inherit" />
+                        <input placeholder="@SharedLocalizer["Tug'ilgan joyi"]" data-bind="value:citizen.BirthPlace,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="50" style="max-width:inherit" />
                     </div>
-                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["State"]</label>
+                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Holati"]</label>
                     <div class="col-sm-1">
-                        <select data-bind='options: statelist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:citizen.StateID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
+                        <select data-bind='options: statelist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:citizen.StateID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
                     </div>
-                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["TypeOfFamily"]</label>
+                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Oilasi turi"]</label>
                     <div class="col-sm-2">
-                        <select data-bind='options: typeoffamilylist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:citizen.MemberTypeFamilyId,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
+                        <select data-bind='options: typeoffamilylist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:citizen.MemberTypeFamilyId,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
                     </div>
                 </div>
             </div>
@@ -141,9 +141,9 @@
 <div class="form-horizontal">
     <div class="form-group">
         <div align="center">
-            <button type="button" data-bind="click:checkdata" class="btn btn-primary btn-sm"> @SharedLocalizer["Check"]</button>
-            <button type="button" data-bind="click:savedata" class="btn btn-primary btn-sm"> @SharedLocalizer["Save"]</button>
-            <a asp-controller="Citizen" asp-action="Index" class="btn btn-default btn-sm">@SharedLocalizer["Back to List"]</a>
+            <button type="button" data-bind="click:checkdata" class="btn btn-primary btn-sm"> @SharedLocalizer["Tekshirish"]</button>
+            <button type="button" data-bind="click:savedata" class="btn btn-primary btn-sm"> @SharedLocalizer["Saqlash"]</button>
+            <a asp-controller="Citizen" asp-action="Index" class="btn btn-default btn-sm">@SharedLocalizer["Orqaga"]</a>
         </div>
     </div>
 </div>

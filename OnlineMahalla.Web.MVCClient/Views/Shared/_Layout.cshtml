@@ -52,34 +52,34 @@
                         <ul class="nav navbar-nav">
                             <li class="dropdown" data-roleview="ContractorView">
                                 <a href="#" class="dropdown-toggle" aria-expanded="true" data-toggle="dropdown" data-submenu="">
-                                    <i class="fa fa-list-ul" aria-hidden="true"></i>&nbsp;@Localizer["Helpers"]<span class="caret"></span>
+                                    <i class="fa fa-list-ul" aria-hidden="true"></i>&nbsp;@Localizer["Ma'lumotlar"]<span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li class="dropdown-submenu">
-                                        <a href="#" tabindex="0">@Localizer["Neighborhood Helpers"]&nbsp;</a>
+                                        <a href="#" tabindex="0">@Localizer["Mahallar haqida"]&nbsp;</a>
                                         <ul class="dropdown-menu">
-                                            <li><a data-roleview="DepartmentView" tabindex="0" asp-area="" asp-controller="Citizen" asp-action="Index">@Localizer["Citizen"]</a></li>
-                                            <li><a data-roleview="EmployeeView" tabindex="0" asp-area="" asp-controller="Employee" asp-action="Index">@Localizer["Employee"]</a></li>
+                                            <li><a data-roleview="DepartmentView" tabindex="0" asp-area="" asp-controller="Citizen" asp-action="Index">@Localizer["Fuqarolar"]</a></li>
+                                            <li><a data-roleview="EmployeeView" tabindex="0" asp-area="" asp-controller="Employee" asp-action="Index">@Localizer["Ishchilar"]</a></li>
                                             <li><a data-roleview="EmployeeView" tabindex=""></a></li>
                                         </ul>
                                     </li>
                                     <li class="dropdown-submenu">
-                                        <a href="#" tabindex="0">@Localizer["GlobalHelpers"]</a>
+                                        <a href="#" tabindex="0">@Localizer["Global ma'lumotlar"]</a>
                                         <ul class="dropdown-menu">
-                                            <li><a data-roleview="CurrencyCourseView" tabindex="0" asp-area="" asp-controller="Currency" asp-action="Index">@Localizer["Charts"]</a></li>
+                                            <li><a data-roleview="CurrencyCourseView" tabindex="0" asp-area="" asp-controller="Currency" asp-action="Index">@Localizer["Diagrammalar"]</a></li>
                                             </ul>
                                     </li>
                                 </ul>
                             </li>
                             <li class="dropdown" data-roleview="UserView">
                                 <a href="#" class="dropdown-toggle" aria-expanded="true" data-toggle="dropdown" data-submenu="">
-                                    <i class="fa fa-cog" aria-hidden="true"></i>&nbsp;@Localizer["Manage"]<span class="caret"></span>
+                                    <i class="fa fa-cog" aria-hidden="true"></i>&nbsp;@Localizer["Boshqarish"]<span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a data-roleview="UserView" asp-area="" asp-controller="User" asp-action="Index">@Localizer["User"]</a></li>
-                                    <li><a data-roleview="RoleView" asp-area="" asp-controller="Role" asp-action="Index">@Localizer["Role"]</a></li>
-                                    <li><a data-roleview="UserView" asp-area="" asp-controller="Nation" asp-action="Index">@Localizer["Nation"]</a></li>
-                                    <li><a data-roleview="OrganizationView" tabindex="0" asp-area="" asp-controller="Neighborhood" asp-action="Index">@Localizer["Organizations"]</a></li>
+                                    <li><a data-roleview="UserView" asp-area="" asp-controller="User" asp-action="Index">@Localizer["Foydalanuvchilar"]</a></li>
+                                    <li><a data-roleview="RoleView" asp-area="" asp-controller="Role" asp-action="Index">@Localizer["Rollar"]</a></li>
+                                    <li><a data-roleview="UserView" asp-area="" asp-controller="Nation" asp-action="Index">@Localizer["Millat"]</a></li>
+                                    <li><a data-roleview="OrganizationView" tabindex="0" asp-area="" asp-controller="Neighborhood" asp-action="Index">@Localizer["Mahallalar"]</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -88,8 +88,8 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span id="loginspan"></span><span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li style="text-align:center"><b>&nbsp;<span id="usernamespan"></span></b></li>
-                                    <li><a asp-area="" asp-controller="Account" asp-action="ChangePassword"><i class="fa fa-key" aria-hidden="true"></i>&nbsp;@Localizer["ChangePassword"]</a></li>
-                                    <li><a asp-area="" asp-controller="Account" asp-action="LogOut">@*<img src="~/images/logout.png" width="20" height="20">*@<i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;@Localizer["SignOut"]</a></li>
+                                    <li><a asp-area="" asp-controller="Account" asp-action="ChangePassword"><i class="fa fa-key" aria-hidden="true"></i>&nbsp;@Localizer["Parolni o'zgartirish"]</a></li>
+                                    <li><a asp-area="" asp-controller="Account" asp-action="LogOut">@*<img src="~/images/logout.png" width="20" height="20">*@<i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;@Localizer["Chiqish"]</a></li>
                                 </ul>
                             </li>
                         </ul>
