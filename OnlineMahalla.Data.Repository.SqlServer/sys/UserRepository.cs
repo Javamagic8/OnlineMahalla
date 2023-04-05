@@ -28,7 +28,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                                    sys_User [User] 
                                    JOIN info_Neighborhood Neighborhood ON Neighborhood.ID = [User].NeighborhoodID
                                    JOIN enum_State [State] ON State.ID = [User].StateID";
-            string sqlwhere = " ";
+            string sqlwhere = " [user].StatusID <> 5 ";
             string UserRegionID = "";
 
             switch (UserID)
@@ -270,6 +270,19 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                             throw new Exception("Нет доступа.");
                     };
                     _databaseExt.ExecuteNonQuery("DELETE FROM sys_UserRole WHERE UserID=@UserID and RoleID=@ID", new string[] { "@UserID", "@ID" }, new object[] { user.ID, list[i].ID });
+                }
+            }
+        }
+
+        public void DeleteUser(int id)
+        {
+            using (System.Data.SqlClient.SqlConnection myConn = new System.Data.SqlClient.SqlConnection(_connectionString))
+            {
+                myConn.Open();
+                using (var ts = myConn.BeginTransaction())
+                {
+                    _databaseExt.ExecuteNonQuery("UPDATE sys_User set StatusID = 5 WHERE ID = @ID", new string[] { "@ID" }, new object[] { id }, System.Data.CommandType.Text, ts);
+                    ts.Commit();
                 }
             }
         }

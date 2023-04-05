@@ -188,5 +188,24 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
             return new JsonResult(user);
         }
 
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            if (id == 0)
+                return BadRequest("Сначала выберите из списка");
+            if (!_dataRepository.UserIsInRole("RoleDelete"))
+                return BadRequest("Вам не дали роль");
+            try
+            {
+                _dataRepository.DeleteNation(id);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+            return Ok();
+        }
+
+
     }
 }

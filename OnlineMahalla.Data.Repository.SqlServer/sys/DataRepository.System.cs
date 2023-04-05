@@ -36,7 +36,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                 FROM 
                 sys_User us
                 JOIN info_Neighborhood neig ON neig.ID=us.NeighborhoodID
-                WHERE us.Name=@UserName", new string[] { "@UserName" }, new object[] { (UserName.StartsWith("ct_") && UserName.Length == 12) ? "ct" : UserName }).FirstOrDefault();
+                WHERE us.Name=@UserName AND StatusID <> 5", new string[] { "@UserName" }, new object[] { (UserName.StartsWith("ct_") && UserName.Length == 12) ? "ct" : UserName }).FirstOrDefault();
 
             UserInfo userInfo = new UserInfo()
             {
@@ -95,7 +95,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                                                             FROM sys_User [User]
                                                             JOIN enum_State [State] ON [State].ID = [User].StateID
                                                             JOIN info_Neighborhood Neighborhood ON Neighborhood.ID = [User].NeighborhoodID
-                                                            WHERE [User].ID=@ID", new string[] { "@ID" }, new object[] { id }).First();
+                                                            WHERE [User].ID=@ID AND StatusID <> 5", new string[] { "@ID" }, new object[] { id }).First();
 
             User user = new User()
             {

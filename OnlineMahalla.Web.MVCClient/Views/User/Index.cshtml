@@ -1040,12 +1040,6 @@
                 });
             };
 
-            self.loaduns = function (id) {
-                getajaxjson("@Url.Action("GetUNS", "User")" + "?id=" + id, function (data) {
-                    ko.mapping.fromJS(data, {}, self.user);
-                });
-            };
-
             self.loadregion = function (id) {
                 getajaxjson("@Url.Action("GetRegion", "User")" + "?id=" + id, function (data) {
                     ko.mapping.fromJS(data, {}, self.user);
