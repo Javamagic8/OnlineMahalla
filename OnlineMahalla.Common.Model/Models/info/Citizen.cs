@@ -22,7 +22,7 @@ namespace OnlineMahalla.Common.Model.Models.info
 
         public string PINFL { get; set; }
 
-        public DateTime DateOfBirthday { get; set; }
+        public DateTime DateOfBirthday { get; set; } = DateTime.Now;
 
         public int NationID { get; set; }
 
