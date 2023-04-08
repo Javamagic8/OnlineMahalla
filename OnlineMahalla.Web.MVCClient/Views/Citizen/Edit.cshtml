@@ -110,7 +110,7 @@
                     </div>
                     <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Tug'ilgan Viloyati"]</label>
                     <div class="col-sm-2">
-                        <select data-bind='options: regionlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:citizen.BirthdayRegionID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
+                        <select data-bind='options: regionlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:citizen.BirthdayRegionID,selectPicker: {},event:{ change: regionchange}' data-live-search="true" class="" data-width="100%"> </select>
                     </div>
                     <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Tug'ilgan viloyati"]</label>
                     <div class="col-sm-2">
@@ -274,6 +274,12 @@
                     return false;
                 }
                 return true;
+            };
+            self.regionchange = function () {
+                console.log('oblchange');
+                getajaxjson("@Url.Action("GetDistrictList", "Helper")" + "/?RegionID=" + self.citizen.BirthdayRegionID(), function (data) {
+                    ko.mapping.fromJS(data, self.districtlist);
+                });
             };
             self.savedata = function() {
                 if (!self.checkdata()) {
