@@ -73,6 +73,11 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
                 return StatusCode(500, ModelState.FirstOrDefault().Value.Errors.FirstOrDefault().ErrorMessage);
             return new JsonResult(Citizen);
         }
+
+        public IActionResult Chart()
+        {
+            return View();
+        }
     }
 }
 
