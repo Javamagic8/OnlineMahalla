@@ -73,40 +73,40 @@
 <body>
     @Html.AntiForgeryToken()
 
-    <h3 style="text-align:center">@SharedLocalizer["User"]</h3>
+    <h3 style="text-align:center">@SharedLocalizer["Foydalanuvchilarni boshqarish"]</h3>
     <div class="panel panel-primary"></div>
     <div id="custom-toolbar" class="bs-bars pull-center">
         <div class="form-group form-inline" align="center">
             <div class="input-group" style="width:10px"></div>
             <div class="input-group" style="width:10px"></div>
             <button id="refreshdata" class="btn btn-success btn-sm" data-toggle="popover"
-                    data-content="@SharedLocalizer["Refresh"]" data-trigger="hover">
+                    data-content="@SharedLocalizer["Yangilash"]" data-trigger="hover">
                 <i class="glyphicon glyphicon-refresh"></i>
             </button>
             <div class="input-group">
                 <div class="btn-toolbar">
                     <div class="input-group" style="width:10px"></div>
-                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" 
                             data-target="#exampleModal">
                         <span class="glyphicon glyphicon-filter"></span>
                     </button>
                     <button data-roleview="RoleEdit" id="addRow" class="btn btn-primary btn-sm" data-toggle="popover"
-                            data-content="@SharedLocalizer["Create"]" data-trigger="hover">
+                            data-content="@SharedLocalizer["Yaratish"]" data-trigger="hover">
                         <i class="fa fa-plus"></i>@*@SharedLocalizer["Edit"]*@
                     </button>
                     <div class="input-group" style="width:10px"></div>
                     <button data-roleview="RoleEdit" id="addRole" class="btn btn-primary btn-sm" data-toggle="popover"
-                            data-content="@SharedLocalizer["Role"]" data-trigger="hover">
+                            data-content="@SharedLocalizer["Rol"]" data-trigger="hover">
                         <i class="glyphicon glyphicon-pencil"></i>@*@SharedLocalizer["Edit"]*@
                     </button>
                     <div class="input-group" style="width:10px"></div>
                     <button data-roleview="UserEdit" id="editRow" class="btn btn-primary btn-sm" data-toggle="popover"
-                            data-content="@SharedLocalizer["Edit"]" data-trigger="hover">
+                            data-content="@SharedLocalizer["O'zgartirish"]" data-trigger="hover">
                         <i class="fa fa-edit"></i>@*@SharedLocalizer["Edit"]*@
                     </button>
                     <div class="input-group" style="width:10px"></div>
                     <button data-roleview="RoleDelete" id="deleteRow" type="button" class="btn btn-danger btn-sm"
-                            data-toggle="popover" data-trigger="hover" data-content="@SharedLocalizer["Delete"]">
+                            data-toggle="popover" data-trigger="hover" data-content="@SharedLocalizer["O'chirish"]">
                         <i class="glyphicon glyphicon-trash"></i>@*@SharedLocalizer["Accept"]*@
                     </button>
                 </div>
@@ -120,7 +120,7 @@
                         <button id="clos" type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <b><span aria-hidden="true">&times;</span></b>
                         </button>
-                        <h3 class="modal-title" style="text-align:center" id="exampleModalLabel"><b>Фильтр</b></h3>
+                        <h3 class="modal-title" style="text-align:center" id="exampleModalLabel"><b>Filterlar</b></h3>
                     </div>
                     <div style="background-color:#e0e0e0" class="form-horizontal">
                         <br>
@@ -135,10 +135,10 @@
                         </div>
                         <div class="form-group">
                             <label style="font-size:14px"
-                                   class="col-md-4 col-xs-6 control-label">@SharedLocalizer["Name"]</label>
+                                   class="col-md-4 col-xs-6 control-label">@SharedLocalizer["Login"]</label>
                             <b>
                                 <input id="filtername" style="font-size:14px;width:150px"
-                                       class="form-control input-sm col-md-2" placeholder="@SharedLocalizer["Name"]" />
+                                       class="form-control input-sm col-md-2" placeholder="@SharedLocalizer["Login"]" />
                             </b>
                         </div>
                         <div class="form-group">
@@ -152,47 +152,47 @@
                         </div>
                         <div class="form-group">
                             <label style="font-size:14px"
-                                   class="col-md-4 col-xs-6 control-label">@SharedLocalizer["State"]</label>
+                                   class="col-md-4 col-xs-6 control-label">@SharedLocalizer["Holati"]</label>
                             <b>
                                 <input id="filterstate" style="font-size:14px;width:150px"
                                        class="form-control input-sm col-md-2"
-                                       placeholder="@SharedLocalizer["State"]" />
+                                       placeholder="@SharedLocalizer["Holati"]" />
                             </b>
                         </div>
                         <div class="form-group">
                             <label style="font-size:14px"
-                                   class="col-md-4 col-xs-6 control-label">@SharedLocalizer["Organization"]</label>
+                                   class="col-md-4 col-xs-6 control-label">@SharedLocalizer["Tashkilot"]</label>
                             <b>
                                 <input id="filterorg" style="font-size:14px;width:237px"
                                        class="form-control input-sm col-md-2"
-                                       placeholder="@SharedLocalizer["Organization"]" />
+                                       placeholder="@SharedLocalizer["Tashkilot"]" />
                             </b>
                         </div>
                         <div class="form-group">
                             <label style="font-size:14px"
-                                   class="col-md-4 col-xs-6 control-label">@SharedLocalizer["INN"]</label>
+                                   class="col-md-4 col-xs-6 control-label">@SharedLocalizer["STIR"]</label>
                             <b>
                                 <input id="filterinn" style="font-size:14px;width:237px"
-                                       class="form-control input-sm col-md-2" placeholder="@SharedLocalizer["INN"]" />
+                                       class="form-control input-sm col-md-2" placeholder="@SharedLocalizer["STIR"]" />
                             </b>
                         </div>
                         <div class="form-group">
                             <label style="font-size:14px"
-                                   class="col-md-4 col-xs-6 control-label">@SharedLocalizer["OrganizationID"]</label>
+                                   class="col-md-4 col-xs-6 control-label">@SharedLocalizer["Tashkilot kodi"]</label>
                             <b>
                                 <input id="filterorgid" style="font-size:14px;width:150px"
                                        class="form-control input-sm col-md-2" type="number"
-                                       placeholder="@SharedLocalizer["OrganizationID"]" />
+                                       placeholder="@SharedLocalizer["Tashkilot kodi"]" />
                             </b>
                         </div>
                         <div style="text-align:center" class="modal-footer">
                             <button id="refreshdata2" class="btn-success btn-sm"
                                     type="button">
-                                <span>@SharedLocalizer["ToApply"]</span>
+                                <span>@SharedLocalizer["Qabul qilish"]</span>
                             </button>
                             <button id="resetdata" type="button" class="btn-primary btn-sm"
                                     style="background-color:#119eda">
-                                <span>@SharedLocalizer["Reset"]</span>
+                                <span>@SharedLocalizer["Tozalash"]</span>
                             </button>
                         </div>
                     </div>
@@ -214,27 +214,25 @@
                 <th data-field="ID" data-align="center" data-valign="middle" data-sortable="true"
                     data-cell-style="cellStyle">@SharedLocalizer["ID"]</th>
                 <th data-field="Name" data-align="left" data-valign="middle" data-sortable="true"
-                    data-cell-style="cellStyle">@SharedLocalizer["Name"]</th>
+                    data-cell-style="cellStyle">@SharedLocalizer["Login"]</th>
                 <th data-field="DisplayName" data-align="left" data-valign="middle" data-sortable="true"
                     data-cell-style="cellStyle">@SharedLocalizer["F.I.O."]</th>
                 <th data-field="State" data-align="center" data-valign="middle" data-sortable="true"
-                    data-cell-style="cellStyle">@SharedLocalizer["State"]</th>
-                <th data-field="VerifyEDS" data-align="center" data-valign="middle" data-sortable="true"
-                    data-cell-style="cellStyle">@SharedLocalizer["VerifyEDS"]</th>
+                    data-cell-style="cellStyle">@SharedLocalizer["Holati"]</th>
                 <th data-field="INN" data-align="center" data-valign="middle" data-sortable="true"
-                    data-cell-style="cellStyle">@SharedLocalizer["INN"]</th>
+                    data-cell-style="cellStyle">@SharedLocalizer["STIR"]</th>
                 <th data-field="Organization" data-align="left" data-valign="middle" data-sortable="true"
-                    data-cell-style="cellStyle">@SharedLocalizer["Organization"]</th>
+                    data-cell-style="cellStyle">@SharedLocalizer["Tashkilot"]</th>
                 <th data-field="OrganizationID" data-align="center" data-valign="middle" data-sortable="true"
-                    data-cell-style="cellStyle">@SharedLocalizer["OrganizationID"]</th>
+                    data-cell-style="cellStyle">@SharedLocalizer["Mahalla kodi"]</th>
                 <th data-field="LastAccessTime" data-align="left" data-valign="middle" data-sortable="true"
-                    data-cell-style="cellStyle">@SharedLocalizer["LastAccessTime"]</th>
+                    data-cell-style="cellStyle">@SharedLocalizer["So'ngi tashrif"]</th>
                 <th data-field="LastIP" data-align="left" data-valign="middle" data-sortable="true"
-                    data-cell-style="cellStyle">@SharedLocalizer["LastIP"]</th>
+                    data-cell-style="cellStyle">@SharedLocalizer["Oxirgi IP"]</th>
                 <th data-field="Email" data-align="left" data-valign="middle" data-sortable="true"
                     data-cell-style="cellStyle">@SharedLocalizer["Email"]</th>
                 <th data-field="DateOfModified" data-align="center" data-valign="middle" data-sortable="true"
-                    data-cell-style="cellStyle">@SharedLocalizer["DateOfModified"]</th>
+                    data-cell-style="cellStyle">@SharedLocalizer["O'zgartirilgan vaqti"]</th>
             </tr>
         </thead>
     </table>
@@ -246,7 +244,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title" style="text-align:center"><b>@SharedLocalizer["User"]</b></h4>
+                <h4 class="modal-title" style="text-align:center"><b>@SharedLocalizer["Foydalanuvchini boshqarish"]</b></h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -258,9 +256,9 @@
                                     <div class="form-group">
                                         <form class="form-inline">
                                             <label class="col-md-2 control-label" required
-                                                   style="font-size:12px;text-align:right">@SharedLocalizer["Name"]</label>
+                                                   style="font-size:12px;text-align:right">@SharedLocalizer["Login"]</label>
                                             <div class="col-sm-4">
-                                                <input placeholder="@SharedLocalizer["Name"]"
+                                                <input placeholder="@SharedLocalizer["Login"]"
                                                        style="font-size:15px;width:82%" data-bind="value:user.Name"
                                                        required class="text-left form-control input-sm" />
                                                 <button type="button" id="btnselectdatahistoryName"
@@ -286,7 +284,7 @@
                                     <div class="form-group">
                                         <form class="form-inline">
                                             <label class="col-md-2 control-label"
-                                                   style="font-size:12px;text-align:right">@SharedLocalizer["OrganizationName"]</label>
+                                                   style="font-size:12px;text-align:right">@SharedLocalizer["Tashkilot Nomi"]</label>
                                             <div class="col-sm-4">
                                                 <input disabled class="form-control input-sm"
                                                        data-bind="value:user.NeighborhoodName,valueUpdate:'afterkeydown'"
@@ -299,10 +297,10 @@
                                         </form>
                                         <form class="form-inline">
                                             <label class="col-md-1 control-label"
-                                                   style="font-size:12px;text-align:right">@SharedLocalizer["State"]</label>
+                                                   style="font-size:12px;text-align:right">@SharedLocalizer["Holati"]</label>
                                             <div class="col-sm-4">
                                                 <select style="font-size:15px"
-                                                        data-bind='options: statelist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:user.StateID,selectPicker: {}'
+                                                        data-bind='options: statelist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:user.StateID,selectPicker: {}'
                                                         data-live-search="true" class="" data-width="95%"></select>
                                             </div>
                                         </form>
@@ -310,18 +308,18 @@
                                     <div class="form-group">
                                         <form class="form-inline">
                                             <label class="col-md-2 control-label"
-                                                   style="font-size:12px;text-align:right">@SharedLocalizer["Password"]</label>
+                                                   style="font-size:12px;text-align:right">@SharedLocalizer["Parol"]</label>
                                             <div class="col-sm-4">
-                                                <input placeholder="@SharedLocalizer["Password"]"
+                                                <input placeholder="@SharedLocalizer["Parol"]"
                                                        style="font-size:15px;width:95%" data-bind="value:user.Password"
                                                        class="text-left form-control input-sm" />
                                             </div>
                                         </form>
                                         <form class="form-inline">
                                             <label class="col-md-1 control-label"
-                                                   style="font-size:12px">@SharedLocalizer["ConfirmedPassword"]</label>
+                                                   style="font-size:12px">@SharedLocalizer["Parol tasdiqlash"]</label>
                                             <div class="col-sm-4">
-                                                <input placeholder="@SharedLocalizer["ConfirmedPassword"]"
+                                                <input placeholder="@SharedLocalizer["Parol tasdiqlash"]"
                                                        style="font-size:15px;width:95%"
                                                        data-bind="value:user.PasswordConfirm"
                                                        class="text-left form-control input-sm" />
@@ -331,34 +329,65 @@
                                     <div class="form-group">
                                         <form class="form-inline">
                                             <label class="col-md-2 control-label" required
-                                                   style="font-size:12px;text-align:right">@SharedLocalizer["AllowedIP"]</label>
+                                                   style="font-size:12px;text-align:right">@SharedLocalizer["Ruhsat etilgan IP"]</label>
                                             <div class="col-sm-4">
-                                                <input placeholder="@SharedLocalizer["AllowedIP"]"
+                                                <input placeholder="@SharedLocalizer["Ruhsat etilgan IP"]"
                                                        style="font-size:15px;width:95%" data-bind="value:user.AllowedIP"
                                                        required class="text-left form-control input-sm" />
                                             </div>
                                         </form>
                                         <form class="form-inline">
                                             <label class="col-md-1 control-label" required
-                                                   style="font-size:12px;text-align:right">@SharedLocalizer["VerifyEDS"]</label>
+                                                   style="font-size:12px;text-align:right">@SharedLocalizer["Viloyat admini"]</label>
                                             <div class="col-sm-1">
-                                                <input placeholder="@SharedLocalizer["VerifyEDS"]"
+                                                <input placeholder="@SharedLocalizer["Viloyat admini"]"
                                                        style="width: 30px;align-content:center"
-                                                       data-bind="user.VerifyEDS,valueUpdate:'afterkeydown'"
+                                                       data-bind="user.IsRegionAdmin,valueUpdate:'afterkeydown'"
                                                        type="checkbox" class="form-control input-sm" />
                                             </div>
                                         </form>
+                                        <form class="form-inline">
+                                            <label class="col-md-1 control-label" required
+                                                   style="font-size:12px;text-align:right">@SharedLocalizer["Tuman admini"]</label>
+                                            <div class="col-sm-1">
+                                                <input placeholder="@SharedLocalizer["Tuman admini"]"
+                                                       style="width: 30px;align-content:center"
+                                                       data-bind="user.IsDistrictAdmin,valueUpdate:'afterkeydown'"
+                                                       type="checkbox" class="form-control input-sm" />
+                                            </div>
+                                        </form>
+                                        
                                     </div>
-                                    <br />
+                                    <div class="form-group">
+                                        <form class="form-inline">
+                                            <label class="col-md-2 control-label" required
+                                                   style="font-size:12px;text-align:right">@SharedLocalizer["Viloyat"]</label>
+                                            <div class="col-sm-4">
+                                                <select style="font-size:15px"
+                                                        data-bind='options: regionlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:user.RegionID,selectPicker: {},event:{ change: regionchange}'
+                                                        data-live-search="true" class="" data-width="95%"></select>
+                                            </div>
+                                        </form>
+                                        <form class="form-inline">
+                                            <label class="col-md-1 control-label"
+                                                   style="font-size:12px">@SharedLocalizer["Tuman"]</label>
+                                            <div class="col-sm-4">
+                                                <select style="font-size:15px"
+                                                        data-bind='options: districtlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:user.DistrictID,selectPicker: {}'
+                                                        data-live-search="true" class="" data-width="95%"></select>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <br/>
                                     <div class="form-group">
                                         <div style="align-content:center">
                                             <button type="button" data-bind="click:closewindow"
                                                     class="btn btn-default btn-sm">
-                                                @SharedLocalizer["Close"]
+                                                @SharedLocalizer["Yopish"]
                                             </button>
                                             <button type="button" data-bind="click:savedata"
                                                     class="btn btn-primary btn-sm">
-                                                @SharedLocalizer["Save"]
+                                                @SharedLocalizer["Saqlash"]
                                             </button>
                                         </div>
                                     </div>
@@ -1021,6 +1050,8 @@
             var self = this;
             self.user = {};
             self.statelist = ko.mapping.fromJS([]);
+            self.regionlist = ko.mapping.fromJS([]);
+            self.districtlist = ko.mapping.fromJS([]);
             self.allinvmovstowege = ko.observable(false);
             self.allinvmovstowege1 = ko.observable(false);
 
@@ -1030,6 +1061,12 @@
                 });
                 getajaxjson("@Url.Action("GetStateList", "Helper")", function (data) {
                     ko.mapping.fromJS(data, self.statelist);
+                });
+                getajaxjson("@Url.Action("GetRegionList", "Helper")", function (data) {
+                    ko.mapping.fromJS(data, self.regionlist);
+                });
+                getajaxjson("@Url.Action("GetDistrictList", "Helper")", function (data) {
+                    ko.mapping.fromJS(data, self.districtlist);
                 });
             };
 
@@ -1122,6 +1159,12 @@
                     return false;
                 }
                 return true;
+            };
+
+            self.regionchange = function () {
+                getajaxjson("@Url.Action("GetDistrictList", "Helper")" + "/?RegionID=" + self.user.RegionID(), function (data) {
+                    ko.mapping.fromJS(data, self.districtlist);
+                });
             };
 
             self.savedata = function () {

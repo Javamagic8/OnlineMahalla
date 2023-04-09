@@ -88,6 +88,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
         public User GetUser(int id)
         {
             var data = _databaseExt.GetDataFromSql(@"SELECT [User].ID,[User].Name,[User].DisplayName,[User].DateOfModified,
+                                                            [User].IsRegionAdmin,[User].IsDistrictAdmin,[User].RegionID,[User].DistrictID,
                                                             [User].Email,[User].ExpirationDate,[User].CreatedUserID,[User].ModifiedUserID,
                                                             [User].StateID,[State].DisplayName as StateName,[User].AllowedIP,[User].LastIP,[User].LastAccessTime,
                                                             [User].AccessCount,[User].TableTimeStamp,[User].NeighborhoodID,[User].PNFL,[User].PhoneNumber,
@@ -112,6 +113,10 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                 NeighborhoodID = data.NeighborhoodID,
                 AllowedIP = data.AllowedIP,
                 LastIP = data.LastIP,
+                IsDistrictAdmin = data.IsDistrictAdmin,
+                IsRegionAdmin = data.IsRegionAdmin,
+                RegionID = data.RegionID,
+                DistrictID = data.DistrictID,
                 LastAccessTime = data.LastAccessTime,
                 AccessCount = data.AccessCount,
                 MobileAccessCount = data.MobileAccessCount,

@@ -153,5 +153,20 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             return _databaseExt.GetDataFromSql(sql, new string[] { }, new object[] { });
         }
 
+        public IEnumerable<dynamic> GetNeighborhoodstreet(){
+            string sql = @"SELECT [ID]
+                                 ,[Name]
+                                 ,[RegionID]
+                                 ,[DistrictID]
+                                 ,[StateID]
+                                 ,[NeighborhoodID]
+                                 ,[DateOfCreted]
+                                 ,[CreateUserID]
+                                 ,[DateOfModified]
+                                 ,[ModifiedUserID]
+                             FROM [dbo].[info_Street] WHERE NeighborhoodID = @NeighborhoodID";
+            return _databaseExt.GetDataFromSql(sql, new string[] { "@NeighborhoodID" }, new object[] { NeighborhoodID });
+        }
+
     }
 }

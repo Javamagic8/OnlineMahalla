@@ -1,5 +1,6 @@
 ﻿using OnlineMahalla.Common.Model.Interface;
 using OnlineMahalla.Common.Model.Models;
+using OnlineMahalla.Common.Model.Models.info;
 using OnlineMahalla.Common.Model.Models.sys;
 using OnlineMahalla.Common.Utility;
 
@@ -33,20 +34,22 @@ namespace OnlineMahalla.Data.Repository.SqlServer
 
             if (user.ID == 0)
             {
-                sql = "INSERT INTO sys_User (Name,DisplayName,PasswordHash,PasswordSalt,ExpirationDate,CreatedUserID,StateID,AllowedIP,NeighborhoodID) VALUES (@Name,@DisplayName,@PasswordHash,@PasswordSalt,@ExpirationDate,@CreatedUserID,@StateID,@AllowedIP,@NeighborhoodID) select [ID] from sys_User where @@ROWCOUNT > 0 and [ID] = scope_identity()";
+                sql = @"INSERT INTO sys_User (Name,DisplayName,PasswordHash,PasswordSalt,ExpirationDate,CreatedUserID,StateID,AllowedIP,NeighborhoodID,[RegionID],[DistrictID],[IsRegionAdmin],[IsDistrictAdmin]) VALUES (@Name,@DisplayName,@PasswordHash,@PasswordSalt,@ExpirationDate,@CreatedUserID,@StateID,@AllowedIP,@NeighborhoodID,@RegionID
+           ,@DistrictID,@IsRegionAdmin,@IsDistrictAdmin) select [ID] from sys_User where @@ROWCOUNT > 0 and [ID] = scope_identity()";
                 var NewID = _databaseExt.ExecuteScalar(sql,
-                     new string[] { "@Name", "@DisplayName", "@PasswordHash", "@PasswordSalt", "@ExpirationDate", "@CreatedUserID", "@StateID", "@AllowedIP", "@NeighborhoodID", },
-                     new object[] { user.Name, user.DisplayName, user.PasswordHash, user.PasswordSalt, user.ExpirationDate, UserID, user.StateID, user.AllowedIP, user.NeighborhoodID }, System.Data.CommandType.Text, ts);
+                     new string[] { "@Name", "@DisplayName", "@PasswordHash", "@PasswordSalt", "@ExpirationDate", "@CreatedUserID", "@StateID", "@AllowedIP", "@NeighborhoodID","@RegionID"
+           ,"@DistrictID","@IsRegionAdmin","@IsDistrictAdmin" }, new object[] { user.Name, user.DisplayName, user.PasswordHash, user.PasswordSalt, user.ExpirationDate, UserID, user.StateID, user.AllowedIP, user.NeighborhoodID, user.RegionID, user.DistrictID, user.IsRegionAdmin, user.IsDistrictAdmin }, System.Data.CommandType.Text, ts);
                 user.ID = Convert.ToInt32(NewID);
             }
             else
             {
                 if (string.IsNullOrEmpty(user.PasswordHash))
                 {
-                    sql = "UPDATE [sys_User] SET [Name] = @Name,DisplayName=@DisplayName,ExpirationDate=@ExpirationDate,[NeighborhoodID]=@NeighborhoodID,[VerifyEDS]=@VerifyEDS,[StateID]=@StateID ,[ModifiedUserID] = @ModifiedUserID,[DateOfModified] = GETDATE() WHERE ID=@ID";
+                    sql = "UPDATE [sys_User] SET [Name] = @Name,DisplayName=@DisplayName,ExpirationDate=@ExpirationDate,[NeighborhoodID]=@NeighborhoodID,[VerifyEDS]=@VerifyEDS,[StateID]=@StateID ,[ModifiedUserID] = @ModifiedUserID,[DateOfModified] = GETDATE(), RegionID = @RegionID, DistrictID = @DistrictID, IsRegionAdmin = @IsRegionAdmin, IsDistrictAdmin = @IsDistrictAdmin WHERE ID=@ID";
                     _databaseExt.ExecuteNonQuery(sql,
-                        new string[] { "@Name", "@DisplayName", "@ExpirationDate", "@NeighborhoodID", "@VerifyEDS", "@StateID", "@ModifiedUserID", "@ID" },
-                        new object[] { user.Name, user.DisplayName, user.ExpirationDate, user.NeighborhoodID, user.VerifyEDS, user.StateID, UserID, user.ID }, System.Data.CommandType.Text, ts);
+                        new string[] { "@Name", "@DisplayName", "@ExpirationDate", "@NeighborhoodID", "@VerifyEDS", "@StateID", "@ModifiedUserID","@RegionID"
+           ,"@DistrictID","@IsRegionAdmin","@IsDistrictAdmin", "@ID" },
+                        new object[] { user.Name, user.DisplayName, user.ExpirationDate, user.NeighborhoodID, user.VerifyEDS, user.StateID, UserID, user.RegionID, user.DistrictID, user.IsRegionAdmin, user.IsDistrictAdmin, user.ID }, System.Data.CommandType.Text, ts);
                 }
                 else
                 {

@@ -14,8 +14,6 @@ namespace OnlineMahalla.Common.Model.Models.sys
         {
             this.RolesModel = new List<Role>();
             this.RolesModel1 = new List<Role>();
-            this.RegionModel = new List<IncomeUNC>();
-            this.RegionModel1 = new List<IncomeUNC>();
         }
         public int ID { get; set; }
         public string Name { get; set; }
@@ -47,11 +45,14 @@ namespace OnlineMahalla.Common.Model.Models.sys
         public string PhoneNumber { get; set; }
         public string PNFL { get; set; }
         public bool IsActive { get; set; }
+        public bool IsRegionAdmin { get; set; }
+        public bool IsDistrictAdmin { get; set; }
+        public int RegionID { get; set; }
+        public int DistrictID { get; set; }
         public List<string> Roles { get; set; }
         public List<Role> RolesModel { get; set; }
         public List<Role> RolesModel1 { get; set; }
-        public List<IncomeUNC> RegionModel { get; set; }
-        public List<IncomeUNC> RegionModel1 { get; set; }
+
         public bool CheckData()
         {
             if (Name.Trim() == "")

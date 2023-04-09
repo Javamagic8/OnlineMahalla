@@ -112,7 +112,7 @@
                     <div class="col-sm-2">
                         <select data-bind='options: regionlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:citizen.BirthdayRegionID,selectPicker: {},event:{ change: regionchange}' data-live-search="true" class="" data-width="100%"> </select>
                     </div>
-                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Tug'ilgan viloyati"]</label>
+                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Tug'ilgan tumani"]</label>
                     <div class="col-sm-2">
                         <select data-bind='options: districtlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["PleaseSelectOne"]", value:citizen.BirthdayDistrictID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
                     </div>
@@ -127,9 +127,9 @@
                     <div class="col-sm-1">
                         <select data-bind='options: statelist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:citizen.StateID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
                     </div>
-                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Oilasi turi"]</label>
+                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Ko'cha"]</label>
                     <div class="col-sm-2">
-                        <select data-bind='options: typeoffamilylist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:citizen.MemberTypeFamilyId,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
+                        <select data-bind='options: streetlist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:citizen.MemberTypeFamilyId,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
                     </div>
                 </div>
             </div>
@@ -226,7 +226,7 @@
             self.citizenemploymentlist = ko.mapping.fromJS([]);
             self.regionlist = ko.mapping.fromJS([]);
             self.districtlist = ko.mapping.fromJS([]);
-            self.typeoffamilylist = ko.mapping.fromJS([]);
+            self.streetlist = ko.mapping.fromJS([]);
 
             self.loaddata = function() {
 
@@ -263,8 +263,8 @@
                 getajaxjson("@Url.Action("GetDistrictList", "Helper")", function(data) {
                     ko.mapping.fromJS(data, self.districtlist);
                 });
-                getajaxjson("@Url.Action("GetMemberTypeFamilyList", "Helper")", function(data) {
-                    ko.mapping.fromJS(data, self.typeoffamilylist);
+                getajaxjson("@Url.Action("GetNeighborhoodstreet", "Helper")", function (data) {
+                    ko.mapping.fromJS(data, self.streetlist);
                 });
             };
             self.checkdata = function() {

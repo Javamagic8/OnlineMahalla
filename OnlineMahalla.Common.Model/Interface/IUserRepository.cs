@@ -16,13 +16,10 @@ namespace OnlineMahalla.Common.Model.Interface
 
         User GetUserRole(int id);
 
-        User GetUserRegion(int id);
-
         void UpdateUserRole(User user);
 
         void UpdateUserRole1(User user);
 
-        void UpdateUserRegion(User user);
         void DeleteUser(int id);
 
     }

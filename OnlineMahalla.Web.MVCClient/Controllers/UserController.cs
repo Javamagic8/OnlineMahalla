@@ -98,23 +98,6 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
             return new JsonResult(user);
         }
 
-        [HttpGet]
-        public IActionResult GetRegion(int? id)
-        {
-            if (!_dataRepository.UserIsInRole("UserEdit"))
-                return BadRequest("Нет доступа");
-
-            User user = new User();
-            if (id.HasValue && id.Value > 0)
-            {
-                user = _dataRepository.GetUserRegion(id.Value);
-            }
-
-            if (id == 0)
-                user.StateID = 1;
-            return new JsonResult(user);
-        }
-
         [HttpPost]
         public IActionResult Update([FromBody] User user)
         {
@@ -163,28 +146,6 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
             {
                 return StatusCode(500, ex.Message);
             }
-            return new JsonResult(user);
-        }
-
-        [HttpPost]
-        public IActionResult UpdateRegion([FromBody] User user)
-        {
-            if (!_dataRepository.UserIsInRole("UserEdit"))
-                return BadRequest("Нет доступа");
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _dataRepository.UpdateUserRegion(user);
-                }
-                catch (Exception ex)
-                {
-                    return StatusCode(500, ex.Message);
-                }
-            }
-            else
-                return StatusCode(500, ModelState);
             return new JsonResult(user);
         }
 

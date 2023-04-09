@@ -147,69 +147,6 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             return user;
         }
 
-        public User GetUserRegion(int id)
-        {
-            string UserRegionID = "";
-            switch (UserID)
-            {
-
-                case 28877: UserRegionID = "6"; break;//Кошжанов Жаксылык Алимбаевич
-                case 27894: UserRegionID = "5"; break;//Паршинцев Н.В.
-                case 56: UserRegionID = "10"; break;//Хазраткулов С.
-                case 27895: UserRegionID = "8"; break;//Бобохолов Сайфиддин Холмуродович
-                case 366: UserRegionID = "0000"; break;//hilola 
-                case 29007: UserRegionID = "0000"; break;//Султанов Яшнар Бокижонович
-                case 41544: UserRegionID = "0000"; break;//Агевнина Т. Н.
-                case 92444: UserRegionID = "0000"; break;//Бегимов С. Ф.
-                case 86501: UserRegionID = "4"; break;//Мухамедов Замонжон Замирович
-                case 71856: UserRegionID = "11"; break;//Шопиев Зокир
-                case 28819: UserRegionID = "14"; break;//Жуманиязов Музаффар
-                case 28480: UserRegionID = "7"; break;//Рахимов Сардор Уралович
-                case 28458: UserRegionID = "13"; break;//Ахроров Жасурбек Абдутоирович
-                case 28151: UserRegionID = "3"; break;//Юсупов Акромжон Акылжонович
-                case 28028: UserRegionID = "12"; break;//Курбонов Хамза Холбутаевич
-                case 28025: UserRegionID = "0000"; break;//Сидиков Бекзод Бахрамович
-                case 26910: UserRegionID = "10"; break;//Шукуров Шерзод Мамарасулович
-                case 1583: UserRegionID = "9"; break;//Юлдашев Адхамжон Нурматжонович
-                case 1888: UserRegionID = "0000"; break;//Обид Абдукодиров
-                case 22412: UserRegionID = "0000"; break;//Фарход Мухамедкаримов
-                case 29388: UserRegionID = "0000"; break;//Хасанов А. Э.
-                case 29661: UserRegionID = "0000"; break;//Умиров Даврон
-                case 41503: UserRegionID = "0000"; break;//Узаков Хасан
-                case 91796: UserRegionID = "0000"; break;//Eshpolatov Kamol
-                case 92357: UserRegionID = "0000"; break;//Boymanov E
-                case 91775: UserRegionID = "0000"; break;//javohir
-
-                default:
-                    UserRegionID = "0";
-                    break;
-            }
-            var dRegionIDlist = _databaseExt.GetDataFromSql("select DistrictID from sys_UserDistrict where UserID=@ID", new string[] { "@ID" }, new object[] { id }).Select(x => x.RegionID).ToList();
-            string ss = string.Join(',', dRegionIDlist);
-
-
-
-            string district = "";
-            if (UserRegionID.Length == 4)
-                district = @"SELECT Region.ID RegionID, Region.Name Region,District.ID DistrictID,District.Name District from info_District District JOIN info_Region Region ON Region.ID=District.RegionID where 1=1 ";
-            else
-                district = @"SELECT Region.ID RegionID, Region.Name Region,District.ID DistrictID,District.Name District from info_District District JOIN info_Region Region ON Region.ID=District.RegionID WHERE District.RegionID=" + UserRegionID;
-
-
-            if (dRegionIDlist.Count > 0)
-                district += " AND District.ID not in(" + ss + ")";
-
-            User user = new User()
-            {
-                ID = id,
-                RegionModel = _databaseExt.GetDataFromSql(district, new string[] { }, new object[] { }).Select(x => new IncomeUNC() { ID = x.RegionID, Code = x.Oblast, Name = x.Region }).ToList(),
-                RegionModel1 = _databaseExt.GetDataFromSql(@"select u.ID,reg.Name Region,info.Name Oblast from sys_UserRegion u,info_Region reg,info_Oblast info
-                                                                        where u.UserID=@UserID and reg.ID = RegionID and reg.OblastID=info.ID", new string[] { "@UserID" }, new object[] { id }).Select(x => new IncomeUNC() { ID = x.ID, Code = x.Region, Name = x.Oblast }).ToList()
-            };
-
-            return user;
-        }
-
         public void UpdateUserRole(User user)
         {
             using System.Data.SqlClient.SqlConnection myConn = new System.Data.SqlClient.SqlConnection(_connectionString);
@@ -230,30 +167,6 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                    new object[] { user.ID, list[i].ID, UserID, UserID }, System.Data.CommandType.Text, ts);
                 }
             }
-            ts.Commit();
-        }
-
-        public void UpdateUserRegion(User user)
-        {
-            using System.Data.SqlClient.SqlConnection myConn = new System.Data.SqlClient.SqlConnection(_connectionString);
-            myConn.Open();
-            using var ts = myConn.BeginTransaction();
-            string sql = "";
-
-            var list = user.RegionModel.Where(x => x.Check).ToList();
-
-            if (list.Count > 0)
-            {
-                for (int i = 0; i < list.Count; i++)
-                {
-                    sql = "INSERT INTO [sys_UserRegion] ([UserID],[RegionID]) " +
-                              "VALUES (@UserID,@RegionID) SELECT [ID] FROM [sys_UserRegion]";
-                    _databaseExt.ExecuteNonQuery(sql,
-                   new string[] { "@UserID", "@RegionID" },
-                   new object[] { user.ID, list[i].ID }, System.Data.CommandType.Text, ts);
-                }
-            }
-
             ts.Commit();
         }
 
