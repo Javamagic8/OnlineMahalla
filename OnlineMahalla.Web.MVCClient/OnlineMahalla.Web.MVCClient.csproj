@@ -30,6 +30,7 @@
 
   <ItemGroup>
     <Folder Include="Views\Employee\" />
+    <Folder Include="Views\Nation\" />
     <Folder Include="Views\Organization\" />
   </ItemGroup>
 

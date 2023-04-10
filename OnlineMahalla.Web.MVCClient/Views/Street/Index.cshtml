@@ -1,0 +1,127 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@{
+    ViewData["Title"] = "Index";
+}
+<environment names="Development">
+    <link rel="stylesheet" href="~/lib/bootstrap-table/dist/bootstrap-table.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-datepicker/dist/css/bootstrap-datepicker.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-select/dist/css/bootstrap-select.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</environment>
+<environment names="Staging,Production">
+    <link rel="stylesheet" href="~/lib/bootstrap-table/dist/bootstrap-table.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-select/dist/css/bootstrap-select.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</environment>
+
+<style>
+    .bootstrap-table .table:not(.table-condensed), .bootstrap-table .table:not(.table-condensed) > tbody > tr > th, .bootstrap-table .table:not(.table-condensed) > tfoot > tr > th, .bootstrap-table .table:not(.table-condensed) > thead > tr > td, .bootstrap-table .table:not(.table-condensed) > tbody > tr > td, .bootstrap-table .table:not(.table-condensed) > tfoot > tr > td {
+        padding: 8px;
+        white-space: pre-wrap;
+    }
+</style>    
+
+<h3 style="text-align:center">@SharedLocalizer["Mahalla ko'chalari"]</h3>
+<div class="panel panel-primary"></div>
+<div id="custom-toolbar" class="bs-bars pull-center">
+    <div class="form-group form-inline" align="center">
+        <div class="input-group">
+            <input id="filtername" style="font-size:13px;width:300px" class="form-control input-sm" placeholder="@SharedLocalizer["Ko'cha"]" />
+        </div>
+        <div class="input-group">
+            <input id="filterRegion" style="font-size:13px;width:200px" class="form-control input-sm" placeholder="@SharedLocalizer["Viloyat"]" />
+        </div>
+        <div class="input-group">
+            <input id="filterregion" style="font-size:13px;width:200px" class="form-control input-sm" placeholder="@SharedLocalizer["Tuman"]" />
+        </div>
+        <div class="input-group">
+            <div class="btn-toolbar">
+                <button id="refreshdata" class="btn btn-success btn-sm" data-toggle="popover" data-content="@SharedLocalizer["Yangilash"]" data-trigger="hover"><span class="glyphicon glyphicon-refresh"></span></button>
+                <button id="addRow" class="btn btn-primary btn-sm" data-toggle="popover" data-trigger="hover" data-content="@SharedLocalizer["Yaratish"]"><span class="glyphicon glyphicon-plus"></span></button>
+                <button id="editRow" class="btn btn-primary btn-sm" data-toggle="popover" data-trigger="hover" data-content="@SharedLocalizer["O'zgartirish"]"><span class="glyphicon glyphicon-edit"></span></button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <table id="table"
+           data-toolbar="#toolbar"
+           data-search="false"
+           data-show-refresh="false"
+           data-show-toggle="false"
+           data-show-columns="false"
+           data-show-export="true"
+           data-detail-view="false"
+           data-minimum-count-columns="2"
+           data-show-pagination-switch="false"
+           data-pagination="true"
+           data-id-field="ID"
+           data-page-list="[50,100,150,200]"
+           data-show-footer="false"
+           data-side-pagination="server"
+           data-url="@Url.Action("GetList", "Street")"
+           data-query-params="queryParams"
+           class="table table-striped">
+        <thead>
+            <tr>
+                <th data-field="ID" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["ID"]</th>
+                <th data-field="Name" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["Nomi"]</th>
+                <th data-field="ResponsibleOfficer" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["Mas'ul Hodim"]</th>
+                <th data-field="NeighborhoodName" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["Mahalla"]</th>
+                <th data-field="RegionName" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["Viloyat"]</th>
+                <th data-field="DistrictName" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["Tuman"]</th>
+                <th data-field="State" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["Holati"]</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+<div id="editWindow" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg" style="width:95%">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <br />
+                <div class="container-fluid">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2 class="panel-title" style="text-align:center"><b>@SharedLocalizer["Ko'cha"]</b></h2>
+                        </div>
+                        <div align="center">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+    {
+    <environment names="Development">
+        <script src="~/lib/bootstrap-table/dist/bootstrap-table.js"></script>
+        <script src="~/lib/bootstrap-table/src/locale/bootstrap-table-ru-RU.js"></script>
+        <script src="~/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+        <script src="~/lib/bootstrap-datepicker/dist/locales/bootstrap-datepicker.ru.min.js"></script>
+        <script src="~/lib/bootstrap-select/dist/js/bootstrap-select.js"></script>
+        <script src="~/lib/bootstrap-select/dist/js/bootstrap-select.js"></script>
+        <script src="~/js/utility.js"></script>
+        <script src="~/lib/knockout/dist/knockout.debug.js"></script>
+        <script src="~/lib/knockout-mapping/knockout.mapping.js"></script>
+        <script src="~/js/ko.utility.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/lib/bootstrap-table/dist/bootstrap-table.min.js"></script>
+        <script src="~/lib/bootstrap-table/src/locale/bootstrap-table-ru-RU.js"></script>
+        <script src="~/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+        <script src="~/lib/bootstrap-datepicker/dist/locales/bootstrap-datepicker.ru.min.js"></script>
+        <script src="~/lib/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+        <script src="~/js/utility.js"></script>
+        <script src="~/lib/knockout/dist/knockout.js"></script>
+        <script src="~/lib/knockout-mapping/knockout.mapping.js"></script>
+        <script src="~/js/ko.utility.js" asp-append-version="true"></script>
+    </environment>
+
+}

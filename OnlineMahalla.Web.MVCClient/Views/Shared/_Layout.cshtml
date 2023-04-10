@@ -82,6 +82,17 @@
                                     <li><a data-roleview="OrganizationView" tabindex="0" asp-area="" asp-controller="Neighborhood" asp-action="Index">@Localizer["Mahallalar"]</a></li>
                                 </ul>
                             </li>
+                            <li class="dropdown" data-roleview="UserView">
+                                <a href="#" class="dropdown-toggle" aria-expanded="true" data-toggle="dropdown" data-submenu="">
+                                    <i class="fa-solid fa-chart-simple"></i>&nbsp;@Localizer["Diagrammalar"]<span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a data-roleview="UserView" asp-area="" asp-controller="User" asp-action="Index">@Localizer["Foydalanuvchilar"]</a></li>
+                                    <li><a data-roleview="RoleView" asp-area="" asp-controller="Role" asp-action="Index">@Localizer["Rollar"]</a></li>
+                                    <li><a data-roleview="UserView" asp-area="" asp-controller="Street" asp-action="Index">@Localizer["Mahalla ko'chalari"]</a></li>
+                                    <li><a data-roleview="OrganizationView" tabindex="0" asp-area="" asp-controller="Neighborhood" asp-action="Index">@Localizer["Mahallalar"]</a></li>
+                                </ul>
+                            </li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">

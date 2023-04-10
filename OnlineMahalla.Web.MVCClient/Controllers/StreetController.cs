@@ -32,7 +32,7 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
 
         public IActionResult GetList(string Name, string Search, string Sort, string Order, int Offset, int Limit)
         {
-            var data = _dataRepository.GeCitizenList(Name, Search, Sort, Order, Offset, Limit);
+            var data = _dataRepository.GeStreetList(Name, Search, Sort, Order, Offset, Limit);
             return new JsonResult(data);
         }
         

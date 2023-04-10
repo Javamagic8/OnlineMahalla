@@ -15,25 +15,27 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                                         Street.ResponsibleOfficer,
                                         Neighborhood.Name NeighborhoodName,
                                         Region.Name RegionName,
-                                        District.Name DistrictName ";
+                                        District.Name DistrictName,
+                                        [State].DisplayName ";
 
             string sqlfrom = @" FROM info_Street Street 
                                      JOIN info_Neighborhood Neighborhood ON  Neighborhood.ID = Street.NeighborhoodID
                                      JOIN info_Region Region ON Region.ID = Street.RegionID
-                                     JOIN info_District District ON District.ID = Street.DistrictID";
+                                     JOIN info_District District ON District.ID = Street.DistrictID
+                                     JOIN enum_State [State] ON [State].ID = Street.StateID ";
 
-            string sqlwhere = " WHERE ";
-            User user = GetUser(UserID);
-            if (user.IsDistrictAdmin)
-            {
-                sqlwhere += " AND Street.DistrictID = @DistrictID";
-                sqlparamas.Add("@DistrictID", user.DistrictID);
-            }
-            if (user.IsRegionAdmin)
-            {
-                sqlwhere += " AND Street.RegionID = @RegionID";
-                sqlparamas.Add("@RegionID", user.RegionID);
-            }
+            string sqlwhere = "  ";
+            //User user = GetUser(UserID);
+            //if (user.IsDistrictAdmin)
+            //{
+            //    sqlwhere += " AND Street.DistrictID = @DistrictID";
+            //    sqlparamas.Add("@DistrictID", user.DistrictID);
+            //}
+            //if (user.IsRegionAdmin)
+            //{
+            //    sqlwhere += " AND Street.RegionID = @RegionID";
+            //    sqlparamas.Add("@RegionID", user.RegionID);
+            //}
             if (!String.IsNullOrEmpty(Name))
             {
                 sqlwhere += " AND Street.Name LIKE '%' + @Name + '%'";
