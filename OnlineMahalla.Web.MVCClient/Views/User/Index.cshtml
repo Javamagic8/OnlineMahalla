@@ -706,8 +706,6 @@
             self.statelist = ko.mapping.fromJS([]);
             self.regionlist = ko.mapping.fromJS([]);
             self.districtlist = ko.mapping.fromJS([]);
-            self.allinvmovstowege = ko.observable(false);
-            self.allinvmovstowege1 = ko.observable(false);
 
             self.loaddata = function (id) {
                 getajaxjson("@Url.Action("Get", "User")" + "?id=" + id, function (data) {
@@ -731,65 +729,6 @@
                 });
             };
 
-            self.loadregion = function (id) {
-                getajaxjson("@Url.Action("GetRegion", "User")" + "?id=" + id, function (data) {
-                    ko.mapping.fromJS(data, {}, self.user);
-                });
-            };
-
-            self.loadsettlement = function (id) {
-                getajaxjson("@Url.Action("GetSettlement", "User")" + "?id=" + id, function (data) {
-                    ko.mapping.fromJS(data, {}, self.user);
-                });
-            };
-
-            //self.loadorg = function (id) {
-            //    getajaxjson("@Url.Action("GetUserOrg", "User")" + "?id=" + id, function (data) {
-            //        ko.mapping.fromJS(data, {}, self.user);
-            //    });
-            //};
-
-            self.loadattachorg = function (id) {
-                getajaxjson("@Url.Action("GetAttachOrg", "User")" + "?id=" + id, function (data) {
-                    ko.mapping.fromJS(data, {}, self.user);
-                });
-            };
-
-            self.changeallinvmovstowege = function () {
-                ko.utils.arrayForEach(self.user.SettlementAccount(), function (item) {
-                    item.Check(self.allinvmovstowege());
-                });
-            }
-            self.changeallinvmovstowege1 = function () {
-                ko.utils.arrayForEach(self.user.SettlementAccount1(), function (item) {
-                    item.Check(self.allinvmovstowege1());
-                });
-
-            }
-
-            self.changeinvmovstowege = function () {
-                var hasnotchecket = false;
-                ko.utils.arrayForEach(self.user.SettlementAccount(), function (item) {
-                    if (item.Check() === false)
-                        hasnotchecket = true;
-                });
-                if (hasnotchecket)
-                    self.allinvmovstowege(false);
-                else
-                    self.allinvmovstowege(true);
-                console.log('gffffffffffff');
-            }
-            self.changeinvmovstowege1 = function () {
-                var hasnotchecket1 = false;
-                ko.utils.arrayForEach(self.user.SettlementAccount1(), function (item) {
-                    if (item.Check() === false)
-                        hasnotchecket1 = true;
-                });
-                if (hasnotchecket1)
-                    self.allinvmovstowege1(false);
-                else
-                    self.allinvmovstowege1(true);
-            }
 
             self.checkdata = function () {
                 if (self.user.StateID() === null || self.user.StateID() === undefined || self.user.StateID() === "") {
@@ -891,221 +830,6 @@
                         alert(xhr.responseText);
                     });
             };
-
-            self.savedata3 = function () {
-
-                var datatosave = JSON.stringify(ko.toJS(self.user), null, 2)
-                $.ajax({
-                    headers: {
-                        "Accept": "application/json",
-                        "Content-Type": "application/json; charset=utf-8",
-                    },
-                    type: "POST",
-                    url: "@Url.Action("UpdateUNS", "User")",
-                    data: datatosave
-                }).done(function (data, status, xhr) {
-                    alert("@SharedLocalizer["SavedSuccessfully"]");
-                    $("#ihselectWindow1").modal('show');
-                    self.loaduns(userid);
-                })
-                    .fail(function (xhr, status, error) {
-                        alert(xhr.responseText);
-                    });
-            };
-
-            self.savedata4 = function () {
-
-                var datatosave = JSON.stringify(ko.toJS(self.user), null, 2)
-                $.ajax({
-                    headers: {
-                        "Accept": "application/json",
-                        "Content-Type": "application/json; charset=utf-8",
-                    },
-                    type: "POST",
-                    url: "@Url.Action("UpdateUNS1", "User")",
-                    data: datatosave
-                }).done(function (data, status, xhr) {
-                    alert("@SharedLocalizer["SavedSuccessfully"]");
-                    $("#ihselectWindow1").modal('show');
-                    self.loaduns(userid);
-                })
-                    .fail(function (xhr, status, error) {
-                        alert(xhr.responseText);
-                    });
-            };
-
-            self.savedata5 = function () {
-
-                var datatosave = JSON.stringify(ko.toJS(self.user), null, 2)
-                $.ajax({
-                    headers: {
-                        "Accept": "application/json",
-                        "Content-Type": "application/json; charset=utf-8",
-                    },
-                    type: "POST",
-                    url: "@Url.Action("UpdateRegion", "User")",
-                    data: datatosave
-                }).done(function (data, status, xhr) {
-                    alert("@SharedLocalizer["SavedSuccessfully"]");
-                    $("#ihselectWindow2").modal('show');
-                    self.loadregion(userid);
-                })
-                    .fail(function (xhr, status, error) {
-                        alert(xhr.responseText);
-                    });
-            };
-
-            self.savedata6 = function () {
-
-                var datatosave = JSON.stringify(ko.toJS(self.user), null, 2)
-                $.ajax({
-                    headers: {
-                        "Accept": "application/json",
-                        "Content-Type": "application/json; charset=utf-8",
-                    },
-                    type: "POST",
-                    url: "@Url.Action("UpdateRegion1", "User")",
-                    data: datatosave
-                }).done(function (data, status, xhr) {
-                    alert("@SharedLocalizer["SavedSuccessfully"]");
-                    $("#ihselectWindow2").modal('show');
-                    self.loadregion(userid);
-                })
-                    .fail(function (xhr, status, error) {
-                        alert(xhr.responseText);
-                    });
-            };
-
-            self.savedata7 = function () {
-
-                var datatosave = JSON.stringify(ko.toJS(self.user), null, 2)
-                $.ajax({
-                    headers: {
-                        "Accept": "application/json",
-                        "Content-Type": "application/json; charset=utf-8",
-                    },
-                    type: "POST",
-                    url: "@Url.Action("UpdateSettlementAccount", "User")",
-                    data: datatosave
-                }).done(function (data, status, xhr) {
-                    alert("@SharedLocalizer["SavedSuccessfully"]");
-                    $("#ihselectWindow3").modal('show');
-                    self.loadsettlement(userid);
-                    self.allinvmovstowege(false);
-                })
-                    .fail(function (xhr, status, error) {
-                        alert(xhr.responseText);
-                    });
-            };
-
-            self.savedata8 = function () {
-
-                var datatosave = JSON.stringify(ko.toJS(self.user), null, 2)
-                $.ajax({
-                    headers: {
-                        "Accept": "application/json",
-                        "Content-Type": "application/json; charset=utf-8",
-                    },
-                    type: "POST",
-                    url: "@Url.Action("UpdateSettlementAccount1", "User")",
-                    data: datatosave
-                }).done(function (data, status, xhr) {
-                    alert("@SharedLocalizer["SavedSuccessfully"]");
-                    $("#ihselectWindow3").modal('show');
-                    self.loadsettlement(userid);
-                    self.allinvmovstowege1(false);
-
-                })
-                    .fail(function (xhr, status, error) {
-                        alert(xhr.responseText);
-                    });
-            };
-
-            self.savedata9 = function () {
-
-                var datatosave = JSON.stringify(ko.toJS(self.user), null, 2)
-                $.ajax({
-                    headers: {
-                        "Accept": "application/json",
-                        "Content-Type": "application/json; charset=utf-8",
-                    },
-                    type: "POST",
-                    url: "@Url.Action("UpdateUserOrg", "User")",
-                    data: datatosave
-                }).done(function (data, status, xhr) {
-                    alert("@SharedLocalizer["SavedSuccessfully"]");
-                    $("#ihselectWindow4").modal('show');
-                    self.loadorg(userid);
-                })
-                    .fail(function (xhr, status, error) {
-                        alert(xhr.responseText);
-                    });
-            };
-
-            self.savedata10 = function () {
-
-                var datatosave = JSON.stringify(ko.toJS(self.user), null, 2)
-                $.ajax({
-                    headers: {
-                        "Accept": "application/json",
-                        "Content-Type": "application/json; charset=utf-8",
-                    },
-                    type: "POST",
-                    url: "@Url.Action("UpdateUserOrg1", "User")",
-                    data: datatosave
-                }).done(function (data, status, xhr) {
-                    alert("@SharedLocalizer["SavedSuccessfully"]");
-                    $("#ihselectWindow4").modal('show');
-                    self.loadorg(userid);
-                })
-                    .fail(function (xhr, status, error) {
-                        alert(xhr.responseText);
-                    });
-            };
-
-            self.savedata11 = function () {
-
-                var datatosave = JSON.stringify(ko.toJS(self.user), null, 2)
-                $.ajax({
-                    headers: {
-                        "Accept": "application/json",
-                        "Content-Type": "application/json; charset=utf-8",
-                    },
-                    type: "POST",
-                    url: "@Url.Action("UpdateUserAttachOrg", "User")",
-                    data: datatosave
-                }).done(function (data, status, xhr) {
-                    alert("@SharedLocalizer["SavedSuccessfully"]");
-                    $("#ihselectWindow5").modal('show');
-                    self.loadattachorg(userid);
-                })
-                    .fail(function (xhr, status, error) {
-                        alert(xhr.responseText);
-                    });
-            };
-
-            self.savedata12 = function () {
-
-                var datatosave = JSON.stringify(ko.toJS(self.user), null, 2)
-                $.ajax({
-                    headers: {
-                        "Accept": "application/json",
-                        "Content-Type": "application/json; charset=utf-8",
-                    },
-                    type: "POST",
-                    url: "@Url.Action("UpdateUserAttachOrg1", "User")",
-                    data: datatosave
-                }).done(function (data, status, xhr) {
-                    alert("@SharedLocalizer["SavedSuccessfully"]");
-                    $("#ihselectWindow5").modal('show');
-                    self.loadattachorg(userid);
-                })
-                    .fail(function (xhr, status, error) {
-                        alert(xhr.responseText);
-                    });
-            };
-
-
         }
 
         $(document).ready(function () {
@@ -1147,8 +871,6 @@
 
             $('#tableOrganization').bootstrapTable({ height: 450 });
 
-            $('#tableDataHistorySelect').bootstrapTable({ height: 450 });
-
             $('#deleteRow').click(function () {
                 deleteRow();
             });
@@ -1186,12 +908,6 @@
             });
 
             $('#tableOrganization').on('dblclick', function () {
-                itemModel.user.NeighborhoodID(selectedorgrow.ID);
-                itemModel.user.NeighborhoodName(selectedorgrow.Name);
-                itemModel.user.DisplayName(selectedorgrow.Accounter);
-                $("#organizationWindow").modal('hide');
-            });
-            $('#btnorganizationselect').click(function () {
                 itemModel.user.NeighborhoodID(selectedorgrow.ID);
                 itemModel.user.NeighborhoodName(selectedorgrow.Name);
                 itemModel.user.DisplayName(selectedorgrow.Accounter);
@@ -1294,11 +1010,11 @@
                     message: '@SharedLocalizer["YouWantToDelete"]',
                     buttons: {
                         cancel: {
-                            label: '<i class="fa fa-times"></i> @SharedLocalizer["Cancel"]',
+                            label: '<i class="fa fa-times"></i> @SharedLocalizer["Chiqish"]',
                             className: 'btn-danger'
                         },
                         confirm: {
-                            label: '<i class="fa fa-check"></i> @SharedLocalizer["Confirm"]',
+                            label: '<i class="fa fa-check"></i> @SharedLocalizer["Saqlash"]',
                             className: 'btn-success'
                         }
                     },

@@ -29,33 +29,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                                    JOIN info_Neighborhood Neighborhood ON Neighborhood.ID = [User].NeighborhoodID
                                    JOIN enum_State [State] ON State.ID = [User].StateID";
             string sqlwhere = " WHERE  [User].StatusID <> 5 ";
-            string UserRegionID = "";
 
-            switch (UserID)
-            {
-                case 8: UserRegionID = "0000"; break;//Adiba
-                case 7: UserRegionID = "5"; break;//Buzrukov Н.В.
-                default:
-                    UserRegionID = "0";
-                    break;
-            }
-            bool check = false;
-            if (UserRegionID == "0" && UserIsInRole("FinancialAuthority"))
-            {
-                var list = _databaseExt.GetDataFromSql(@"select DistrictID from sys_UserDistrict where UserID=@UserID", new string[] { "@UserID" }, new object[] { UserID }).ToList();
-                if (list.Count > 0)
-                {
-                    UserRegionID = String.Join(",", list.Select(x => x.RegionID).ToList());
-                    sqlwhere += " AND Neighborhood.District in(" + UserRegionID + ")";
-                }
-                else
-                    sqlwhere += " AND Neighborhood.District in(" + 0 + ")";
-                check = true;
-
-            }
-
-            if ((UserRegionID.Length != 4 && UserRegionID != "0") && !check)  //&& !UserIsInRole("FinancialAuthority")
-                sqlwhere += " AND Neighborhood.RegionID in( " + UserRegionID + ")";
 
             if (ID > 0)
             {
