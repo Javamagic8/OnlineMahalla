@@ -111,5 +111,11 @@ namespace UZASBO.Web.MVCClient.Controllers
             return new JsonResult(_dataRepository.GetNeighborhoodstreet());
         }
 
+        [HttpGet]
+        public IActionResult GetOrgList(int? DistrictID)
+        {
+            return new JsonResult(_dataRepository.GetOrgList(DistrictID));
+        }
+
     }
 }

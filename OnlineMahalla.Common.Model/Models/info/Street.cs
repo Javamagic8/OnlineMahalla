@@ -18,9 +18,9 @@ namespace OnlineMahalla.Common.Model.Models.info
 
         public int NeighborhoodId { get; set; }
 
-        public int CountCitizen { get; set; }
+        public string ResponsibleOfficer { get; set; }
 
-        public int CountHome { get; set; }
+        public int StateID { get; set; }
 
 
     }

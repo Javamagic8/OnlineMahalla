@@ -168,5 +168,18 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             return _databaseExt.GetDataFromSql(sql, new string[] { "@NeighborhoodID" }, new object[] { NeighborhoodID });
         }
 
+        public IEnumerable<dynamic> GetOrgList(int? ID)
+        {
+            string sql = @"SELECT [ID]
+                                 ,[Name]
+                             FROM [Online_Mahalla].[dbo].[info_Neighborhood] ";
+            if(ID.HasValue && ID.Value > 0)
+            {
+                sql += $" WHERE DistrictID = {ID}";
+            }
+            return _databaseExt.GetDataFromSql(sql, new string[] { }, new object[] { });
+        }
+
+
     }
 }

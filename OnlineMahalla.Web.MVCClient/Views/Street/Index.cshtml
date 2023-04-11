@@ -21,7 +21,7 @@
         padding: 8px;
         white-space: pre-wrap;
     }
-</style>    
+</style>
 
 <h3 style="text-align:center">@SharedLocalizer["Mahalla ko'chalari"]</h3>
 <div class="panel panel-primary"></div>
@@ -31,65 +31,144 @@
             <input id="filtername" style="font-size:13px;width:300px" class="form-control input-sm" placeholder="@SharedLocalizer["Ko'cha"]" />
         </div>
         <div class="input-group">
-            <input id="filterRegion" style="font-size:13px;width:200px" class="form-control input-sm" placeholder="@SharedLocalizer["Viloyat"]" />
+            <input id="filterregion" style="font-size:13px;width:200px" class="form-control input-sm" placeholder="@SharedLocalizer["Viloyat"]" />
         </div>
         <div class="input-group">
-            <input id="filterregion" style="font-size:13px;width:200px" class="form-control input-sm" placeholder="@SharedLocalizer["Tuman"]" />
+            <input id="filterdistrict" style="font-size:13px;width:200px" class="form-control input-sm" placeholder="@SharedLocalizer["Tuman"]" />
         </div>
         <div class="input-group">
             <div class="btn-toolbar">
                 <button id="refreshdata" class="btn btn-success btn-sm" data-toggle="popover" data-content="@SharedLocalizer["Yangilash"]" data-trigger="hover"><span class="glyphicon glyphicon-refresh"></span></button>
                 <button id="addRow" class="btn btn-primary btn-sm" data-toggle="popover" data-trigger="hover" data-content="@SharedLocalizer["Yaratish"]"><span class="glyphicon glyphicon-plus"></span></button>
                 <button id="editRow" class="btn btn-primary btn-sm" data-toggle="popover" data-trigger="hover" data-content="@SharedLocalizer["O'zgartirish"]"><span class="glyphicon glyphicon-edit"></span></button>
+                <div class="input-group" style="width:10px"></div>
+                <button data-roleview="RoleDelete" id="deleteRow" type="button" class="btn btn-danger btn-sm"
+                        data-toggle="popover" data-trigger="hover" data-content="@SharedLocalizer["O'chirish"]">
+                    <i class="glyphicon glyphicon-trash"></i>@*@SharedLocalizer["Accept"]*@
+                </button>
             </div>
         </div>
     </div>
 </div>
+
 <div class="container">
-    <table id="table"
-           data-toolbar="#toolbar"
-           data-search="false"
-           data-show-refresh="false"
-           data-show-toggle="false"
-           data-show-columns="false"
-           data-show-export="true"
-           data-detail-view="false"
-           data-minimum-count-columns="2"
-           data-show-pagination-switch="false"
-           data-pagination="true"
-           data-id-field="ID"
-           data-page-list="[50,100,150,200]"
-           data-show-footer="false"
-           data-side-pagination="server"
-           data-url="@Url.Action("GetList", "Street")"
-           data-query-params="queryParams"
-           class="table table-striped">
+    <table id="table" data-toolbar="#toolbar" data-search="false" data-show-refresh="false" data-show-toggle="false"
+           data-show-columns="false" data-show-export="true" data-detail-view="false" data-minimum-count-columns="2"
+           data-show-pagination-switch="false" data-pagination="true" data-id-field="ID" data-page-list="[50,100,150,200]"
+           data-show-footer="false" data-footer-style="footerStyle" data-side-pagination="server"
+           data-url="@Url.Action("GetList", "Street")" data-query-params="queryParams" class="table table-striped">
         <thead>
             <tr>
-                <th data-field="ID" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["ID"]</th>
-                <th data-field="Name" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["Nomi"]</th>
-                <th data-field="ResponsibleOfficer" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["Mas'ul Hodim"]</th>
-                <th data-field="NeighborhoodName" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["Mahalla"]</th>
-                <th data-field="RegionName" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["Viloyat"]</th>
-                <th data-field="DistrictName" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["Tuman"]</th>
-                <th data-field="State" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["Holati"]</th>
+                <th data-field="ID" data-align="center" data-valign="middle" data-sortable="true"
+                    data-cell-style="cellStyle">@SharedLocalizer["ID"]</th>
+                <th data-field="Name" data-align="left" data-valign="middle" data-sortable="true"
+                    data-cell-style="cellStyle">@SharedLocalizer["Nomi"]</th>
+                <th data-field="ResponsibleOfficer" data-align="left" data-valign="middle" data-sortable="true"
+                    data-cell-style="cellStyle">@SharedLocalizer["Mas'ul Hodim"]</th>
+                <th data-field="NeighborhoodName" data-align="center" data-valign="middle" data-sortable="true"
+                    data-cell-style="cellStyle">@SharedLocalizer["Mahalla"]</th>
+                <th data-field="RegionName" data-align="center" data-valign="middle" data-sortable="true"
+                    data-cell-style="cellStyle">@SharedLocalizer["Viloyat"]</th>
+                <th data-field="DistrictName" data-align="center" data-valign="middle" data-sortable="true"
+                    data-cell-style="cellStyle">@SharedLocalizer["Tuman"]</th>
+                <th data-field="State" data-align="left" data-valign="middle" data-sortable="true"
+                    data-cell-style="cellStyle">@SharedLocalizer["Holati"]</th>
             </tr>
         </thead>
     </table>
 </div>
+
 <div id="editWindow" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg" style="width:95%">
+    <div class="modal-dialog modal-lg" style="width:1024px">
         <!-- Modal content-->
         <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" style="text-align:center"><b>@SharedLocalizer["Ko'cha"]</b></h4>
+            </div>
             <div class="modal-body">
-                <br />
                 <div class="container-fluid">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h2 class="panel-title" style="text-align:center"><b>@SharedLocalizer["Ko'cha"]</b></h2>
-                        </div>
                         <div align="center">
-                            
+                            <div class="form-horizontal">
+                                <br />
+                                <div class="form-group" align="center">
+                                    <div class="form-group">
+                                        <form class="form-inline">
+                                            <label class="col-md-2 control-label" required
+                                                   style="font-size:12px;text-align:right">@SharedLocalizer["Ko'cha nomi"]</label>
+                                            <div class="col-sm-4">
+                                                <input placeholder="@SharedLocalizer["Ko'cha nomi"]"
+                                                       style="font-size:15px;width:95%" data-bind="value:street.Name"
+                                                       required class="text-left form-control input-sm" />
+                                            </div>
+                                        </form>
+                                        <form class="form-inline">
+                                            <label class="col-md-1 control-label"
+                                                   style="font-size:12px;text-align:right">@SharedLocalizer["Holati"]</label>
+                                            <div class="col-sm-4">
+                                                <select style="font-size:15px"
+                                                        data-bind='options: statelist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:street.StateID,selectPicker: {}'
+                                                        data-live-search="true" class="" data-width="95%"></select>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="form-group">
+                                        <form class="form-inline">
+                                            <label class="col-md-2 control-label" required
+                                                   style="font-size:12px;text-align:right">@SharedLocalizer["Mas'ul hodim"]</label>
+                                            <div class="col-sm-4">
+                                                <input placeholder="@SharedLocalizer["Mas'ul hodim"]"
+                                                       style="font-size:15px;width:95%" data-bind="value:street.ResponsibleOfficer"
+                                                       required class="text-left form-control input-sm" />
+                                            </div>
+                                        </form>
+                                        <form class="form-inline">
+                                            <label class="col-md-1 control-label"
+                                                   style="font-size:12px;text-align:right">@SharedLocalizer["Viloyat"]</label>
+                                            <div class="col-sm-4">
+                                                <select style="font-size:15px"
+                                                        data-bind='options: regionlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:street.RegionId,selectPicker: {},event:{ change: regionchange}'
+                                                        data-live-search="true" class="" data-width="95%"></select>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="form-group">
+                                        <form class="form-inline">
+                                            <label class="col-md-2 control-label" required
+                                                   style="font-size:12px;text-align:right">@SharedLocalizer["Tuman"]</label>
+                                            <div class="col-sm-4">
+                                                <select style="font-size:15px"
+                                                        data-bind='options: districtlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:street.DistrictId,selectPicker: {},event:{ change: districtchange}'
+                                                        data-live-search="true" class="" data-width="95%"></select>
+                                            </div>
+                                        </form>
+                                        <form class="form-inline">
+                                            <label class="col-md-1 control-label"
+                                                   style="font-size:12px;text-align:right">@SharedLocalizer["Mahalla"]</label>
+                                            <div class="col-sm-4">
+                                                <select style="font-size:15px"
+                                                        data-bind='options: orglist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:street.NeighborhoodId,selectPicker: {}'
+                                                        data-live-search="true" class="" data-width="95%"></select>
+                                            </div>
+                                        </form>
+                                        
+                                    </div>
+                                    <br />
+                                    <div class="form-group">
+                                        <div style="align-content:center">
+                                            <button type="button" data-bind="click:closewindow"
+                                                    class="btn btn-default btn-sm">
+                                                @SharedLocalizer["Chiqish"]
+                                            </button>
+                                            <button type="button" data-bind="click:savedata"
+                                                    class="btn btn-primary btn-sm">
+                                                @SharedLocalizer["Saqlash"]
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -97,6 +176,7 @@
         </div>
     </div>
 </div>
+
 
 @section scripts
     {
@@ -124,4 +204,283 @@
         <script src="~/js/ko.utility.js" asp-append-version="true"></script>
     </environment>
 
+    <script type="text/javascript">
+        function nameFilter() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("nameInput");
+            filter = input.value.toUpperCase().trim();
+            table = document.getElementById("filterTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[2];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function queryParams(params) {
+            params.Name = $('#filtername').val();
+            params.Region = $('#filterregion').val();
+            params.District = $('#filterdistrict').val();
+            return params;
+        }
+
+        function queryParamsemp1(params) {
+            return params;
+        }
+        function queryParamsemp2(params) {
+            return params;
+        }
+
+        function cellStyle(value, row, index) {
+            console.log(row,"asd");
+            if (row.State === "Passiv") {
+                
+                return {
+                    css: {
+                        "color": "red",
+                    }
+                };
+            }
+            if (row.LastAccessTime === "") {
+                return {
+                    css: {
+                        "color": "grey",
+                    }
+                };
+            }
+            return {};
+        }
+
+        var ItemModel = function () {
+            var self = this;
+            self.street = {};
+            self.statelist = ko.mapping.fromJS([]);
+            self.regionlist = ko.mapping.fromJS([]);
+            self.districtlist = ko.mapping.fromJS([]);
+            self.orglist = ko.mapping.fromJS([]);
+            self.allinvmovstowege = ko.observable(false);
+            self.allinvmovstowege1 = ko.observable(false);
+
+            self.loaddata = function (id) {
+                getajaxjson("@Url.Action("Get", "Street")" + "?id=" + id, function (data) {
+                    ko.mapping.fromJS(data, {}, self.street);
+                });
+                getajaxjson("@Url.Action("GetStateList", "Helper")", function (data) {
+                    ko.mapping.fromJS(data, self.statelist);
+                });
+                getajaxjson("@Url.Action("GetRegionList", "Helper")", function (data) {
+                    ko.mapping.fromJS(data, self.regionlist);
+                });
+                getajaxjson("@Url.Action("GetDistrictList", "Helper")", function (data) {
+                    ko.mapping.fromJS(data, self.districtlist);
+                });
+                getajaxjson("@Url.Action("GetOrgList", "Helper")", function (data) {
+                    ko.mapping.fromJS(data, self.orglist);
+                });
+            };
+
+            self.checkdata = function () {
+                if (self.street.StateID() === null || self.street.StateID() === undefined || self.street.StateID() === "") {
+                    alert("@SharedLocalizer["StateNotCorrect"]");
+                    return false;
+                }
+                if (self.street.Name() === null || self.street.Name() === undefined || self.street.Name() === "") {
+                    alert("@SharedLocalizer["NameNotCorrect"]");
+                    return false;
+                }
+                if (self.street.NeighborhoodId() === null || self.street.NeighborhoodId() === undefined || self.street.NeighborhoodId() === "") {
+                    alert("@SharedLocalizer["OrganizationNotCorrect"]");
+                    return false;
+                }
+                return true;
+            };
+
+            self.savedata = function () {
+                if (!self.checkdata()) {
+                    return;
+                }
+                var datatosave = ko.mapping.toJSON(self.street);
+                $.ajax({
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json; charset=utf-8"
+                    },
+                    type: "POST",
+                    url: "@Url.Action("Update", "Street")",
+                    data: datatosave
+                }).done(function (data, status, xhr) {
+                    alert("@SharedLocalizer["SavedSuccessfully"]");
+                    $("#editWindow").modal('hide');
+                    $('#table').bootstrapTable('refresh');
+                })
+                    .fail(function (xhr, status, error) {
+                        alert(xhr.responseText + " Error:" + error);
+                    });
+            };
+
+            self.closewindow = function () {
+                $("#editWindow").modal('hide');
+                $('#table').bootstrapTable('refresh');
+            };
+
+            self.regionchange = function () {
+                getajaxjson("@Url.Action("GetDistrictList", "Helper")" + "/?RegionID=" + self.street.RegionId, function (data) {
+                    ko.mapping.fromJS(data, self.districtlist);
+                });
+            };
+            self.districtchange = function () {
+                getajaxjson("@Url.Action("GetOrgList", "Helper")" + "/?DistrictID=" + self.street.DistrictId, function (data) {
+                    ko.mapping.fromJS(data, self.orglist);
+                });
+            };
+        }
+
+
+        $(document).ready(function () {
+            var $table = $('#table');
+
+            selectedrow = [];
+
+            function refreshdata() {
+                filter = 1;
+                $table.bootstrapTable('refresh');
+            }
+
+            initTable();
+
+            var itemModel = new ItemModel();
+
+            itemModel.loaddata(0);
+            ko.applyBindings(itemModel);
+            selectedorgrow = [];
+            selectedid = [];
+
+            $('#deleteRow').click(function () {
+                deleteRow();
+            });
+            $('#refreshdata').click(function () {
+                $('#table').bootstrapTable('refresh');
+            });
+
+            $('#addRow').click(function () {
+                editRow(0);
+            });
+
+            $('#editRow').click(function () { editRow(selectedrow); });
+
+            var selectedRows = '';
+
+
+            $('#table').on('dblclick', function () { editRow(); });
+
+            self.savedata = function () {
+                if (!self.checkdata()) {
+                    return;
+                }
+                var datatosave = ko.mapping.toJSON(self.street);
+                $.ajax({
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json; charset=utf-8"
+                    },
+                    type: "POST",
+                    url: "@Url.Action("Update", "Street")",
+                    data: datatosave
+                }).done(function (data, status, xhr) {
+                    alert("@SharedLocalizer["Muvoffaqyatli saqlandi"]");
+                    $("#editWindow").modal('hide');
+                    $('#table').bootstrapTable('refresh');
+                })
+                    .fail(function (xhr, status, error) {
+                        alert(xhr.responseText);
+                    });
+            };
+
+            function initTable() {
+                $table.bootstrapTable({
+                    pageSize: 50,
+                    height: getHeight()
+                });
+                $table.on('click-row.bs.table', function (e, row, $element) {
+                    $('.success').removeClass('success');
+                    $($element).addClass('success');
+                    selectedrow = row.ID;
+                    selectedid = row.ID;
+                    userid = row.ID;
+                });
+                $table.on('load-error.bs.table', function (e, status, res) {
+                    alert(res.responseText);
+                });
+               
+
+                // sometimes footer render error.
+
+                setTimeout(function () {
+                    $table.bootstrapTable('resetView');
+                }, 200);
+
+                $(window).resize(function () {
+                    $table.bootstrapTable('resetView', {
+                        height: getHeight()
+                    });
+                });
+            }
+            function getHeight() {
+                return $(window).height() - $('h3').outerHeight(true) * 2.5 - $('#custom-toolbar').outerHeight(true) * 2.5;
+            }
+            function editRow(id) {
+                itemModel.loaddata(id);
+                $("#editWindow").modal('show');
+                console.log("edit window ochilmadi");
+            }
+
+            function deleteRow() {
+                bootbox.confirm({
+                    message: '@SharedLocalizer["Uchirishni hohlaysizmi"]',
+                    buttons: {
+                        cancel: {
+                            label: '<i class="fa fa-times"></i> @SharedLocalizer["Chiqish"]',
+                            className: 'btn-danger'
+                        },
+                        confirm: {
+                            label: '<i class="fa fa-check"></i> @SharedLocalizer["Uchirish"]',
+                            className: 'btn-success'
+                        }
+                    },
+                    callback: function (result) {
+                        if (result) {
+                            $.ajax({
+                                headers: {
+                                    Accept: "application/json",
+                                    "Content-Type": "application/json; charset=utf-8",
+                                },
+                                type: "DELETE",
+                                url: "@Url.Action("Delete", "Street")" + "/" + selectedrow
+                            }).done(function (data, status, xhr) {
+                                alert("@SharedLocalizer["Muvvofaqyatli o'chirildi"]");
+                                $table.bootstrapTable('refresh')
+                            })
+                                .fail(function (xhr, status, error) {
+                                    alert("Error:" + error + " Message:" + xhr.responseText);
+                                });
+                        }
+                    }
+                });
+            }
+        });
+
+
+        $(document).keypress(function (e) {
+            if (e.which == 13) {
+                $("#refreshdata").click();
+            }
+        });
+    </script>
 }
