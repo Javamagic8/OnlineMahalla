@@ -2,17 +2,16 @@
 using Microsoft.Extensions.Localization;
 using OnlineMahalla.Common.Model.Interface;
 using OnlineMahalla.Common.Model.Models.info;
-using OnlineMahalla.Common.Model.Models.sys;
 using OnlineMahalla.Web.MVCClient.Extentions;
 
 namespace OnlineMahalla.Web.MVCClient.Controllers
 {
-    public class NationController : Controller
+    public class FamilyController : Controller
     {
         private readonly IDataRepository _dataRepository;
-        private readonly IStringLocalizer<NationController> _localizer;
+        private readonly IStringLocalizer<FamilyController> _localizer;
         private readonly IWebHostEnvironment _hostingEnvironment;
-        public NationController(IDataRepository dataRepository, IStringLocalizer<NationController> localizer, Microsoft.AspNetCore.Http.IHttpContextAccessor httpContextAccessor, IWebHostEnvironment hostingEnvironment)
+        public FamilyController(IDataRepository dataRepository, IStringLocalizer<FamilyController> localizer, Microsoft.AspNetCore.Http.IHttpContextAccessor httpContextAccessor, IWebHostEnvironment hostingEnvironment)
         {
             var username = httpContextAccessor.HttpContext.User.GetUserName();
             _dataRepository = dataRepository;
@@ -32,50 +31,41 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult GetList(string Name, string Search, string Sort, string Order, int Offset, int Limit)
+        public IActionResult GetList(string Name, string Region, string District, string Sort, string Order, int Offset, int Limit)
         {
-            var data = _dataRepository.GetNationList(Name, Search, Sort, Order, Offset, Limit);
+            var data = _dataRepository.GeFamilyList(Name, Region, District, Sort, Order, Offset, Limit);
             return new JsonResult(data);
         }
+
         [HttpGet]
         public IActionResult Get(int? id)
         {
-            Nation nation = new Nation();
+            if (!_dataRepository.UserIsInRole("UserEdit"))
+                return BadRequest("Нет доступа");
+
+            Family family = new Family();
             if (id.HasValue && id.Value > 0)
             {
-                nation = _dataRepository.GetNation(id.Value);
+                family = _dataRepository.GetFamily(id.Value);
             }
-            return new JsonResult(nation);
+            return new JsonResult(family);
         }
+
         [HttpPost]
-        public IActionResult Update([FromBody] Nation nation)
+        public IActionResult Update([FromBody] Family family)
         {
+            if (!_dataRepository.UserIsInRole("UserEdit"))
+                return BadRequest("Нет доступа");
+
             try
             {
-                _dataRepository.UpdateNation(nation);
+                _dataRepository.UpdateFamily(family);
             }
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }
-            return new JsonResult(nation);
-        }
-        [HttpDelete]
-        public IActionResult Delete(int id)
-        {
-            if (id == 0)
-                return BadRequest("Сначала выберите из списка");
-            if (!_dataRepository.UserIsInRole("RoleDelete"))
-                return BadRequest("Вам не дали роль");
-            try
-            {
-                _dataRepository.DeleteNation(id);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
-            return Ok();
+            return new JsonResult(family);
         }
     }
 }

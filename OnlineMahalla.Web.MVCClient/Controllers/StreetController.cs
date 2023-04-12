@@ -31,12 +31,13 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult GetList(string Name, string Region, string District, string Sort, string Order, int Offset, int Limit)
         {
             var data = _dataRepository.GeStreetList(Name, Region, District, Sort, Order, Offset, Limit);
             return new JsonResult(data);
         }
-
+        [HttpGet]
         public IActionResult Get(int? id)
         {
             if (!_dataRepository.UserIsInRole("UserEdit"))

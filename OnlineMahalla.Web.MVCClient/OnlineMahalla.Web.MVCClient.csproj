@@ -7,6 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Employee\**" />
+    <Compile Remove="Views\Nation\**" />
+    <Compile Remove="Views\Organization\**" />
+    <Content Remove="Views\Employee\**" />
+    <Content Remove="Views\Nation\**" />
+    <Content Remove="Views\Organization\**" />
+    <EmbeddedResource Remove="Views\Employee\**" />
+    <EmbeddedResource Remove="Views\Nation\**" />
+    <EmbeddedResource Remove="Views\Organization\**" />
+    <None Remove="Views\Employee\**" />
+    <None Remove="Views\Nation\**" />
+    <None Remove="Views\Organization\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.12" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="6.0.12" />
     <PackageReference Include="Microsoft.AspNetCore.DataProtection.EntityFrameworkCore" Version="6.0.12" />
@@ -26,12 +41,6 @@
     <ProjectReference Include="..\OnlineMahalla.Common.Utility\OnlineMahalla.Common.Utility.csproj" />
     <ProjectReference Include="..\OnlineMahalla.Data.Model\OnlineMahalla.Data.Model.csproj" />
     <ProjectReference Include="..\OnlineMahalla.Data.Repository.SqlServer\OnlineMahalla.Data.Repository.SqlServer.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\Employee\" />
-    <Folder Include="Views\Nation\" />
-    <Folder Include="Views\Organization\" />
   </ItemGroup>
 
 </Project>

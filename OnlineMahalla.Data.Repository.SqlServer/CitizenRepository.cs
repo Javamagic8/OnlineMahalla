@@ -84,8 +84,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                 StateID = data.StateID,
                 PhoneNumber = data.PhoneNumber,
                 BirthdayDistrictID = data.BirthDistrictID,
-                BirthdayRegionID = data.BirthRegionID,
-                MemberTypeFamilyId = data.MemberTypeFamilyId
+                BirthdayRegionID = data.BirthRegionID
             };
             return citizen;
         }
@@ -134,12 +133,12 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                             new string[] {"@FirstName","@LastName","@FamilyName","@FullName","@FIOTranslate","@PINFL","@DateOfBirth"
                                                    ,"@NationID","@GenderID","@EducationID","@AcademicDegreeID","@AcademicTitleID","@PhoneNumber"
                                                    ,"@MarriedID","@IsForeignCitizen","@CountChild","@CitizenEmploymentID","@IsLowIncome"
-                                                   ,"@IsConvicted","@IsCheckCityzen","@BirthRegionID","@BirthDistrictID","@MemberTypeFamilyId","@BithPlace"
+                                                   ,"@IsConvicted","@IsCheckCityzen","@BirthRegionID","@BirthDistrictID","@BithPlace"
                                                    ,"@NeighborhoodID","@CreateUserID", "@StreetID"},
                             new object[] { citizen.FirstName,citizen.LastName,citizen.FamilyName,citizen.FirstName +" " + citizen.LastName + " " + citizen.FamilyName,citizen.FirstName +" " + citizen.LastName + " " + citizen.FamilyName,citizen.PINFL,citizen.DateOfBirthday
                                                    ,citizen.NationID,citizen.GenderID,citizen.EducationID,citizen.AcademicDegreeID,citizen.AcademicTitleID,citizen.PhoneNumber
                                                    ,citizen.MarriedID,citizen.IsForeignCitizen,citizen.CountChild,citizen.CitizenEmploymentID,citizen.IsLowIncome
-                                                   ,citizen.IsConvicted,citizen.IsCheckCityzen,citizen.BirthdayRegionID,citizen.BirthdayDistrictID,citizen.MemberTypeFamilyId,citizen.BirthPlace
+                                                   ,citizen.IsConvicted,citizen.IsCheckCityzen,citizen.BirthdayRegionID,citizen.BirthdayDistrictID,citizen.BirthPlace
                                                    ,NeighborhoodID,UserID, citizen.StreetID}, System.Data.CommandType.Text, ts);
                         citizen.ID = Convert.ToInt32(NewID);
                     }

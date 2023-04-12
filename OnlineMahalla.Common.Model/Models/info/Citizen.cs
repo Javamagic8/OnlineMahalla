@@ -8,10 +8,6 @@ namespace OnlineMahalla.Common.Model.Models.info
 {
     public class Citizen
     {
-        public Citizen()
-        {
-            this.PassportData = new List<PassportData>();
-        }
         public long ID { get; set; }
 
         public string? FirstName { get; set; }
