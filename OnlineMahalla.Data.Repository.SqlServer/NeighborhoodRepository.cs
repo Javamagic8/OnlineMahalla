@@ -123,7 +123,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
         public Organization GetAdminNeighborhood(int ID, bool? IsClone = false)
         {
             if (ID == 0)
-                ID = OrganizationID;
+                ID = NeighborhoodID;
             var data = _databaseExt.GetDataFromSql("SELECT org.*, (SELECT top 1 Name FROM info_Organization WHERE BRParentOranizationID=org.ID) as BRParentOrganizationName FROM info_Organization org WHERE ID=@ID", new string[] { "@ID" }, new object[] { ID }).First();
             Organization Organization = new Organization();
             if (!IsClone.Value)
@@ -303,7 +303,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
         public dynamic GetAdminNeighborhoodRecalc(int ID)
         {
             if (ID == 0)
-                ID = OrganizationID;
+                ID = NeighborhoodID;
             return _databaseExt.GetFirstDataFromSql("SELECT IsRecalcNeed,EndDate Date FROM WB_sys_Should_ReCalc_Org WHERE OrganizationID=@OrganizationID", new string[] { "@OrganizationID" }, new object[] { ID });
         }
 
@@ -338,7 +338,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
 
                         var oldinfo = GetOrganization(organization.ID);
                         if (oldinfo.Name != organization.Name)
-                            LogDataHistory(InfoStruct.Organization, organization.ID, "Name", organization.Name, OrganizationID, UserID);
+                            LogDataHistory(InfoStruct.Organization, organization.ID, "Name", organization.Name, NeighborhoodID, UserID);
 
                         //if (oldinfo.Director != organization.Director)
                         //    LogDataHistory(InfoStruct.Organization, organization.ID, "Director", organization.Director, OrganizationID, UserID);

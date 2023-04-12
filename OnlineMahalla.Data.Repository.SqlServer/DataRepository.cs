@@ -10,7 +10,8 @@ namespace OnlineMahalla.Data.Repository.SqlServer
     public partial class DataRepository : IDataRepository
     {
         private string username = "";
-        private int orgid = 0;
+        private int regionid = 0;
+        private int districtid = 0;
         private int neigid = 0;
         private bool ischildlogout = true;
         public string UserName { get { return username; } set { username = value; } }
@@ -19,15 +20,26 @@ namespace OnlineMahalla.Data.Repository.SqlServer
         private string useragent = "";
         public string UserAgent { get { return useragent; } set { useragent = value; } }
 
-        public int OrgID
+        public int RegID
         {
             get
             {
-                return orgid;
+                return regionid;
             }
             set
             {
-                orgid = value;
+                regionid = value;
+            }
+        }
+        public int DisID
+        {
+            get
+            {
+                return districtid;
+            }
+            set
+            {
+                districtid = value;
             }
         }
         public int NeigID
@@ -183,50 +195,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             }
             return true;
         }
-        public int GetOrganizationID(string UserName)
-        {
-            int _OrganizationID = 0;
-
-            if (UserName.StartsWith("ct_") && UserName.Length == 12)
-            {
-                string[] UserInfo = UserName.Split("_");
-                _OrganizationID = (int)_databaseExt.ExecuteScalar("SELECT OrganizationID FROM sys_User WHERE Name=@Name", new string[] { "Name" }, new object[] { UserInfo[0] });
-            }
-            else
-            {
-                if (!UserIsInRole("CentralAccountingChild"))
-                {
-                    _OrganizationID = (int)_databaseExt.ExecuteScalar("SELECT OrganizationID FROM sys_User WHERE Name=@Name", new string[] { "Name" }, new object[] { UserName });
-                }
-                else
-                {
-                    _OrganizationID = (int)_databaseExt.ExecuteScalar("SELECT CASE WHEN TempOrganizationID is null THEN 0 ELSE TempOrganizationID END TempOrganizationID FROM sys_User WHERE Name=@Name", new string[] { "Name" }, new object[] { UserName });
-                    if (_OrganizationID == 0)
-                    {
-                        _OrganizationID = (int)_databaseExt.ExecuteScalar("SELECT OrganizationID FROM sys_User WHERE Name=@Name", new string[] { "Name" }, new object[] { UserName });
-                    }
-                }
-
-            }
-
-
-            return _OrganizationID;
-        }
-        public int GetContractorID(string UserName)
-        {
-            int _ContractorID = 0;
-
-            if (UserName.StartsWith("ct_") && UserName.Length == 12)
-            {
-                string[] UserInfo = UserName.Split("_");
-
-                var contractor = _databaseExt.ExecuteScalar("SELECT TOP (1) ID FROM hl_Contractor WHERE INN=@INN AND StateID = 1", new string[] { "INN" }, new object[] { UserInfo[1] });
-                _ContractorID = Convert.ToInt32(contractor == null ? 0 : contractor);
-            }
-
-
-            return _ContractorID;
-        }
+        
         int _userId = 0;
         public int UserID
         {
@@ -238,14 +207,25 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             }
         }
 
-        public int OrganizationID
+        public int DistrictID
         {
             get
             {
-                if (OrgID > 0)
-                    return OrgID;
-                OrgID = (int)_databaseExt.ExecuteScalar("SELECT NeighborhoodID FROM sys_User WHERE Name=@Name", new string[] { "@Name" }, new object[] { UserName });
-                return OrgID;
+                if (DisID > 0)
+                    return DisID;
+                DisID = (int)_databaseExt.ExecuteScalar("SELECT DistrictID FROM sys_User WHERE Name=@Name", new string[] { "@Name" }, new object[] { UserName });
+                return DisID;
+            }
+        }
+
+        public int RegionID
+        {
+            get
+            {
+                if (RegID > 0)
+                    return DisID;
+                RegID = (int)_databaseExt.ExecuteScalar("SELECT RegionID FROM sys_User WHERE Name=@Name", new string[] { "@Name" }, new object[] { UserName });
+                return RegID;
             }
         }
 
@@ -260,9 +240,8 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             }
         }
 
-        public int EspContractorID { get { return GetContractorID(UserName); } }
-
-        public int CentralOrganizationID { get { return (int)_databaseExt.ExecuteScalar("SELECT CentralOrganizationID FROM  info_Organization WHERE ID=@OrganizationID", new string[] { "OrganizationID" }, new object[] { OrganizationID }); } }
-
     }
 }
+
+
+

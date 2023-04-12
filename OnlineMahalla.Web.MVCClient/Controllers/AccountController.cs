@@ -21,7 +21,7 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
             _dataRepository = dataRepository;
 
             var orgid = httpContextAccessor.HttpContext.User.GetOrganizationID();
-            _dataRepository.OrgID = orgid;
+            _dataRepository.NeigID = orgid;
             var ischildlogout = httpContextAccessor.HttpContext.User.GetIsChildLogOut();
             _dataRepository.IsChildLogOut = ischildlogout;
             _dataRepository.UserName = username;

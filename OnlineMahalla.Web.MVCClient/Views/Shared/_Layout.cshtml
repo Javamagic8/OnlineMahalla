@@ -87,10 +87,11 @@
                                     <i class="fa-solid fa-chart-simple"></i>&nbsp;@Localizer["Diagrammalar"]<span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a data-roleview="UserView" asp-area="" asp-controller="User" asp-action="Index">@Localizer["Foydalanuvchilar"]</a></li>
-                                    <li><a data-roleview="RoleView" asp-area="" asp-controller="Role" asp-action="Index">@Localizer["Rollar"]</a></li>
-                                    <li><a data-roleview="UserView" asp-area="" asp-controller="Street" asp-action="Index">@Localizer["Mahalla ko'chalari"]</a></li>
-                                    <li><a data-roleview="OrganizationView" tabindex="0" asp-area="" asp-controller="Neighborhood" asp-action="Index">@Localizer["Mahallalar"]</a></li>
+                                    <li><a data-roleview="UserView" asp-area="" asp-controller="Diagramm" asp-action="ManAge">@Localizer["Yosh Bo'yicha erkaklar"]</a></li>
+                                    <li><a data-roleview="RoleView" asp-area="" asp-controller="Diagramm" asp-action="WomanAge">@Localizer["Yosh Bo'yicha ayollar"]</a></li>
+                                    <li><a data-roleview="UserView" asp-area="" asp-controller="Diagramm" asp-action="ManEducation">@Localizer["Ma'lumoti bo'yicha erkaklar"]</a></li>
+                                    <li><a data-roleview="UserView" asp-area="" asp-controller="Diagramm" asp-action="WomanEducation">@Localizer["Ma'lumoti bo'yicha ayollar"]</a></li>
+                                    <li><a data-roleview="OrganizationView" tabindex="0" asp-area="" asp-controller="Diagramm" asp-action="ManWomanDisable">@Localizer["Nogironlar"]</a></li>
                                 </ul>
                             </li>
                         </ul>

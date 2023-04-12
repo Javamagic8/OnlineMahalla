@@ -16,6 +16,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
 
         public PagedDataEx GetUserList(int ID, string Name, string DisplayName, string State, string NeighborhoodName, string NeighborhoodINN, int NeighborhoodID, string Search, string Sort, string Order, int Offset, int Limit)
         {
+            int egionID = RegionID;
             PagedDataEx data = new PagedDataEx();
             Dictionary<string, object> sqlparamas = new Dictionary<string, object>();
             string sqlselect = @"SELECT 
