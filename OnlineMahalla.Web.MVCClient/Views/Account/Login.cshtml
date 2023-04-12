@@ -41,7 +41,7 @@
                 <div class="text-center">
                     <img src="~/images/logo.png" />
                     <hr />
-                    <p>@SharedLocalizer["EnterUserNameAndPassword"]</p>
+                    <p>@SharedLocalizer["Login va Parolni kiriting"]</p>
                 </div>
                 <div class="panel-body">
                     <form role="form" asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-signin" style="color:red">
@@ -57,12 +57,12 @@
                             <label for="password"></label>
                             <div class="input-group" style="width:100%">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                <input type="password" class="form-control" placeholder="@SharedLocalizer["Пароль"]" id="password" name="password" required autocomplete="off">
+                                <input type="password" class="form-control" placeholder="@SharedLocalizer["Parol"]" id="password" name="password" required autocomplete="off">
                             </div>
                             <br>
                             <br>
                             <div class="form-group">
-                                <button class="btn btn-primary col-md-12"><b>@SharedLocalizer["SignIn"]</b></button>
+                                <button class="btn btn-primary col-md-12"><b>@SharedLocalizer["Kirish"]</b></button>
                             </div>
                         </fieldset>
                         <hr />
@@ -74,9 +74,6 @@
 
 
     <br />
-    <div class="text-center">
-        @await Html.PartialAsync("_SelectLanguagePartial")
-    </div>
     <br />
     <p class="mt-5 mb-3 text-muted text-center">&copy; @DateTime.Today.Year - ПК "Online Mahalla"</p>
     <script type="text/javascript">
