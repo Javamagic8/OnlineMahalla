@@ -80,7 +80,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                RegionId = data.RegionID,
                DistrictId = data.DistrictID,
                StateID = data.StateID,
-               NeighborhoodId = data.NeighborhoodId,
+               NeighborhoodId = data.NeighborhoodID,
                ResponsibleOfficer = data.ResponsibleOfficer
             };
 

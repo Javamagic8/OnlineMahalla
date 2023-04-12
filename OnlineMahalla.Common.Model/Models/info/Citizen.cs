@@ -36,6 +36,8 @@ namespace OnlineMahalla.Common.Model.Models.info
 
         public int MarriedID { get; set; }
 
+        public int StreetID { get; set; }
+
         public int CountChild { get; set; } = 0;
 
         public int CitizenEmploymentID { get; set; }

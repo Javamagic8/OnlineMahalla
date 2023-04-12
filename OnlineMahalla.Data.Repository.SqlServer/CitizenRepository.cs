@@ -123,24 +123,24 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                                                    ,[NationID],[GenderID],[EducationID],[AcademicDegreeID],[AcademicTitleID],[PhoneNumber]
                                                    ,[MarriedID],[IsForeignCitizen],[CountChild],[CitizenEmploymentID],[IsLowIncome]
                                                    ,[IsConvicted],[IsCheckCityzen],[BirthRegionID],[MemberTypeFamilyId],[BirthDistrictID],[BithPlace]
-                                                   ,[NeighborhoodID],[CreateUserID])
+                                                   ,[NeighborhoodID],[CreateUserID], [StreetID])
                                              VALUES
                                                    (@FirstName,@LastName,@FamilyName,@FullName,@FIOTranslate,@PINFL,@DateOfBirth
                                                    ,@NationID,@GenderID,@EducationID,@AcademicDegreeID,@AcademicTitleID,@PhoneNumber
                                                    ,@MarriedID,@IsForeignCitizen,@CountChild,@CitizenEmploymentID,@IsLowIncome
-                                                   ,@IsConvicted,@IsCheckCityzen,@BirthRegionID,@BirthDistrictID,@MemberTypeFamilyId,@BithPlace
-                                                   ,@NeighborhoodID,@CreateUserID) select [ID] FROM [hl_Citizen] WHERE @@ROWCOUNT > 0 and [ID] = scope_identity()";
+                                                   ,@IsConvicted,@IsCheckCityzen,@BirthRegionID,@MemberTypeFamilyId,@BirthDistrictID,@BithPlace
+                                                   ,@NeighborhoodID,@CreateUserID, @StreetID) select [ID] FROM [hl_Citizen] WHERE @@ROWCOUNT > 0 and [ID] = scope_identity()";
                         var NewID = _databaseExt.ExecuteScalar(sql,
                             new string[] {"@FirstName","@LastName","@FamilyName","@FullName","@FIOTranslate","@PINFL","@DateOfBirth"
                                                    ,"@NationID","@GenderID","@EducationID","@AcademicDegreeID","@AcademicTitleID","@PhoneNumber"
                                                    ,"@MarriedID","@IsForeignCitizen","@CountChild","@CitizenEmploymentID","@IsLowIncome"
                                                    ,"@IsConvicted","@IsCheckCityzen","@BirthRegionID","@BirthDistrictID","@MemberTypeFamilyId","@BithPlace"
-                                                   ,"@NeighborhoodID","@CreateUserID"},
+                                                   ,"@NeighborhoodID","@CreateUserID", "@StreetID"},
                             new object[] { citizen.FirstName,citizen.LastName,citizen.FamilyName,citizen.FirstName +" " + citizen.LastName + " " + citizen.FamilyName,citizen.FirstName +" " + citizen.LastName + " " + citizen.FamilyName,citizen.PINFL,citizen.DateOfBirthday
                                                    ,citizen.NationID,citizen.GenderID,citizen.EducationID,citizen.AcademicDegreeID,citizen.AcademicTitleID,citizen.PhoneNumber
                                                    ,citizen.MarriedID,citizen.IsForeignCitizen,citizen.CountChild,citizen.CitizenEmploymentID,citizen.IsLowIncome
                                                    ,citizen.IsConvicted,citizen.IsCheckCityzen,citizen.BirthdayRegionID,citizen.BirthdayDistrictID,citizen.MemberTypeFamilyId,citizen.BirthPlace
-                                                   ,NeighborhoodID,UserID}, System.Data.CommandType.Text, ts);
+                                                   ,NeighborhoodID,UserID, citizen.StreetID}, System.Data.CommandType.Text, ts);
                         citizen.ID = Convert.ToInt32(NewID);
                     }
                     else
@@ -154,7 +154,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                                                          ,[CountChild] = @CountChild,[CitizenEmploymentID] = @CitizenEmploymentID,[IsLowIncome] = @IsLowIncome
                                                          ,[IsConvicted] = @IsConvicted,[IsCheckCityzen] = @IsCheckCityzen,[BirthRegionID] = @BirthRegionID
                                                          ,[BirthDistrictID] = @BirthDistrictID,[BithPlace] = @BithPlace,[StateID] = @StateID
-                                                         ,[DateOfModified] = GETDATE(),[ModifiedUserID] = @ModifiedUserID
+                                                         ,[DateOfModified] = GETDATE(),[ModifiedUserID] = @ModifiedUserID, [StreetID] = @StreetID
                                                     WHERE ID = @ID";
                         _databaseExt.ExecuteNonQuery(sql,
                             new string[] {                "@FirstName","@LastName","@FamilyName"
@@ -165,8 +165,8 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                                                          ,"@CountChild","@CitizenEmploymentID","@IsLowIncome"
                                                          ,"@IsConvicted","@IsCheckCityzen","@BirthRegionID"
                                                          ,"@BirthDistrictID","@BithPlace","@StateID"
-                                                         ,"@ModifiedUserID","@ID"},
-                            new object[] { citizen.FirstName, citizen.LastName, citizen.FamilyName, citizen.FirstName + " " + citizen.LastName + " " + citizen.FamilyName, citizen.FirstName + " " + citizen.LastName + " " + citizen.FamilyName, citizen.PINFL, citizen.DateOfBirthday, citizen.NationID, citizen.GenderID, citizen.EducationID, citizen.AcademicDegreeID, citizen.AcademicTitleID, citizen.PhoneNumber, citizen.MarriedID, citizen.IsForeignCitizen, citizen.CountChild, citizen.CitizenEmploymentID, citizen.IsLowIncome, citizen.IsConvicted, citizen.IsCheckCityzen, citizen.BirthdayRegionID, citizen.BirthdayDistrictID, citizen.BirthPlace, citizen.StateID, UserID, citizen.ID }, System.Data.CommandType.Text, ts);
+                                                         ,"@ModifiedUserID","@ID","@StreetID"},
+                            new object[] { citizen.FirstName, citizen.LastName, citizen.FamilyName, citizen.FirstName + " " + citizen.LastName + " " + citizen.FamilyName, citizen.FirstName + " " + citizen.LastName + " " + citizen.FamilyName, citizen.PINFL, citizen.DateOfBirthday, citizen.NationID, citizen.GenderID, citizen.EducationID, citizen.AcademicDegreeID, citizen.AcademicTitleID, citizen.PhoneNumber, citizen.MarriedID, citizen.IsForeignCitizen, citizen.CountChild, citizen.CitizenEmploymentID, citizen.IsLowIncome, citizen.IsConvicted, citizen.IsCheckCityzen, citizen.BirthdayRegionID, citizen.BirthdayDistrictID, citizen.BirthPlace, citizen.StateID, UserID, citizen.ID, citizen.StreetID }, System.Data.CommandType.Text, ts);
                     }
                     ts.Commit();
                 }
