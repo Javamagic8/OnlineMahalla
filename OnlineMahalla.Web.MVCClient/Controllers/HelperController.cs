@@ -99,11 +99,6 @@ namespace UZASBO.Web.MVCClient.Controllers
         {
             return new JsonResult(_dataRepository.GetCitizenEmploymentList());
         }
-        [HttpGet]
-        public IActionResult GetMemberTypeFamilyList()
-        {
-            return new JsonResult(_dataRepository.GetMemberTypeFamilyList());
-        }
 
         [HttpGet]
         public IActionResult GetNeighborhoodstreet()
@@ -115,6 +110,12 @@ namespace UZASBO.Web.MVCClient.Controllers
         public IActionResult GetOrgList(int? DistrictID)
         {
             return new JsonResult(_dataRepository.GetOrgList(DistrictID));
+        }
+
+        [HttpGet]
+        public IActionResult GetFamilyList()
+        {
+            return new JsonResult(_dataRepository.GetFamilyList());
         }
 
     }

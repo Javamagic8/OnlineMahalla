@@ -85,13 +85,12 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             return _databaseExt.GetDataFromSql(sql, new string[] { }, new object[] { });
         }
 
-        public IEnumerable<dynamic> GetMemberTypeFamilyList()
+        public IEnumerable<dynamic> GetFamilyList()
         {
             string sql = @"SELECT [ID]
                                  ,[Name]
-                                 ,[DisplayName]
-                             FROM [Online_Mahalla].[dbo].[enum_MemberTypeFamily] ";
-            return _databaseExt.GetDataFromSql(sql, new string[] { }, new object[] { });
+                             FROM [Online_Mahalla].[dbo].[info_Family] WHERE NeighborhoodID = @NeighborhoodID ";
+            return _databaseExt.GetDataFromSql(sql, new string[] { "@NeighborhoodID" }, new object[] { NeighborhoodID });
         }
 
         public IEnumerable<dynamic> GetOrganizationTypeList()

@@ -28,7 +28,7 @@
             <div class="input-group">
                 <div>
                     <a data-roleview ="EmployeeInsert"  asp-area="" asp-controller="Citizen" data-toggle="popover" data-content="@SharedLocalizer["Yaratish"]" data-trigger="hover" asp-action="Edit" asp-route-id="0" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span></a>
-                    <button data-roleview ="EmployeeEdit"   id="editRow" class="btn btn-primary  btn-sm" data-toggle="popover" data-content="@SharedLocalizer["O'zgartirish'"]" data-trigger="hover"><span class="glyphicon glyphicon-edit"></span></button>
+                    <button data-roleview ="EmployeeEdit"   id="editRow" class="btn btn-primary  btn-sm" data-toggle="popover" data-content="@SharedLocalizer["O'zgartirish"]" data-trigger="hover"><span class="glyphicon glyphicon-edit"></span></button>
                 </div>
             </div>
         </div>
@@ -55,13 +55,16 @@
            class="table table-striped">
         <thead>
             <tr>
-                <th data-field="ID" data-align="center" data-valign="middle" data-sortable="true">@SharedLocalizer["ID"]</th>
-                <th data-field="FullName" data-align="left" data-valign="middle" data-sortable="true">@SharedLocalizer["To'liq ismi"]</th>
-                <th data-field="PINFL" data-align="center" data-valign="middle" data-sortable="true">@SharedLocalizer["JSHSHID"]</th>
-                <th data-field="PhoneNumber" data-align="left" data-valign="middle" data-sortable="true">@SharedLocalizer["Telefon raqami"]</th>
-                <th data-field="AcademicDegree" data-align="center" data-valign="middle" data-sortable="true">@SharedLocalizer["Akademik darajasi"]</th>
-                <th data-field="AcademicTitle" data-align="left" data-valign="middle" data-sortable="true">@SharedLocalizer["Akademik unvoni"]</th>
-                <th data-field="Neighborhood" data-align="left" data-valign="middle" data-sortable="true">@SharedLocalizer["Mahallasi"]</th>
+                <th data-field="ID" data-cell-style="cellStyle" data-align="center" data-valign="middle" data-sortable="true">@SharedLocalizer["ID"]</th>
+                <th data-field="FullName" data-cell-style="cellStyle" data-align="left" data-valign="middle" data-sortable="true">@SharedLocalizer["To'liq ismi"]</th>
+                <th data-field="PINFL" data-cell-style="cellStyle" data-align="center" data-valign="middle" data-sortable="true">@SharedLocalizer["JSHSHID"]</th>
+                <th data-field="DateOfBirth" data-cell-style="cellStyle" data-align="center" data-valign="middle" data-sortable="true">@SharedLocalizer["Tug'ilgan sanasi"]</th>
+                <th data-field="Nation" data-cell-style="cellStyle" data-align="center" data-valign="middle" data-sortable="true">@SharedLocalizer["Millati"]</th>
+                <th data-field="ForeignCitizen" data-cell-style="cellStyle" data-align="center" data-valign="middle" data-sortable="true">@SharedLocalizer["Fuqoroligi"]</th>
+                <th data-field="CitizenEmployment" data-cell-style="cellStyle" data-align="center" data-valign="middle" data-sortable="true">@SharedLocalizer["Oilaviy ahvoli"]</th>
+                <th data-field="Street" data-cell-style="cellStyle" data-align="center" data-valign="middle" data-sortable="true">@SharedLocalizer["Ko'chasi"]</th>
+                <th data-field="PhoneNumber" data-cell-style="cellStyle" data-align="left" data-valign="middle" data-sortable="true">@SharedLocalizer["Telefon raqami"]</th>
+                <th data-field="Neighborhood" data-cell-style="cellStyle" data-align="left" data-valign="middle" data-sortable="true">@SharedLocalizer["Mahallasi"]</th>
             </tr>
         </thead>
     </table>
@@ -131,6 +134,23 @@
             }
             function getHeight() {
                 return $(window).height() - $('h3').outerHeight(true) * 2.5 - $('#custom-toolbar').outerHeight(true) * 2.5;
+            }
+            function cellStyle(value, row, index) {
+                if (row.State === "Passiv") {
+                    return {
+                        css: {
+                            "color": "red",
+                        }
+                    };
+                }
+                if (row.LastAccessTime === "") {
+                    return {
+                        css: {
+                            "color": "grey",
+                        }
+                    };
+                }
+                return {};
             }
         });
         $(document).keypress(function (e) {

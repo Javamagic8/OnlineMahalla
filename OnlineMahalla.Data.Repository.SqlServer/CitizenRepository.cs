@@ -15,27 +15,32 @@ namespace OnlineMahalla.Data.Repository.SqlServer
         {
             PagedDataEx data = new PagedDataEx();
             Dictionary<string, object> sqlparamas = new Dictionary<string, object>();
-            string sqlselect = @"SELECT 
-                                        Citizen.ID ID,
+            string sqlselect = @"SELECT Citizen.ID ID,
                                         Citizen.FullName,
                                         Citizen.PINFL,
+                                        Citizen.DateOfBirth,
+                                        Nationality.DisplayName Nation,
+                                        IIF(Citizen.IsForeignCitizen = 1,'Chetel','Uzbekiston') ForeignCitizen,
+                                        CitizenEmployment.DisplayName CitizenEmployment,
+                                        Street.Name Street,
                                         Citizen.PhoneNumber,
-                                        AcademicDegree.Name AcademicDegree,
-                                        AcademicTitle.Name AcademicTitle,
-                                        Neighborhood.Name Neighborhood ";
+                                        Neighborhood.Name Neighborhood,
+                                        [State].DisplayName [State] ";
 
             string sqlfrom = @" FROM hl_Citizen Citizen 
                                      JOIN info_Nation Nationality ON Nationality.ID = Citizen.NationID
                                      JOIN enum_Gender Gender ON Gender.ID = Citizen.GenderID
                                      JOIN enum_Education Education ON Education.ID = Citizen.EducationID
-                                     JOIN enum_AcademicTitle AcademicTitle ON AcademicTitle.ID = Citizen.AcademicTitleID
-                                     JOIN enum_AcademicDegree AcademicDegree ON AcademicDegree.ID = Citizen.AcademicDegreeID
+                                     LEFT JOIN enum_AcademicTitle AcademicTitle ON AcademicTitle.ID = Citizen.AcademicTitleID
+                                     LEFT JOIN enum_AcademicDegree AcademicDegree ON AcademicDegree.ID = Citizen.AcademicDegreeID
                                      JOIN enum_Married Married ON Married.ID = Citizen.MarriedID
                                      JOIN enum_CitizenEmployment CitizenEmployment ON CitizenEmployment.ID = Citizen.CitizenEmploymentID
                                      JOIN info_Region Region ON Region.ID = Citizen.BirthRegionID
                                      JOIN info_District District ON District.ID = Citizen.BirthDistrictID
                                      JOIN info_Neighborhood Neighborhood ON Neighborhood.ID = Citizen.NeighborhoodID
-                                     JOIN enum_State [State] ON [State].ID = Citizen.StateID";
+                                     JOIN enum_State [State] ON [State].ID = Citizen.StateID
+									 JOIN info_Street Street ON Street.ID = Citizen.StreetID ";
+
             string sqlwhere = " WHERE Citizen.NeighborhoodID=@NeighborhoodID ";
 
             sqlparamas.Add("@NeighborhoodID", NeighborhoodID);
@@ -84,7 +89,10 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                 StateID = data.StateID,
                 PhoneNumber = data.PhoneNumber,
                 BirthdayDistrictID = data.BirthDistrictID,
-                BirthdayRegionID = data.BirthRegionID
+                BirthdayRegionID = data.BirthRegionID,
+                StreetID = data.StreetID,
+                FamilyID = data.FamilyID,
+                IsDisabled = data.IsDisabled,
             };
             return citizen;
         }
@@ -99,10 +107,10 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                 using (var ts = myConn.BeginTransaction())
                 {
                     if (citizen.PINFL == "" || citizen.PINFL == null || citizen.PINFL.Length != 14)
-                        throw new Exception("Длина PINFL не 14 символов");
+                        throw new Exception("JSHSHIR uzunligi 14 bo'lsihi kerak");
 
                     if (!NumberToWord.IsNumber(citizen.PINFL))
-                        throw new Exception("В PINFL не цифровые символы");
+                        throw new Exception("JSHSHIR raqam bo'lishi kerak");
 
 
                     string sql0 = "SELECT ID FROM [hl_Citizen] WHERE ID<>@ID AND PINFL=@PINFL  AND NeighborhoodID=@NeighborhoodID";
@@ -111,35 +119,33 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                         new string[] { "@ID", "@PINFL", "@NeighborhoodID" },
                         new object[] { citizen.ID, citizen.PINFL, NeighborhoodID }).Any();
                     if (q)
-                        throw new Exception("Сотрудник с этим PINFL(" + citizen.PINFL + ") уже существует.");
-                    //}
+                        throw new Exception("Bu JSHSHIR (" + citizen.PINFL + ") bilan fuqaro avval qo'shilgan.");
 
-                    //int ID = 0;
                     if (citizen.ID == 0)
                     {
                         string sql = @"INSERT INTO [dbo].[hl_Citizen]
                                                    ([FirstName],[LastName],[FamilyName],[FullName],[FIOTranslate],[PINFL],[DateOfBirth]
                                                    ,[NationID],[GenderID],[EducationID],[AcademicDegreeID],[AcademicTitleID],[PhoneNumber]
                                                    ,[MarriedID],[IsForeignCitizen],[CountChild],[CitizenEmploymentID],[IsLowIncome]
-                                                   ,[IsConvicted],[IsCheckCityzen],[BirthRegionID],[MemberTypeFamilyId],[BirthDistrictID],[BithPlace]
-                                                   ,[NeighborhoodID],[CreateUserID], [StreetID])
+                                                   ,[IsConvicted],[IsCheckCityzen],[BirthRegionID],[BirthDistrictID],[BithPlace]
+                                                   ,[NeighborhoodID],[CreateUserID], [StreetID], [FamilyID], [IsDisabled])
                                              VALUES
                                                    (@FirstName,@LastName,@FamilyName,@FullName,@FIOTranslate,@PINFL,@DateOfBirth
                                                    ,@NationID,@GenderID,@EducationID,@AcademicDegreeID,@AcademicTitleID,@PhoneNumber
                                                    ,@MarriedID,@IsForeignCitizen,@CountChild,@CitizenEmploymentID,@IsLowIncome
-                                                   ,@IsConvicted,@IsCheckCityzen,@BirthRegionID,@MemberTypeFamilyId,@BirthDistrictID,@BithPlace
-                                                   ,@NeighborhoodID,@CreateUserID, @StreetID) select [ID] FROM [hl_Citizen] WHERE @@ROWCOUNT > 0 and [ID] = scope_identity()";
+                                                   ,@IsConvicted,@IsCheckCityzen,@BirthRegionID,@BirthDistrictID,@BithPlace
+                                                   ,@NeighborhoodID,@CreateUserID, @StreetID, @FamilyID, @IsDisabled) select [ID] FROM [hl_Citizen] WHERE @@ROWCOUNT > 0 and [ID] = scope_identity()";
                         var NewID = _databaseExt.ExecuteScalar(sql,
                             new string[] {"@FirstName","@LastName","@FamilyName","@FullName","@FIOTranslate","@PINFL","@DateOfBirth"
                                                    ,"@NationID","@GenderID","@EducationID","@AcademicDegreeID","@AcademicTitleID","@PhoneNumber"
                                                    ,"@MarriedID","@IsForeignCitizen","@CountChild","@CitizenEmploymentID","@IsLowIncome"
                                                    ,"@IsConvicted","@IsCheckCityzen","@BirthRegionID","@BirthDistrictID","@BithPlace"
-                                                   ,"@NeighborhoodID","@CreateUserID", "@StreetID"},
+                                                   ,"@NeighborhoodID","@CreateUserID", "@StreetID","@FamilyID", "@IsDisabled"},
                             new object[] { citizen.FirstName,citizen.LastName,citizen.FamilyName,citizen.FirstName +" " + citizen.LastName + " " + citizen.FamilyName,citizen.FirstName +" " + citizen.LastName + " " + citizen.FamilyName,citizen.PINFL,citizen.DateOfBirthday
                                                    ,citizen.NationID,citizen.GenderID,citizen.EducationID,citizen.AcademicDegreeID,citizen.AcademicTitleID,citizen.PhoneNumber
                                                    ,citizen.MarriedID,citizen.IsForeignCitizen,citizen.CountChild,citizen.CitizenEmploymentID,citizen.IsLowIncome
                                                    ,citizen.IsConvicted,citizen.IsCheckCityzen,citizen.BirthdayRegionID,citizen.BirthdayDistrictID,citizen.BirthPlace
-                                                   ,NeighborhoodID,UserID, citizen.StreetID}, System.Data.CommandType.Text, ts);
+                                                   ,NeighborhoodID,UserID, citizen.StreetID, citizen.FamilyID, citizen.IsDisabled}, System.Data.CommandType.Text, ts);
                         citizen.ID = Convert.ToInt32(NewID);
                     }
                     else
@@ -153,7 +159,8 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                                                          ,[CountChild] = @CountChild,[CitizenEmploymentID] = @CitizenEmploymentID,[IsLowIncome] = @IsLowIncome
                                                          ,[IsConvicted] = @IsConvicted,[IsCheckCityzen] = @IsCheckCityzen,[BirthRegionID] = @BirthRegionID
                                                          ,[BirthDistrictID] = @BirthDistrictID,[BithPlace] = @BithPlace,[StateID] = @StateID
-                                                         ,[DateOfModified] = GETDATE(),[ModifiedUserID] = @ModifiedUserID, [StreetID] = @StreetID
+                                                         ,[DateOfModified] = GETDATE(),[ModifiedUserID] = @ModifiedUserID, [StreetID] = @StreetID, 
+                                                          [FamilyID] = @FamilyID, [IsDisabled] = @IsDisabled
                                                     WHERE ID = @ID";
                         _databaseExt.ExecuteNonQuery(sql,
                             new string[] {                "@FirstName","@LastName","@FamilyName"
@@ -164,8 +171,8 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                                                          ,"@CountChild","@CitizenEmploymentID","@IsLowIncome"
                                                          ,"@IsConvicted","@IsCheckCityzen","@BirthRegionID"
                                                          ,"@BirthDistrictID","@BithPlace","@StateID"
-                                                         ,"@ModifiedUserID","@ID","@StreetID"},
-                            new object[] { citizen.FirstName, citizen.LastName, citizen.FamilyName, citizen.FirstName + " " + citizen.LastName + " " + citizen.FamilyName, citizen.FirstName + " " + citizen.LastName + " " + citizen.FamilyName, citizen.PINFL, citizen.DateOfBirthday, citizen.NationID, citizen.GenderID, citizen.EducationID, citizen.AcademicDegreeID, citizen.AcademicTitleID, citizen.PhoneNumber, citizen.MarriedID, citizen.IsForeignCitizen, citizen.CountChild, citizen.CitizenEmploymentID, citizen.IsLowIncome, citizen.IsConvicted, citizen.IsCheckCityzen, citizen.BirthdayRegionID, citizen.BirthdayDistrictID, citizen.BirthPlace, citizen.StateID, UserID, citizen.ID, citizen.StreetID }, System.Data.CommandType.Text, ts);
+                                                         ,"@ModifiedUserID","@ID","@StreetID","@FamilyID", "@IsDisabled"},
+                            new object[] { citizen.FirstName, citizen.LastName, citizen.FamilyName, citizen.FirstName + " " + citizen.LastName + " " + citizen.FamilyName, citizen.FirstName + " " + citizen.LastName + " " + citizen.FamilyName, citizen.PINFL, citizen.DateOfBirthday, citizen.NationID, citizen.GenderID, citizen.EducationID, citizen.AcademicDegreeID, citizen.AcademicTitleID, citizen.PhoneNumber, citizen.MarriedID, citizen.IsForeignCitizen, citizen.CountChild, citizen.CitizenEmploymentID, citizen.IsLowIncome, citizen.IsConvicted, citizen.IsCheckCityzen, citizen.BirthdayRegionID, citizen.BirthdayDistrictID, citizen.BirthPlace, citizen.StateID, UserID, citizen.ID, citizen.StreetID, citizen.FamilyID, citizen.IsDisabled }, System.Data.CommandType.Text, ts);
                     }
                     ts.Commit();
                 }

@@ -26,7 +26,7 @@ namespace OnlineMahalla.Common.Model.Interface
 
         IEnumerable<dynamic> GetMarriedList();
 
-        IEnumerable<dynamic> GetMemberTypeFamilyList();
+        IEnumerable<dynamic> GetFamilyList();
 
         IEnumerable<dynamic> GetOrganizationTypeList();
 
