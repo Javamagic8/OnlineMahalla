@@ -59,8 +59,9 @@ namespace OnlineMahalla.Common.Model.Models.info
 
         public string BirthPlace { get; set; }
 
-        public int MemberTypeFamilyId { get; set; }
+        public int FamilyID { get; set; }
 
-        public List<PassportData> PassportData { get; set; }
+        public bool IsDisabled { get; set; }
+
     }
 }
