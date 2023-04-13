@@ -21,7 +21,7 @@
         padding: 8px;
         white-space: pre-wrap;
     }
-</style>    
+</style>
 
 <h3 style="text-align:center">@SharedLocalizer["Organization"]</h3>
 <div class="panel panel-primary"></div>
@@ -37,10 +37,15 @@
             <input id="filtername" style="font-size:13px;width:300px" class="form-control input-sm" placeholder="@SharedLocalizer["Name"]" />
         </div>
         <div class="input-group">
-            <input id="filterRegion" style="font-size:13px;width:200px" class="form-control input-sm" placeholder="@SharedLocalizer["Oblast"]" />
+            <input id="filterregion" style="font-size:13px;width:200px" class="form-control input-sm" placeholder="@SharedLocalizer["Oblast"]" />
         </div>
         <div class="input-group">
-            <input id="filterregion" style="font-size:13px;width:200px" class="form-control input-sm" placeholder="@SharedLocalizer["Region"]" />
+            <input id="filterdistrict" style="font-size:13px;width:200px" class="form-control input-sm" placeholder="@SharedLocalizer["Region"]" />
+        </div>
+        <div class="input-group">
+            <select style="font-size:15px" id="filterorgtype"
+                    data-bind='options: orgtypelist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tashkilot turi"]",selectPicker: {}'
+                    data-live-search="true" class="" data-width="95%"></select>
         </div>
         <div class="input-group">
             <div class="btn-toolbar">
@@ -73,31 +78,150 @@
         <thead>
             <tr>
                 <th data-field="ID" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["ID"]</th>
-                <th data-field="Name" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["Name"]</th>
-                <th data-field="ChairmanName" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["ChairmanName"]</th>
-                <th data-field="INN" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["INN"]</th>
-                <th data-field="RegionName" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["RegionName"]</th>
-                <th data-field="DistrictName" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["DistrictName"]</th>
-                <th data-field="Address" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["DistrictName"]</th>
-                <th data-field="PhoneNumber" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["PhoneNumber"]</th>
+                <th data-field="Name" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["Tashkilot Nomi"]</th>
+                <th data-field="ChairmanName" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["Tashkilot Direktori"]</th>
+                <th data-field="INN" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["JSHSHIR"]</th>
+                <th data-field="RegionName" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["Viloyat"]</th>
+                <th data-field="DistrictName" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["Tuman"]</th>
+                <th data-field="Address" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["Manzil"]</th>
+                <th data-field="OrganizationType" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["Tashkilot turi"]</th>
+                <th data-field="PhoneNumber" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["Telefon raqam"]</th>
                 <th data-field="State" data-align="center" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["State"]</th>
             </tr>
         </thead>
     </table>
 </div>
 <div id="editWindow" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg" style="width:95%">
+    <div class="modal-dialog modal-lg" style="width:1024px">
         <!-- Modal content-->
         <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" style="text-align:center"><b>@SharedLocalizer["Tashkilot"]</b></h4>
+            </div>
             <div class="modal-body">
-                <br />
                 <div class="container-fluid">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h2 class="panel-title" style="text-align:center"><b>@SharedLocalizer["Organization"]</b></h2>
-                        </div>
                         <div align="center">
-                            
+                            <div class="form-horizontal">
+                                <br />
+                                <div class="form-group" align="center">
+                                    <div class="form-group">
+                                        <form class="form-inline">
+                                            <label class="col-md-2 control-label" required
+                                                   style="font-size:12px;text-align:right">@SharedLocalizer["Tashkilot nomi"]</label>
+                                            <div class="col-sm-4">
+                                                <input placeholder="@SharedLocalizer["Tashkilot nomi"]"
+                                                       style="font-size:15px;width:95%" data-bind="value:neighborhood.Name"
+                                                       required class="text-left form-control input-sm" />
+                                            </div>
+                                        </form>
+                                        <form class="form-inline">
+                                            <label class="col-md-1 control-label"
+                                                   style="font-size:12px;text-align:right">@SharedLocalizer["Direktor ismi"]</label>
+                                            <div class="col-sm-4">
+                                                <input placeholder="@SharedLocalizer["Uy raqami"]"
+                                                       style="font-size:15px;width:95%" data-bind="value:neighborhood.ChairmanName"
+                                                       required class="text-left form-control input-sm" />
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="form-group">
+                                        <form class="form-inline">
+                                            <label class="col-md-2 control-label" required
+                                                   style="font-size:12px;text-align:right">@SharedLocalizer["Telefon raqam"]</label>
+                                            <div class="col-sm-4">
+                                                <input placeholder="@SharedLocalizer["Telefon raqam"]"
+                                                       style="font-size:15px;width:95%" data-bind="value:neighborhood.PhoneNumber"
+                                                       required class="text-left form-control input-sm" />
+                                            </div>
+                                        </form>
+                                        <form class="form-inline">
+                                            <label class="col-md-1 control-label"
+                                                   style="font-size:12px;text-align:right">@SharedLocalizer["STIR"]</label>
+                                            <div class="col-sm-4">
+                                                <input placeholder="@SharedLocalizer["STIR"]"
+                                                       style="font-size:15px;width:95%" data-bind="value:neighborhood.INN"
+                                                       required class="text-left form-control input-sm" />
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="form-group">
+                                        <form class="form-inline">
+                                            <label class="col-md-2 control-label" required
+                                                   style="font-size:12px;text-align:right">@SharedLocalizer["Viloyat"]</label>
+                                            <div class="col-sm-4">
+                                                <select style="font-size:15px"
+                                                        data-bind='options: regionlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:neighborhood.RegionID,selectPicker: {}'
+                                                        data-live-search="true" class="" data-width="95%"></select>
+                                            </div>
+                                        </form>
+                                        <form class="form-inline">
+                                            <label class="col-md-1 control-label"
+                                                   style="font-size:12px;text-align:right">@SharedLocalizer["Tuman"]</label>
+                                            <div class="col-sm-4">
+                                                <select style="font-size:15px"
+                                                        data-bind='options: districtlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:neighborhood.DistrictID,selectPicker: {}'
+                                                        data-live-search="true" class="" data-width="95%"></select>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="form-group">
+                                        <form class="form-inline">
+                                            <label class="col-md-2 control-label" required
+                                                   style="font-size:12px;text-align:right">@SharedLocalizer["Holati"]</label>
+                                            <div class="col-sm-4">
+                                                <select style="font-size:15px"
+                                                        data-bind='options: statelist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:neighborhood.StateID,selectPicker: {}'
+                                                        data-live-search="true" class="" data-width="95%"></select>
+                                            </div>
+                                        </form>
+                                        <form class="form-inline">
+                                            <label class="col-md-1 control-label"
+                                                   style="font-size:12px;text-align:right">@SharedLocalizer["Tashkilot turi"]</label>
+                                            <div class="col-sm-4">
+                                                <select style="font-size:15px"
+                                                        data-bind='options: orgtypelist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:neighborhood.TypeOrganizationID,selectPicker: {}'
+                                                        data-live-search="true" class="" data-width="95%"></select>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <form class="form-inline">
+                                            <label class="col-md-2 control-label" required
+                                                   style="font-size:12px;text-align:right">@SharedLocalizer["Xonadonlar Soni"]</label>
+                                            <div class="col-sm-4">
+                                                <input placeholder="@SharedLocalizer["Xonadonlar Soni"]"
+                                                       style="font-size:15px;width:95%" data-bind="value:neighborhood.CountHome"
+                                                       required class="text-left form-control input-sm" />
+                                            </div>
+                                        </form>
+                                        <form class="form-inline">
+                                            <label class="col-md-1 control-label"
+                                                   style="font-size:12px;text-align:right">@SharedLocalizer["Manzil"]</label>
+                                            <div class="col-sm-4">
+                                                <input placeholder="@SharedLocalizer["Manzil"]"
+                                                       style="font-size:15px;width:95%" data-bind="value:neighborhood.Address"
+                                                       required class="text-left form-control input-sm" />
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <br />
+                                    <div class="form-group">
+                                        <div style="align-content:center">
+                                            <button type="button" data-bind="click:closewindow"
+                                                    class="btn btn-default btn-sm">
+                                                @SharedLocalizer["Chiqish"]
+                                            </button>
+                                            <button type="button" data-bind="click:savedata"
+                                                    class="btn btn-primary btn-sm">
+                                                @SharedLocalizer["Saqlash"]
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -105,6 +229,7 @@
         </div>
     </div>
 </div>
+
 
 @section scripts
     {
@@ -133,899 +258,229 @@
     </environment>
 
     <script type="text/javascript">
-        let Clone=false;
+        function nameFilter() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("nameInput");
+            filter = input.value.toUpperCase().trim();
+            table = document.getElementById("filterTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[2];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
         function queryParams(params) {
-            params.id = $('#filterid').val();
-            params.inn = $('#filterinn').val();
-            params.name = $('#filtername').val();
-            params.region = $('#filter').val();
-            params.district = $('#filterregion').val();
+            params.ID = $('#filterid').val();
+            params.INN = $('#filterinn').val();
+            params.Name = $('#filtername').val();
+            params.Region = $('#filterregion').val();
+            params.District = $('#filterdistrict').val();
+            params.OrganizationTypeID = $('#filterorgtype').val();
             return params;
         }
-        function queryParams1(params1) {
-            params1.inn = $('#filtername1').val();
-            params1.id = $('#filterid1').val();
-            return params1;
+
+        function queryParamsemp1(params) {
+            return params;
+        }
+        function queryParamsemp2(params) {
+            return params;
         }
 
         function cellStyle(value, row, index) {
-            if (row.Restriction === "Да") {
+            if (row.State === "Passiv") {
+
                 return {
                     css: {
-                        "background-color": "red",
-                        "color": "black",
+                        "color": "red",
+                    }
+                };
+            }
+            if (row.LastAccessTime === "") {
+                return {
+                    css: {
+                        "color": "grey",
                     }
                 };
             }
             return {};
         }
 
-        function settleFilterRole() {
-            input = document.getElementById("settleInputRole");
-            filter = input.value.toUpperCase().trim();
-            table = document.getElementById("filterTableRole");
-            trs = table.querySelectorAll("tbody tr");
-              for (let i = 0; i < trs.length; i++) {
-                if (trs[i].textContent.toUpperCase().includes(filter)) {
-                    trs[i].classList.remove('hidden')
-                } else {
-                    trs[i].classList.add('hidden')
-                }
-              }            
-        }
-
-        
-
         var ItemModel = function () {
             var self = this;
-            self.organization = {};
-            self.chapterlist = ko.mapping.fromJS([]);
-            self.okedlist = ko.mapping.fromJS([]);
-            self.oblastlist = ko.mapping.fromJS([]);
-            self.regionlist = ko.mapping.fromJS([]);
+            self.neighborhood = {};
             self.statelist = ko.mapping.fromJS([]);
-            self.organizationtypelist = ko.mapping.fromJS([]);
-            self.headerorganizationlist = ko.mapping.fromJS([]);
-            self.banklist = ko.mapping.fromJS([]);
-            self.functionalitemlist = ko.mapping.fromJS([]);
-            self.organizationfunctionalitemlist = ko.mapping.fromJS([]);
-            self.treasurybranchlist = ko.mapping.fromJS([]);
-            self.tablelist = ko.mapping.fromJS([]);
-            self.organizationlist = ko.mapping.fromJS([]);
-            self.organizationsettleaccountlist = ko.mapping.fromJS([]);
-            self.orgfunctionalitemlist = ko.mapping.fromJS([]);
-            // SettlementAccount
-            self.addtreasurybranchid = ko.observable(0);
-            self.addbankid = ko.observable(0);
-            self.addorganizationfunctionalitemid1 = ko.observable(0);
-            self.addorganizationfunctionalitemid2 = ko.observable(0);
-            // FunctionalItem
-            self.addfunctionalitemid = ko.observable(0);
-            self.addchapterid = ko.observable(0);
-            // DocSettAccount
-            self.addorgidname = ko.observable();
-            self.addorgid = ko.observable(0);
-            self.addtableid = ko.observable(0);
-            self.addorganizationsettleaccountid = ko.observable(0);
-            self.addfunctionalitemdocsetid = ko.observable(0);
-            self.addstateid = ko.observable(1);
-            self.myfunction = function () {
-                var str = "";
-                ko.utils.arrayForEach(self.organization.Sign(), function (item) {
-                    str = item.FIO().replace(/ +/g, ' ').trim();
-                    item.FIO(str);
+            self.districtlist = ko.mapping.fromJS([]);
+            self.regionlist = ko.mapping.fromJS([]);
+            self.orgtypelist = ko.mapping.fromJS([]);
+            self.loaddata = function (id) {
+                getajaxjson("@Url.Action("Get", "Neighborhood")" + "?id=" + id, function (data) {
+                    ko.mapping.fromJS(data, {}, self.neighborhood);
                 });
-            };
-            self.trimchange = function () {
-                var str1 = "";
-                var str2 = "";
-                var str3 = "";
-                var str4 = "";
-                var str5 = "";
-                var str6 = "";
-                var str7 = "";
-                str1 = self.organization.Name().replace(/ +/g, ' ').trim();
-                self.organization.Name(str1);
-                str2 = self.organization.FullName().replace(/ +/g, ' ').trim();
-                self.organization.FullName(str2);
-                str3 = self.organization.Adress().replace(/ +/g, ' ').trim();
-                self.organization.Adress(str3);
-                str4 = self.organization.ContactInfo().replace(/ +/g, ' ').trim();
-                self.organization.ContactInfo(str4);
-                str5 = self.organization.Director().replace(/ +/g, ' ').trim();
-                self.organization.Director(str5);
-                str6 = self.organization.Accounter().replace(/ +/g, ' ').trim();
-                self.organization.Accounter(str6);
-                str7 = self.organization.Cashier().replace(/ +/g, ' ').trim();
-                self.organization.Cashier(str7);
-            }
-            self.loaddata = function (id,clone) {
-                getajaxjson("@Url.Action("Get", "Neighborhood")" + "?id=" + id + "&IsClone=" + clone, function (data) {
-                    ko.mapping.fromJS(data, {}, self.organization);
-                });
-                getajaxjson("@Url.Action("GetDistrictList", "Helper")" + "?DistrictID=" + self.organization.OblastID() , function (data) {
-                    ko.mapping.fromJS(data, self.regionlist);
-                });
-
-                if (self.organization.OblastID() > 0){
-                    self.oblastchange();
-                }
-                getajaxjson("@Url.Action("GetRegionList", "Helper")", function (data) {
-                    ko.mapping.fromJS(data, self.oblastlist);
-                });
-
                 getajaxjson("@Url.Action("GetStateList", "Helper")", function (data) {
-                ko.mapping.fromJS(data, self.statelist);
+                    ko.mapping.fromJS(data, self.statelist);
+                });
+                getajaxjson("@Url.Action("GetDistrictList", "Helper")", function (data) {
+                    ko.mapping.fromJS(data, self.districtlist);
+                });
+                getajaxjson("@Url.Action("GetRegionList", "Helper")", function (data) {
+                    ko.mapping.fromJS(data, self.regionlist);
                 });
                 getajaxjson("@Url.Action("GetOrganizationTypeList", "Helper")", function (data) {
-                    ko.mapping.fromJS(data, self.organizationtypelist);
-                });
-                getajaxjson("@Url.Action("GetTableList", "Helper")", function (data) {
-                    ko.mapping.fromJS(data, self.tablelist);
-                });
-                getajaxjson("@Url.Action("GetNeighborhoodList", "Helper")", function (data) {
-                    ko.mapping.fromJS(data, self.organizationlist);
-                });
-            };
-            self.addRow1 = function () {
-
-                if (!self.addtreasurybranchid()) {
-                    alert("@SharedLocalizer["TreasuryBranchNotSelect"]");
-                    return;
-                }
-                if (!self.addbankid()) {
-                    alert("@SharedLocalizer["BankNotSelect"]");
-                    return;
-                }
-                if (!self.addorganizationfunctionalitemid1()) {
-                    alert("@SharedLocalizer["OrganizationFunctionalItemNotSelect"]");
-                    return;
-                }
-                var text1 = '';
-                ko.utils.arrayForEach(self.treasurybranchlist(), function (item) {
-                    if (item.ID() === self.addtreasurybranchid()) {
-                        text1 = item.Name;
-                        return;
-                    }
-                });
-                var text2 = '';
-                ko.utils.arrayForEach(self.banklist(), function (item) {
-                    if (item.ID() === self.addbankid()) {
-                        text2 = item.Code;
-                        return;
-                    }
-                });
-                var text3 = '';
-                ko.utils.arrayForEach(self.organizationfunctionalitemlist(), function (item) {
-                    if (item.ID() === self.addorganizationfunctionalitemid1()) {
-                        text3 = item.Code;
-                        return;
-                    }
-                });
-                self.organization.SettlementAccount.push({
-                    ID: ko.observable(0),
-                    BankID: ko.observable(self.addbankid()),
-                    BankCode: text2,
-                    OrganizationFunctionalItemID: ko.observable(self.addorganizationfunctionalitemid1()),
-                    OrganizationID: ko.observable(0),
-                    OrganizationFunctionalItemCode: text3,
-                    TreasuryBranchID: ko.observable(self.addtreasurybranchid()),
-                    TreasuryBranchName: text1,
-                    Code: ko.observable(''),
-                    Name: ko.observable('Счет'),
-                    StateID: ko.observable(1),
-                    IsActive: ko.observable(true),
-                    OutOfBalance: ko.observable(false),
-                    Status: ko.observable(1)
-                });
-                self.addorganizationfunctionalitemid1('');
-                self.addbankid('');
-                self.addtreasurybranchid('');
-            };
-            self.addRow2 = function () {
-                if (!self.addfunctionalitemid()) {
-                    alert("@SharedLocalizer["OrganizationFunctionalItemNotSelect"]");
-                    return;
-                }
-                if (!self.addchapterid()) {
-                    alert("@SharedLocalizer["ChapterNotSelect"]");
-                    return;
-                }
-                var text1 = '';
-                ko.utils.arrayForEach(self.functionalitemlist(), function (item) {
-                    if (item.ID() === self.addfunctionalitemid()) {
-                        text1 = item.Code();
-                        return;
-                    }
-                    console.log(typeof text1);
-                });
-                var text2 = '';
-                ko.utils.arrayForEach(self.chapterlist(), function (item) {
-                    if (item.ID() === self.addchapterid()) {
-                        text2 = item.Name();
-                        return;
-                    }
-                });
-                self.organization.FunctionalItem.push({
-                    ID: ko.observable(0),
-                    Code: text1.substring(0, 7) + text2.substring(0, 3),
-                    FunctionalItemID: ko.observable(self.addfunctionalitemid()),
-                    FunctionalItemCode: text1,
-                    ChapterID: ko.observable(self.addchapterid()),
-                    ChapterCode: text2,
-                    OrganizationID: selectedid > 0 ? selectedid : 2,
-                    Status: ko.observable(1)
-                });
-                self.addfunctionalitemid('')
-                self.addchapterid('')
-            };
-            self.addRow3 = function () {
-                self.organization.Sign.push({
-                    ID: ko.observable(0),
-                    FIO: ko.observable(''),
-                    SignNumber: ko.observable(1),
-                    StateID: ko.observable(1),
-                    OrganizationID: selectedid > 0 ? selectedid : 5,
-                    PositionNameRus: ko.observable('Руководитель'),
-                    PositionNameUzb: ko.observable('Раҳбар'),
-                    Status: ko.observable(1)
-                });
-            };
-            self.addRow4 = function () {
-
-                if (!self.addorgid()) {
-                    alert("@SharedLocalizer["OrganizationNotSelect"]");
-                    return;
-                }
-                if (!self.addtableid()) {
-                    alert("@SharedLocalizer["DocTableNotSelect"]");
-                    return;
-                }
-                if (!self.addfunctionalitemdocsetid()) {
-                    alert("@SharedLocalizer["FunctionalItemNotSelect"]");
-                    return;
-                }
-                var text2 = '';
-                ko.utils.arrayForEach(self.tablelist(), function (item) {
-                    if (item.ID() === self.addtableid()) {
-                        text2 = item.Name;
-                        return;
-                    }
-                });
-                var text3 = '';
-                if (self.addorganizationsettleaccountid()) {
-                    ko.utils.arrayForEach(self.organizationsettleaccountlist(), function (item) {
-                        if (item.ID() === self.addorganizationsettleaccountid()) {
-                            text3 = item.Name();
-                            return;
-                        }
-                    });
-
-                };
-                var text4 = '';
-                ko.utils.arrayForEach(self.orgfunctionalitemlist(), function (item) {
-                    if (item.ID() === self.addfunctionalitemdocsetid()) {
-                        text4 = item.Code;
-                        return;
-                    }
-                });
-                var text5 = '';
-
-                if (self.addorganizationsettleaccountid()) {
-                    ko.utils.arrayForEach(self.organizationsettleaccountlist(), function (item) {
-                        if (item.ID() === self.addorganizationsettleaccountid()) {
-                            text5 = item.Name();
-                            return;
-                        }
-                    });
-                }
-                else {
-                    text5 = '';
-                };
-                var bool = '';
-
-                    ko.utils.arrayForEach(self.boollist(), function (item) {
-                        if (item.code === self.addstateid()) {
-                            bool = item.name;
-                            return;
-                        }
-                    });
-                self.organization.DocSettAccount.push({
-                    ID: ko.observable(0),
-                    OwnerID: selectedid > 0 ? selectedid : 111111111111111,
-                    OrganizationID: ko.observable(self.addorgid()),
-                    OrganizationName: ko.observable(self.addorgidname()),
-                    TableID: ko.observable(self.addtableid()),
-                    TableName: text2,
-                    OrganizationsSettlementAccountID: ko.observable(self.addorganizationsettleaccountid()),
-                    OrganizationsSettlementAccountCode: text3,
-                    OrganizationFunctionalItemID: ko.observable(self.addfunctionalitemdocsetid()),
-                    OrganizationFunctionalItemCode: text4,
-                    SettleCodeLevel: text5.substring(0, 6),
-                    StateID: ko.observable(self.addstateid()),
-                    State: bool,
-                    Status: ko.observable(1)
-                });
-                self.addorgidname('');
-                self.addorgid('');
-                self.addtableid('');
-                self.addorganizationsettleaccountid('');
-                self.addfunctionalitemdocsetid('');
-                self.addstateid('');
-            };
-            self.organizationchange = function () {
-                getajaxjson("@Url.Action("GetSettlementAccountListForOrganization", "Helper")" + "/?OrganizationID=" + self.addorgid(), function (data) {
-                    ko.mapping.fromJS(data, self.organizationsettleaccountlist);
+                    ko.mapping.fromJS(data, self.orgtypelist);
                 });
 
-                getajaxjson("@Url.Action("GetOrganizationFunctionalItemList", "Helper")" + "/?OrganizationID=" + self.addorgid(), function (data) {
-                    ko.mapping.fromJS(data, self.orgfunctionalitemlist);
-                });
             };
-            self.functionalitemchange = function () {
-                ko.utils.arrayForEach(self.organizationsettleaccountlist(), function (item) {
-                    if (item.ID() === self.addorganizationsettleaccountid()) {
-                        self.addfunctionalitemdocsetid(item.OrganizationFunctionalItemID());
-                        return;
-                    }
-                });
-            };
-            self.oblastchange = function () {
-                console.log('oblchange');
-                getajaxjson("@Url.Action("GetRegionList", "Helper")" + "/?OblastID=" + self.organization.OblastID(), function (data) {
-                    ko.mapping.fromJS(data, self.regionlist);
-                });
-            };
-            self.editaccountRow = function (row) {
-                console.log(self.organizationfunctionalitemlist());
-                if (row.Status() === 0) {
-                    row.Status(2);
-                }
-            };
-            self.removeaccountRow = function (row) {
-                if (row.Status() === 1) {
-                    self.organization.SettlementAccount.remove(row);
-                    return;
-                }
-                row.Status(3);
-            };
-            self.edititemRow = function (row) {
-                if (row.Status() === 0) {
-                    row.Status(2);
-                }
-            };
-            self.removeitemRow = function (row) {
-                if (row.Status() === 1) {
-                    self.organization.FunctionalItem.remove(row);
-                    return;
-                }
-                row.Status(3);
-            };
-            self.removesignRow = function (row) {
-                if (row.Status() === 1) {
-                    self.organization.Sign.remove(row);
-                    return;
-                }
-                row.Status(3);
-            };
-            self.editsignRow = function (row) {
-                if (row.Status() === 0) {
-                    row.Status(2);
-                }
-            };
-            self.removedocsetRow = function (row) {
-                if (row.Status() === 1) {
-                    self.organization.DocSettAccount.remove(row);
-                    return;
-                }
-                row.Status(3);
-            };
-            self.editdocsetRow = function (row) {
-                if (row.Status() === 0) {
-                    row.Status(2);
-                }
-            };
-            self.Reset = function () {
-                self.organization.CentralOrganizationName('');
-                self.organization.CentralOrganizationID(0);
-            }
-            self.boollist = ko.observableArray([{ code: 1, name: 'Актив' }, { code: 2, name: 'Пассив' }]);
+
             self.checkdata = function () {
-                if (self.organization.IncomeNumber() === null || self.organization.IncomeNumber() === undefined || self.organization.IncomeNumber() === 0) {
-                    alert("@SharedLocalizer["IncomeNumberNotCorrect"]");
+                if (self.neighborhood.StateID() === null || self.neighborhood.StateID() === undefined || self.neighborhood.StateID() === "") {
+                    alert("@SharedLocalizer["Holat belgilanmagan"]");
                     return false;
                 }
-                if (self.organization.IncomeDate() === null || self.organization.IncomeDate() === undefined || self.organization.IncomeDate() === 0) {
-                    alert("@SharedLocalizer["IncomeDateNotCorrect"]");
+                if (self.neighborhood.Name() === null || self.neighborhood.Name() === undefined || self.neighborhood.Name() === "") {
+                    alert("@SharedLocalizer["Nomi belgilanmagan"]");
                     return false;
                 }
-                if (self.organization.INN() === null || self.organization.INN() === undefined || self.organization.INN() === 0) {
-                    alert("@SharedLocalizer["INNNotCorrect"]");
-                    return false;
-                }
-                if (self.organization.ChapterID() === null || self.organization.ChapterID() === undefined || self.organization.ChapterID() === 0) {
-                    alert("@SharedLocalizer["ChapterNotCorrect"]");
-                    return false;
-                }
-                if (self.organization.Name() === null || self.organization.Name() === undefined || self.organization.Name() === 0) {
-                    alert("@SharedLocalizer["IncomeDateNotCorrect"]");
-                    return false;
-                }
-                if (self.organization.FullName() === null || self.organization.FullName() === undefined || self.organization.FullName() === 0) {
-                    alert("@SharedLocalizer["FullNameNotCorrect"]");
-                    return false;
-                }
-                if (self.organization.OKONHID() === null || self.organization.OKONHID() === undefined || self.organization.OKONHID() === 0) {
-                    alert("@SharedLocalizer["OKEDNotCorrect"]");
-                    return false;
-                }
-                if (self.organization.OblastID() === null || self.organization.OblastID() === undefined || self.organization.OblastID() === 0) {
-                    alert("@SharedLocalizer["OblastNotCorrect"]");
-                    return false;
-                }
-                if (self.organization.RegionID() === null || self.organization.RegionID() === undefined || self.organization.RegionID() === 0) {
-                    alert("@SharedLocalizer["RegionNotCorrect"]");
-                    return false;
-                }
-                if (self.organization.ZipCode() === null || self.organization.ZipCode() === undefined || self.organization.ZipCode() === 0) {
-                    alert("@SharedLocalizer["ZipCodeNotCorrect"]");
-                    return false;
-                }
-                if (self.organization.Adress() === null || self.organization.Adress() === undefined || self.organization.Adress() === 0) {
-                    alert("@SharedLocalizer["AdressNotCorrect"]");
-                    return false;
-                }
-                if (self.organization.ContactInfo() === null || self.organization.ContactInfo() === undefined || self.organization.ContactInfo() === 0) {
-                    alert("@SharedLocalizer["ContactInfoNotCorrect"]");
-                    return false;
-                }
-                if (self.organization.Director() === null || self.organization.Director() === undefined || self.organization.Director() === 0) {
-                    alert("@SharedLocalizer["DirectorNotCorrect"]");
-                    return false;
-                }
-                if (self.organization.Accounter() === null || self.organization.Accounter() === undefined || self.organization.Accounter() === 0) {
-                    alert("@SharedLocalizer["AccounterNotCorrect"]");
-                    return false;
-                }
-                if (self.organization.OrganizationTypeID() === null || self.organization.OrganizationTypeID() === undefined || self.organization.OrganizationTypeID() === 0) {
-                    alert("@SharedLocalizer["OrganizationTypeNotCorrect"]");
-                    return false;
-                }
-                var tab1Name = 0;
-                var tab1Code = 0;
-                var tab1BankID = 0;
-                var tab1OrganizationFunctionalItemID = 0;
-                var tab1TreasuryBranchID = 0;
-                var tab1IsActive = 0;
-                ko.utils.arrayFilter(self.organization.SettlementAccount(), function (item) {
-                    if (item.Name() === "" || item.Name() === undefined || item.Name() === 0) {
-                        tab1Name = tab1Name + 1;
-                    }
-                });
-                if (tab1Name > 0) {
-                    alert("@SharedLocalizer["SettlementAccountNameNotCorrect"]");
-                    return false;
-                    }
-                ko.utils.arrayFilter(self.organization.SettlementAccount(), function (item) {
-                    if (item.Code() === "" || item.Code() === undefined || item.Code() === 0) {
-                        tab1Code = tab1Code + 1;
-                    }
-                });
-                if (tab1Code > 0) {
-                    alert("@SharedLocalizer["SettlementAccountCodeNotCorrect"]");
-                    return false;
-                    }
-
-                ko.utils.arrayFilter(self.organization.SettlementAccount(), function (item) {
-                    if (item.BankID() === "" || item.BankID() === undefined || item.BankID() === 0) {
-                        tab1BankID = tab1BankID + 1;
-                    }
-                });
-                if (tab1BankID > 0) {
-                    alert("@SharedLocalizer["SettlementAccounttab1BankNotCorrect"]");
-                    return false;
-                    }
-                ko.utils.arrayFilter(self.organization.SettlementAccount(), function (item) {
-                    if (!item.Code().includes('000000000000')) {
-                        if (item.OrganizationFunctionalItemID() === "" || item.OrganizationFunctionalItemID() === undefined || item.OrganizationFunctionalItemID() === 0) {
-                            tab1OrganizationFunctionalItemID = tab1OrganizationFunctionalItemID + 1;
-                        }
-                    }
-                });
-                if (tab1OrganizationFunctionalItemID > 0) {
-                    alert("@SharedLocalizer["SettlementAccountOrganizationFunctionalItemNotCorrect"]");
-                    return false;
-                    }
-                ko.utils.arrayFilter(self.organization.SettlementAccount(), function (item) {
-                    if (item.TreasuryBranchID() === "" || item.TreasuryBranchID() === undefined || item.TreasuryBranchID() === 0) {
-                        tab1TreasuryBranchID = tab1TreasuryBranchID + 1;
-                    }
-                });
-                if (tab1TreasuryBranchID > 0) {
-                    alert("@SharedLocalizer["SettlementAccountTreasuryBranchNotCorrect"]");
-                    return false;
-                    }
-                ko.utils.arrayFilter(self.organization.SettlementAccount(), function (item) {
-                    if (item.IsActive() === "" || item.IsActive() === undefined || item.IsActive() === 0) {
-                        tab1IsActive = tab1IsActive + 1;
-                    }
-                });
-                if (tab1Name > 0) {
-                    alert("@SharedLocalizer["SettlementAccountIsActiveNotCorrect"]");
-                    return false;
-                    }
-                var tab2Code = 0;
-                var tab2FunctionalItemID = 0;
-                var tab2ChapterID = 0;
-
-                ko.utils.arrayFilter(self.organization.FunctionalItem(), function (item) {
-                    if (item.Code === "" || item.Code === undefined || item.Code === 0) {
-                        tab2Code = tab2Code + 1;
-                    }
-                });
-                if (tab2Code > 0) {
-                    alert("@SharedLocalizer["FunctionalItemCodeNotCorrect"]");
-                    return false;
-                    }
-
-                ko.utils.arrayFilter(self.organization.FunctionalItem(), function (item) {
-                    if (item.FunctionalItemID() === "" || item.FunctionalItemID() === undefined || item.FunctionalItemID() === 0) {
-                        tab2FunctionalItemID = tab2FunctionalItemID + 1;
-                    }
-                });
-                if (tab2FunctionalItemID > 0) {
-                    alert("@SharedLocalizer["FunctionalItemNotCorrect"]");
-                    return false;
-                    }
-                ko.utils.arrayFilter(self.organization.FunctionalItem(), function (item) {
-                    if (item.ChapterID() === "" || item.ChapterID() === undefined || item.ChapterID() === 0) {
-                        tab2ChapterID = tab2ChapterID + 1;
-                    }
-                });
-                if (tab2ChapterID > 0) {
-                    alert("@SharedLocalizer["FunctionalItemChapterNotCorrect"]");
-                    return false;
-                    }
-                var tab4OwnerID = 0;
-                var tab4TableID = 0;
-                var tab4OrganizationsSettlementAccountID = 0;
-                var tab4OrganizationFunctionalItemID = 0;
-                var tab4SettleCodeLevel = 0;
-                var tab4StateID = 0;
-
-                ko.utils.arrayForEach(self.organization.DocSettAccount(), function (item) {
-                    if (item.OwnerID === "" || item.OwnerID === undefined || item.OwnerID === 0) {
-                        tab4OwnerID = tab4OwnerID + 1;
-                    }
-                });
-                if (tab4OwnerID > 0) {
-                    alert("@SharedLocalizer["DocSettAccountOwnerNotCorrect"]");
-                    return false;
-                    }
-                ko.utils.arrayFilter(self.organization.DocSettAccount(), function (item) {
-                    if (item.TableID === "" || item.TableID === undefined || item.TableID === 0) {
-                        tab4TableID = tab4TableID + 1;
-                    }
-                });
-                if (tab4TableID > 0) {
-                    alert("@SharedLocalizer["DocSettAccountTableDocNotCorrect"]");
-                    return false;
-                    }
-
-                ko.utils.arrayFilter(self.organization.DocSettAccount(), function (item) {
-                    if (item.OrganizationsSettlementAccountID === "" || item.OrganizationsSettlementAccountID === undefined || item.OrganizationsSettlementAccountID === 0) {
-                        tab4OrganizationsSettlementAccountID = tab4OrganizationsSettlementAccountID + 1;
-                    }
-                });
-                if (tab4OrganizationsSettlementAccountID > 0) {
-                    alert("@SharedLocalizer["DocSettAccountOrganizationsSettlementAccountNotCorrect"]");
-                    return false;
-                    }
-
-                ko.utils.arrayFilter(self.organization.DocSettAccount(), function (item) {
-                    if (item.OrganizationFunctionalItemID === "" || item.OrganizationFunctionalItemID === undefined || item.OrganizationFunctionalItemID === 0) {
-                        tab4OrganizationFunctionalItemID = tab4OrganizationFunctionalItemID + 1;
-                    }
-                });
-                if (tab4OrganizationFunctionalItemID > 0) {
-                    alert("@SharedLocalizer["DocSettAccountOrganizationFunctionalItemNotCorrect"]");
-                    return false;
-                    }
-
-                ko.utils.arrayFilter(self.organization.DocSettAccount(), function (item) {
-                    if (item.SettleCodeLevel === "" || item.SettleCodeLevel === undefined || item.SettleCodeLevel === 0) {
-                        tab4SettleCodeLevel = tab4SettleCodeLevel + 1;
-                    }
-                });
-                if (tab4SettleCodeLevel > 0) {
-                    alert("@SharedLocalizer["DocSettAccountSettleCodeLevelNotCorrect"]");
-                    return false;
-                    }
-
-                ko.utils.arrayFilter(self.organization.DocSettAccount(), function (item) {
-                    if (item.StateID === "" || item.StateID === undefined || item.StateID === 0) {
-                        tab4StateID = tab4StateID + 1;
-                    }
-                });
-                if (tab4StateID > 0) {
-                    alert("@SharedLocalizer["DocSettAccountStateNotCorrect"]");
-                    return false;
-                    }
                 return true;
             };
-            self.checkinn = function () {
-                getajaxjson("@Url.Action("CheckINNOrganization", "Helper")" + "/?INN=" + self.organization.INN(), function (data) {
-                    ko.mapping.fromJS(data);
-                    console.log(data);
-                });
-            };
+
             self.savedata = function () {
                 if (!self.checkdata()) {
                     return;
                 }
-
-                var datatosave = ko.mapping.toJSON(self.organization);
+                var datatosave = ko.mapping.toJSON(self.neighborhood);
                 $.ajax({
                     headers: {
                         "Accept": "application/json",
                         "Content-Type": "application/json; charset=utf-8"
                     },
                     type: "POST",
-                    url: "@Url.Action("Update", "Organization")",
+                    url: "@Url.Action("Update", "Neighborhood")",
                     data: datatosave
                 }).done(function (data, status, xhr) {
-                    alert("@SharedLocalizer["SavedSuccessfully"]");
+                    alert("@SharedLocalizer["Muvoffaqyatli"]");
                     $("#editWindow").modal('hide');
                     $('#table').bootstrapTable('refresh');
                 })
-                .fail(function (xhr, status, error) {
-                    alert(xhr.responseText);
-                });
-            }
-            self.filldata = function () {
-                if (!self.checkdata()) {
-                    return;
-                }
+                    .fail(function (xhr, status, error) {
+                        alert(xhr.responseText + " Xatolik:" + error);
+                    });
+            };
 
-                var datatosave = ko.mapping.toJSON(self.organization);
-                $.ajax({
-                    headers: {
-                        "Accept": "application/json",
-                        "Content-Type": "application/json; charset=utf-8"
-                    },
-                    type: "POST",
-                    url: "@Url.Action("FillOrganizationSettings", "Organization")",
-                    data: datatosave
-                }).done(function (data, status, xhr) {
-                    self.loaddata(data.ID,false);
-                })
-                .fail(function (xhr, status, error) {
-                    alert(xhr.responseText);
-                });
-            }
             self.closewindow = function () {
                 $("#editWindow").modal('hide');
                 $('#table').bootstrapTable('refresh');
             };
-        };
+        }
+
+
         $(document).ready(function () {
-            $('[data-toggle="popover"]').popover({
-                placement: 'top'
-            });
             var $table = $('#table');
-            selectedid = [];
-            selectedoblastid = [];
+
             selectedrow = [];
-            selectedcenorgrow = [];
-            initTable();
+
             function refreshdata() {
+                filter = 1;
+                $table.bootstrapTable('refresh');
+            }
+
+            initTable();
+
+            var itemModel = new ItemModel();
+
+            itemModel.loaddata(0);
+            ko.applyBindings(itemModel);
+            selectedorgrow = [];
+            selectedid = [];
+
+            $('#refreshdata').click(function () {
                 $('#table').bootstrapTable('refresh');
-            }
-            function refreshdata1() {
-                $('#tableCentralOrganization').bootstrapTable('refresh');
-            }
-            $('#tableCentralOrganization').bootstrapTable({ height: 500 });
-            $('#refreshdata').click(function () { refreshdata(); });
-            $('#refreshdata1').click(function () { refreshdata1(); });
-            $('#refreshdata2').click(function () { refreshdata2(); });
-            $('#acceptRow').click(function () {
-                $('#datepickerWindow').modal('hide');
-                acceptRow($('#acceptselectedbdate').val());
-                //acceptRow($('#acceptselectededate').val());
-            });
-            $('#acceptRowShowModal').click(function ()
-            {
-                $('#datepickerWindow').modal('show');
             });
 
-           
-            $('#addRow').click(function () { addRow(); });
-            $('#editRow').click(function () { editRow(); });
-            $('#cloneRow').click(function () { cloneRow(); });
-            $('#restrictionRow').click(function () { restrictionRow(); });
-            $('#btncheckinn').click(function () { btncheckinn(); });
+            $('#addRow').click(function () {
+                editRow(0);
+            });
+
+            $('#editRow').click(function () { editRow(selectedrow); });
+
+            var selectedRows = '';
+
+
             $('#table').on('dblclick', function () { editRow(); });
 
-            function selectdata() {
-                if (typ == 1) {
-                    itemModel.organization.CentralOrganizationID(selectedcenorgrow.ID);
-                    itemModel.organization.CentralOrganizationName(selectedcenorgrow.Name);
+            self.savedata = function () {
+                if (!self.checkdata()) {
+                    return;
                 }
-                if (typ == 2) {
-                    itemModel.addorgid(selectedcenorgrow.ID);
-                    itemModel.addorgidname(selectedcenorgrow.Name);
-                }
-            }
-            $('#tableCentralOrganization').on('dblclick', function () {
-                selectdata();
-                itemModel.organizationchange();
-                $("#centralorganizationWindow").modal('hide');
-            });
+                var datatosave = ko.mapping.toJSON(self.neighborhood);
+                $.ajax({
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json; charset=utf-8"
+                    },
+                    type: "POST",
+                    url: "@Url.Action("Update", "Neighborhood")",
+                    data: datatosave
+                }).done(function (data, status, xhr) {
+                    alert("@SharedLocalizer["Muvoffaqyatli saqlandi"]");
+                    $("#editWindow").modal('hide');
+                    $('#table').bootstrapTable('refresh');
+                })
+                    .fail(function (xhr, status, error) {
+                        alert(xhr.responseText);
+                    });
+            };
 
-            $('#btncentralorganizationselect').click(function () {
-                selectdata();
-                itemModel.organizationchange();
-                refreshdata1();
-                $("#centralorganizationWindow").modal('hide');
-            });
-            $('#printRow1').click(function () {
-                window.location = "@Url.Action("GetOrgListForBank", "Report")";
-            });
-
-            $('#printRow3').click(function () {
-                console.log($('#filterRegion').val());
-                if ($('#filterRegion').val().length == 0)
-                alert('Viloyatni tanlang !!!');
-                window.location = "@Url.Action("PrintContractorList", "Report")" + "/?Oblast=" + $('#filterRegion').val();
-            });
-
-            $('#printRow2').click(function () {
-                window.location = "@Url.Action("GetOrganizationList", "Organization")"+ "/?ID=" + $('#filterid').val()
-                + "&INN=" + $('#filterinn').val() 
-                + "&Name=" + $('#filtername').val()
-                    + "&Oblast=" + $('#filterRegion').val()
-                + "&Region=" + $('#filterregion').val()
-                + "&HeaderOrganization=" + $('#filterheader').val()
-                ;
-            });
-
-            $('#btnCentralOrganization').click(function () {
-                typ = 1;
-                $('#filtername1').val('');
-                $('#tableCentralOrganization').bootstrapTable('resetSearch');
-                $('#tableCentralOrganization').bootstrapTable('refresh', { url: "@Url.Action("GetList", "Organization")" });
-                $('#centralorganizationWindow').modal('show');
-            });
-            $('#btnselectreset').click(function () {
-                itemModel.Reset();
-            });
-            
-
-            $('#btnselectorg').click(function () {
-                typ = 2;
-                $('#filtername1').val('');
-                $('#tableCentralOrganization').bootstrapTable('resetSearch');
-                $('#tableCentralOrganization').bootstrapTable('refresh', { url: "@Url.Action("GetList", "Organization")" });
-                $('#centralorganizationWindow').modal('show');
-                  refreshdata1();
-            });
-            var itemModel = new ItemModel();
-            itemModel.loaddata(0, 0, 0, 0);
-            ko.applyBindings(itemModel);
-
-            $("#tableCentralOrganization").on('click-row.bs.table', function (e, row, $element) {
-                $('#tableCentralOrganization').find('.success').each(function () {
-                    $(this).removeClass("success");
-                });
-                $($element).addClass('success');
-                selectedcenorgrow = row;
-            });
-
-            function addRow() {
-                itemModel.loaddata(0,false);
-                Clone=false;
-                $("#editWindow").modal('show');
-            }
-
-            function cloneRow() {
-                itemModel.loaddata(selectedid,true);
-                Clone=true;
-
-
-                //itemModel.oblastchange();
-                $("#editWindow").modal('show');
-            }
-
-            function editRow() {
-                itemModel.loaddata(selectedid,false);
-                Clone=false;
-
-                //itemModel.oblastchange();
-                $("#editWindow").modal('show');
-              
-            }
-            function acceptRow(date) {
-                console.log(selectedid);
-                    if (date === null || date === undefined || date === '') {
-                        alert("@SharedLocalizer["DateNotCorrect"]");
-                        return;
-                    }
-                    $.ajax({
-                        headers: {
-                            Accept: "application/json",
-                            "Content-Type": "application/json; charset=utf-8",
-                        },
-                        type: "POST",
-                        url: "@Url.Action("RecalcAccAccountBookOrganization", "Organization")" + "/?id=" + selectedid + "&BeginDate=" + $('#acceptselectedbdate').val() + "&EndDate=" + $('#acceptselectededate').val()
-                    }).done(function (data, status, xhr) {
-                        alert("@SharedLocalizer["RecalcAccAccountBookSuccessfully"]");
-                        $table.bootstrapTable('refresh')
-                    })
-                        .fail(function (xhr, status, error) {
-                            alert(xhr.responseText);
-                        });
-            }
-            function restrictionRow() {
-                    $.ajax({
-                        headers: {
-                            Accept: "application/json",
-                            "Content-Type": "application/json; charset=utf-8",
-                        },
-                        type: "POST",
-                        url: "@Url.Action("RestrictionOrganization", "Organization")" + "/?id=" + selectedid
-                    }).done(function (data, status, xhr) {
-                        alert("@SharedLocalizer["RestrictionSuccessfully"]");
-                        $table.bootstrapTable('refresh')
-                    })
-                        .fail(function (xhr, status, error) {
-                            alert(xhr.responseText);
-                        });
-            }
-
-            function btncheckinn() {
-                itemModel.checkinn();
-            }
-
-        function initTable() {
-            $table.bootstrapTable({
-                pageSize: 50,
-                height: getHeight()
-            });
-            $table.on('click-row.bs.table', function (e, row, $element) {
-                $('.success').removeClass('success');
-                $($element).addClass('success');
-                selectedid = row.ID;
-                selectedoblastid = row.OblastID;
-                selectedrow = row;
-            });
-            setTimeout(function () {
-                $table.bootstrapTable('resetView');
-            }, 200);
-            $(window).resize(function () {
-                $table.bootstrapTable('resetView', {
+            function initTable() {
+                $table.bootstrapTable({
+                    pageSize: 50,
                     height: getHeight()
                 });
-            });
-        }
+                $table.on('click-row.bs.table', function (e, row, $element) {
+                    $('.success').removeClass('success');
+                    $($element).addClass('success');
+                    selectedrow = row.ID;
+                    selectedid = row.ID;
+                    userid = row.ID;
+                });
+                $table.on('load-error.bs.table', function (e, status, res) {
+                    alert(res.responseText);
+                });
 
-        function getHeight() {
-            return $(window).height() - $('h3').outerHeight(true) * 2.5 - $('#custom-toolbar').outerHeight(true) * 2.5;
-        }
+
+                // sometimes footer render error.
+
+                setTimeout(function () {
+                    $table.bootstrapTable('resetView');
+                }, 200);
+
+                $(window).resize(function () {
+                    $table.bootstrapTable('resetView', {
+                        height: getHeight()
+                    });
+                });
+            }
+            function getHeight() {
+                return $(window).height() - $('h3').outerHeight(true) * 2.5 - $('#custom-toolbar').outerHeight(true) * 2.5;
+            }
+            function editRow(id) {
+                itemModel.loaddata(id);
+                $("#editWindow").modal('show');
+            }
         });
-            
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
+
         $(document).keypress(function (e) {
-                if (e.which == 13) {
-                    $("#refreshdata").click();
-                }
-            });
+            if (e.which == 13) {
+                $("#refreshdata").click();
+            }
+        });
     </script>
 }

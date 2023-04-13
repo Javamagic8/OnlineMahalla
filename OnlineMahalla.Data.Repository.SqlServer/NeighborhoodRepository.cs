@@ -15,7 +15,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
 {
     public partial class DataRepository : IDataRepository
     {
-        public PagedDataEx GetAdminNeighborhoodList(int ID, string INN, string Name, string Region, string District, int OrganizationType, string Sort, string Order, int Offset, int Limit)
+        public PagedDataEx GetAdminNeighborhoodList(int ID, string INN, string Name, string Region, string District, int? OrganizationType, string Sort, string Order, int Offset, int Limit)
         {
             PagedDataEx data = new PagedDataEx();
             Dictionary<string, object> sqlparamas = new Dictionary<string, object>();
@@ -64,6 +64,11 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             {
                 sqlwhere += " AND District.Name LIKE '%' + @District + '%'";
                 sqlparamas.Add("@District", District);
+            }
+            if (OrganizationType.HasValue && OrganizationType.Value > 0)
+            {
+                sqlwhere += " AND OrganizationType.ID = @OrganizationType";
+                sqlparamas.Add("@OrganizationType", OrganizationType.Value);
             }
 
             string sqlcount = "SELECT Count(Neighborhood.ID) " + sqlfrom + sqlwhere;

@@ -42,7 +42,7 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult GetList(int ID, string INN, string Name, string Region, string District, int OrganizationTypeID, string Sort, string Order, int Offset, int Limit)
+        public IActionResult GetList(int ID, string INN, string Name, string Region, string District, int? OrganizationTypeID, string Sort, string Order, int Offset, int Limit)
         {
             var data = _dataRepository.GetAdminNeighborhoodList(ID, INN, Name, Region, District, OrganizationTypeID, Sort, Order, Offset, Limit);
             return new JsonResult(data);

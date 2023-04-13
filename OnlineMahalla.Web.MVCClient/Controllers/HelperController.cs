@@ -31,7 +31,7 @@ namespace UZASBO.Web.MVCClient.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetStateList(int id)
+        public IActionResult GetStateList()
         {
             return new JsonResult(_dataRepository.GetStateList());
         }

@@ -71,8 +71,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                 Address = data.Address,
                 PhoneNumber = data.PhoneNumber,
                 INN = data.INN,
-                TypeOrganizationID = data.TypeOrganizationID,
-                DistrictTypeID = data.DistrictTypeID
+                TypeOrganizationID = data.TypeOrganizationID
             };
 
             return Neighborhood;

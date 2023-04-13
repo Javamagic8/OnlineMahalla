@@ -25,7 +25,6 @@ namespace OnlineMahalla.Common.Model.Models.info
         public int StateID { get; set; }
 
         public string Address { get; set; }
-        public int DistrictTypeID { get; set; }
 
         public string PhoneNumber { get; set; }
 
