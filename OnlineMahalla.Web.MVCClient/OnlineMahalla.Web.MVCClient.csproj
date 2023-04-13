@@ -37,7 +37,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OnlineMahalla.Common.Model\OnlineMahalla.Common.Model.csproj" />
-    <ProjectReference Include="..\OnlineMahalla.Common.Signer\OnlineMahalla.Common.Signer.csproj" />
     <ProjectReference Include="..\OnlineMahalla.Common.Utility\OnlineMahalla.Common.Utility.csproj" />
     <ProjectReference Include="..\OnlineMahalla.Data.Model\OnlineMahalla.Data.Model.csproj" />
     <ProjectReference Include="..\OnlineMahalla.Data.Repository.SqlServer\OnlineMahalla.Data.Repository.SqlServer.csproj" />

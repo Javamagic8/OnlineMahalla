@@ -7,13 +7,8 @@ namespace OnlineMahalla.Common.Model.Interface
         string UserName { get; set; }
         string IpAdress { get; set; }
         string UserAgent { get; set; }
-
-        int DisID { get; set; }
-        int RegID { get; set; }
         int NeigID { get; set; }
         int NeighborhoodID { get; }
-        int RegionID { get; }
-        int DistrictID { get; }
         bool IsChildLogOut { get; set; }
         User GetUser(string username, string ipadress, string useragent);
         bool ValidatePassword(string username, string password, string ipadress, string useragent);

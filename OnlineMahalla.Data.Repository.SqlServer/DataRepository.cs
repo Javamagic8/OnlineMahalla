@@ -13,6 +13,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
         private int regionid = 0;
         private int districtid = 0;
         private int neigid = 0;
+        private int orgtypeid = 0;
         private bool ischildlogout = true;
         public string UserName { get { return username; } set { username = value; } }
         private string ipadress = "";
@@ -51,6 +52,17 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             set
             {
                 neigid = value;
+            }
+        }
+        public int OrgTypeID
+        {
+            get
+            {
+                return orgtypeid;
+            }
+            set
+            {
+                orgtypeid = value;
             }
         }
         public bool IsChildLogOut { get { return ischildlogout; } set { ischildlogout = value; } }
@@ -237,6 +249,17 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                     return NeigID;
                 NeigID = (int)_databaseExt.ExecuteScalar("SELECT NeighborhoodID FROM sys_User WHERE Name=@Name", new string[] { "@Name" }, new object[] { UserName });
                 return NeigID;
+            }
+        }
+
+        public int OrganizationTypeID
+        {
+            get
+            {
+                if (OrgTypeID > 0)
+                    return OrgTypeID;
+                OrgTypeID = (int)_databaseExt.ExecuteScalar("SELECT [TypeOrganizationID] FROM info_Neighborhood WHERE ID = @ID", new string[] { "@ID" }, new object[] { NeighborhoodID });
+                return OrgTypeID;
             }
         }
 

@@ -11,7 +11,5 @@ namespace OnlineMahalla.Common.Model.Interface
         Street GetStreet(int ID);
 
         void UpdateStreet(Street street);
-
-
     }
 }

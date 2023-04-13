@@ -1,15 +1,6 @@
 ﻿using OnlineMahalla.Common.Model.Interface;
 using OnlineMahalla.Common.Model.Models;
 using OnlineMahalla.Common.Model.Models.info;
-using OnlineMahalla.Common.Model.Models.sys;
-using OnlineMahalla.Common.Utility;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace OnlineMahalla.Data.Repository.SqlServer
 {
@@ -37,9 +28,30 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                                         JOIN info_District District ON District.ID = Neighborhood.DistrictID
                                         JOIN enum_OrganizationType OrganizationType ON OrganizationType.ID = Neighborhood.TypeOrganizationID
 										JOIN enum_State [state] ON [state].ID = Neighborhood.StateID ";
-            
+
             string sqlwhere = " WHERE 1=1";
-            
+
+            switch (OrganizationTypeID)
+            {
+                case 1:
+                    {
+                        sqlwhere += " AND Neighborhood.ID = @ID ";
+                        sqlparamas.Add("@ID", ID);
+                    }
+                    break;
+                case 2:
+                    {
+                        sqlwhere += " AND Neighborhood.DistrictID = @DistrictID ";
+                        sqlparamas.Add("@DistrictID", DistrictID);
+                    }
+                    break;
+                case 3:
+                    {
+                        sqlwhere += " AND Neighborhood.ID = @RegionID ";
+                        sqlparamas.Add("@RegionID", RegionID);
+                    }
+                    break;
+            }
             if (ID > 0)
             {
                 sqlwhere += " AND Neighborhood.ID=@ID";
