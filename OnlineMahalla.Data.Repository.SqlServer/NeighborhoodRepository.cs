@@ -1,6 +1,7 @@
 ﻿using OnlineMahalla.Common.Model.Interface;
 using OnlineMahalla.Common.Model.Models;
 using OnlineMahalla.Common.Model.Models.info;
+using System.Runtime;
 
 namespace OnlineMahalla.Data.Repository.SqlServer
 {
@@ -20,6 +21,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                                         Neighborhood.CountHome,
                                         Neighborhood.Address,
                                         Neighborhood.PhoneNumber,
+										SUM(Citizen.ID) CountCitizen,
                                         Neighborhood.INN,
                                         [state].DisplayName State,
                                         OrganizationType.Name OrganizationType ";
@@ -27,31 +29,26 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                                         JOIN info_Region Region ON Region.ID = Neighborhood.RegionID
                                         JOIN info_District District ON District.ID = Neighborhood.DistrictID
                                         JOIN enum_OrganizationType OrganizationType ON OrganizationType.ID = Neighborhood.TypeOrganizationID
-										JOIN enum_State [state] ON [state].ID = Neighborhood.StateID ";
+										JOIN enum_State [state] ON [state].ID = Neighborhood.StateID
+										JOIN hl_Citizen Citizen ON Citizen.NeighborhoodID = Neighborhood.ID ";
 
             string sqlwhere = " WHERE 1=1";
 
-            //switch (OrganizationTypeID)
-            //{
-            //    case 1:
-            //        {
-            //            sqlwhere += " AND Neighborhood.ID = @ID ";
-            //            sqlparamas.Add("@ID", ID);
-            //        }
-            //        break;
-            //    case 2:
-            //        {
-            //            sqlwhere += " AND Neighborhood.DistrictID = @DistrictID ";
-            //            sqlparamas.Add("@DistrictID", DistrictID);
-            //        }
-            //        break;
-            //    case 3:
-            //        {
-            //            sqlwhere += " AND Neighborhood.ID = @RegionID ";
-            //            sqlparamas.Add("@RegionID", RegionID);
-            //        }
-            //        break;
-            //}
+            switch (OrganizationTypeID)
+            {
+                case 2:
+                    {
+                        sqlwhere += " AND Neighborhood.DistrictID = @DistrictID ";
+                        sqlparamas.Add("@DistrictID", DistrictID);
+                    }
+                    break;
+                case 3:
+                    {
+                        sqlwhere += " AND Neighborhood.RegionID = @RegionID ";
+                        sqlparamas.Add("@RegionID", RegionID);
+                    }
+                    break;
+            }
             if (ID > 0)
             {
                 sqlwhere += " AND Neighborhood.ID=@ID";
@@ -101,8 +98,27 @@ namespace OnlineMahalla.Data.Repository.SqlServer
 
         public Neighborhood GetNeighborhood(int ID)
         {
-            var data = _databaseExt.GetDataFromSql(@"SELECT *
-                                                       FROM [Online_Mahalla].[dbo].[info_Neighborhood] WHERE ID = @ID", new string[] { "@ID" }, new object[] { ID }).First();
+            string sql = "SELECT * FROM [Online_Mahalla].[dbo].[info_Neighborhood] WHERE ID = @ID ";
+
+            Dictionary<string, object> sqlparams = new Dictionary<string, object>();
+            sqlparams.Add("@ID", ID);
+
+            switch (OrganizationTypeID)
+            {
+                case 2:
+                    {
+                        sql += " AND Neighborhood.DistrictID = @DistrictID ";
+                        sqlparams.Add("@DistrictID", DistrictID);
+                    }
+                    break;
+                case 3:
+                    {
+                        sql += " AND Neighborhood.RegionID = @RegionID ";
+                        sqlparams.Add("@RegionID", RegionID);
+                    }
+                    break;
+            }
+            var data = _databaseExt.GetDataFromSql(sql, sqlparams).First();
 
             Neighborhood neighborhood = new Neighborhood()
             {
