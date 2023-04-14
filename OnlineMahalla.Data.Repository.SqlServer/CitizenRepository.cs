@@ -47,19 +47,19 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             {
                 case 1:
                     {
-                        sqlfrom += " AND Neighborhood.ID = @Neighborhood ";
+                        sqlwhere += " AND Neighborhood.ID = @Neighborhood ";
                         sqlparams.Add("@Neighborhood", NeighborhoodID);
                     }
                     break;
                 case 2:
                     {
-                        sqlfrom += " AND Neighborhood.DistrictID = @DistrictID ";
+                        sqlwhere += " AND Neighborhood.DistrictID = @DistrictID ";
                         sqlparams.Add("@DistrictID", DistrictID);
                     }
                     break;
                 case 3:
                     {
-                        sqlfrom += " AND Neighborhood.RegionID = @RegionID ";
+                        sqlwhere += " AND Neighborhood.RegionID = @RegionID ";
                         sqlparams.Add("@RegionID", RegionID);
                     }
                     break;

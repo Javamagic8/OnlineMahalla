@@ -11,7 +11,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
         public PagedDataEx GeStreetList(string Name, string Region, string District, string Sort, string Order, int Offset, int Limit)
         {
             PagedDataEx data = new PagedDataEx();
-            Dictionary<string, object> sqlparamas = new Dictionary<string, object>();
+            Dictionary<string, object> sqlparams = new Dictionary<string, object>();
             string sqlselect = @"SELECT Street.ID,
                                         Street.Name,
                                         Street.ResponsibleOfficer,
@@ -26,22 +26,33 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                                      JOIN info_District District ON District.ID = Street.DistrictID
                                      JOIN enum_State [State] ON [State].ID = Street.StateID ";
 
-            string sqlwhere = "  ";
-            //User user = GetUser(UserID);
-            //if (user.IsDistrictAdmin)
-            //{
-            //    sqlwhere += " AND Street.DistrictID = @DistrictID";
-            //    sqlparamas.Add("@DistrictID", user.DistrictID);
-            //}
-            //if (user.IsRegionAdmin)
-            //{
-            //    sqlwhere += " AND Street.RegionID = @RegionID";
-            //    sqlparamas.Add("@RegionID", user.RegionID);
-            //}
+            string sqlwhere = " WHERE ID = @ID ";
+
+            switch (OrganizationTypeID)
+            {
+                case 1:
+                    {
+                        sqlwhere += " AND Neighborhood.ID = @Neighborhood ";
+                        sqlparams.Add("@Neighborhood", NeighborhoodID);
+                    }
+                    break;
+                case 2:
+                    {
+                        sqlwhere += " AND Neighborhood.DistrictID = @DistrictID ";
+                        sqlparams.Add("@DistrictID", DistrictID);
+                    }
+                    break;
+                case 3:
+                    {
+                        sqlwhere += " AND Neighborhood.RegionID = @RegionID ";
+                        sqlparams.Add("@RegionID", RegionID);
+                    }
+                    break;
+            }
             if (!String.IsNullOrEmpty(Name))
             {
                 sqlwhere += " AND Street.Name LIKE '%' + @Name + '%'";
-                sqlparamas.Add("@Name", Name);
+                sqlparams.Add("@Name", Name);
             }
             string sqlcount = "SELECT Count(Street.ID)" + sqlfrom + sqlwhere;
             if (!String.IsNullOrEmpty(Sort))
@@ -53,14 +64,15 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                 sqlwhere += " OFFSET " + Offset + " ROWS FETCH NEXT " + Limit + " ROWS ONLY";
 
             string sql = sqlselect + sqlfrom + sqlwhere;
-            data.rows = _databaseExt.GetDataFromSql(sql, sqlparamas);
-            data.total = (int)_databaseExt.ExecuteScalar(sqlcount, sqlparamas);
+            data.rows = _databaseExt.GetDataFromSql(sql, sqlparams);
+            data.total = (int)_databaseExt.ExecuteScalar(sqlcount, sqlparams);
             return data;
         }
 
         public Street GetStreet(int ID)
         {
-            var data = _databaseExt.GetDataFromSql(@"SELECT [ID]
+            Dictionary<string, object> sqlparams = new Dictionary<string, object>();
+            string sql = @"SELECT [ID]
                                                            ,[Name]
                                                            ,[RegionID]
                                                            ,[DistrictID]
@@ -71,7 +83,31 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                                                            ,[DateOfModified]
                                                            ,[ModifiedUserID]
                                                            ,[ResponsibleOfficer]
-                                                       FROM [Online_Mahalla].[dbo].[info_Street] WHERE ID = @ID", new string[] { "@ID" }, new object[] { ID }).First();
+                                                       FROM [Online_Mahalla].[dbo].[info_Street] WHERE ID = @ID";
+            sqlparams.Add("@ID", ID);
+            switch (OrganizationTypeID)
+            {
+                case 1:
+                    {
+                        sql += " AND NeighborhoodID = @Neighborhood ";
+                        sqlparams.Add("@Neighborhood", NeighborhoodID);
+                    }
+                    break;
+                case 2:
+                    {
+                        sql += " AND DistrictID = @DistrictID ";
+                        sqlparams.Add("@DistrictID", DistrictID);
+                    }
+                    break;
+                case 3:
+                    {
+                        sql += " AND RegionID = @RegionID ";
+                        sqlparams.Add("@RegionID", RegionID);
+                    }
+                    break;
+            }
+
+            var data = _databaseExt.GetDataFromSql(sql, sqlparams).First();
 
             Street street = new Street()
             {
