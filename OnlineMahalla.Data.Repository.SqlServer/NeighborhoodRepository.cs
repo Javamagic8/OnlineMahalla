@@ -31,27 +31,27 @@ namespace OnlineMahalla.Data.Repository.SqlServer
 
             string sqlwhere = " WHERE 1=1";
 
-            switch (OrganizationTypeID)
-            {
-                case 1:
-                    {
-                        sqlwhere += " AND Neighborhood.ID = @ID ";
-                        sqlparamas.Add("@ID", ID);
-                    }
-                    break;
-                case 2:
-                    {
-                        sqlwhere += " AND Neighborhood.DistrictID = @DistrictID ";
-                        sqlparamas.Add("@DistrictID", DistrictID);
-                    }
-                    break;
-                case 3:
-                    {
-                        sqlwhere += " AND Neighborhood.ID = @RegionID ";
-                        sqlparamas.Add("@RegionID", RegionID);
-                    }
-                    break;
-            }
+            //switch (OrganizationTypeID)
+            //{
+            //    case 1:
+            //        {
+            //            sqlwhere += " AND Neighborhood.ID = @ID ";
+            //            sqlparamas.Add("@ID", ID);
+            //        }
+            //        break;
+            //    case 2:
+            //        {
+            //            sqlwhere += " AND Neighborhood.DistrictID = @DistrictID ";
+            //            sqlparamas.Add("@DistrictID", DistrictID);
+            //        }
+            //        break;
+            //    case 3:
+            //        {
+            //            sqlwhere += " AND Neighborhood.ID = @RegionID ";
+            //            sqlparamas.Add("@RegionID", RegionID);
+            //        }
+            //        break;
+            //}
             if (ID > 0)
             {
                 sqlwhere += " AND Neighborhood.ID=@ID";
