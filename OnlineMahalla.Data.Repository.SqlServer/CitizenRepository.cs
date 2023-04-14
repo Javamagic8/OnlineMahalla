@@ -14,7 +14,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
         public PagedDataEx GeCitizenList(string Name, string Search, string Sort, string Order, int Offset, int Limit)
         {
             PagedDataEx data = new PagedDataEx();
-            Dictionary<string, object> sqlparamas = new Dictionary<string, object>();
+            Dictionary<string, object> sqlparams = new Dictionary<string, object>();
             string sqlselect = @"SELECT Citizen.ID ID,
                                         Citizen.FullName,
                                         Citizen.PINFL,
@@ -41,13 +41,35 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                                      JOIN enum_State [State] ON [State].ID = Citizen.StateID
 									 JOIN info_Street Street ON Street.ID = Citizen.StreetID ";
 
-            string sqlwhere = " WHERE Citizen.NeighborhoodID=@NeighborhoodID ";
+            string sqlwhere = " WHERE 1 = 1 ";
 
-            sqlparamas.Add("@NeighborhoodID", NeighborhoodID);
+            switch (OrganizationTypeID)
+            {
+                case 1:
+                    {
+                        sqlfrom += " AND Neighborhood.ID = @Neighborhood ";
+                        sqlparams.Add("@Neighborhood", NeighborhoodID);
+                    }
+                    break;
+                case 2:
+                    {
+                        sqlfrom += " AND Neighborhood.DistrictID = @DistrictID ";
+                        sqlparams.Add("@DistrictID", DistrictID);
+                    }
+                    break;
+                case 3:
+                    {
+                        sqlfrom += " AND Neighborhood.RegionID = @RegionID ";
+                        sqlparams.Add("@RegionID", RegionID);
+                    }
+                    break;
+            }
+
+            sqlparams.Add("@NeighborhoodID", NeighborhoodID);
             if (!String.IsNullOrEmpty(Name))
             {
                 sqlwhere += " AND Citizen.FullName LIKE '%' + @FullName + '%'";
-                sqlparamas.Add("@FullName", Name);
+                sqlparams.Add("@FullName", Name);
             }
             string sqlcount = "SELECT Count(Citizen.ID)" + sqlfrom + sqlwhere;
             if (!String.IsNullOrEmpty(Sort))
@@ -59,14 +81,41 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                 sqlwhere += " OFFSET " + Offset + " ROWS FETCH NEXT " + Limit + " ROWS ONLY";
 
             string sql = sqlselect + sqlfrom + sqlwhere;
-            data.rows = _databaseExt.GetDataFromSql(sql, sqlparamas);
-            data.total = (int)_databaseExt.ExecuteScalar(sqlcount, sqlparamas);
+            data.rows = _databaseExt.GetDataFromSql(sql, sqlparams);
+            data.total = (int)_databaseExt.ExecuteScalar(sqlcount, sqlparams);
             return data;
         }
         public Citizen GetCitizen(int? id)
         {
+            Dictionary<string, object> sqlparams = new Dictionary<string, object>();
 
-            var data = _databaseExt.GetDataFromSql("SELECT * FROM hl_Citizen WHERE ID=@ID", new string[] { "@ID" }, new object[] { id }).First();
+            string sql = " SELECT * FROM hl_Citizen WHERE ID=@ID ";
+            sqlparams.Add("@ID", id.Value);
+
+            switch (OrganizationTypeID)
+            {
+                case 1:
+                    {
+                        sql += " AND Neighborhood.ID = @Neighborhood ";
+                        sqlparams.Add("@Neighborhood", NeighborhoodID);
+                    }
+                    break;
+                case 2:
+                    {
+                        sql += " AND Neighborhood.DistrictID = @DistrictID ";
+                        sqlparams.Add("@DistrictID", DistrictID);
+                    }
+                    break;
+                case 3:
+                    {
+                        sql += " AND Neighborhood.RegionID = @RegionID ";
+                        sqlparams.Add("@RegionID", RegionID);
+                    }
+                    break;
+            }
+
+            var data = _databaseExt.GetDataFromSql(sql, sqlparams).First();
+
             Citizen citizen = new Citizen()
             {
                 ID = data.ID,
