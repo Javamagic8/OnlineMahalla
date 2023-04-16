@@ -22,7 +22,28 @@
     <h3 style="text-align:center">@SharedLocalizer["Erkaklar Ma'lumoti"]</h3>
     <div class="panel panel-primary"></div>
 </body>
-<div id="chart">
+<div class="continer">
+    <div id="maleage">
+        <h2>Erkak yoshi</h2>
+    </div>
+    <div id="femaleage">
+        <h2>Ayollar yoshi</h2>
+
+    </div>
+    <div id="maleeducation">
+        <h2>Erkaklar ma'lumoti</h2>
+
+    </div>
+</div>
+<div class="continer">
+    <div id="femaleeducation">
+        <h2>Ayollar ma'lumoti</h2>
+
+    </div>
+    <div id="disable">
+        <h2>nogiron</h2>
+
+    </div>
 </div>
 @section scripts
     {
@@ -43,13 +64,84 @@
         <script src="~/lib/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     </environment>
+    <style>
+        h2 {
+            text-align: center;
+            margin-right: 90px;
+        }
+        .continer {
+            display: flex;
+            justify-content: space-around;
+        }
+    </style>
     <script type="text/javascript">
 
-        var options = {
+        var maleageoptions = {
+            series: [25, 38, 26, 1],
+            chart: {
+                height: 480,
+                width: 480,
+                type: 'pie',
+            },
+            labels: ['6 yoshgacha', '7-25 yosh', '26-50 yosh', '50- yoshdan katta'],
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 200
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }]
+        };
+
+        var femaleageoptions = {
+            series: [25, 38, 26, 1],
+            chart: {
+                height: 480,
+                width: 480,
+                type: 'pie',
+            },
+            labels: ['6 yoshgacha', '7-25 yosh', '26-50 yosh', '50- yoshdan katta'],
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 200
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }]
+        };
+        var maleeducationoptions = {
             series: [25, 38, 26, 1],
             chart: {
                 height: 500,
-
+                width: 500,
+                type: 'pie',
+            },
+            labels: ["O'rta", "O'rta mahsus", 'Oliy', 'Akademik'],
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 200
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }]
+        };
+        var femaleeducationoptions = {
+            series: [28, 35, 26, 1],
+            chart: {
+                height: 450,
+                width: 450,
                 type: 'pie',
             },
             labels: ["O'rta", "O'rta mahsus", 'Oliy', 'Akademik'],
@@ -66,8 +158,40 @@
             }]
         };
 
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
-        chart.render();
+        var disableoptions = {
+            series: [55, 45],
+            chart: {
+                height: 400,
+                width: 400,
+                type: 'pie',
+            },
+            labels: ["Ayol", "Erkak"],
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 200
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }]
+        };
+        var maleage = new ApexCharts(document.querySelector("#maleage"), maleageoptions);
+        maleage.render();
+
+        var femaleage = new ApexCharts(document.querySelector("#femaleage"), femaleageoptions);
+        femaleage.render();
+
+        var maleeducation = new ApexCharts(document.querySelector("#maleeducation"), femaleeducationoptions);
+        maleeducation.render();
+
+        var femaleeducation = new ApexCharts(document.querySelector("#femaleeducation"), femaleeducationoptions);
+        femaleeducation.render();
+
+        var disable = new ApexCharts(document.querySelector("#disable"), disableoptions);
+        disable.render();
 
     </script>
 }

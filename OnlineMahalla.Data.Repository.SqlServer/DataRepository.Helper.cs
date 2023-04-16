@@ -183,16 +183,19 @@ namespace OnlineMahalla.Data.Repository.SqlServer
         public IEnumerable<dynamic> GetAgeDiagramList(int GenderID)
         {
             Dictionary<string, object> sqlparams = new Dictionary<string, object>();
-            string sql = @"SELECT SUM(x.[6]) [6], 
-                                  SUM(x.[718]) [718], SUM(x.[1925]) [1925],
-                                  SUM(x.[2650]) [2650], SUM(x.[51]) [51]
+
+            string sql = @"SELECT (SUM(x.[6])/(SUM(x.[6]) + SUM(x.[718]) + SUM(x.[1925]) + SUM(x.[2650]) + SUM(x.[51])) * 100) [6], 
+                                  (SUM(x.[718])/(SUM(x.[6]) + SUM(x.[718]) + SUM(x.[1925]) + SUM(x.[2650]) + SUM(x.[51])) * 100) [718],
+                                  (SUM(x.[1925])/(SUM(x.[6]) + SUM(x.[718]) + SUM(x.[1925]) + SUM(x.[2650]) + SUM(x.[51])) * 100) [1925],
+                                  (SUM(x.[2650])/(SUM(x.[6]) + SUM(x.[718]) + SUM(x.[1925]) + SUM(x.[2650]) + SUM(x.[51])) * 100) [2650],
+                                  (SUM(x.[51])/(SUM(x.[6]) + SUM(x.[718]) + SUM(x.[1925]) + SUM(x.[2650]) + SUM(x.[51])) * 100) [51]
                             FROM (SELECT IIF(GETDATE() - DateOfBirth <= 6 , 1, 0) [6],
                                   IIF(GETDATE() - DateOfBirth >= 7 AND GETDATE() - DateOfBirth <= 18, 1, 0) [718],
                                   IIF(GETDATE() - DateOfBirth >= 19 AND GETDATE() - DateOfBirth <= 25, 1, 0) [1925],
                                   IIF(GETDATE() - DateOfBirth >= 26 AND GETDATE() - DateOfBirth <= 50, 1, 0) [2650],
                                   IIF(GETDATE() - DateOfBirth >= 51, 1, 0) [51]
                                   FROM 
-                                  hl_Citizen WHERE GenderID = @GenderID";
+                                  hl_Citizen WHERE GenderID = @GenderID ";
 
             sqlparams.Add("@GenderID", GenderID);
 
@@ -227,15 +230,16 @@ namespace OnlineMahalla.Data.Repository.SqlServer
         public IEnumerable<dynamic> GetEducationDiagramList(int GenderID)
         {
             Dictionary<string, object> sqlparams = new Dictionary<string, object>();
-            string sql = @"SELECT SUM(x.middle) middle, 
-                                  SUM(x.specialmid) specialmid, SUM(x.[high]) [high],
-                                  SUM(x.academic) academic
+            string sql = @"SELECT ( SUM(x.middle) / (SUM(x.middle) + SUM(x.specialmid) + SUM(x.[high]) + SUM(x.academic)) * 100) middle,
+                                  ( SUM(x.specialmid) / (SUM(x.middle) + SUM(x.specialmid) + SUM(x.[high]) + SUM(x.academic)) * 100) specialmid,
+                                  ( SUM(x.[high]) / (SUM(x.middle) + SUM(x.specialmid) + SUM(x.[high]) + SUM(x.academic)) * 100) [high],
+                                  ( SUM(x.academic) / (SUM(x.middle) + SUM(x.specialmid) + SUM(x.[high]) + SUM(x.academic)) * 100) academic
                             FROM (SELECT IIF(EducationID = 1, 1, 0) middle,
                                   IIF(EducationID = 2, 1, 0) specialmid,
                                   IIF(EducationID = 3, 1, 0) [high],
                                   IIF(EducationID = 4, 1, 0) academic
                                   FROM 
-                                  hl_Citizen WHERE GenderID = @GenderID";
+                                  hl_Citizen WHERE GenderID = @GenderID ";
 
             sqlparams.Add("@GenderID", GenderID);
 
@@ -267,8 +271,8 @@ namespace OnlineMahalla.Data.Repository.SqlServer
         public IEnumerable<dynamic> GetDisableDiagramList()
         {
             Dictionary<string, object> sqlparams = new Dictionary<string, object>();
-            string sql = @"SELECT SUM(x.male) male, 
-                                  SUM(x.female) female
+            string sql = @"SELECT SUM(x.male)/(SUM(x.female) + SUM(x.male) * 100) male, 
+	                              SUM(x.female)/(SUM(x.female) + SUM(x.male) * 100) female
                             FROM (SELECT
                                   IIF(GenderID = 1, 1, 0) male,
                                   IIF(GenderID = 2, 1, 0) female
