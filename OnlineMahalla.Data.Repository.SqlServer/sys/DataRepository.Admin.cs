@@ -19,7 +19,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                 new string[] { "@ID", "@Name" },
                 new object[] { user.ID, user.Name }, System.Data.CommandType.Text, ts);
             if (checkexists != null && checkexists != DBNull.Value)
-                throw new Exception("Пользователь " + user.Name + " уже добавлен ");
+                throw new Exception("Foydalanuvchi " + user.Name + " allaqachon bor ");
             
             user.PasswordSalt = null;
             user.PasswordHash = null;
@@ -34,22 +34,22 @@ namespace OnlineMahalla.Data.Repository.SqlServer
 
             if (user.ID == 0)
             {
-                sql = @"INSERT INTO sys_User (Name,DisplayName,PasswordHash,PasswordSalt,ExpirationDate,CreatedUserID,StateID,AllowedIP,NeighborhoodID,[RegionID],[DistrictID],[IsRegionAdmin],[IsDistrictAdmin]) VALUES (@Name,@DisplayName,@PasswordHash,@PasswordSalt,@ExpirationDate,@CreatedUserID,@StateID,@AllowedIP,@NeighborhoodID,@RegionID
-           ,@DistrictID,@IsRegionAdmin,@IsDistrictAdmin) select [ID] from sys_User where @@ROWCOUNT > 0 and [ID] = scope_identity()";
+                sql = @"INSERT INTO sys_User (Name,DisplayName,PasswordHash,PasswordSalt,ExpirationDate,CreatedUserID,StateID,AllowedIP,NeighborhoodID,[RegionID],[DistrictID]) VALUES (@Name,@DisplayName,@PasswordHash,@PasswordSalt,@ExpirationDate,@CreatedUserID,@StateID,@AllowedIP,@NeighborhoodID,@RegionID
+           ,@DistrictID) select [ID] from sys_User where @@ROWCOUNT > 0 and [ID] = scope_identity()";
                 var NewID = _databaseExt.ExecuteScalar(sql,
                      new string[] { "@Name", "@DisplayName", "@PasswordHash", "@PasswordSalt", "@ExpirationDate", "@CreatedUserID", "@StateID", "@AllowedIP", "@NeighborhoodID","@RegionID"
-           ,"@DistrictID","@IsRegionAdmin","@IsDistrictAdmin" }, new object[] { user.Name, user.DisplayName, user.PasswordHash, user.PasswordSalt, user.ExpirationDate, UserID, user.StateID, user.AllowedIP, user.NeighborhoodID, user.RegionID, user.DistrictID, user.IsRegionAdmin, user.IsDistrictAdmin }, System.Data.CommandType.Text, ts);
+           ,"@DistrictID"}, new object[] { user.Name, user.DisplayName, user.PasswordHash, user.PasswordSalt, user.ExpirationDate, UserID, user.StateID, user.AllowedIP, user.NeighborhoodID, user.RegionID, user.DistrictID}, System.Data.CommandType.Text, ts);
                 user.ID = Convert.ToInt32(NewID);
             }
             else
             {
                 if (string.IsNullOrEmpty(user.PasswordHash))
                 {
-                    sql = "UPDATE [sys_User] SET [Name] = @Name,DisplayName=@DisplayName,ExpirationDate=@ExpirationDate,[NeighborhoodID]=@NeighborhoodID,[VerifyEDS]=@VerifyEDS,[StateID]=@StateID ,[ModifiedUserID] = @ModifiedUserID,[DateOfModified] = GETDATE(), RegionID = @RegionID, DistrictID = @DistrictID, IsRegionAdmin = @IsRegionAdmin, IsDistrictAdmin = @IsDistrictAdmin WHERE ID=@ID";
+                    sql = "UPDATE [sys_User] SET [Name] = @Name,DisplayName=@DisplayName,ExpirationDate=@ExpirationDate,[NeighborhoodID]=@NeighborhoodID,[VerifyEDS]=@VerifyEDS,[StateID]=@StateID ,[ModifiedUserID] = @ModifiedUserID,[DateOfModified] = GETDATE(), RegionID = @RegionID, DistrictID = @DistrictID WHERE ID=@ID";
                     _databaseExt.ExecuteNonQuery(sql,
                         new string[] { "@Name", "@DisplayName", "@ExpirationDate", "@NeighborhoodID", "@VerifyEDS", "@StateID", "@ModifiedUserID","@RegionID"
-           ,"@DistrictID","@IsRegionAdmin","@IsDistrictAdmin", "@ID" },
-                        new object[] { user.Name, user.DisplayName, user.ExpirationDate, user.NeighborhoodID, user.VerifyEDS, user.StateID, UserID, user.RegionID, user.DistrictID, user.IsRegionAdmin, user.IsDistrictAdmin, user.ID }, System.Data.CommandType.Text, ts);
+           ,"@DistrictID", "@ID" },
+                        new object[] { user.Name, user.DisplayName, user.ExpirationDate, user.NeighborhoodID, user.VerifyEDS, user.StateID, UserID, user.RegionID, user.DistrictID, user.ID }, System.Data.CommandType.Text, ts);
                 }
                 else
                 {

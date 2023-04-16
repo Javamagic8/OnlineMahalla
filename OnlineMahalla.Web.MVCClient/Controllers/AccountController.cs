@@ -86,7 +86,7 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
                 await HttpContext.SignInAsync("Cookies", p);
                 return RedirectToAction("Index", "Home");
             }
-            ModelState.AddModelError("", _localizer["Неправильное имя пользователя или пароль!"].Value);
+            ModelState.AddModelError("", _localizer["Foydalanuvchi login yoki parol xato!"].Value);
 
             return View();
         }
@@ -97,7 +97,7 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
         {
             var username = User.GetUserName();
             if (oldpassword == newpassword)
-                ModelState.AddModelError("", _localizer["Старый и новый пароль одинаковы!"].Value);
+                ModelState.AddModelError("", _localizer["Eski va yangi parol bir xil !"].Value);
 
             else if (!string.IsNullOrWhiteSpace(oldpassword) && !string.IsNullOrWhiteSpace(newpassword) && newpassword == confirmedpassword && _dataRepository.ValidatePassword(username, oldpassword, userip, useragent))
             {
@@ -105,7 +105,7 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
                 await HttpContext.SignOutAsync("Cookies");
                 return RedirectToAction("Index", "Home");
             }
-            ModelState.AddModelError("", _localizer["Неправильное имя пользователя или пароль!"].Value);// InvalidUserNameOrPassword
+            ModelState.AddModelError("", _localizer["Foydalanuvchi login yoki parol xato!"].Value);// InvalidUserNameOrPassword
 
             return View();
         }

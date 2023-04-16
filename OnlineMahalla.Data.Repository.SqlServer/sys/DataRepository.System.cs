@@ -36,7 +36,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                 FROM 
                 sys_User us
                 JOIN info_Neighborhood neig ON neig.ID=us.NeighborhoodID
-                WHERE us.Name=@UserName AND StatusID <> 5", new string[] { "@UserName" }, new object[] { (UserName.StartsWith("ct_") && UserName.Length == 12) ? "ct" : UserName }).FirstOrDefault();
+                WHERE us.Name=@UserName AND us.StateID <> 2", new string[] { "@UserName" }, new object[] { (UserName.StartsWith("ct_") && UserName.Length == 12) ? "ct" : UserName }).FirstOrDefault();
 
             UserInfo userInfo = new UserInfo()
             {
@@ -57,7 +57,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             if (ID == 0)
                 ID = NeighborhoodID;
             var data = _databaseExt.GetDataFromSql(@"SELECT * FROM info_Neighborhood Neighborhood
-            WHERE Neighborhood.ID=2", new string[] { "@ID" }, new object[] { ID }).First();
+            WHERE Neighborhood.ID=@ID", new string[] { "@ID" }, new object[] { ID }).First();
             Neighborhood Neighborhood = new Neighborhood()
             {
                 ID = data.ID,
@@ -87,7 +87,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
         public User GetUser(int id)
         {
             var data = _databaseExt.GetDataFromSql(@"SELECT [User].ID,[User].Name,[User].DisplayName,[User].DateOfModified,
-                                                            [User].IsRegionAdmin,[User].IsDistrictAdmin,[User].RegionID,[User].DistrictID,
+                                                            [User].RegionID,[User].DistrictID,
                                                             [User].Email,[User].ExpirationDate,[User].CreatedUserID,[User].ModifiedUserID,
                                                             [User].StateID,[State].DisplayName as StateName,[User].AllowedIP,[User].LastIP,[User].LastAccessTime,
                                                             [User].AccessCount,[User].TableTimeStamp,[User].NeighborhoodID,[User].PNFL,[User].PhoneNumber,
@@ -112,8 +112,6 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                 NeighborhoodID = data.NeighborhoodID,
                 AllowedIP = data.AllowedIP,
                 LastIP = data.LastIP,
-                IsDistrictAdmin = data.IsDistrictAdmin,
-                IsRegionAdmin = data.IsRegionAdmin,
                 RegionID = data.RegionID,
                 DistrictID = data.DistrictID,
                 LastAccessTime = data.LastAccessTime,

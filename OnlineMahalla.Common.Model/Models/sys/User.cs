@@ -35,7 +35,6 @@ namespace OnlineMahalla.Common.Model.Models.sys
         public string LastIP { get; set; }
         public string LastAccessTime { get; set; }
         public int AccessCount { get; set; }
-        public int OrganizationID { get; set; }
         public int MobileAccessCount { get; set; }
         public int NeighborhoodID { get; set; }
         public string NeighborhoodName { get; set; }
@@ -45,8 +44,6 @@ namespace OnlineMahalla.Common.Model.Models.sys
         public string PhoneNumber { get; set; }
         public string PNFL { get; set; }
         public bool IsActive { get; set; }
-        public bool IsRegionAdmin { get; set; }
-        public bool IsDistrictAdmin { get; set; }
         public int RegionID { get; set; }
         public int DistrictID { get; set; }
         public List<string> Roles { get; set; }

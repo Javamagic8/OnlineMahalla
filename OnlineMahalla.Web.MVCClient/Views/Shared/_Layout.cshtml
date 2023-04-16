@@ -29,7 +29,7 @@
         <link rel="stylesheet" href="~/css/my.css" asp-append-version="true" />
         @RenderSection("heads", required: false)
     </environment>
-   
+
 </head>
 
 <body>
@@ -50,7 +50,7 @@
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li class="dropdown" data-roleview="ContractorView">
+                            <li class="dropdown" data-roleview="Malumotlar">
                                 <a href="#" class="dropdown-toggle" aria-expanded="true" data-toggle="dropdown" data-submenu="">
                                     <i class="fa fa-list-ul" aria-hidden="true"></i>&nbsp;@Localizer["Ma'lumotlar"]<span class="caret"></span>
                                 </a>
@@ -58,34 +58,33 @@
                                     <li class="dropdown-submenu">
                                         <a href="#" tabindex="0">@Localizer["Mahallar haqida"]&nbsp;</a>
                                         <ul class="dropdown-menu">
-                                            <li><a data-roleview="DepartmentView" tabindex="0" asp-area="" asp-controller="Citizen" asp-action="Index">@Localizer["Fuqarolar"]</a></li>
-                                            <li><a data-roleview="EmployeeView" tabindex="0" asp-area="" asp-controller="Family" asp-action="Index">@Localizer["Oilalar"]</a></li>
-                                            <li><a data-roleview="EmployeeView" tabindex=""></a></li>
+                                            <li><a data-roleview="FuqarolarniKorish" tabindex="0" asp-area="" asp-controller="Citizen" asp-action="Index">@Localizer["Fuqarolar"]</a></li>
+                                            <li><a data-roleview="OilalarniKorish'" tabindex="0" asp-area="" asp-controller="Family" asp-action="Index">@Localizer["Oilalar"]</a></li>
                                         </ul>
                                     </li>
                                 </ul>
                             </li>
-                            <li class="dropdown" data-roleview="UserView">
+                            <li class="dropdown" data-roleview="Adminpanel">
                                 <a href="#" class="dropdown-toggle" aria-expanded="true" data-toggle="dropdown" data-submenu="">
                                     <i class="fa fa-cog" aria-hidden="true"></i>&nbsp;@Localizer["Boshqarish"]<span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a data-roleview="UserView" asp-area="" asp-controller="User" asp-action="Index">@Localizer["Foydalanuvchilar"]</a></li>
-                                    <li><a data-roleview="RoleView" asp-area="" asp-controller="Role" asp-action="Index">@Localizer["Rollar"]</a></li>
-                                    <li><a data-roleview="UserView" asp-area="" asp-controller="Street" asp-action="Index">@Localizer["Mahalla ko'chalari"]</a></li>
-                                    <li><a data-roleview="OrganizationView" tabindex="0" asp-area="" asp-controller="Neighborhood" asp-action="Index">@Localizer["Mahallalar"]</a></li>
+                                    <li><a data-roleview="FoydalanuvchilarKorish" asp-area="" asp-controller="User" asp-action="Index">@Localizer["Foydalanuvchilar"]</a></li>
+                                    <li><a data-roleview="RollarniKorish" asp-area="" asp-controller="Role" asp-action="Index">@Localizer["Rollar"]</a></li>
+                                    <li><a data-roleview="KochalarniKorish" asp-area="" asp-controller="Street" asp-action="Index">@Localizer["Mahalla ko'chalari"]</a></li>
+                                    <li><a data-roleview="TashkilotlarniKorish" tabindex="0" asp-area="" asp-controller="Neighborhood" asp-action="Index">@Localizer["Mahallalar"]</a></li>
                                 </ul>
                             </li>
-                            <li class="dropdown" data-roleview="UserView">
+                            <li class="dropdown" data-roleview="MonitoringniKorish">
                                 <a href="#" class="dropdown-toggle" aria-expanded="true" data-toggle="dropdown" data-submenu="">
-                                    <i class="fa-solid fa-chart-simple"></i>&nbsp;@Localizer["Diagrammalar"]<span class="caret"></span>
+                                    <i class="fa-solid fa-chart-simple"></i>&nbsp;@Localizer["Monitoring"]<span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a data-roleview="UserView" asp-area="" asp-controller="Diagramm" asp-action="ManAge">@Localizer["Yosh Bo'yicha erkaklar"]</a></li>
-                                    <li><a data-roleview="RoleView" asp-area="" asp-controller="Diagramm" asp-action="WomanAge">@Localizer["Yosh Bo'yicha ayollar"]</a></li>
-                                    <li><a data-roleview="UserView" asp-area="" asp-controller="Diagramm" asp-action="ManEducation">@Localizer["Ma'lumoti bo'yicha erkaklar"]</a></li>
-                                    <li><a data-roleview="UserView" asp-area="" asp-controller="Diagramm" asp-action="WomanEducation">@Localizer["Ma'lumoti bo'yicha ayollar"]</a></li>
-                                    <li><a data-roleview="OrganizationView" tabindex="0" asp-area="" asp-controller="Diagramm" asp-action="ManWomanDisable">@Localizer["Nogironlar"]</a></li>
+                                    <li><a data-roleview="MonitoringniKorish" asp-area="" asp-controller="Diagramm" asp-action="ManAge">@Localizer["Yosh Bo'yicha erkaklar"]</a></li>
+                                    <li><a data-roleview="MonitoringniKorish" asp-area="" asp-controller="Diagramm" asp-action="WomanAge">@Localizer["Yosh Bo'yicha ayollar"]</a></li>
+                                    <li><a data-roleview="MonitoringniKorish" asp-area="" asp-controller="Diagramm" asp-action="ManEducation">@Localizer["Ma'lumoti bo'yicha erkaklar"]</a></li>
+                                    <li><a data-roleview="MonitoringniKorish" asp-area="" asp-controller="Diagramm" asp-action="WomanEducation">@Localizer["Ma'lumoti bo'yicha ayollar"]</a></li>
+                                    <li><a data-roleview="MonitoringniKorish" tabindex="0" asp-area="" asp-controller="Diagramm" asp-action="ManWomanDisable">@Localizer["Nogironlar"]</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -117,30 +116,6 @@
         </div>
     </footer>
     <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-arrow-circle-up" aria-hidden="true"></i></button>
-    <div data-roleview="CentralAccountingChild" align="right" class="item">
-        <!-- Trigger the modal with a button -->
-        @*<a href="#myModal" data-backdrop="static" data-keyboard="false" class="texttrigger" data-toggle="modal"><b>@SharedLocalizer["OrgList"]</b></a>*@
-        <!-- Modal -->
-        <div data-roleview="CentralAccountingChild" id="myModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
-                        <h4 class="modal-title" align="center"><b>@Localizer["PleaseChooseAnOrganizationForCentralizedAccounting"]</b></h4>
-                        <br />
-                        <div class="input-group">
-                            <span class="input-group-addon input-sm" style="background-color:#119eda;color:white">@Localizer["Organizations"]</span>
-                            <select id="userorganization" data-id="SelectedOrganizationID" data-label="Name" data-none-selected-text="@Localizer["PleaseSelectOne"]" data-live-search="true" class="selectpicker" data-width="280px"></select>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button id="saveRow" class="btn btn-sm btn-primary">@Localizer["Save"]</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <environment names="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/jquery-ui/jquery-ui.js"></script>
@@ -173,44 +148,44 @@
     <script type="text/javascript">
         $('#saveRow').click(function () { saveRow(); });
         function saveRow() {
-                    bootbox.confirm({
-                        message: '@Localizer["YouWantToSave"]',
-                        buttons: {
-                            cancel: {
-                                label: '<i class="fa fa-times"></i> @Localizer["Cancel"]',
+            bootbox.confirm({
+                message: '@Localizer["YouWantToSave"]',
+                buttons: {
+                    cancel: {
+                        label: '<i class="fa fa-times"></i> @Localizer["Cancel"]',
+                    },
+                    confirm: {
+                        label: '<i class="fa fa-check"></i> @Localizer["Confirm"]',
+                    }
+                },
+                callback: function (result) {
+                    if (result) {
+                        $.ajax({
+                            headers: {
+                                Accept: "application/json",
+                                "Content-Type": "application/json; charset=utf-8",
                             },
-                            confirm: {
-                                label: '<i class="fa fa-check"></i> @Localizer["Confirm"]',
-                            }
-                        },
-                        callback: function (result) {
-                            if (result) {
-                                $.ajax({
-                                    headers: {
-                                        Accept: "application/json",
-                                        "Content-Type": "application/json; charset=utf-8",
-                                    },
-                                    type: "POST",
-                                    url: "@Url.Action("SelectedOrg", "Account")" + "/?SelectedOrganizationID=" + $('#userorganization').val()
-                                }).done(function (data, status, xhr) {
-                                                    getajaxjson("@Url.Action( "GetUserInfo","User")", function (data) {
-                                    logininfo = data;
-                                    document.getElementById("loginspan").innerHTML = logininfo.NeigInfo;
-                                    document.getElementById("usernamespan").innerHTML = logininfo.UserName + "(" + logininfo.UserID+")";
-                                    localStorage.removeItem("loggeduser");
-                                    localStorage.setItem("loggeduser", JSON.stringify(logininfo));
-                                });
-                                    //$table.bootstrapTable('refresh');
-                                    $('#myModal').modal('hide');
-                                })
-                                    .fail(function (xhr, status, error) {
-                                        alert(xhr.responseText);
-                                    });
-                            }
-                            console.log('This was logged in the callback: ' + result);
-                        }
-                    });
+                            type: "POST",
+                            url: "@Url.Action("SelectedOrg", "Account")" + "/?SelectedOrganizationID=" + $('#userorganization').val()
+                        }).done(function (data, status, xhr) {
+                            getajaxjson("@Url.Action( "GetUserInfo","User")", function (data) {
+                                logininfo = data;
+                                document.getElementById("loginspan").innerHTML = logininfo.NeigInfo;
+                                document.getElementById("usernamespan").innerHTML = logininfo.UserName + "(" + logininfo.UserID + ")";
+                                localStorage.removeItem("loggeduser");
+                                localStorage.setItem("loggeduser", JSON.stringify(logininfo));
+                            });
+                            //$table.bootstrapTable('refresh');
+                            $('#myModal').modal('hide');
+                        })
+                            .fail(function (xhr, status, error) {
+                                alert(xhr.responseText);
+                            });
+                    }
+                    console.log('This was logged in the callback: ' + result);
                 }
+            });
+        }
         $(document).ready(function () {
 
             var loggeduser = localStorage.getItem("loggeduser");
@@ -225,49 +200,43 @@
             if (loggeduser !== null && loggeduser !== undefined) {
                 datewrite = JSON.parse(loggeduser).Date;
             }
-            var roles ;
-        var today = new Date();
-        var dd = today.getDate();
-        var mm = today.getMonth()+1;//January is 0!
-        var yyyy = today.getFullYear();
-        if(dd<10){dd='0'+dd}
-        if(mm<10){mm='0'+mm}
-        var logindate=dd+''+mm+''+yyyy;
+            var roles;
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth() + 1;//January is 0!
+            var yyyy = today.getFullYear();
+            if (dd < 10) { dd = '0' + dd }
+            if (mm < 10) { mm = '0' + mm }
+            var logindate = dd + '' + mm + '' + yyyy;
 
-            @*if (loggeduser === null || loggeduser === undefined || username !== "@User.GetUserName()" || datewrite !== logindate) {*@
-
-                getajaxjson("@Url.Action( "GetUserInfo","User")", function (data) {
-                    logininfo = data;
-                    document.getElementById("loginspan").innerHTML = logininfo.NeigInfo;
-                    document.getElementById("usernamespan").innerHTML = logininfo.UserName + "(" + logininfo.UserID+")";
-                    localStorage.removeItem("loggeduser");
-                    localStorage.setItem("loggeduser", JSON.stringify(logininfo));
+            getajaxjson("@Url.Action( "GetUserInfo","User")", function (data) {
+                logininfo = data;
+                document.getElementById("loginspan").innerHTML = logininfo.NeigInfo;
+                document.getElementById("usernamespan").innerHTML = logininfo.UserName + "(" + logininfo.UserID + ")";
+                localStorage.removeItem("loggeduser");
+                localStorage.setItem("loggeduser", JSON.stringify(logininfo));
             });
-            //getajaxjson("@Url.Action("GetOperDateInfo", "Helper")", function (data) {
-            //    operdate = data;
-            //    document.getElementById("oper").innerHTML = operdate.OperDate;
-            //});
 
-           var rolelinks = document.querySelectorAll('[data-roleview]');
+            var rolelinks = document.querySelectorAll('[data-roleview]');
 
             for (var i in rolelinks)
-            if (rolelinks.hasOwnProperty(i)) {
-                var roleview = rolelinks[i].getAttribute('data-roleview');
-                var isinrole = logininfo.Roles.filter(function (currole) {
-                    return currole.indexOf(roleview) > -1;
-                });
-               if (isinrole.length == 0) {
-                   rolelinks[i].style.display = "none";
-                   roles = 0;
-               }
-               if (isinrole.length > 0) {
-                   roles = 1;
-               }
-            }
+                if (rolelinks.hasOwnProperty(i)) {
+                    var roleview = rolelinks[i].getAttribute('data-roleview');
+                    var isinrole = logininfo.Roles.filter(function (currole) {
+                        return currole.indexOf(roleview) > -1;
+                    });
+                    if (isinrole.length == 0) {
+                        rolelinks[i].style.display = "none";
+                        roles = 0;
+                    }
+                    if (isinrole.length > 0) {
+                        roles = 1;
+                    }
+                }
             if (roles === 0) {
                 $('#myModal').modal('hide');
             }
-            if (roles === 1  && logininfo.IsChildLogOut === true) {
+            if (roles === 1 && logininfo.IsChildLogOut === true) {
                 $('#myModal').modal('show');
 
             }
@@ -281,86 +250,86 @@
 
     </script>
     <script>
-    (function () {
+        (function () {
 
-	    var canvas, ctx;
-	    var points = [];
-	    var maxDist = 100;
+            var canvas, ctx;
+            var points = [];
+            var maxDist = 100;
 
-	        function init() {
-		        //Add on load scripts
-		        canvas = document.getElementById("snow");
-		        ctx = canvas.getContext("2d");
-		        resizeCanvas();
-		        pointFun();
-		        setInterval(pointFun, 20);
-		        window.addEventListener('resize', resizeCanvas, false);
-	        }
-	            //Particle constructor
-	            function point() {
-		            this.x = Math.random() * (canvas.width + maxDist) - (maxDist / 2);
-		            this.y = Math.random() * (canvas.height + maxDist) - (maxDist / 2);
-		            this.z = (Math.random() * 0.5) + 0.5;
-		            this.vx = ((Math.random() * 2) - 0.5) * this.z;
-		            this.vy = ((Math.random() * 1.5) + 1.5) * this.z;
-		            this.fill = "rgba(222,228,253," + ((0.4 * Math.random()) + 0.5) + ")";
-		            this.dia = ((Math.random() * 2.5) + 1.5) * this.z;
-		            points.push(this);
-	            }
-	            //Point generator
-	            function generatePoints(amount) {
-		            var temp;
-		            for (var i = 0; i < amount; i++) {
-			            temp = new point();
-		            };
-		            // console.log(points);
-	            }
-	                //Point drawer
-	                function draw(obj) {
-		                ctx.beginPath();
-		                ctx.strokeStyle = "transparent";
-		                ctx.fillStyle = obj.fill;
-		                ctx.arc(obj.x, obj.y, obj.dia, 0, 2 * Math.PI);
-		                ctx.closePath();
-		                ctx.stroke();
-		                ctx.fill();
-	                }
-	                //Updates point position values
-	                function update(obj) {
-		                obj.x += obj.vx;
-		                obj.y += obj.vy;
-		                if (obj.x > canvas.width + (maxDist / 2)) {
-			                obj.x = -(maxDist / 2);
-		                }
-		                else if (obj.xpos < -(maxDist / 2)) {
-			                obj.x = canvas.width + (maxDist / 2);
-		                }
-		                if (obj.y > canvas.height + (maxDist / 2)) {
-			                obj.y = -(maxDist / 2);
-		                }
-		                else if (obj.y < -(maxDist / 2)) {
-			                obj.y = canvas.height + (maxDist / 2);
-		                }
-	                }
-	                //
-	            function pointFun() {
-		            ctx.clearRect(0, 0, canvas.width, canvas.height);
-		            for (var i = 0; i < points.length; i++) {
-			            draw(points[i]);
-			            update(points[i]);
-		            };
-	            }
+            function init() {
+                //Add on load scripts
+                canvas = document.getElementById("snow");
+                ctx = canvas.getContext("2d");
+                resizeCanvas();
+                pointFun();
+                setInterval(pointFun, 20);
+                window.addEventListener('resize', resizeCanvas, false);
+            }
+            //Particle constructor
+            function point() {
+                this.x = Math.random() * (canvas.width + maxDist) - (maxDist / 2);
+                this.y = Math.random() * (canvas.height + maxDist) - (maxDist / 2);
+                this.z = (Math.random() * 0.5) + 0.5;
+                this.vx = ((Math.random() * 2) - 0.5) * this.z;
+                this.vy = ((Math.random() * 1.5) + 1.5) * this.z;
+                this.fill = "rgba(222,228,253," + ((0.4 * Math.random()) + 0.5) + ")";
+                this.dia = ((Math.random() * 2.5) + 1.5) * this.z;
+                points.push(this);
+            }
+            //Point generator
+            function generatePoints(amount) {
+                var temp;
+                for (var i = 0; i < amount; i++) {
+                    temp = new point();
+                };
+                // console.log(points);
+            }
+            //Point drawer
+            function draw(obj) {
+                ctx.beginPath();
+                ctx.strokeStyle = "transparent";
+                ctx.fillStyle = obj.fill;
+                ctx.arc(obj.x, obj.y, obj.dia, 0, 2 * Math.PI);
+                ctx.closePath();
+                ctx.stroke();
+                ctx.fill();
+            }
+            //Updates point position values
+            function update(obj) {
+                obj.x += obj.vx;
+                obj.y += obj.vy;
+                if (obj.x > canvas.width + (maxDist / 2)) {
+                    obj.x = -(maxDist / 2);
+                }
+                else if (obj.xpos < -(maxDist / 2)) {
+                    obj.x = canvas.width + (maxDist / 2);
+                }
+                if (obj.y > canvas.height + (maxDist / 2)) {
+                    obj.y = -(maxDist / 2);
+                }
+                else if (obj.y < -(maxDist / 2)) {
+                    obj.y = canvas.height + (maxDist / 2);
+                }
+            }
+            //
+            function pointFun() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (var i = 0; i < points.length; i++) {
+                    draw(points[i]);
+                    update(points[i]);
+                };
+            }
 
-	            function resizeCanvas() {
-		            canvas.width = window.innerWidth;
-		            canvas.height = window.innerHeight;
-		            points = [];
-		            generatePoints(window.innerWidth / 3);
-		            pointFun();
-	            }
-	            //Execute when DOM has loaded
-	            document.addEventListener('DOMContentLoaded', init, false);
-            })();
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                points = [];
+                generatePoints(window.innerWidth / 3);
+                pointFun();
+            }
+            //Execute when DOM has loaded
+            document.addEventListener('DOMContentLoaded', init, false);
+        })();
     </script>
 
 </body>

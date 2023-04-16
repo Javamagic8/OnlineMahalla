@@ -180,6 +180,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
         public bool ValidatePassword(string username, string password, string ipadress, string useragent)
         {
             var user = GetUserCore(username, 0);
+            
             if (user == null)
             {
                 return false;
