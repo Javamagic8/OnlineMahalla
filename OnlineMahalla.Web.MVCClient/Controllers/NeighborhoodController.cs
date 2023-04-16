@@ -37,13 +37,15 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            if (!_dataRepository.UserIsInRole("OrganizationView"))
+            if (!_dataRepository.UserIsInRole("TashkilotlarniKorish"))
                 return Unauthorized();
             return View();
         }
         [HttpGet]
         public IActionResult GetList(int ID, string INN, string Name, string Region, string District, int? OrganizationTypeID, string Sort, string Order, int Offset, int Limit)
         {
+            if (!_dataRepository.UserIsInRole("TashkilotlarniKorish"))
+                return Unauthorized();
             var data = _dataRepository.GetAdminNeighborhoodList(ID, INN, Name, Region, District, OrganizationTypeID, Sort, Order, Offset, Limit);
             return new JsonResult(data);
         }
@@ -51,8 +53,8 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
         [HttpGet]
         public IActionResult Get(int? id)
         {
-            if (!_dataRepository.UserIsInRole("UserEdit"))
-                return BadRequest("Нет доступа");
+            if (!_dataRepository.UserIsInRole("TashkilotlarniKorish"))
+                return BadRequest("Tashkilotlarni ko'rish roli yo'q");
 
             Neighborhood neighborhood = new Neighborhood();
             if (id.HasValue && id.Value > 0)
@@ -65,8 +67,8 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
         [HttpPost]
         public IActionResult Update([FromBody] Neighborhood neighborhood)
         {
-            if (!_dataRepository.UserIsInRole("UserEdit"))
-                return BadRequest("Нет доступа");
+            if (!_dataRepository.UserIsInRole("TashkilotlarniOzgartirish"))
+                return BadRequest("Tashkilot o'zgartirish roli berilmagan! ");
 
             try
             {

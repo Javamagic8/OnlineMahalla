@@ -29,7 +29,7 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
         }
         public IActionResult Index()
         {
-            if (!_dataRepository.UserIsInRole("UserView"))
+            if (!_dataRepository.UserIsInRole("FoydalanuvchilarKorish"))
                 return Unauthorized();
             return View();
         }
@@ -67,8 +67,8 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
         [HttpGet]
         public IActionResult Get(int? id)
         {
-            if (!_dataRepository.UserIsInRole("UserEdit"))
-                return BadRequest("Нет доступа");
+            if (!_dataRepository.UserIsInRole("FoydalanuvchilarniOzgartirish"))
+                return BadRequest("Sizda roll yo'q! ");
 
             User user = new User();
             if (id.HasValue && id.Value > 0)
@@ -84,8 +84,8 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
         [HttpGet]
         public IActionResult GetRole(int? id)
         {
-            if (!_dataRepository.UserIsInRole("UserEdit"))
-                return BadRequest("Нет доступа");
+            if (!_dataRepository.UserIsInRole("FoydalanuvchilarniOzgartirish"))
+                return BadRequest("Sizda roll yo'q! ");
 
             User user = new User();
             if (id.HasValue && id.Value > 0)
@@ -101,10 +101,10 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
         [HttpPost]
         public IActionResult Update([FromBody] User user)
         {
-            if (!_dataRepository.UserIsInRole("UserEdit"))
-                return BadRequest("Нет доступа");
+            if (!_dataRepository.UserIsInRole("FoydalanuvchilarniOzgartirish"))
+                return BadRequest("Sizda roll yo'q! ");
 
-                try
+            try
                 {
                     _dataRepository.UpdateUser(user);
                 }
@@ -118,8 +118,8 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
         [HttpPost]
         public IActionResult UpdateRole([FromBody] User user)
         {
-            if (!_dataRepository.UserIsInRole("UserEdit"))
-                return BadRequest("Нет доступа");
+            if (!_dataRepository.UserIsInRole("FoydalanuvchilarniOzgartirish"))
+                return BadRequest("Sizda roll yo'q! ");
             try
             {
                 _dataRepository.UpdateUserRole(user);
@@ -135,8 +135,8 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
         [HttpPost]
         public IActionResult UpdateRole1([FromBody] User user)
         {
-            if (!_dataRepository.UserIsInRole("UserEdit"))
-                return BadRequest("Нет доступа");
+            if (!_dataRepository.UserIsInRole("FoydalanuvchilarniOzgartirish"))
+                return BadRequest("Sizda roll yo'q! ");
 
             try
             {

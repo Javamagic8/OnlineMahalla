@@ -26,31 +26,39 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
         }
         public IActionResult Index()
         {
-            if (!_dataRepository.UserIsInRole("RoleView"))
+            if (!_dataRepository.UserIsInRole("RollarniKorish"))
                 return Unauthorized();
             return View();
         }
         [HttpGet]
         public IActionResult GetList(string Name, string Search, string Sort, string Order, int Offset, int Limit)
         {
+            if (!_dataRepository.UserIsInRole("RollarniOzgartirish"))
+                return BadRequest("Sizda Roll yo'q");
             var data = _dataRepository.GetRoleList(Name, Search, Sort, Order, Offset, Limit);
             return new JsonResult(data);
         }
         [HttpGet]
         public IActionResult GetLeftModuleList(int RoleID, string Search, string Sort, string Order, int Offset, int Limit)
         {
+            if (!_dataRepository.UserIsInRole("RollarniOzgartirish"))
+                return BadRequest("Sizda Roll yo'q");
             var data = _dataRepository.GetLeftModuleList(RoleID, Search, Sort, Order, Offset, Limit);
             return new JsonResult(data);
         }
         [HttpGet]
         public IActionResult GetRightModuleList(int RoleID, string Search, string Sort, string Order, int Offset, int Limit)
         {
+            if (!_dataRepository.UserIsInRole("RollarniOzgartirish"))
+                return BadRequest("Sizda Roll yo'q");
             var data = _dataRepository.GetRightModuleList(RoleID, Search, Sort, Order, Offset, Limit);
             return new JsonResult(data);
         }
         [HttpGet]
         public IActionResult Get(int? id)
         {
+            if (!_dataRepository.UserIsInRole("RollarniOzgartirish"))
+                return BadRequest("Sizda Roll yo'q");
             Role role = new Role();
             if (id.HasValue && id.Value > 0)
             {
@@ -61,6 +69,8 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
         [HttpPost]
         public IActionResult Update([FromBody] Role Role)
         {
+            if (!_dataRepository.UserIsInRole("RollarniOzgartirish"))
+                return BadRequest("Sizda Roll yo'q");
             try
             {
                 _dataRepository.UpdateRole(Role);
@@ -74,8 +84,8 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
         [HttpPost]
         public IActionResult UpdateModulesLeft([FromBody] Role role)
         {
-            if (!_dataRepository.UserIsInRole("UserEdit"))
-                return BadRequest("Нет доступа");
+            if (!_dataRepository.UserIsInRole("RollarniOzgartirish"))
+                return BadRequest("Sizda Roll yo'q");
 
             if (ModelState.IsValid)
             {
@@ -95,8 +105,8 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
         [HttpPost]
         public IActionResult UpdateModulesRight([FromBody] Role role)
         {
-            if (!_dataRepository.UserIsInRole("UserEdit"))
-                return BadRequest("Нет доступа");
+            if (!_dataRepository.UserIsInRole("RollarniOzgartirish"))
+                return BadRequest("Sizda Roll yo'q");
 
             if (ModelState.IsValid)
             {
@@ -117,9 +127,9 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
         public IActionResult Delete(int id)
         {
             if (id == 0)
-                return BadRequest("Сначала выберите из списка");
-            if (!_dataRepository.UserIsInRole("RoleDelete"))
-                return BadRequest("Вам не дали роль");
+                return BadRequest("Ro'yhatdan birortasini tanleng!");
+            if (!_dataRepository.UserIsInRole("RollarniOchirish"))
+                return BadRequest("Sizda Roll yo'q! ");
             try
             {
                 _dataRepository.DeleteRole(id);

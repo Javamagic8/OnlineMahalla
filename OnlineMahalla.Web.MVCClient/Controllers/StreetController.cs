@@ -28,6 +28,8 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
         }
         public IActionResult Index()
         {
+            if (!_dataRepository.UserIsInRole("KochalarniKorish"))
+                return Unauthorized();
             return View();
         }
 
@@ -40,8 +42,8 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
         [HttpGet]
         public IActionResult Get(int? id)
         {
-            if (!_dataRepository.UserIsInRole("UserEdit"))
-                return BadRequest("Нет доступа");
+            if (!_dataRepository.UserIsInRole("KochalarniOzgartirish"))
+                return BadRequest("Sizda roll yo'q! ");
 
             Street street = new Street();
             if (id.HasValue && id.Value > 0)
@@ -57,8 +59,8 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
         [HttpPost]
         public IActionResult Update([FromBody] Street street)
         {
-            if (!_dataRepository.UserIsInRole("UserEdit"))
-                return BadRequest("Нет доступа");
+            if (!_dataRepository.UserIsInRole("KochalarniOzgartirish"))
+                return BadRequest("Sizda roll yo'q! ");
 
             try
             {

@@ -26,13 +26,15 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
         }
         public IActionResult Index()
         {
-            if (!_dataRepository.UserIsInRole("RoleView"))
+            if (!_dataRepository.UserIsInRole("OilalarniKorish"))
                 return Unauthorized();
             return View();
         }
         [HttpGet]
         public IActionResult GetList(string Name, string Region, string District, string Sort, string Order, int Offset, int Limit)
         {
+            if (!_dataRepository.UserIsInRole("OilalarniKorish"))
+                return BadRequest("Oilani ko'rish roli yo'q");
             var data = _dataRepository.GeFamilyList(Name, Region, District, Sort, Order, Offset, Limit);
             return new JsonResult(data);
         }
@@ -40,8 +42,8 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
         [HttpGet]
         public IActionResult Get(int? id)
         {
-            if (!_dataRepository.UserIsInRole("UserEdit"))
-                return BadRequest("Нет доступа");
+            if (!_dataRepository.UserIsInRole("OilalarniOzgartirish"))
+                return BadRequest("Oilani o'zgartirish roli yo'q");
 
             Family family = new Family();
             if (id.HasValue && id.Value > 0)
@@ -54,8 +56,8 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
         [HttpPost]
         public IActionResult Update([FromBody] Family family)
         {
-            if (!_dataRepository.UserIsInRole("UserEdit"))
-                return BadRequest("Нет доступа");
+            if (!_dataRepository.UserIsInRole("OilalarniOzgartirish"))
+                return BadRequest("Oilani o'zgartirish roli yo'q");
 
             try
             {

@@ -30,18 +30,22 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
         }
         public IActionResult Index()
         {
-            if (!_dataRepository.UserIsInRole("EmployeeView"))
+            if (!_dataRepository.UserIsInRole("FuqarolarniKorish"))
                 return Unauthorized();
             return View();
         }
         [HttpGet]
         public IActionResult GetList(string Name, string Search, string Sort, string Order, int Offset, int Limit)
         {
+            if (!_dataRepository.UserIsInRole("FuqarolarniKorish"))
+                return BadRequest("Fuqarolarni ko'rish roli yo'q");
             var data = _dataRepository.GeCitizenList(Name, Search, Sort, Order, Offset, Limit);
             return new JsonResult(data);
         }
         public IActionResult Get(int? id)
         {
+            if (!_dataRepository.UserIsInRole("FuqarolarniOzgartirish"))
+                return BadRequest("Fuqarolarni ko'rish roli yo'q");
             Citizen citizen = new Citizen();
             if (id.HasValue && id.Value > 0)
             {
@@ -52,12 +56,16 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
         [HttpGet]
         public IActionResult Edit(int? id)
         {
+            if (!_dataRepository.UserIsInRole("FuqarolarniOzgartirish"))
+                return BadRequest("Fuqarolarni o'zgartirish roli yo'q!");
             ViewBag.ID = id;
             return View();
         }
         [HttpPost]
         public IActionResult Update([FromBody] Citizen Citizen)
         {
+            if (!_dataRepository.UserIsInRole("FuqarolarniOzgartirish"))
+                return BadRequest("Fuqarolarni o'zgartirish roli yo'q!");
             if (ModelState.IsValid)
             {
                 try
@@ -72,11 +80,6 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
             else
                 return StatusCode(500, ModelState.FirstOrDefault().Value.Errors.FirstOrDefault().ErrorMessage);
             return new JsonResult(Citizen);
-        }
-
-        public IActionResult Chart()
-        {
-            return View();
         }
     }
 }
