@@ -113,34 +113,23 @@ namespace UZASBO.Web.MVCClient.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetManAgesList(int TypeGenderID)
+        public IActionResult GetAgeDiagramList(int GenderID)
         {
-            return new JsonResult(_dataRepository.GetManAgesList(TypeGenderID));
+            return new JsonResult(_dataRepository.GetAgeDiagramList(GenderID));
         }
 
-        //[HttpGet]
-        //public IActionResult GetWomanAgesList()
-        //{
-        //    return new JsonResult(_dataRepository.GetManAgesList());
-        //}
 
-        //[HttpGet]
-        //public IActionResult GetManEducationList()
-        //{
-        //    return new JsonResult(_dataRepository.GetManAgesList());
-        //}
+        [HttpGet]
+        public IActionResult GetEducationDiagramList(int GenderID)
+        {
+            return new JsonResult(_dataRepository.GetEducationDiagramList(GenderID));
+        }
 
-        //[HttpGet]
-        //public IActionResult GetWomanEducationList()
-        //{
-        //    return new JsonResult(_dataRepository.GetManAgesList());
-        //}
-
-        //[HttpGet]
-        //public IActionResult GetManWomanDisableList()
-        //{
-        //    return new JsonResult(_dataRepository.GetManAgesList());
-        //}
+        [HttpGet]
+        public IActionResult GetDisableDiagramList()
+        {
+            return new JsonResult(_dataRepository.GetDisableDiagramList());
+        }
 
     }
 }

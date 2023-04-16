@@ -180,7 +180,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             return _databaseExt.GetDataFromSql(sql, new string[] { }, new object[] { });
         }
 
-        public IEnumerable<dynamic> GetManAgesList(int GenderID)
+        public IEnumerable<dynamic> GetAgeDiagramList(int GenderID)
         {
             Dictionary<string, object> sqlparams = new Dictionary<string, object>();
             string sql = @"SELECT SUM(x.[6]) [6], 
@@ -223,11 +223,80 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             return _databaseExt.GetDataFromSql(sql, sqlparams);
             
         }
-    }
 
-    public class DiagrammParams
-    {
-        public int Series { get; set; }
-        public string Labels { get; set; } 
+        public IEnumerable<dynamic> GetEducationDiagramList(int GenderID)
+        {
+            Dictionary<string, object> sqlparams = new Dictionary<string, object>();
+            string sql = @"SELECT SUM(x.middle) middle, 
+                                  SUM(x.specialmid) specialmid, SUM(x.[high]) [high],
+                                  SUM(x.academic) academic
+                            FROM (SELECT IIF(EducationID = 1, 1, 0) middle,
+                                  IIF(EducationID = 2, 1, 0) specialmid,
+                                  IIF(EducationID = 3, 1, 0) [high],
+                                  IIF(EducationID = 4, 1, 0) academic
+                                  FROM 
+                                  hl_Citizen WHERE GenderID = @GenderID";
+
+            sqlparams.Add("@GenderID", GenderID);
+
+            switch (OrganizationTypeID)
+            {
+                case 1:
+                    {
+                        sql += " AND NeighborhoodID = @Neighborhood ";
+                        sqlparams.Add("@Neighborhood", NeighborhoodID);
+                    }
+                    break;
+                case 2:
+                    {
+                        sql += " AND DistrictID = @DistrictID ";
+                        sqlparams.Add("@DistrictID", DistrictID);
+                    }
+                    break;
+                case 3:
+                    {
+                        sql += " AND RegionID = @RegionID ";
+                        sqlparams.Add("@RegionID", RegionID);
+                    }
+                    break;
+            }
+            sql += " ) as x ";
+            return _databaseExt.GetDataFromSql(sql, sqlparams);
+        }
+
+        public IEnumerable<dynamic> GetDisableDiagramList()
+        {
+            Dictionary<string, object> sqlparams = new Dictionary<string, object>();
+            string sql = @"SELECT SUM(x.male) male, 
+                                  SUM(x.female) female
+                            FROM (SELECT
+                                  IIF(GenderID = 1, 1, 0) male,
+                                  IIF(GenderID = 2, 1, 0) female
+                                  FROM hl_Citizen WHERE IsDisabled = 1 ";
+
+            switch (OrganizationTypeID)
+            {
+                case 1:
+                    {
+                        sql += " AND NeighborhoodID = @Neighborhood ";
+                        sqlparams.Add("@Neighborhood", NeighborhoodID);
+                    }
+                    break;
+                case 2:
+                    {
+                        sql += " AND DistrictID = @DistrictID ";
+                        sqlparams.Add("@DistrictID", DistrictID);
+                    }
+                    break;
+                case 3:
+                    {
+                        sql += " AND RegionID = @RegionID ";
+                        sqlparams.Add("@RegionID", RegionID);
+                    }
+                    break;
+            }
+            sql += " ) as x ";
+            return _databaseExt.GetDataFromSql(sql, sqlparams);
+        }
     }
 }
