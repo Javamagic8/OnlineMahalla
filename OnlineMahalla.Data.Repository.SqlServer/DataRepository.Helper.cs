@@ -2,6 +2,7 @@
 using OnlineMahalla.Common.Model.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -179,6 +180,54 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             return _databaseExt.GetDataFromSql(sql, new string[] { }, new object[] { });
         }
 
+        public IEnumerable<dynamic> GetManAgesList(int GenderID)
+        {
+            Dictionary<string, object> sqlparams = new Dictionary<string, object>();
+            string sql = @"SELECT SUM(x.[6]) [6], 
+                                  SUM(x.[718]) [718], SUM(x.[1925]) [1925],
+                                  SUM(x.[2650]) [2650], SUM(x.[51]) [51]
+                            FROM (SELECT IIF(GETDATE() - DateOfBirth <= 6 , 1, 0) [6],
+                                  IIF(GETDATE() - DateOfBirth >= 7 AND GETDATE() - DateOfBirth <= 18, 1, 0) [718],
+                                  IIF(GETDATE() - DateOfBirth >= 19 AND GETDATE() - DateOfBirth <= 25, 1, 0) [1925],
+                                  IIF(GETDATE() - DateOfBirth >= 26 AND GETDATE() - DateOfBirth <= 50, 1, 0) [2650],
+                                  IIF(GETDATE() - DateOfBirth >= 51, 1, 0) [51]
+                                  FROM 
+                                  hl_Citizen WHERE GenderID = @GenderID";
 
+            sqlparams.Add("@GenderID", GenderID);
+
+            switch (OrganizationTypeID)
+            {
+                case 1:
+                    {
+                        sql += " AND NeighborhoodID = @Neighborhood ";
+                        sqlparams.Add("@Neighborhood", NeighborhoodID);
+                    }
+                    break;
+                case 2:
+                    {
+                        sql += " AND DistrictID = @DistrictID ";
+                        sqlparams.Add("@DistrictID", DistrictID);
+                    }
+                    break;
+                case 3:
+                    {
+                        sql += " AND RegionID = @RegionID ";
+                        sqlparams.Add("@RegionID", RegionID);
+                    }
+                    break;
+            }
+
+            sql += " ) as x ";
+
+            return _databaseExt.GetDataFromSql(sql, sqlparams);
+            
+        }
+    }
+
+    public class DiagrammParams
+    {
+        public int Series { get; set; }
+        public string Labels { get; set; } 
     }
 }

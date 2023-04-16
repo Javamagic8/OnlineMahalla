@@ -11,7 +11,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
         public PagedDataEx GeFamilyList(string Name, string Region, string District, string Sort, string Order, int Offset, int Limit)
         {
             PagedDataEx data = new PagedDataEx();
-            Dictionary<string, object> sqlparamas = new Dictionary<string, object>();
+            Dictionary<string, object> sqlparams = new Dictionary<string, object>();
             string sqlselect = @"SELECT 
                                        Family.*,
                                        Street.Name StreetName,
@@ -24,13 +24,34 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                                      JOIN enum_State [State] ON [State].ID = Family.StateID
                                      JOIN info_Street Street ON Street.ID = Family.StreetID ";
 
-            string sqlwhere = " WHERE Neighborhood.ID = @NeighborhoodID ";
-            sqlparamas.Add("@NeighborhoodID", NeighborhoodID);
+            string sqlwhere = " WHERE 1 = 1 ";
+
+            switch (OrganizationTypeID)
+            {
+                case 1:
+                    {
+                        sqlwhere += " AND NeighborhoodID = @Neighborhood ";
+                        sqlparams.Add("@Neighborhood", NeighborhoodID);
+                    }
+                    break;
+                case 2:
+                    {
+                        sqlwhere += " AND DistrictID = @DistrictID ";
+                        sqlparams.Add("@DistrictID", DistrictID);
+                    }
+                    break;
+                case 3:
+                    {
+                        sqlwhere += " AND RegionID = @RegionID ";
+                        sqlparams.Add("@RegionID", RegionID);
+                    }
+                    break;
+            }
 
             if (!String.IsNullOrEmpty(Name))
             {
                 sqlwhere += " AND Family.Name LIKE '%' + @Name + '%'";
-                sqlparamas.Add("@Name", Name);
+                sqlparams.Add("@Name", Name);
             }
             string sqlcount = "SELECT Count(Family.ID)" + sqlfrom + sqlwhere;
             if (!String.IsNullOrEmpty(Sort))
@@ -42,15 +63,40 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                 sqlwhere += " OFFSET " + Offset + " ROWS FETCH NEXT " + Limit + " ROWS ONLY";
 
             string sql = sqlselect + sqlfrom + sqlwhere;
-            data.rows = _databaseExt.GetDataFromSql(sql, sqlparamas);
-            data.total = (int)_databaseExt.ExecuteScalar(sqlcount, sqlparamas);
+            data.rows = _databaseExt.GetDataFromSql(sql, sqlparams);
+            data.total = (int)_databaseExt.ExecuteScalar(sqlcount, sqlparams);
             return data;
         }
 
         public Family GetFamily(int ID)
         {
-            var data = _databaseExt.GetDataFromSql(@"SELECT *
-                                                       FROM [Online_Mahalla].[dbo].[info_Family] WHERE ID = @ID", new string[] { "@ID" }, new object[] { ID }).First();
+            Dictionary<string, object> sqlparams = new Dictionary<string, object>();
+            string sqlselect = @"SELECT * FROM [Online_Mahalla].[dbo].[info_Family] WHERE ID = @ID ";
+            sqlparams.Add("@ID", ID);
+                
+            switch (OrganizationTypeID)
+            {
+                case 1:
+                    {
+                        sqlselect += " AND NeighborhoodID = @Neighborhood ";
+                        sqlparams.Add("@Neighborhood", NeighborhoodID);
+                    }
+                    break;
+                case 2:
+                    {
+                        sqlselect += " AND DistrictID = @DistrictID ";
+                        sqlparams.Add("@DistrictID", DistrictID);
+                    }
+                    break;
+                case 3:
+                    {
+                        sqlselect += " AND RegionID = @RegionID ";
+                        sqlparams.Add("@RegionID", RegionID);
+                    }
+                    break;
+            }
+
+            var data = _databaseExt.GetDataFromSql(sqlselect, sqlparams).First();
 
             Family family = new Family()
             {

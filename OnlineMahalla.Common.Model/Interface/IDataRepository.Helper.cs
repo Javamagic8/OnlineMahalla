@@ -40,6 +40,7 @@ namespace OnlineMahalla.Common.Model.Interface
         IEnumerable<dynamic> GetNationList();
         IEnumerable<dynamic> GetNeighborhoodstreet();
         IEnumerable<dynamic> GetOrgList(int? ID);
+        IEnumerable<dynamic> GetManAgesList(int TypeGenderID);
 
 
     }

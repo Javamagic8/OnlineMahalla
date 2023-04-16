@@ -23,7 +23,6 @@
     <div class="panel panel-primary"></div>
 </body>
 <div id="chart">
-
 </div>
 @section scripts
     {
@@ -33,6 +32,9 @@
         <script src="~/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
         <script src="~/lib/bootstrap-datepicker/dist/locales/bootstrap-datepicker.ru.min.js"></script>
         <script src="~/lib/bootstrap-select/dist/js/bootstrap-select.js"></script>
+        <script src="~/js/utility.js"></script>
+        <script src="~/lib/knockout/dist/knockout.js"></script>
+        <script src="~/lib/knockout-mapping/knockout.mapping.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
     </environment>
@@ -42,33 +44,53 @@
         <script src="~/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
         <script src="~/lib/bootstrap-datepicker/dist/locales/bootstrap-datepicker.ru.min.js"></script>
         <script src="~/lib/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+        <script src="~/js/utility.js"></script>
+        <script src="~/lib/knockout/dist/knockout.js"></script>
+        <script src="~/lib/knockout-mapping/knockout.mapping.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     </environment>
     <script type="text/javascript">
 
-    var options = {
-        series: [12, 38, 42, 8],
-        chart: {
-        height: 500,
-        
-        type: 'pie',
-    },
-    labels: ['6 yoshgacha', '7-25 yosh', '26-50 yosh', '50- yoshdan katta'],
-    responsive: [{
-        breakpoint: 480,
-        options: {
-        chart: {
-            width: 200
-        },
-        legend: {
-            position: 'bottom'
-        }
-        }
-    }]
-    };
+        var ItemModel = function () {
+            var self = this;
+            self.agelist = ko.mapping.fromJS([]);
+            self.loaddata = function () {
+                getajaxjson("@Url.Action("GetFamilyList", "Helper")", function (data) {
+                    ko.mapping.fromJS(data, self.agelist);
+                });
+            };
 
-    var chart = new ApexCharts(document.querySelector("#chart"), options);
-    chart.render();
-        
+            var options = {
+                series: self.agelist.Series,
+                chart: {
+                    height: 500,
+
+                    type: 'pie',
+                },
+                labels: ['6 yoshgacha', '7-25 yosh', '26-50 yosh', '50- yoshdan katta'],
+                responsive: [{
+                    breakpoint: 480,
+                    options: {
+                        chart: {
+                            width: 200
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }]
+            };
+
+            var chart = new ApexCharts(document.querySelector("#chart"), options);
+            chart.render();
+        }
+
+        $(document).ready(function () {
+            var itemModel = new ItemModel();
+            itemModel.loaddata();
+            ko.applyBindings(itemModel);
+        });
     </script>
 }
+
+

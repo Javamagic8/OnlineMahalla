@@ -69,5 +69,12 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
             );
             return Redirect(returnUrl);
         }
+
+        [HttpGet]
+        public IActionResult GetList(string Name, string Search, string Sort, string Order, int Offset, int Limit)
+        {
+            var data = _dataRepository.GeCitizenList(Name, Search, Sort, Order, Offset, Limit);
+            return new JsonResult(data);
+        }
     }
 }
