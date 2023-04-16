@@ -29,7 +29,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                                    sys_User [User] 
                                    JOIN info_Neighborhood Neighborhood ON Neighborhood.ID = [User].NeighborhoodID
                                    JOIN enum_State [State] ON State.ID = [User].StateID";
-            string sqlwhere = " WHERE  [User].StatusID <> 5 ";
+            string sqlwhere = " WHERE  1 = 1 ";
 
 
             if (ID > 0)
