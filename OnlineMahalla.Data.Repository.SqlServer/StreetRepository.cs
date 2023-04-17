@@ -26,7 +26,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                                      JOIN info_District District ON District.ID = Street.DistrictID
                                      JOIN enum_State [State] ON [State].ID = Street.StateID ";
 
-            string sqlwhere = " WHERE ID = @ID ";
+            string sqlwhere = " WHERE 1 = 1 ";
 
             switch (OrganizationTypeID)
             {

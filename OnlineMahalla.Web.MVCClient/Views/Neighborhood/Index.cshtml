@@ -23,7 +23,7 @@
     }
 </style>
 
-<h3 style="text-align:center">@SharedLocalizer["Organization"]</h3>
+<h3 style="text-align:center">@SharedLocalizer["Tashkilotlar"]</h3>
 <div class="panel panel-primary"></div>
 <div id="custom-toolbar" class="bs-bars pull-center">
     <div class="form-group form-inline" align="center">
@@ -31,16 +31,16 @@
             <input id="filterid" style="font-size:13px;width:100px" class="form-control input-sm" type="number" placeholder="@SharedLocalizer["ID"]" />
         </div>
         <div class="input-group">
-            <input id="filterinn" style="font-size:13px;width:100px" maxlength="9" class="form-control input-sm" placeholder="@SharedLocalizer["INN"]" />
+            <input id="filterinn" style="font-size:13px;width:100px" maxlength="9" class="form-control input-sm" placeholder="@SharedLocalizer["STIR"]" />
         </div>
         <div class="input-group">
-            <input id="filtername" style="font-size:13px;width:300px" class="form-control input-sm" placeholder="@SharedLocalizer["Name"]" />
+            <input id="filtername" style="font-size:13px;width:300px" class="form-control input-sm" placeholder="@SharedLocalizer["Nomi"]" />
         </div>
         <div class="input-group">
-            <input id="filterregion" style="font-size:13px;width:200px" class="form-control input-sm" placeholder="@SharedLocalizer["Oblast"]" />
+            <input id="filterregion" style="font-size:13px;width:200px" class="form-control input-sm" placeholder="@SharedLocalizer["Viloyat"]" />
         </div>
         <div class="input-group">
-            <input id="filterdistrict" style="font-size:13px;width:200px" class="form-control input-sm" placeholder="@SharedLocalizer["Region"]" />
+            <input id="filterdistrict" style="font-size:13px;width:200px" class="form-control input-sm" placeholder="@SharedLocalizer["Tuman"]" />
         </div>
         <div class="input-group">
             <select style="font-size:15px" id="filterorgtype"
@@ -49,9 +49,9 @@
         </div>
         <div class="input-group">
             <div class="btn-toolbar">
-                <button id="refreshdata" class="btn btn-success btn-sm" data-toggle="popover" data-content="@SharedLocalizer["Refresh"]" data-trigger="hover"><span class="glyphicon glyphicon-refresh"></span></button>
-                <button id="addRow" class="btn btn-primary btn-sm" data-toggle="popover" data-trigger="hover" data-content="@SharedLocalizer["Create"]"><span class="glyphicon glyphicon-plus"></span></button>
-                <button id="editRow" class="btn btn-primary btn-sm" data-toggle="popover" data-trigger="hover" data-content="@SharedLocalizer["Edit"]"><span class="glyphicon glyphicon-edit"></span></button>
+                <button id="refreshdata" class="btn btn-success btn-sm" data-toggle="popover" data-content="@SharedLocalizer["Yangilash"]" data-trigger="hover"><span class="glyphicon glyphicon-refresh"></span></button>
+                <button id="addRow" class="btn btn-primary btn-sm" data-toggle="popover" data-trigger="hover" data-content="@SharedLocalizer["Yaratish"]"><span class="glyphicon glyphicon-plus"></span></button>
+                <button id="editRow" class="btn btn-primary btn-sm" data-toggle="popover" data-trigger="hover" data-content="@SharedLocalizer["O'zgartirish"]"><span class="glyphicon glyphicon-edit"></span></button>
             </div>
         </div>
     </div>
@@ -80,13 +80,13 @@
                 <th data-field="ID" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["ID"]</th>
                 <th data-field="Name" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["Tashkilot Nomi"]</th>
                 <th data-field="ChairmanName" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["Tashkilot Direktori"]</th>
-                <th data-field="INN" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["JSHSHIR"]</th>
+                <th data-field="INN" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["STIR"]</th>
                 <th data-field="RegionName" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["Viloyat"]</th>
                 <th data-field="DistrictName" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["Tuman"]</th>
                 <th data-field="Address" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["Manzil"]</th>
                 <th data-field="OrganizationType" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["Tashkilot turi"]</th>
                 <th data-field="PhoneNumber" data-align="left" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["Telefon raqam"]</th>
-                <th data-field="State" data-align="center" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["State"]</th>
+                <th data-field="State" data-align="center" data-valign="middle" data-sortable="true" data-cell-style="cellStyle">@SharedLocalizer["Holati"]</th>
             </tr>
         </thead>
     </table>
@@ -120,7 +120,7 @@
                                             <label class="col-md-1 control-label"
                                                    style="font-size:12px;text-align:right">@SharedLocalizer["Direktor ismi"]</label>
                                             <div class="col-sm-4">
-                                                <input placeholder="@SharedLocalizer["Uy raqami"]"
+                                                <input placeholder="@SharedLocalizer["Direktor ismi"]"
                                                        style="font-size:15px;width:95%" data-bind="value:neighborhood.ChairmanName"
                                                        required class="text-left form-control input-sm" />
                                             </div>
@@ -152,7 +152,7 @@
                                                    style="font-size:12px;text-align:right">@SharedLocalizer["Viloyat"]</label>
                                             <div class="col-sm-4">
                                                 <select style="font-size:15px"
-                                                        data-bind='options: regionlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:neighborhood.RegionID,selectPicker: {}'
+                                                        data-bind='options: regionlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:neighborhood.RegionID,selectPicker: {}, event:{ change: regionchange}'
                                                         data-live-search="true" class="" data-width="95%"></select>
                                             </div>
                                         </form>
@@ -349,6 +349,13 @@
                     return false;
                 }
                 return true;
+            };
+
+            self.regionchange = function () {
+                console.log('oblchange');
+                getajaxjson("@Url.Action("GetDistrictList", "Helper")" + "/?RegionID=" + self.neighborhood.RegionID(), function (data) {
+                    ko.mapping.fromJS(data, self.districtlist);
+                });
             };
 
             self.savedata = function () {

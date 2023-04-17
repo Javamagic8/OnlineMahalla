@@ -281,7 +281,7 @@
                 getajaxjson("@Url.Action("GetDistrictList", "Helper")", function (data) {
                     ko.mapping.fromJS(data, self.districtlist);
                 });
-                getajaxjson("@Url.Action("GetOrgList", "Helper")", function (data) {
+                getajaxjson("@Url.Action("GetNeighborhoodList", "Helper")", function (data) {
                     ko.mapping.fromJS(data, self.orglist);
                 });
             };
@@ -336,7 +336,7 @@
                 });
             };
             self.districtchange = function () {
-                getajaxjson("@Url.Action("GetOrgList", "Helper")" + "/?DistrictID=" + self.street.DistrictId, function (data) {
+                getajaxjson("@Url.Action("GetNeighborhoodList", "Helper")" + "/?DistrictID=" + self.street.DistrictId, function (data) {
                     ko.mapping.fromJS(data, self.orglist);
                 });
             };

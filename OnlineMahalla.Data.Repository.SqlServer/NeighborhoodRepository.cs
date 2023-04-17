@@ -15,22 +15,20 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                                         Neighborhood.ID,
                                         Neighborhood.Name,
                                         Neighborhood.ChairmanName,
-                                        Neighborhood.CountFamily,
                                         Region.Name RegionName,
                                         District.Name DistrictName,
-                                        Neighborhood.CountHome,
                                         Neighborhood.Address,
                                         Neighborhood.PhoneNumber,
-										SUM(Citizen.ID) CountCitizen,
+                                        (SELECT COUNT(ID) FROM info_Family WHERE StateID <> 2 AND NeighborhoodID = Neighborhood.ID) CountFamily,
+                                        (SELECT COUNT(ID) FROM hl_Citizen WHERE StateID <> 2 AND NeighborhoodID = Neighborhood.ID) CountCitizen,
                                         Neighborhood.INN,
-                                        [state].DisplayName State,
-                                        OrganizationType.Name OrganizationType ";
+                                        [state].DisplayName [State],
+                                        OrganizationType.DisplayName OrganizationType ";
             string sqlfrom = @" FROM info_Neighborhood Neighborhood
                                         JOIN info_Region Region ON Region.ID = Neighborhood.RegionID
                                         JOIN info_District District ON District.ID = Neighborhood.DistrictID
                                         JOIN enum_OrganizationType OrganizationType ON OrganizationType.ID = Neighborhood.TypeOrganizationID
-										JOIN enum_State [state] ON [state].ID = Neighborhood.StateID
-										JOIN hl_Citizen Citizen ON Citizen.NeighborhoodID = Neighborhood.ID ";
+										JOIN enum_State [state] ON [state].ID = Neighborhood.StateID ";
 
             string sqlwhere = " WHERE 1=1";
 
@@ -162,15 +160,14 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             else
             {
                 sql = @"UPDATE [dbo].[info_Neighborhood]
-                           SET		[Name] = @Name, [ChairmanName] = @ChairmanName ,[CountFamily] = @CountFamily 
-                                   ,[CountHome] = @CountHome, [RegionID] = @RegionID, [DistrictID] = @DistrictID 
+                           SET		[Name] = @Name, [ChairmanName] = @ChairmanName, [RegionID] = @RegionID, [DistrictID] = @DistrictID 
                                    ,[StateID] = @StateID, [Address] = @Address, [PhoneNumber] = @PhoneNumber 
                                    ,[INN] = @INN, [TypeOrganizationID] = @TypeOrganizationID, [DateOfModified] = GETDATE(), [ModifiedUserID] = @ModifiedUserID
                          WHERE ID = @ID";
                 _databaseExt.ExecuteNonQuery(sql,
-                    new string[] { "@Name", "@StreetID", "@HomeNumber", "@StateID", "@MotherName", "@FatherName",
-           "@DateOfMarriage", "@IsLowIncome", "@ModifedUserID", "ID" },
-                    new object[] { neighborhood.Name, neighborhood.ChairmanName, neighborhood.CountFamily, neighborhood.CountHome, neighborhood.RegionID, neighborhood.DistrictID,
+                    new string[] { "@Name", "@ChairmanName", "@RegionID","@DistrictID",
+            "@StateID", "@Address", "@PhoneNumber","@INN","@TypeOrganizationID", "@ModifiedUserID", "@ID" },
+                    new object[] { neighborhood.Name, neighborhood.ChairmanName, neighborhood.RegionID, neighborhood.DistrictID,
             neighborhood.StateID, neighborhood.Address, neighborhood.PhoneNumber, neighborhood.INN, neighborhood.TypeOrganizationID, UserID, neighborhood.ID }, System.Data.CommandType.Text, ts);
 
             }
