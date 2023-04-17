@@ -43,13 +43,14 @@
             overflow: hidden;
             word-break: normal;
             border-color: black;
-            background-color:#FFFFFF;
+            background-color: #FFFFFF;
         }
 
         .tg .tg-s268 {
             text-align: left
         }
-        .exchange-btns {
+
+    .exchange-btns {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -60,32 +61,32 @@
 
 <body>
 
-                <h3 style="text-align:center">@SharedLocalizer["Role"]</h3>
-                <div  id="custom-toolbar" class="bs-bars pull-center">
-                    <div class="panel panel-primary"></div>
-                    <div class="form-group form-inline" align="center">
-                        <div class="input-group" style="width:10px"></div>
-                        <div class="form-group">
-                            <input id="filtername" style="font-size:11px" class="form-control input-sm" placeholder="@SharedLocalizer["Number"]" />
-                        </div>
-                        <div class="input-group" style="width:10px"></div>
-                        <button id="refreshdata" class="btn btn-success btn-sm" data-toggle="popover" data-content="@SharedLocalizer["Search"]" data-trigger="hover"><i class="glyphicon glyphicon-search"></i></button>
-                        <div class="input-group" style="width:10px"></div>
-                        <div class="input-group">
-                            <div class="btn-toolbar">
-                                <div class="input-group" style="width:10px"></div>
-                                <button data-roleview="RoleEdit" id="addRow" class="btn btn-primary btn-sm" data-toggle="popover" data-content="@SharedLocalizer["Add"]" data-trigger="hover"><i class="fa fa-plus"></i>@*@SharedLocalizer["Edit"]*@</button>
-                                <div class="input-group" style="width:10px"></div>
-                                <button data-roleview="RoleEdit" id="editRow" class="btn btn-primary btn-sm" data-toggle="popover" data-content="@SharedLocalizer["Edit"]" data-trigger="hover"><i class="fa fa-edit"></i>@*@SharedLocalizer["Edit"]*@</button>
-                                <div class="input-group" style="width:10px"></div>
-                                <button data-roleview="RoleDelete" id="deleteRow" type="button" class="btn btn-danger btn-sm" data-toggle="popover" data-trigger="hover" data-content="@SharedLocalizer["Delete"]"><i class="glyphicon glyphicon-trash"></i>@*@SharedLocalizer["Accept"]*@</button>
-                                <div class="input-group" style="width:10px"></div>
-                                <button data-roleview="RoleEdit" id="modulRow" class="btn btn-primary btn-sm" data-toggle="popover" data-content="@SharedLocalizer["Edit"]" data-trigger="hover"><i class="fa fa-edit"></i>@*@SharedLocalizer["Edit"]*@</button>
+    <h3 style="text-align:center">@SharedLocalizer["Rollar"]</h3>
+    <div id="custom-toolbar" class="bs-bars pull-center">
+        <div class="panel panel-primary"></div>
+        <div class="form-group form-inline" align="center">
+            <div class="input-group" style="width:10px"></div>
+            <div class="form-group">
+                <input id="filtername" style="font-size:11px" class="form-control input-sm" placeholder="@SharedLocalizer["Role nomi"]" />
+            </div>
+            <div class="input-group" style="width:10px"></div>
+            <button id="refreshdata" class="btn btn-success btn-sm" data-toggle="popover" data-content="@SharedLocalizer["Qidirish"]" data-trigger="hover"><i class="glyphicon glyphicon-search"></i></button>
+            <div class="input-group" style="width:10px"></div>
+            <div class="input-group">
+                <div class="btn-toolbar">
+                    <div class="input-group" style="width:10px"></div>
+                    <button data-roleview="RollarniKiritish" id="addRow" class="btn btn-primary btn-sm" data-toggle="popover" data-content="@SharedLocalizer["Yaratish"]" data-trigger="hover"><i class="fa fa-plus"></i>@*@SharedLocalizer["Edit"]*@</button>
+                    <div class="input-group" style="width:10px"></div>
+                    <button data-roleview="RollarniOzgartirish" id="editRow" class="btn btn-primary btn-sm" data-toggle="popover" data-content="@SharedLocalizer["O'zgartirish"]" data-trigger="hover"><i class="fa fa-edit"></i>@*@SharedLocalizer["Edit"]*@</button>
+                    <div class="input-group" style="width:10px"></div>
+                    <button data-roleview="RollarniOchirish" id="deleteRow" type="button" class="btn btn-danger btn-sm" data-toggle="popover" data-trigger="hover" data-content="@SharedLocalizer["O'chirish"]"><i class="glyphicon glyphicon-trash"></i>@*@SharedLocalizer["Accept"]*@</button>
+                    <div class="input-group" style="width:10px"></div>
+                    <button data-roleview="RollarniOzgartirish" id="modulRow" class="btn btn-primary btn-sm" data-toggle="popover" data-content="@SharedLocalizer["O'zgartirish"]" data-trigger="hover"><i class="fa fa-edit"></i>@*@SharedLocalizer["Edit"]*@</button>
 
-                            </div>
-                        </div>
-                    </div>
                 </div>
+            </div>
+        </div>
+    </div>
 </body>
 <p></p>
 <div class="container">
@@ -110,7 +111,7 @@
         <thead>
             <tr>
                 <th data-field="ID" data-align="left" data-valign="middle" data-sortable="true">@SharedLocalizer["ID"]</th>
-                <th data-field="Name" data-align="left" data-valign="middle" data-sortable="true">@SharedLocalizer["Name"]</th>
+                <th data-field="Name" data-align="left" data-valign="middle" data-sortable="true">@SharedLocalizer["Nomi"]</th>
             </tr>
         </thead>
 
@@ -124,7 +125,7 @@
                 <div class="container-fluid">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h2 class="panel-title" style="text-align:center"><b>@SharedLocalizer["Role"]</b></h2>
+                            <h2 class="panel-title" style="text-align:center"><b>@SharedLocalizer["Roll"]</b></h2>
                         </div>
                         <div align="center">
 
@@ -134,14 +135,14 @@
                                     <div class="form-group" align="center">
                                         <div class="input-group mb-3" align="center" style="width:400px">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text" id="basic-addon3">@SharedLocalizer["Name"]</span>
+                                                <span class="input-group-text" id="basic-addon3">@SharedLocalizer["Nomi"]</span>
                                             </div>
                                             <input data-bind="value:role.Name,valueUpdate:'afterkeydown'" required class="form-control input-sm" maxlength="70" style="max-width:inherit" />
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-md-offset-4 col-md-10">
-                                                <button type="button" data-bind="click:savedata" class="btn btn-primary btn-sm"> @SharedLocalizer["Save"]</button>
-                                                <button type="button" data-bind="click:closewindow" class="btn btn-primary btn-sm"> @SharedLocalizer["Close"]</button>
+                                                <button type="button" data-bind="click:savedata" class="btn btn-primary btn-sm"> @SharedLocalizer["Saqlash"]</button>
+                                                <button type="button" data-bind="click:closewindow" class="btn btn-primary btn-sm"> @SharedLocalizer["Orqaga"]</button>
 
                                             </div>
                                         </div>
@@ -162,14 +163,14 @@
         <div class="modal-content">
             <div class="modal-body">
                 <div class="container-fluid">
-                    <div >
+                    <div>
                         <div class="panel-heading">
-                            <h2 class="panel-title" style="text-align:center"><b>@SharedLocalizer["Role"]</b></h2>
+                            <h2 class="panel-title" style="text-align:center"><b>@SharedLocalizer["Roll"]</b></h2>
                         </div>
                         <table class="tg">
                             <tr>
                                 <th class="tg-s268" style="width:40%;vertical-align:top">
-                                    <div >
+                                    <div>
                                         <div class="container">
                                             <table id="tableLeftModuleSelect"
                                                    data-search="false"
@@ -189,7 +190,7 @@
                                                     <tr>
                                                         <th data-field="Sel" data-checkbox="true"></th>
                                                         <th data-field="ID" data-sortable="true">ID</th>
-                                                        <th data-field="DisplayName" data-sortable="true">@SharedLocalizer["Names"]</th>
+                                                        <th data-field="DisplayName" data-sortable="true">@SharedLocalizer["Nomi"]</th>
                                                     </tr>
                                                 </thead>
                                             </table>
@@ -218,7 +219,7 @@
                                                     <tr>
                                                         <th data-field="Sel" data-checkbox="true"></th>
                                                         <th data-field="ID" data-sortable="true">ID</th>
-                                                        <th data-field="DisplayName" data-sortable="true">@SharedLocalizer["Names"]</th>
+                                                        <th data-field="DisplayName" data-sortable="true">@SharedLocalizer["Nomi"]</th>
                                                     </tr>
                                                 </thead>
                                             </table>
@@ -241,32 +242,32 @@
         <div class="modal-content">
             <div class="modal-header" align="center">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">@SharedLocalizer["Role"]</h4>
+                <h4 class="modal-title">@SharedLocalizer["Roll"]</h4>
             </div>
             <div class="container">
                 <div class="row pt-3 mt-3">
-                           <div class="col-sm-6">
-                                <div class="input-group">
-                                    <input type="text" data-bind="value:filter.search,valueUpdate:'afterkeydown',event:{ change: $root.currencycoursechange}" />
-                                    <button id="search" data-bind="click:search" class="btn btn-primary btn-sm"
-                                        data-toggle="popover" data-trigger="hover">
-                                        <span class="glyphicon glyphicon-search"></span>
-                                    </button>
-                                </div>
-                           </div>
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <input type="text" data-bind="value:filter.search,valueUpdate:'afterkeydown',event:{ change: $root.currencycoursechange}" />
+                            <button id="search" data-bind="click:search" class="btn btn-primary btn-sm"
+                                    data-toggle="popover" data-trigger="hover">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </div>
                     </div>
+                </div>
             </div>
             <div class="modal-body" style="display: flex;">
-                
+
                 <div class="container" style="overflow:auto;height:500px; ">
-                    
-                     <table class="table table-striped table-bordered table-condensed" >
+
+                    <table class="table table-striped table-bordered table-condensed">
                         <thead>
                             <tr>
-                                <th style="text-align:center; position:sticky; top:-1px; width:100px">@SharedLocalizer["Select"]</th>
+                                <th style="text-align:center; position:sticky; top:-1px; width:100px">@SharedLocalizer["Tanlangan"]</th>
                                 <th style="text-align: center; position: sticky; top: -1px; width: auto">@SharedLocalizer["ID"]</th>
-                                <th style="text-align: center; position: sticky; top: -1px; width: auto">@SharedLocalizer["Code"]</th>
-                                <th style="text-align: center; position: sticky; top: -1px; width: auto">@SharedLocalizer["Name"]</th>
+                                <th style="text-align: center; position: sticky; top: -1px; width: auto">@SharedLocalizer["Kod"]</th>
+                                <th style="text-align: center; position: sticky; top: -1px; width: auto">@SharedLocalizer["Nomi"]</th>
                             </tr>
                         </thead>
                         <tbody data-bind="foreach:role.ModulesLeft">
@@ -284,7 +285,7 @@
                                 <td align="left">
                                     <span data-bind='text:Code'></span>
                                 </td>
-                                 <td align="left">
+                                <td align="left">
                                     <span data-bind='text:Name'></span>
                                 </td>
                             </tr>
@@ -297,7 +298,7 @@
                     <div class="row">
                         <div class="col-sm-2 col-xs-7">
                             <button id="forward" data-bind="click:savedata1" class="btn btn-primary btn-sm"
-                                data-toggle="popover" data-trigger="hover">
+                                    data-toggle="popover" data-trigger="hover">
                                 <span class="glyphicon glyphicon-triangle-right"></span>
                             </button>
                         </div>
@@ -305,7 +306,7 @@
                     <div class="row">
                         <div class="col-sm-2 col-xs-7">
                             <button id="backward" data-bind="click:savedata2" class="btn btn-primary btn-sm"
-                                data-toggle="popover" data-trigger="hover">
+                                    data-toggle="popover" data-trigger="hover">
                                 <span class="glyphicon glyphicon-triangle-left"></span>
                             </button>
                         </div>
@@ -314,38 +315,38 @@
                 <div class="container" style="overflow:auto;height:500px; ">
                     <div class="overflow">
                         <table class="table table-striped table-bordered table-condensed" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th style="text-align:center; position:sticky; top:-1px; width:100px">@SharedLocalizer["Select"]</th>
-                                <th style="text-align: center; position: sticky; top: -1px; width: auto">@SharedLocalizer["ID"]</th>
-                                <th style="text-align: center; position: sticky; top: -1px; width: auto">@SharedLocalizer["Code"]</th>
-                                <th style="text-align: center; position: sticky; top: -1px; width: auto">@SharedLocalizer["Name"]</th>
-                            </tr>
-                        </thead>
-                        <tbody data-bind="foreach:role.ModulesRight">
-                            <!-- ko if: (1==1) -->
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center; position:sticky; top:-1px; width:100px">@SharedLocalizer["Tanlangan"]</th>
+                                    <th style="text-align: center; position: sticky; top: -1px; width: auto">@SharedLocalizer["ID"]</th>
+                                    <th style="text-align: center; position: sticky; top: -1px; width: auto">@SharedLocalizer["Kod"]</th>
+                                    <th style="text-align: center; position: sticky; top: -1px; width: auto">@SharedLocalizer["Nomi"]</th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach:role.ModulesRight">
+                                <!-- ko if: (1==1) -->
 
-                            <tr>
-                                <td align="center">
-                                    <input type="checkbox" data-bind="checked:Check,valueUpdate:'afterkeydown'" />
-                                </td>
+                                <tr>
+                                    <td align="center">
+                                        <input type="checkbox" data-bind="checked:Check,valueUpdate:'afterkeydown'" />
+                                    </td>
 
-                                <td align="left">
-                                    <span data-bind='text:ID'></span>
-                                </td>
+                                    <td align="left">
+                                        <span data-bind='text:ID'></span>
+                                    </td>
 
-                                <td align="left">
-                                    <span data-bind='text:Code'></span>
-                                </td>
+                                    <td align="left">
+                                        <span data-bind='text:Code'></span>
+                                    </td>
 
-                                <td align="left">
-                                    <span data-bind='text:Name'></span>
-                                </td>
-                            </tr>
-                            <!-- /ko -->
+                                    <td align="left">
+                                        <span data-bind='text:Name'></span>
+                                    </td>
+                                </tr>
+                                <!-- /ko -->
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -379,26 +380,25 @@
     </environment>
 
     <script type="text/javascript">
-    var filter = {
-        search : ''
-    }
-    function queryParams(params)
-    {
-        params.Name = $('#filtername').val();
-        return params;
+        var filter = {
+            search: ''
         }
-     function queryParamsemp1(params) {
+        function queryParams(params) {
+            params.Name = $('#filtername').val();
             return params;
-     }
-     function queryParamsemp2(params) {
+        }
+        function queryParamsemp1(params) {
             return params;
-     }
+        }
+        function queryParamsemp2(params) {
+            return params;
+        }
 
-    var ItemModel = function () {
-        var self = this;
+        var ItemModel = function () {
+            var self = this;
             self.role = {};
             self.loaddata = function (id) {
-                getajaxjson("@Url.Action("Get", "Role")" + "?id=" + id , function (data) {
+                getajaxjson("@Url.Action("Get", "Role")" + "?id=" + id, function (data) {
                     ko.mapping.fromJS(data, {}, self.role);
                 });
             };
@@ -413,7 +413,7 @@
                     url: "@Url.Action("Update", "Role")",
                     data: datatosave
                 }).done(function (data, status, xhr) {
-                    alert("@SharedLocalizer["SavedSuccessfully"]");
+                    alert("@SharedLocalizer["Muvofaqayatli! "]");
                     $("#depselectWindow").modal('hide');
                     $('#table').bootstrapTable('refresh');
                 })
@@ -421,166 +421,166 @@
                         alert(xhr.responseText + " Error:" + error);
                     });
 
-        };
-        self.closewindow = function () {
-            $("#depselectWindow").modal('hide');
-            $('#table').bootstrapTable('refresh');
-        };
+            };
+            self.closewindow = function () {
+                $("#depselectWindow").modal('hide');
+                $('#table').bootstrapTable('refresh');
+            };
 
-        self.savedata1 = function () {
-            var datatosave = JSON.stringify(ko.toJS(self.role), null, 2)
-            $.ajax({
-                headers: {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json; charset=utf-8",
-                },
-                type: "POST",
-                url: "@Url.Action("UpdateModulesLeft", "Role")",
-                data: datatosave
-            }).done(function (data, status, xhr) {
-                alert("@SharedLocalizer["SavedSuccessfully"]");
-                window.location.href = "@Url.Action("Index", "Role")";
-            })
-                .fail(function (xhr, status, error) {
-                    alert(xhr.responseText);
-                });
-        };
-        self.search = function(){
-            
-            //self.role.ModulesLeft.forEach(function(item){
-            //    console.log(item)
-            //})
+            self.savedata1 = function () {
+                var datatosave = JSON.stringify(ko.toJS(self.role), null, 2)
+                $.ajax({
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json; charset=utf-8",
+                    },
+                    type: "POST",
+                    url: "@Url.Action("UpdateModulesLeft", "Role")",
+                    data: datatosave
+                }).done(function (data, status, xhr) {
+                    alert("@SharedLocalizer["Muvofaqyatli!"]");
+                    window.location.href = "@Url.Action("Index", "Role")";
+                })
+                    .fail(function (xhr, status, error) {
+                        alert(xhr.responseText);
+                    });
+            };
+            self.search = function () {
+
+                //self.role.ModulesLeft.forEach(function(item){
+                //    console.log(item)
+                //})
+            }
+            self.savedata2 = function () {
+
+                var datatosave = JSON.stringify(ko.toJS(self.role), null, 2)
+                $.ajax({
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json; charset=utf-8",
+                    },
+                    type: "POST",
+                    url: "@Url.Action("UpdateModulesRight", "Role")",
+                    data: datatosave
+                }).done(function (data, status, xhr) {
+                    alert("@SharedLocalizer["Muvofaqyatli! "]");
+                    window.location.href = "@Url.Action("Index", "Role")";
+                })
+                    .fail(function (xhr, status, error) {
+                        alert(xhr.responseText);
+                    });
+            };
         }
-        self.savedata2 = function () {
-           
-            var datatosave = JSON.stringify(ko.toJS(self.role), null, 2)
-            $.ajax({
-                headers: {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json; charset=utf-8",
-                },
-                type: "POST",
-                url: "@Url.Action("UpdateModulesRight", "Role")",
-                data: datatosave
-            }).done(function (data, status, xhr) {
-                alert("@SharedLocalizer["SavedSuccessfully"]");
-                window.location.href = "@Url.Action("Index", "Role")";
-            })
-                .fail(function (xhr, status, error) {
-                    alert(xhr.responseText);
-                });
-        };
-     }
 
-    $(document).ready(function () {
-                var $table = $('#table');
-                var $tablemodule1 = $('#tableLeftModuleSelect');
-                var $tablemodule2 = $('#tableRightModuleSelect');
-        selectedrow = [];
-        initTable();
-         var itemModel = new ItemModel();
-         itemModel.loaddata(0);
-        ko.applyBindings(itemModel);
-        $('#tableLeftModuleSelect').bootstrapTable({ height: 450 });
-        $('#tableRightModuleSelect').bootstrapTable({ height: 450 });
-
-        $('#deleteRow').click(function () {
-            deleteRow();
-        });
-        $('#refreshdata').click(function () {
-            $('#table').bootstrapTable('refresh');
-        });
-        $('#addRow').click(function () {
-            addRow();
-        });
-        $('#editRow').click(function () {
-            editRow();
-        });
-        $('#modulRow').click(function () {
-            $("#ihselectWindow").modal('show');
-            itemModel.loaddata(selectedrow);
+        $(document).ready(function () {
+            var $table = $('#table');
+            var $tablemodule1 = $('#tableLeftModuleSelect');
+            var $tablemodule2 = $('#tableRightModuleSelect');
+            selectedrow = [];
+            initTable();
+            var itemModel = new ItemModel();
+            itemModel.loaddata(0);
             ko.applyBindings(itemModel);
+            $('#tableLeftModuleSelect').bootstrapTable({ height: 450 });
+            $('#tableRightModuleSelect').bootstrapTable({ height: 450 });
+
+            $('#deleteRow').click(function () {
+                deleteRow();
+            });
+            $('#refreshdata').click(function () {
+                $('#table').bootstrapTable('refresh');
+            });
+            $('#addRow').click(function () {
+                addRow();
+            });
+            $('#editRow').click(function () {
+                editRow();
+            });
+            $('#modulRow').click(function () {
+                $("#ihselectWindow").modal('show');
+                itemModel.loaddata(selectedrow);
+                ko.applyBindings(itemModel);
 
 
 
-            //$('#tableLeftModuleSelect').bootstrapTable('removeAll');
-            //$('#tableLeftModuleSelect').bootstrapTable('resetSearch');
-            //$('#tableRightModuleSelect').bootstrapTable('removeAll');
-            //$('#tableRightModuleSelect').bootstrapTable('resetSearch');
+                //$('#tableLeftModuleSelect').bootstrapTable('removeAll');
+                //$('#tableLeftModuleSelect').bootstrapTable('resetSearch');
+                //$('#tableRightModuleSelect').bootstrapTable('removeAll');
+                //$('#tableRightModuleSelect').bootstrapTable('resetSearch');
 
-            //$('#tableLeftModuleSelect').bootstrapTable('refresh', { url: "@Url.Action("GetLeftModuleList", "Role")" + "/?RoleID=" + selectedrow });
-            //$('#tableRightModuleSelect').bootstrapTable('refresh', { url: "@Url.Action("GetRightModuleList", "Role")" + "/?RoleID=" + selectedrow});
-            //$("#modulWindow").modal('show');
-        });
+                //$('#tableLeftModuleSelect').bootstrapTable('refresh', { url: "@Url.Action("GetLeftModuleList", "Role")" + "/?RoleID=" + selectedrow });
+                //$('#tableRightModuleSelect').bootstrapTable('refresh', { url: "@Url.Action("GetRightModuleList", "Role")" + "/?RoleID=" + selectedrow});
+                //$("#modulWindow").modal('show');
+            });
 
-        $('#table').on('dblclick', function () {
+            $('#table').on('dblclick', function () {
 
                 editRow();
-        });
-            function initTable() {
-            $table.bootstrapTable({
-                        pageSize: 50,
-                        height: getHeight()
             });
-                    $table.on('click-row.bs.table', function (e, row, $element) {
-                        $('.success').removeClass('success');
-                        $($element).addClass('success');
-                        selectedrow = row.ID;
-                    });
-                    $table.on('load-error.bs.table', function (e, status, res) {
-                        alert(res.responseText);
-                    });
-                    $tablemodule1.on('click-row.bs.table', function (e, row, $element) {
-                        $('.success').removeClass('success');
-                        $($element).addClass('success');
-                        selectedrow = row.ID;
-                    });
-                    $tablemodule1.on('load-error.bs.table', function (e, status, res) {
-                        alert(res.responseText);
-                    });
-                    $tablemodule2.on('click-row.bs.table', function (e, row, $element) {
-                        $('.success').removeClass('success');
-                        $($element).addClass('success');
-                        selectedrow = row.ID;
-                    });
-                    $tablemodule2.on('load-error.bs.table', function (e, status, res) {
-                        alert(res.responseText);
-                    });
-
-            // sometimes footer render error.
-
-            setTimeout(function () {
-                $table.bootstrapTable('resetView');
-            }, 200);
-
-            $(window).resize(function () {
-                $table.bootstrapTable('resetView', {
+            function initTable() {
+                $table.bootstrapTable({
+                    pageSize: 50,
                     height: getHeight()
                 });
-            });
-        }
+                $table.on('click-row.bs.table', function (e, row, $element) {
+                    $('.success').removeClass('success');
+                    $($element).addClass('success');
+                    selectedrow = row.ID;
+                });
+                $table.on('load-error.bs.table', function (e, status, res) {
+                    alert(res.responseText);
+                });
+                $tablemodule1.on('click-row.bs.table', function (e, row, $element) {
+                    $('.success').removeClass('success');
+                    $($element).addClass('success');
+                    selectedrow = row.ID;
+                });
+                $tablemodule1.on('load-error.bs.table', function (e, status, res) {
+                    alert(res.responseText);
+                });
+                $tablemodule2.on('click-row.bs.table', function (e, row, $element) {
+                    $('.success').removeClass('success');
+                    $($element).addClass('success');
+                    selectedrow = row.ID;
+                });
+                $tablemodule2.on('load-error.bs.table', function (e, status, res) {
+                    alert(res.responseText);
+                });
+
+                // sometimes footer render error.
+
+                setTimeout(function () {
+                    $table.bootstrapTable('resetView');
+                }, 200);
+
+                $(window).resize(function () {
+                    $table.bootstrapTable('resetView', {
+                        height: getHeight()
+                    });
+                });
+            }
             function getHeight() {
                 return $(window).height() - $('h3').outerHeight(true) * 2.5 - $('#custom-toolbar').outerHeight(true) * 2.5;
             }
             function editRow() {
-               itemModel.loaddata(selectedrow);
-               $("#depselectWindow").modal('show');
+                itemModel.loaddata(selectedrow);
+                $("#depselectWindow").modal('show');
             }
             function addRow() {
-               itemModel.loaddata(0);
-               $("#depselectWindow").modal('show');
+                itemModel.loaddata(0);
+                $("#depselectWindow").modal('show');
             }
             function deleteRow() {
 
                 bootbox.confirm({
-                    message: '@SharedLocalizer["YouWantToDelete"]',
+                    message: '@SharedLocalizer["Ochirmoqchimis"]',
                     buttons: {
                         cancel: {
-                            label: '<i class="fa fa-times"></i> @SharedLocalizer["Cancel"]',
+                            label: '<i class="fa fa-times"></i> @SharedLocalizer["Orqaga"]',
                             className: 'btn-danger'
                         },
                         confirm: {
-                            label: '<i class="fa fa-check"></i> @SharedLocalizer["Confirm"]',
+                            label: '<i class="fa fa-check"></i> @SharedLocalizer["Tasdiqlash"]',
                             className: 'btn-success'
                         }
                     },
@@ -595,7 +595,7 @@
                                 type: "DELETE",
                                 url: "@Url.Action("Delete", "Role")" + "/" + selectedrow
                             }).done(function (data, status, xhr) {
-                                alert("@SharedLocalizer["SavedSuccessfully"]");
+                                alert("@SharedLocalizer["Muvofaqyatli! "]");
                                 $table.bootstrapTable('refresh')
 
                             })
@@ -605,12 +605,13 @@
                         }
                     }
                 });
-            }});
-            $(document).keypress(function (e) {
-                if (e.which == 13) {
-                    $("#refreshdata").click();
-                }
-            });
+            }
+        });
+        $(document).keypress(function (e) {
+            if (e.which == 13) {
+                $("#refreshdata").click();
+            }
+        });
     </script>
 
 

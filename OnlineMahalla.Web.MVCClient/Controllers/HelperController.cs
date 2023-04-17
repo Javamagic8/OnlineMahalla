@@ -131,5 +131,11 @@ namespace UZASBO.Web.MVCClient.Controllers
             return new JsonResult(_dataRepository.GetDisableDiagramList());
         }
 
+        [HttpGet]
+        public IActionResult GetNeighborhoodListForStreet(int? DistrictID)
+        {
+            return new JsonResult(_dataRepository.GetNeighborhoodListForStreet(DistrictID));
+        }
+
     }
 }

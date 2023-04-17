@@ -281,7 +281,7 @@
                 getajaxjson("@Url.Action("GetDistrictList", "Helper")", function (data) {
                     ko.mapping.fromJS(data, self.districtlist);
                 });
-                getajaxjson("@Url.Action("GetNeighborhoodList", "Helper")", function (data) {
+                getajaxjson("@Url.Action("GetNeighborhoodListForStreet", "Helper")", function (data) {
                     ko.mapping.fromJS(data, self.orglist);
                 });
             };
@@ -316,7 +316,7 @@
                     url: "@Url.Action("Update", "Street")",
                     data: datatosave
                 }).done(function (data, status, xhr) {
-                    alert("@SharedLocalizer["SavedSuccessfully"]");
+                    alert("@SharedLocalizer["Muvofaqyatli! "]");
                     $("#editWindow").modal('hide');
                     $('#table').bootstrapTable('refresh');
                 })
@@ -331,12 +331,13 @@
             };
 
             self.regionchange = function () {
-                getajaxjson("@Url.Action("GetDistrictList", "Helper")" + "/?RegionID=" + self.street.RegionId, function (data) {
+                getajaxjson("@Url.Action("GetDistrictList", "Helper")" + "/?RegionID=" + self.street.RegionId(), function (data) {
                     ko.mapping.fromJS(data, self.districtlist);
+                    console.log(self.street.RegionId);
                 });
             };
             self.districtchange = function () {
-                getajaxjson("@Url.Action("GetNeighborhoodList", "Helper")" + "/?DistrictID=" + self.street.DistrictId, function (data) {
+                getajaxjson("@Url.Action("GetNeighborhoodListForStreet", "Helper")" + "/?DistrictID=" + self.street.DistrictId(), function (data) {
                     ko.mapping.fromJS(data, self.orglist);
                 });
             };

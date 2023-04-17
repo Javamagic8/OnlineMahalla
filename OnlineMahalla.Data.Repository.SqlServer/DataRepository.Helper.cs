@@ -127,7 +127,19 @@ namespace OnlineMahalla.Data.Repository.SqlServer
 
         public IEnumerable<dynamic> GetNeighborhoodList()
         {
-            string sql = "SELECT top(100) ID, (INN + ' - ' + Name) Name FROM info_Neighborhood WHERE StateID=1";
+            string sql = "SELECT top(100) ID, (INN + ' - ' + Name) Name FROM info_Neighborhood WHERE StateID=1 ";
+            return _databaseExt.GetDataFromSql(sql,
+                new string[] { },
+                new object[] { });
+        }
+
+        public IEnumerable<dynamic> GetNeighborhoodListForStreet(int? DistrictID)
+        {
+            string sql = "SELECT ID, Name FROM info_Neighborhood WHERE StateID=1 AND TypeOrganizationID = 1 ";
+            if(DistrictID.HasValue && DistrictID.Value > 0)
+            {
+                sql += $" AND DistrictID = {DistrictID.Value} ";
+            }
             return _databaseExt.GetDataFromSql(sql,
                 new string[] { },
                 new object[] { });

@@ -125,8 +125,8 @@ namespace OnlineMahalla.Data.Repository.SqlServer
         }
         public void UpdateRole(Role role)
         {
-            if (!UserIsInRole("UserEdit"))
-                throw new Exception("Нет доступа.");
+            if (!UserIsInRole("RollarniOzgartirish"))
+                throw new Exception("Sizda rol yo'q! ");
 
             using System.Data.SqlClient.SqlConnection myConn = new System.Data.SqlClient.SqlConnection(_connectionString);
             myConn.Open();
@@ -138,7 +138,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                 new string[] { "@ID", "@Name" },
                 new object[] { role.ID, role.Name }, System.Data.CommandType.Text, ts);
             if (checkexists != null && checkexists != DBNull.Value)
-                throw new Exception("Рол уже добавлен. " + role.Name);
+                throw new Exception("Bu rol mavjud. " + role.Name);
             //FinancialAuthority
             if (role.ID == 0)
             {
@@ -171,7 +171,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                 for (int i = 0; i < list.Count; i++)
                 {
                     if (list[i].ID == 763)
-                        throw new Exception("Не доступа !!! 😡");
+                        throw new Exception("Ruhsat yo'q !!! 😡");
                     sql = "INSERT INTO [sys_RoleModule] ([RoleID],[ModuleID],[CreatedUserID],[DateOfCreated],[ModifiedUserID]) " +
                      "VALUES (@RoleID,@ModuleID,@CreatedUserID,GETDATE(),@ModifiedUserID) SELECT [ID] FROM [sys_RoleModule] " +
                      "WHERE @@ROWCOUNT > 0 and [ID] = scope_identity()";
