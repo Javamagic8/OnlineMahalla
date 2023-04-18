@@ -147,8 +147,8 @@ namespace OnlineMahalla.Data.Repository.SqlServer
         }
         public void UpdateCitizen(Citizen citizen)
         {
-            if (!UserIsInRole("EmployeeEdit"))
-                throw new Exception("Нет доступа.");
+            if (!UserIsInRole("FuqarolarniOzgartirish"))
+                throw new Exception("Rol yo'q!");
 
             using (System.Data.SqlClient.SqlConnection myConn = new System.Data.SqlClient.SqlConnection(_connectionString))
             {

@@ -192,15 +192,15 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             return _databaseExt.GetDataFromSql(sql, new string[] { }, new object[] { });
         }
 
-        public IEnumerable<dynamic> GetAgeDiagramList(int GenderID)
+        public int[] GetAgeDiagramList(int GenderID)
         {
             Dictionary<string, object> sqlparams = new Dictionary<string, object>();
 
-            string sql = @"SELECT (SUM(x.[6])/(SUM(x.[6]) + SUM(x.[718]) + SUM(x.[1925]) + SUM(x.[2650]) + SUM(x.[51])) * 100) [6], 
-                                  (SUM(x.[718])/(SUM(x.[6]) + SUM(x.[718]) + SUM(x.[1925]) + SUM(x.[2650]) + SUM(x.[51])) * 100) [718],
-                                  (SUM(x.[1925])/(SUM(x.[6]) + SUM(x.[718]) + SUM(x.[1925]) + SUM(x.[2650]) + SUM(x.[51])) * 100) [1925],
-                                  (SUM(x.[2650])/(SUM(x.[6]) + SUM(x.[718]) + SUM(x.[1925]) + SUM(x.[2650]) + SUM(x.[51])) * 100) [2650],
-                                  (SUM(x.[51])/(SUM(x.[6]) + SUM(x.[718]) + SUM(x.[1925]) + SUM(x.[2650]) + SUM(x.[51])) * 100) [51]
+            string sql = @"SELECT (SUM(x.[6])/(SUM(x.[6]) + SUM(x.[718]) + SUM(x.[1925]) + SUM(x.[2650]) + SUM(x.[51])) * 100) child, 
+                                  (SUM(x.[718])/(SUM(x.[6]) + SUM(x.[718]) + SUM(x.[1925]) + SUM(x.[2650]) + SUM(x.[51])) * 100) childh,
+                                  (SUM(x.[1925])/(SUM(x.[6]) + SUM(x.[718]) + SUM(x.[1925]) + SUM(x.[2650]) + SUM(x.[51])) * 100) ten,
+                                  (SUM(x.[2650])/(SUM(x.[6]) + SUM(x.[718]) + SUM(x.[1925]) + SUM(x.[2650]) + SUM(x.[51])) * 100) mid,
+                                  (SUM(x.[51])/(SUM(x.[6]) + SUM(x.[718]) + SUM(x.[1925]) + SUM(x.[2650]) + SUM(x.[51])) * 100) old
                             FROM (SELECT IIF(GETDATE() - DateOfBirth <= 6 , 1, 0) [6],
                                   IIF(GETDATE() - DateOfBirth >= 7 AND GETDATE() - DateOfBirth <= 18, 1, 0) [718],
                                   IIF(GETDATE() - DateOfBirth >= 19 AND GETDATE() - DateOfBirth <= 25, 1, 0) [1925],
@@ -232,14 +232,13 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                     }
                     break;
             }
-
             sql += " ) as x ";
-
-            return _databaseExt.GetDataFromSql(sql, sqlparams);
+            var data = _databaseExt.GetDataFromSql(sql, sqlparams).First();
+            return new int[4] { data.child, data.ten, data.mid, data.old };
             
         }
 
-        public IEnumerable<dynamic> GetEducationDiagramList(int GenderID)
+        public int[] GetEducationDiagramList(int GenderID)
         {
             Dictionary<string, object> sqlparams = new Dictionary<string, object>();
             string sql = @"SELECT ( SUM(x.middle) / (SUM(x.middle) + SUM(x.specialmid) + SUM(x.[high]) + SUM(x.academic)) * 100) middle,
@@ -277,10 +276,11 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                     break;
             }
             sql += " ) as x ";
-            return _databaseExt.GetDataFromSql(sql, sqlparams);
+            var data = _databaseExt.GetDataFromSql(sql, sqlparams).First();
+            return new int[4] { data.child, data.ten, data.mid, data.old };
         }
 
-        public IEnumerable<dynamic> GetDisableDiagramList()
+        public int[] GetDisableDiagramList()
         {
             Dictionary<string, object> sqlparams = new Dictionary<string, object>();
             string sql = @"SELECT SUM(x.male)/(SUM(x.female) + SUM(x.male) * 100) male, 
@@ -312,7 +312,11 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                     break;
             }
             sql += " ) as x ";
-            return _databaseExt.GetDataFromSql(sql, sqlparams);
+
+             var data = _databaseExt.GetDataFromSql(sql, sqlparams).First();
+            int[] aray = new int[2] { data.male, data.female };
+            return aray;
+
         }
 
         public IEnumerable<dynamic> GetFamiliyList(int? StreetID)

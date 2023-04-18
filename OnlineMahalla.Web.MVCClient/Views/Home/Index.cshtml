@@ -75,13 +75,14 @@
             text-align: center;
             margin-right: 90px;
         }
+
         .continer {
             display: flex;
             justify-content: space-around;
         }
     </style>
     <script type="text/javascript">
-
+        var maleagelist2;
         var ItemModel = function () {
             var self = this;
             self.maleagelist = ko.mapping.fromJS([]);
@@ -91,138 +92,126 @@
             self.disablelist = ko.mapping.fromJS([]);
             self.loaddata = function () {
                 getajaxjson("@Url.Action("GetAgeDiagramList", "Helper")" + "?GenderID=1", function (data) {
-                    ko.mapping.fromJS(data, self.agelist);
+                    var maleageoptions = {
+                        series: data,
+                        chart: {
+                            height: 480,
+                            width: 480,
+                            type: 'pie',
+                        },
+                        labels: ['6 yoshgacha', '7-25 yosh', '26-50 yosh', '50- yoshdan katta'],
+                        responsive: [{
+                            breakpoint: 480,
+                            options: {
+                                chart: {
+                                    width: 200
+                                },
+                                legend: {
+                                    position: 'bottom'
+                                }
+                            }
+                        }]
+                    };
+                    var maleage = new ApexCharts(document.querySelector("#maleage"), maleageoptions);
+                    maleage.render();
                 });
                 getajaxjson("@Url.Action("GetAgeDiagramList", "Helper")" + "?GenderID=2", function (data) {
-                    ko.mapping.fromJS(data, self.femaleagelist);
+                    var femaleageoptions = {
+                        series: data,
+                        chart: {
+                            height: 480,
+                            width: 480,
+                            type: 'pie',
+                        },
+                        labels: ['6 yoshgacha', '7-25 yosh', '26-50 yosh', '50- yoshdan katta'],
+                        responsive: [{
+                            breakpoint: 480,
+                            options: {
+                                chart: {
+                                    width: 200
+                                },
+                                legend: {
+                                    position: 'bottom'
+                                }
+                            }
+                        }]
+                    };
+                    var femaleage = new ApexCharts(document.querySelector("#femaleage"), femaleageoptions);
+                    femaleage.render();
                 });
                 getajaxjson("@Url.Action("GetEducationDiagramList", "Helper")" + "?GenderID=1", function (data) {
-                    ko.mapping.fromJS(data, self.maleeducationlist);
+                    var maleeducationoptions = {
+                        series: self.maleeducationlist,
+                        chart: {
+                            height: 500,
+                            width: 500,
+                            type: 'pie',
+                        },
+                        labels: ["O'rta", "O'rta mahsus", 'Oliy', 'Akademik'],
+                        responsive: [{
+                            breakpoint: 480,
+                            options: {
+                                chart: {
+                                    width: 200
+                                },
+                                legend: {
+                                    position: 'bottom'
+                                }
+                            }
+                        }]
+                    };
+                    var maleeducation = new ApexCharts(document.querySelector("#maleeducation"), femaleeducationoptions);
+                    maleeducation.render();
                 });
                 getajaxjson("@Url.Action("GetEducationDiagramList", "Helper")" + "?GenderID=2", function (data) {
-                    ko.mapping.fromJS(data, self.femaleeducationlist);
+                    var femaleeducationoptions = {
+                        series: self.femaleeducationlist,
+                        chart: {
+                            height: 450,
+                            width: 450,
+                            type: 'pie',
+                        },
+                        labels: ["O'rta", "O'rta mahsus", 'Oliy', 'Akademik'],
+                        responsive: [{
+                            breakpoint: 480,
+                            options: {
+                                chart: {
+                                    width: 200
+                                },
+                                legend: {
+                                    position: 'bottom'
+                                }
+                            }
+                        }]
+                    };
+                    var femaleeducation = new ApexCharts(document.querySelector("#femaleeducation"), femaleeducationoptions);
+                    femaleeducation.render();
                 });
                 getajaxjson("@Url.Action("GetDisableDiagramList", "Helper")", function (data) {
-                    ko.mapping.fromJS(data, self.disablelist);
+                    var disableoptions = {
+                        series: self.disablelist,
+                        chart: {
+                            height: 400,
+                            width: 400,
+                            type: 'pie',
+                        },
+                        labels: ["Ayol", "Erkak"],
+                        responsive: [{
+                            breakpoint: 480,
+                            options: {
+                                chart: {
+                                    width: 200
+                                },
+                                legend: {
+                                    position: 'bottom'
+                                }
+                            }
+                        }]
+                    };
+                    var disable = new ApexCharts(document.querySelector("#disable"), disableoptions);
+                    disable.render();
                 });
             };
-
-            var maleageoptions = {
-                series: self.maleagelist,
-                chart: {
-                    height: 480,
-                    width: 480,
-                    type: 'pie',
-                },
-                labels: ['6 yoshgacha', '7-25 yosh', '26-50 yosh', '50- yoshdan katta'],
-                responsive: [{
-                    breakpoint: 480,
-                    options: {
-                        chart: {
-                            width: 200
-                        },
-                        legend: {
-                            position: 'bottom'
-                        }
-                    }
-                }]
-            };
-
-            var femaleageoptions = {
-                series: self.femaleagelist,
-                chart: {
-                    height: 480,
-                    width: 480,
-                    type: 'pie',
-                },
-                labels: ['6 yoshgacha', '7-25 yosh', '26-50 yosh', '50- yoshdan katta'],
-                responsive: [{
-                    breakpoint: 480,
-                    options: {
-                        chart: {
-                            width: 200
-                        },
-                        legend: {
-                            position: 'bottom'
-                        }
-                    }
-                }]
-            };
-            var maleeducationoptions = {
-                series: self.maleeducationlist,
-                chart: {
-                    height: 500,
-                    width: 500,
-                    type: 'pie',
-                },
-                labels: ["O'rta", "O'rta mahsus", 'Oliy', 'Akademik'],
-                responsive: [{
-                    breakpoint: 480,
-                    options: {
-                        chart: {
-                            width: 200
-                        },
-                        legend: {
-                            position: 'bottom'
-                        }
-                    }
-                }]
-            };
-            var femaleeducationoptions = {
-                series: self.femaleeducationlist,
-                chart: {
-                    height: 450,
-                    width: 450,
-                    type: 'pie',
-                },
-                labels: ["O'rta", "O'rta mahsus", 'Oliy', 'Akademik'],
-                responsive: [{
-                    breakpoint: 480,
-                    options: {
-                        chart: {
-                            width: 200
-                        },
-                        legend: {
-                            position: 'bottom'
-                        }
-                    }
-                }]
-            };
-
-            var disableoptions = {
-                series: self.disablelist,
-                chart: {
-                    height: 400,
-                    width: 400,
-                    type: 'pie',
-                },
-                labels: ["Ayol", "Erkak"],
-                responsive: [{
-                    breakpoint: 480,
-                    options: {
-                        chart: {
-                            width: 200
-                        },
-                        legend: {
-                            position: 'bottom'
-                        }
-                    }
-                }]
-            };
-            var maleage = new ApexCharts(document.querySelector("#maleage"), maleageoptions);
-            maleage.render();
-
-            var femaleage = new ApexCharts(document.querySelector("#femaleage"), femaleageoptions);
-            femaleage.render();
-
-            var maleeducation = new ApexCharts(document.querySelector("#maleeducation"), femaleeducationoptions);
-            maleeducation.render();
-
-            var femaleeducation = new ApexCharts(document.querySelector("#femaleeducation"), femaleeducationoptions);
-            femaleeducation.render();
-
-            var disable = new ApexCharts(document.querySelector("#disable"), disableoptions);
-            disable.render();
         }
 
         $(document).ready(function () {
