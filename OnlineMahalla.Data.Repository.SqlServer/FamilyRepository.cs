@@ -30,19 +30,19 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             {
                 case 1:
                     {
-                        sqlwhere += " AND NeighborhoodID = @Neighborhood ";
+                        sqlwhere += " AND Family.NeighborhoodID = @Neighborhood ";
                         sqlparams.Add("@Neighborhood", NeighborhoodID);
                     }
                     break;
                 case 2:
                     {
-                        sqlwhere += " AND DistrictID = @DistrictID ";
+                        sqlwhere += " AND Neighborhood.DistrictID = @DistrictID ";
                         sqlparams.Add("@DistrictID", DistrictID);
                     }
                     break;
                 case 3:
                     {
-                        sqlwhere += " AND RegionID = @RegionID ";
+                        sqlwhere += " AND Neighborhood.RegionID = @RegionID ";
                         sqlparams.Add("@RegionID", RegionID);
                     }
                     break;
@@ -124,14 +124,14 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             {
                 sql = @"INSERT INTO [dbo].[info_Family]
                                     ([Name],[StreetID],[HomeNumber],[StateID],[MotherName],[FatherName],
-		                            [DateOfMarriage],[IsLowIncome],[NeighborhoodID],[CreateUserID])
+		                            [DateOfMarriage],[IsLowIncome],[NeighborhoodID],[CreateUserID],[RegionID],[DistrictID])
                                      VALUES
                                     (@Name, @StreetID, @HomeNumber, @StateID, @MotherName,
-		                            @FatherName, @DateOfMarriage, @IsLowIncome, @NeighborhoodID,@CreateUserID) 
+		                            @FatherName, @DateOfMarriage, @IsLowIncome, @NeighborhoodID,@CreateUserID, @RegionID, @DistrictID) 
                                      select [ID] from sys_User where @@ROWCOUNT > 0 and [ID] = scope_identity()";
                 var NewID = _databaseExt.ExecuteScalar(sql,
                      new string[] { "@Name", "@StreetID", "@HomeNumber", "@StateID", "@MotherName", "@FatherName",
-           "@DateOfMarriage", "@IsLowIncome", "@NeighborhoodID","@CreateUserID" }, new object[] { family.Name, family.StreetID, family.HomeNumber, family.StateID, family.MotherName, family.FatherName, family.DateOfMarriage, family.IsLowIncome, NeighborhoodID, UserID }, System.Data.CommandType.Text, ts);
+           "@DateOfMarriage", "@IsLowIncome", "@NeighborhoodID","@CreateUserID", "@RegionID","@DistrictID" }, new object[] { family.Name, family.StreetID, family.HomeNumber, family.StateID, family.MotherName, family.FatherName, family.DateOfMarriage, family.IsLowIncome, NeighborhoodID, UserID, RegionID, DistrictID }, System.Data.CommandType.Text, ts);
                 family.ID = Convert.ToInt32(NewID);
             }
             else

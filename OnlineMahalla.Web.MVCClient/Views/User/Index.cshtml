@@ -221,14 +221,14 @@
                     data-cell-style="cellStyle">@SharedLocalizer["Holati"]</th>
                 <th data-field="INN" data-align="center" data-valign="middle" data-sortable="true"
                     data-cell-style="cellStyle">@SharedLocalizer["STIR"]</th>
-                <th data-field="Organization" data-align="left" data-valign="middle" data-sortable="true"
+                <th data-field="NeighborhoodName" data-align="left" data-valign="middle" data-sortable="true"
                     data-cell-style="cellStyle">@SharedLocalizer["Tashkilot"]</th>
-                <th data-field="OrganizationID" data-align="center" data-valign="middle" data-sortable="true"
+                <th data-field="NeighborhoodID" data-align="center" data-valign="middle" data-sortable="true"
                     data-cell-style="cellStyle">@SharedLocalizer["Mahalla kodi"]</th>
                 <th data-field="LastAccessTime" data-align="left" data-valign="middle" data-sortable="true"
                     data-cell-style="cellStyle">@SharedLocalizer["So'ngi tashrif"]</th>
-                <th data-field="LastIP" data-align="left" data-valign="middle" data-sortable="true"
-                    data-cell-style="cellStyle">@SharedLocalizer["Oxirgi IP"]</th>
+                <th data-field="OrganizationType" data-align="left" data-valign="middle" data-sortable="true"
+                    data-cell-style="cellStyle">@SharedLocalizer["Tashkilot Turi"]</th>
                 <th data-field="Email" data-align="left" data-valign="middle" data-sortable="true"
                     data-cell-style="cellStyle">@SharedLocalizer["Email"]</th>
                 <th data-field="DateOfModified" data-align="center" data-valign="middle" data-sortable="true"
@@ -261,10 +261,6 @@
                                                 <input placeholder="@SharedLocalizer["Login"]"
                                                        style="font-size:15px;width:82%" data-bind="value:user.Name"
                                                        required class="text-left form-control input-sm" />
-                                                <button type="button" id="btnselectdatahistoryName"
-                                                        class="btn btn-group btn-sm">
-                                                    <span class="glyphicon glyphicon-option-horizontal"></span>
-                                                </button>
                                             </div>
                                         </form>
                                         <form class="form-inline">
@@ -274,10 +270,6 @@
                                                 <input placeholder="@SharedLocalizer["F.I.O."]"
                                                        style="font-size:15px;width:82%" data-bind="value:user.DisplayName"
                                                        required class="text-left form-control input-sm" />
-                                                <button type="button" id="btnselectdatahistoryDisplayName"
-                                                        class="btn btn-group btn-sm">
-                                                    <span class="glyphicon glyphicon-option-horizontal"></span>
-                                                </button>
                                             </div>
                                         </form>
                                     </div>
@@ -407,7 +399,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">@SharedLocalizer["Organizations"]</h4>
+                <h4 class="modal-title">@SharedLocalizer["Tashkilot"]</h4>
             </div>
             <br />
             <div class="form-inline" align="center">
@@ -417,23 +409,23 @@
                 </div>
                 <div class="input-group">
                     <input type="number" id="filterOrgINN" style="font-size:12px" class="form-control input-sm"
-                        placeholder="@SharedLocalizer["INN"]" />
+                        placeholder="@SharedLocalizer["STIR"]" />
                 </div>
                 <div class="input-group">
                     <input type="text" id="filterOrgName" style="font-size:12px" class="form-control input-sm"
-                        placeholder="@SharedLocalizer["Name"]" />
+                        placeholder="@SharedLocalizer["Nomi"]" />
                 </div>
                 <div class="input-group">
                     <input type="text" id="filterOrgOblast" style="font-size:12px" class="form-control input-sm"
-                        placeholder="@SharedLocalizer["Oblast"]" />
+                        placeholder="@SharedLocalizer["Viloyat"]" />
                 </div>
                 <div class="input-group">
                     <input type="text" id="filterOrgRegion" style="font-size:12px" class="form-control input-sm"
-                        placeholder="@SharedLocalizer["Region"]" />
+                        placeholder="@SharedLocalizer["Tuman"]" />
                 </div>
                 <div class="input-group">
                     <button id="refreshorgdata" class="btn btn-primary btn-sm" data-toggle="popover"
-                        data-content="@SharedLocalizer["Search"]" data-trigger="hover"><span
+                        data-content="@SharedLocalizer["Qidirish"]" data-trigger="hover"><span
                             class="fa fa-search"></span></button>
                 </div>
             </div>
@@ -448,14 +440,14 @@
                         <thead style="font-size:12px">
                             <tr>
                                 <th data-field="ID">@SharedLocalizer["ID"]</th>
-                                <th data-field="Name">@SharedLocalizer["Name"]</th>
-                                <th data-field="INN">@SharedLocalizer["INN"]</th>
-                                <th data-field="ChairmanName    ">@SharedLocalizer["ChairmanName"]</th>
-                                <th data-field="CountFamily">@SharedLocalizer["CountFamily"]</th>s
-                                <th data-field="PhoneNumber">@SharedLocalizer["PhoneNumber"]</th>
-                                <th data-field="DistrictName">@SharedLocalizer["DistrictName"]</th>
-                                <th data-field="State">@SharedLocalizer["State"]</th>
-                                <th data-field="RegionName">@SharedLocalizer["RegionName"]</th>
+                                <th data-field="Name">@SharedLocalizer["Nomi"]</th>
+                                <th data-field="INN">@SharedLocalizer["STIR"]</th>
+                                <th data-field="ChairmanName">@SharedLocalizer["Direktor F.I.SH"]</th>
+                                <th data-field="CountFamily">@SharedLocalizer["Oilalar Soni"]</th>s
+                                <th data-field="PhoneNumber">@SharedLocalizer["Telefon Raqam"]</th>
+                                <th data-field="DistrictName">@SharedLocalizer["Tashkilot Ruri"]</th>
+                                <th data-field="State">@SharedLocalizer["Holati"]</th>
+                                <th data-field="RegionName">@SharedLocalizer["Viloyat Nomi"]</th>
                             </tr>
                         </thead>
                     </table>
@@ -463,9 +455,9 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-sm btn-default"
-                    data-dismiss="modal">@SharedLocalizer["Close"]</button>
+                    data-dismiss="modal">@SharedLocalizer["Orqaga"]</button>
                 <button id="btnorganizationselect" type="button"
-                    class="btn btn-sm btn-primary">@SharedLocalizer["Select"]</button>
+                    class="btn btn-sm btn-primary">@SharedLocalizer["Tanlash"]</button>
             </div>
         </div>
     </div>
@@ -478,19 +470,19 @@
         <div class="modal-content">
             <div class="modal-header" align="center">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">@SharedLocalizer["Role"]</h4>
+                <h4 class="modal-title">@SharedLocalizer["Rol"]</h4>
             </div>
             <div class="modal-body" style="display: flex;position: relative">
                 <div class="form-group" style='display: flex; justify-content: center; gap: 10px; position: fixed; top: 65px;margin-left: 16px'>
-                    <input class="form-control" type="text" id="nameInputRole" onkeyup="nameFilterRole()" placeholder="@SharedLocalizer["Name"]" title="@SharedLocalizer["Name"]">
+                    <input class="form-control" type="text" id="nameInputRole" onkeyup="nameFilterRole()" placeholder="@SharedLocalizer["Nomi"]" title="@SharedLocalizer["Nomi"]">
                 </div>
                 <div class="container" style="overflow:auto;height:500px;margin-top: 30px ">
                     <table class="table table-striped table-bordered table-condensed" id='filterTableRole'>
                         <thead>
                             <tr>
-                                <th style="text-align:center; position:sticky; top:-1px; width:100px">@SharedLocalizer["Select"]</th>
+                                <th style="text-align:center; position:sticky; top:-1px; width:100px">@SharedLocalizer["Tanlangan"]</th>
                                 <th style="text-align: center; position: sticky; top: -1px; width: auto">@SharedLocalizer["ID"]</th>
-                                <th style="text-align: center; position: sticky; top: -1px; width: auto">@SharedLocalizer["Name"]</th>
+                                <th style="text-align: center; position: sticky; top: -1px; width: auto">@SharedLocalizer["Nomi"]</th>
                             </tr>
                         </thead>
                         <tbody data-bind="foreach:user.RolesModel">
@@ -537,9 +529,9 @@
                         <table class="table table-striped table-bordered table-condensed" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th style="text-align:center; position:sticky; top:-1px; width:100px">@SharedLocalizer["Select"]</th>
+                                    <th style="text-align:center; position:sticky; top:-1px; width:100px">@SharedLocalizer["Tanlangan"]</th>
                                     <th style="text-align: center; position: sticky; top: -1px; width: auto">@SharedLocalizer["ID"]</th>
-                                    <th style="text-align: center; position: sticky; top: -1px; width: auto">@SharedLocalizer["Name"]</th>
+                                    <th style="text-align: center; position: sticky; top: -1px; width: auto">@SharedLocalizer["Nomi"]</th>
                                 </tr>
                             </thead>
                             <tbody data-bind="foreach:user.RolesModel1">
@@ -732,23 +724,23 @@
 
             self.checkdata = function () {
                 if (self.user.StateID() === null || self.user.StateID() === undefined || self.user.StateID() === "") {
-                    alert("@SharedLocalizer["StateNotCorrect"]");
+                    alert("@SharedLocalizer["Holat Kiritilmagan"]");
                     return false;
                 }
                 if (self.user.Name() === null || self.user.Name() === undefined || self.user.Name() === "") {
-                    alert("@SharedLocalizer["NameNotCorrect"]");
+                    alert("@SharedLocalizer["Login kiritilmagan"]");
                     return false;
                 }
                 if (self.user.DisplayName() === null || self.user.DisplayName() === undefined || self.user.DisplayName() === "") {
-                    alert("@SharedLocalizer["DisplayNameNotCorrect"]");
+                    alert("@SharedLocalizer["F.I.SH kiritilmagan"]");
                     return false;
                 }
                 if (self.user.NeighborhoodID() === null || self.user.NeighborhoodID() === undefined || self.user.NeighborhoodID() === "") {
-                    alert("@SharedLocalizer["OrganizationNotCorrect"]");
+                    alert("@SharedLocalizer["Tashkilot kiritilmagan"]");
                     return false;
                 }
                 if (self.user.Password() !== self.user.PasswordConfirm()) {
-                    alert("@SharedLocalizer["Password&PasswordConfirmIsDifferent"]");
+                    alert("@SharedLocalizer["Parol yoki tasdiqlash paroli xato"]");
                     return false;
                 }
                 return true;
@@ -774,7 +766,7 @@
                     url: "@Url.Action("Update", "User")",
                     data: datatosave
                 }).done(function (data, status, xhr) {
-                    alert("@SharedLocalizer["SavedSuccessfully"]");
+                    alert("@SharedLocalizer["Muvofaqyatli! "]");
                     $("#editWindow").modal('hide');
                     $('#table').bootstrapTable('refresh');
                 })
@@ -800,7 +792,7 @@
                     url: "@Url.Action("UpdateRole", "User")",
                     data: datatosave
                 }).done(function (data, status, xhr) {
-                    alert("@SharedLocalizer["SavedSuccessfully"]");
+                    alert("@SharedLocalizer["Muvofaqyatli! "]");
                     self.loadrole(userid);
                     $("#ihselectWindow").modal('show');
 
@@ -822,7 +814,7 @@
                     url: "@Url.Action("UpdateRole1", "User")",
                     data: datatosave
                 }).done(function (data, status, xhr) {
-                    alert("@SharedLocalizer["SavedSuccessfully"]");
+                    alert("@SharedLocalizer["Muvofaqyatli! "]");
                     self.loadrole(userid);
                     $("#ihselectWindow").modal('show');
                 })
@@ -913,6 +905,12 @@
                 itemModel.user.DisplayName(selectedorgrow.Accounter);
                 $("#organizationWindow").modal('hide');
             });
+            $('#btnorganizationselect').click(function () {
+                itemModel.user.NeighborhoodID(selectedorgrow.ID);
+                itemModel.user.NeighborhoodName(selectedorgrow.Name);
+                itemModel.user.DisplayName(selectedorgrow.Accounter);
+                $("#organizationWindow").modal('hide');
+            });
             $('#refreshorgdata').click(function () {
                 refreshorgdata();
             });
@@ -935,7 +933,7 @@
                     url: "@Url.Action("Update", "User")",
                     data: datatosave
                 }).done(function (data, status, xhr) {
-                    alert("@SharedLocalizer["SavedSuccessfully"]");
+                    alert("@SharedLocalizer["Muvofaqyatli! "]");
                     $("#editWindow").modal('hide');
                     $('#table').bootstrapTable('refresh');
                 })
@@ -1007,7 +1005,7 @@
 
             function deleteRow() {
                 bootbox.confirm({
-                    message: '@SharedLocalizer["YouWantToDelete"]',
+                    message: '@SharedLocalizer["Uchirishni hohlaysizmi"]',
                     buttons: {
                         cancel: {
                             label: '<i class="fa fa-times"></i> @SharedLocalizer["Chiqish"]',
@@ -1028,7 +1026,7 @@
                                 type: "DELETE",
                                 url: "@Url.Action("Delete", "User")" + "/" + selectedrow
                             }).done(function (data, status, xhr) {
-                                alert("@SharedLocalizer["SavedSuccessfully"]");
+                                alert("@SharedLocalizer["Muvofaqyatli! "]");
                                 $table.bootstrapTable('refresh')
                             })
                                 .fail(function (xhr, status, error) {

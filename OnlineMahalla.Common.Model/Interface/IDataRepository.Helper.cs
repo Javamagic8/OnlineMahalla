@@ -44,6 +44,7 @@ namespace OnlineMahalla.Common.Model.Interface
         IEnumerable<dynamic> GetAgeDiagramList(int GenderID);
         IEnumerable<dynamic> GetEducationDiagramList(int GenderID);
         IEnumerable<dynamic> GetDisableDiagramList();
+        IEnumerable<dynamic> GetFamiliyList(int? StreetID);
 
     }
 }

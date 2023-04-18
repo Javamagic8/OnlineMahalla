@@ -314,5 +314,22 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             sql += " ) as x ";
             return _databaseExt.GetDataFromSql(sql, sqlparams);
         }
+
+        public IEnumerable<dynamic> GetFamiliyList(int? StreetID)
+        {
+            Dictionary<string, object> sqlparams = new Dictionary<string, object>();
+            string sql = @"SELECT ID, (Name + ' ' + FatherName + ' ' + MotherName) Name FROM info_Family 
+                                        WHERE NeighborhoodID = @NeighborhoodID  ";
+
+            sqlparams.Add("@NeighborhoodID", NeighborhoodID);
+
+            if(StreetID.HasValue && StreetID.Value > 0)
+            {
+                sql += " AND StreetID = @StreetID ";
+                sqlparams.Add("@StreetID", StreetID.Value);
+
+            }
+            return _databaseExt.GetDataFromSql(sql, sqlparams);
+        }
     }
 }

@@ -20,14 +20,15 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             PagedDataEx data = new PagedDataEx();
             Dictionary<string, object> sqlparamas = new Dictionary<string, object>();
             string sqlselect = @"SELECT 
-                                       [User].ID, [User].Name, [User].DisplayName, [State].DisplayName State,
-                                       CASE WHEN [User].VerifyEDS = '1' THEN 'Да' ELSE 'Нет' END VerifyEDS,
-                                       Neighborhood.INN, Neighborhood.Name Neighborhood, Neighborhood.ID NeighborhoodID,
-                                       [User].LastAccessTime, [User].LastIP, [User].Email, [User].DateOfModified ";
+                                        [User].ID, [User].Name, [User].DisplayName, [State].DisplayName State,
+                                        CASE WHEN [User].VerifyEDS = '1' THEN 'Да' ELSE 'Нет' END VerifyEDS,
+                                        Neighborhood.INN, Neighborhood.Name NeighborhoodName, Neighborhood.ID NeighborhoodID,
+                                        [User].LastAccessTime, [User].LastIP, [User].Email, [User].DateOfModified, OrganizationType.DisplayName OrganizationType ";
 
             string sqlfrom = @" FROM 
                                    sys_User [User] 
                                    JOIN info_Neighborhood Neighborhood ON Neighborhood.ID = [User].NeighborhoodID
+                                   JOIN enum_OrganizationType OrganizationType ON OrganizationType.ID = Neighborhood.TypeOrganizationID
                                    JOIN enum_State [State] ON State.ID = [User].StateID";
             string sqlwhere = " WHERE  1 = 1 ";
 

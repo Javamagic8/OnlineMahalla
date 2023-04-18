@@ -95,7 +95,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                                                             FROM sys_User [User]
                                                             JOIN enum_State [State] ON [State].ID = [User].StateID
                                                             JOIN info_Neighborhood Neighborhood ON Neighborhood.ID = [User].NeighborhoodID
-                                                            WHERE [User].ID=@ID AND StatusID <> 5", new string[] { "@ID" }, new object[] { id }).First();
+                                                            WHERE [User].ID=@ID ", new string[] { "@ID" }, new object[] { id }).First();
 
             User user = new User()
             {
