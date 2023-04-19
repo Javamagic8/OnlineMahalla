@@ -323,7 +323,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                 return new float[2] { 0, 0 };
             }
             float male = data.male;
-            float female = data.frmale;
+            float female = data.female;
 
             return new float[2] { male / (male + female) * 100, female / (male + female) * 100 };
 
@@ -332,10 +332,29 @@ namespace OnlineMahalla.Data.Repository.SqlServer
         public IEnumerable<dynamic> GetFamiliyList(int? StreetID)
         {
             Dictionary<string, object> sqlparams = new Dictionary<string, object>();
-            string sql = @"SELECT ID, (Name + ' ' + FatherName + ' ' + MotherName) Name FROM info_Family 
-                                        WHERE NeighborhoodID = @NeighborhoodID  ";
-
-            sqlparams.Add("@NeighborhoodID", NeighborhoodID);
+            string sql = @"SELECT ID, (Name + ' ' + FatherName + ' ' + MotherName) Name, IsLowIncome, StreetID  FROM info_Family 
+                                        WHERE 1 = 1 ";
+            switch (OrganizationTypeID)
+            {
+                case 1:
+                    {
+                        sql += " AND NeighborhoodID = @Neighborhood ";
+                        sqlparams.Add("@Neighborhood", NeighborhoodID);
+                    }
+                    break;
+                case 2:
+                    {
+                        sql += " AND BirthDistrictID = @BirthDistrictID ";
+                        sqlparams.Add("@BirthDistrictID", DistrictID);
+                    }
+                    break;
+                case 3:
+                    {
+                        sql += " AND BirthRegionID = @BirthRegionID ";
+                        sqlparams.Add("@BirthRegionID", RegionID);
+                    }
+                    break;
+            }
 
             if(StreetID.HasValue && StreetID.Value > 0)
             {
