@@ -141,7 +141,7 @@
                 });
                 getajaxjson("@Url.Action("GetEducationDiagramList", "Helper")" + "?GenderID=1", function (data) {
                     var maleeducationoptions = {
-                        series: self.maleeducationlist,
+                        series: data,
                         chart: {
                             height: 500,
                             width: 500,
@@ -160,12 +160,12 @@
                             }
                         }]
                     };
-                    var maleeducation = new ApexCharts(document.querySelector("#maleeducation"), femaleeducationoptions);
+                    var maleeducation = new ApexCharts(document.querySelector("#maleeducation"), maleeducationoptions);
                     maleeducation.render();
                 });
                 getajaxjson("@Url.Action("GetEducationDiagramList", "Helper")" + "?GenderID=2", function (data) {
                     var femaleeducationoptions = {
-                        series: self.femaleeducationlist,
+                        series: data,
                         chart: {
                             height: 450,
                             width: 450,
@@ -189,7 +189,7 @@
                 });
                 getajaxjson("@Url.Action("GetDisableDiagramList", "Helper")", function (data) {
                     var disableoptions = {
-                        series: self.disablelist,
+                        series: data,
                         chart: {
                             height: 400,
                             width: 400,

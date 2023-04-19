@@ -216,19 +216,23 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                     break;
                 case 2:
                     {
-                        sql += " AND DistrictID = @DistrictID ";
-                        sqlparams.Add("@DistrictID", DistrictID);
+                        sql += " AND BirthDistrictID = @BirthDistrictID ";
+                        sqlparams.Add("@BirthDistrictID", DistrictID);
                     }
                     break;
                 case 3:
                     {
-                        sql += " AND RegionID = @RegionID ";
-                        sqlparams.Add("@RegionID", RegionID);
+                        sql += " AND BirthRegionID = @BirthRegionID ";
+                        sqlparams.Add("@BirthRegionID", RegionID);
                     }
                     break;
             }
             sql += " ) as x ";
             var data = _databaseExt.GetDataFromSql(sql, sqlparams).First();
+            if (data.child == null)
+            {
+                return new float[4] { 0, 0, 0, 0 };
+            }
             float child = data.child;
             float ten = data.ten;
             float mid = data.mid;
@@ -259,19 +263,23 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                     break;
                 case 2:
                     {
-                        sql += " AND DistrictID = @DistrictID ";
-                        sqlparams.Add("@DistrictID", DistrictID);
+                        sql += " AND BirthDistrictID = @BirthDistrictID ";
+                        sqlparams.Add("@BirthDistrictID", DistrictID);
                     }
                     break;
                 case 3:
                     {
-                        sql += " AND RegionID = @RegionID ";
-                        sqlparams.Add("@RegionID", RegionID);
+                        sql += " AND BirthRegionID = @BirthRegionID ";
+                        sqlparams.Add("@BirthRegionID", RegionID);
                     }
                     break;
             }
             sql += " ) as x ";
             var data = _databaseExt.GetDataFromSql(sql, sqlparams).First();
+            if (data.middle == null)
+            {
+                return new float[4] { 0, 0, 0, 0 };
+            }
             float middle = data.middle;
             float specialmid = data.specialmid;
             float high = data.high;
@@ -297,19 +305,23 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                     break;
                 case 2:
                     {
-                        sql += " AND DistrictID = @DistrictID ";
-                        sqlparams.Add("@DistrictID", DistrictID);
+                        sql += " AND BirthDistrictID = @BirthDistrictID ";
+                        sqlparams.Add("@BirthDistrictID", DistrictID);
                     }
                     break;
                 case 3:
                     {
-                        sql += " AND RegionID = @RegionID ";
-                        sqlparams.Add("@RegionID", RegionID);
+                        sql += " AND BirthRegionID = @BirthRegionID ";
+                        sqlparams.Add("@BirthRegionID", RegionID);
                     }
                     break;
             }
             sql += " ) as x ";
             var data = _databaseExt.GetDataFromSql(sql, sqlparams).First();
+            if (data.male == null)
+            {
+                return new float[2] { 0, 0 };
+            }
             float male = data.male;
             float female = data.frmale;
 
