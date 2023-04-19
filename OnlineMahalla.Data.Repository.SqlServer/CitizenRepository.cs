@@ -96,19 +96,19 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             {
                 case 1:
                     {
-                        sql += " AND Neighborhood.ID = @Neighborhood ";
+                        sql += " AND NeighborhoodID = @Neighborhood ";
                         sqlparams.Add("@Neighborhood", NeighborhoodID);
                     }
                     break;
                 case 2:
                     {
-                        sql += " AND Neighborhood.DistrictID = @DistrictID ";
+                        sql += " AND DistrictID = @DistrictID ";
                         sqlparams.Add("@DistrictID", DistrictID);
                     }
                     break;
                 case 3:
                     {
-                        sql += " AND Neighborhood.RegionID = @RegionID ";
+                        sql += " AND RegionID = @RegionID ";
                         sqlparams.Add("@RegionID", RegionID);
                     }
                     break;
@@ -131,9 +131,12 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                 AcademicTitleID = data.AcademicTitleID,
                 MarriedID = data.MarriedID,
                 CountChild = data.CountChild,
+                IsForeignCitizen = data.IsForeignCitizen,
+                IsCheckCityzen = data.IsCheckCityzen,
                 CitizenEmploymentID = data.CitizenEmploymentID,
                 IsLowIncome = data.IsLowIncome,
                 IsConvicted = data.IsConvicted,
+                NeighborhoodID = data.NeighborhoodID,
                 BirthPlace = data.BithPlace,
                 StateID = data.StateID,
                 PhoneNumber = data.PhoneNumber,

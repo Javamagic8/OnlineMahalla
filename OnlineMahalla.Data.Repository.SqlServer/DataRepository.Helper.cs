@@ -192,22 +192,17 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             return _databaseExt.GetDataFromSql(sql, new string[] { }, new object[] { });
         }
 
-        public int[] GetAgeDiagramList(int GenderID)
+        public float[] GetAgeDiagramList(int GenderID)
         {
             Dictionary<string, object> sqlparams = new Dictionary<string, object>();
 
-            string sql = @"SELECT (SUM(x.[6])/(SUM(x.[6]) + SUM(x.[718]) + SUM(x.[1925]) + SUM(x.[2650]) + SUM(x.[51])) * 100) child, 
-                                  (SUM(x.[718])/(SUM(x.[6]) + SUM(x.[718]) + SUM(x.[1925]) + SUM(x.[2650]) + SUM(x.[51])) * 100) childh,
-                                  (SUM(x.[1925])/(SUM(x.[6]) + SUM(x.[718]) + SUM(x.[1925]) + SUM(x.[2650]) + SUM(x.[51])) * 100) ten,
-                                  (SUM(x.[2650])/(SUM(x.[6]) + SUM(x.[718]) + SUM(x.[1925]) + SUM(x.[2650]) + SUM(x.[51])) * 100) mid,
-                                  (SUM(x.[51])/(SUM(x.[6]) + SUM(x.[718]) + SUM(x.[1925]) + SUM(x.[2650]) + SUM(x.[51])) * 100) old
-                            FROM (SELECT IIF(GETDATE() - DateOfBirth <= 6 , 1, 0) [6],
-                                  IIF(GETDATE() - DateOfBirth >= 7 AND GETDATE() - DateOfBirth <= 18, 1, 0) [718],
-                                  IIF(GETDATE() - DateOfBirth >= 19 AND GETDATE() - DateOfBirth <= 25, 1, 0) [1925],
-                                  IIF(GETDATE() - DateOfBirth >= 26 AND GETDATE() - DateOfBirth <= 50, 1, 0) [2650],
-                                  IIF(GETDATE() - DateOfBirth >= 51, 1, 0) [51]
-                                  FROM 
-                                  hl_Citizen WHERE GenderID = @GenderID ";
+            string sql = @"SELECT SUM(x.[6]) child, SUM(x.[1925]) ten, SUM(x.[2650]) mid,SUM(x.[51]) old
+								FROM (SELECT IIF(YEAR(GETDATE()) - YEAR(DateOfBirth) <= 6 , 1, 0) [6],
+									         IIF(YEAR(GETDATE()) - YEAR(DateOfBirth) >= 19 AND YEAR(GETDATE()) - YEAR(DateOfBirth) <= 25, 1, 0) [1925],
+									         IIF(YEAR(GETDATE()) - YEAR(DateOfBirth)>= 26 AND YEAR(GETDATE()) -  YEAR(DateOfBirth) <= 50, 1, 0) [2650],
+									         IIF(YEAR(GETDATE()) - YEAR(DateOfBirth) >= 51, 1, 0) [51]
+                                        FROM 
+                                             hl_Citizen WHERE GenderID = @GenderID ";
 
             sqlparams.Add("@GenderID", GenderID);
 
@@ -234,26 +229,26 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             }
             sql += " ) as x ";
             var data = _databaseExt.GetDataFromSql(sql, sqlparams).First();
-            return new int[4] { data.child, data.ten, data.mid, data.old };
-            
-        }
+            float child = data.child;
+            float ten = data.ten;
+            float mid = data.mid;
+            float old = data.old;
 
-        public int[] GetEducationDiagramList(int GenderID)
+            return new float[4] { child/(child + ten + mid + old) * 100, ten / (child + ten + mid + old) * 100, mid / (child + ten + mid + old) * 100, old / (child + ten + mid + old)*100 };
+        }
+        public float[] GetEducationDiagramList(int GenderID)
         {
             Dictionary<string, object> sqlparams = new Dictionary<string, object>();
-            string sql = @"SELECT ( SUM(x.middle) / (SUM(x.middle) + SUM(x.specialmid) + SUM(x.[high]) + SUM(x.academic)) * 100) middle,
-                                  ( SUM(x.specialmid) / (SUM(x.middle) + SUM(x.specialmid) + SUM(x.[high]) + SUM(x.academic)) * 100) specialmid,
-                                  ( SUM(x.[high]) / (SUM(x.middle) + SUM(x.specialmid) + SUM(x.[high]) + SUM(x.academic)) * 100) [high],
-                                  ( SUM(x.academic) / (SUM(x.middle) + SUM(x.specialmid) + SUM(x.[high]) + SUM(x.academic)) * 100) academic
-                            FROM (SELECT IIF(EducationID = 1, 1, 0) middle,
-                                  IIF(EducationID = 2, 1, 0) specialmid,
-                                  IIF(EducationID = 3, 1, 0) [high],
-                                  IIF(EducationID = 4, 1, 0) academic
-                                  FROM 
-                                  hl_Citizen WHERE GenderID = @GenderID ";
+
+            string sql = @"SELECT   SUM(x.middle) middle, SUM(x.specialmid)  specialmid, SUM(x.[high])[high], SUM(x.academic) academic
+                             FROM   (SELECT IIF(EducationID = 1, 1, 0) middle,
+                                    IIF(EducationID = 2, 1, 0) specialmid,
+                                    IIF(EducationID = 3, 1, 0) [high],
+                                    IIF(EducationID = 4, 1, 0) academic
+                                    FROM 
+                                    hl_Citizen WHERE GenderID = @GenderID ";
 
             sqlparams.Add("@GenderID", GenderID);
-
             switch (OrganizationTypeID)
             {
                 case 1:
@@ -277,17 +272,19 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             }
             sql += " ) as x ";
             var data = _databaseExt.GetDataFromSql(sql, sqlparams).First();
-            return new int[4] { data.child, data.ten, data.mid, data.old };
+            float middle = data.middle;
+            float specialmid = data.specialmid;
+            float high = data.high;
+            float academic = data.academic;
+
+            return new float[4] { middle / (middle + specialmid + high + academic) * 100, specialmid / (middle + specialmid + high + academic) * 100, high / (middle + specialmid + high + academic) * 100, academic / (middle + specialmid + high + academic) * 100 };
         }
 
-        public int[] GetDisableDiagramList()
+        public float[] GetDisableDiagramList()
         {
             Dictionary<string, object> sqlparams = new Dictionary<string, object>();
-            string sql = @"SELECT SUM(x.male)/(SUM(x.female) + SUM(x.male) * 100) male, 
-	                              SUM(x.female)/(SUM(x.female) + SUM(x.male) * 100) female
-                            FROM (SELECT
-                                  IIF(GenderID = 1, 1, 0) male,
-                                  IIF(GenderID = 2, 1, 0) female
+            string sql = @"SELECT SUM(x.male) male, SUM(x.female) female
+                            FROM (SELECT IIF(GenderID = 1, 1, 0) male, IIF(GenderID = 2, 1, 0) female
                                   FROM hl_Citizen WHERE IsDisabled = 1 ";
 
             switch (OrganizationTypeID)
@@ -312,10 +309,11 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                     break;
             }
             sql += " ) as x ";
+            var data = _databaseExt.GetDataFromSql(sql, sqlparams).First();
+            float male = data.male;
+            float female = data.frmale;
 
-             var data = _databaseExt.GetDataFromSql(sql, sqlparams).First();
-            int[] aray = new int[2] { data.male, data.female };
-            return aray;
+            return new float[2] { male / (male + female) * 100, female / (male + female) * 100 };
 
         }
 
