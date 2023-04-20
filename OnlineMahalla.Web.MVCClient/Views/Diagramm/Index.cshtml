@@ -15,25 +15,34 @@
     <link rel="stylesheet" href="~/lib/bootstrap-select/dist/css/bootstrap-select.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </environment>
-<body>
-    <div style="clear:both;"></div>
-    <h3 style="text-align:center">@SharedLocalizer["Fuqaro Monitoringi"]</h3>
-    <div class="panel panel-primary"></div>
-    <div id="custom-toolbar" class="bs-bars pull-center">
-        <div class="form-group form-inline" align="center">
-            <div class="input-group">
-                <input id="filtername" style="font-size:12px" class="form-control input-sm" placeholder="@SharedLocalizer["Fuqaro"]" />
-            </div>
-            <button id="refreshdata" class="btn btn-success btn-sm" data-toggle="popover" data-content="@SharedLocalizer["Yangilash"]" data-trigger="hover"><span class="glyphicon glyphicon-refresh"></span></button>
-            <div class="input-group">
-                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
-                        data-target="#exampleModal">
-                    <span class="glyphicon glyphicon-filter"></span>
-                </button>
+
+<style>
+    .bootstrap-table .table:not(.table-condensed), .bootstrap-table .table:not(.table-condensed) > tbody > tr > th, .bootstrap-table .table:not(.table-condensed) > tfoot > tr > th, .bootstrap-table .table:not(.table-condensed) > thead > tr > td, .bootstrap-table .table:not(.table-condensed) > tbody > tr > td, .bootstrap-table .table:not(.table-condensed) > tfoot > tr > td {
+        padding: 8px;
+        white-space: pre-wrap;
+    }
+</style>
+
+<h3 style="text-align:center">@SharedLocalizer["Fuqaro monitoringi"]</h3>
+<div class="panel panel-primary"></div>
+<div id="custom-toolbar" class="bs-bars pull-center">
+    <div class="form-group form-inline" align="center">
+        <div class="input-group">
+            <input id="filtername" style="font-size:13px;width:300px" class="form-control input-sm" placeholder="@SharedLocalizer["Oila nomi"]" />
+        </div>
+        <div class="input-group">
+            <div class="btn-toolbar">
+                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" 
+                            data-target="#editWindow">
+                        <span class="glyphicon glyphicon-filter"></span>
+                    </button>
+                <button id="refreshdata" class="btn btn-success btn-sm" data-toggle="popover" data-content="@SharedLocalizer["Yangilash"]" data-trigger="hover"><span class="glyphicon glyphicon-refresh"></span></button>
+                <div class="input-group" style="width:10px"></div>
             </div>
         </div>
     </div>
-</body>
+</div>
+
 <div class="container ex2">
     <table id="table"
            data-toolbar="#toolbar"
@@ -70,13 +79,14 @@
     </table>
 </div>
 
-<div id="exampleModal" class="modal fade" role="dialog">
+
+<div id="editWindow" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg" style="width:1500px">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title" style="text-align:center"><b>@SharedLocalizer["Ko'cha"]</b></h4>
+                <h4 class="modal-title" style="text-align:center"><b>@SharedLocalizer["Atribut filterlari"]</b></h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -86,65 +96,27 @@
                                 <br />
                                 <div class="form-group" align="center">
                                     <div class="form-group">
-                                        <form class="form-inline">
-                                            <label class="col-md-2 control-label" required
-                                                   style="font-size:12px;text-align:right">@SharedLocalizer["Ko'cha nomi"]</label>
-                                            <div class="col-sm-4">
-                                                <input placeholder="@SharedLocalizer["Ko'cha nomi"]"
-                                                       style="font-size:15px;width:95%" data-bind="value:street.Name"
-                                                       required class="text-left form-control input-sm" />
-                                            </div>
-                                        </form>
-                                        <form class="form-inline">
-                                            <label class="col-md-1 control-label"
-                                                   style="font-size:12px;text-align:right">@SharedLocalizer["Holati"]</label>
-                                            <div class="col-sm-4">
-                                                <select style="font-size:15px"
-                                                        data-bind='options: statelist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:street.StateID,selectPicker: {}'
-                                                        data-live-search="true" class="" data-width="95%"></select>
-                                            </div>
-                                        </form>
+                                        <label class="col-md-2 control-label" required style="font-size:13px">@SharedLocalizer["Viloyat"]</label>
+                                        <div class="col-sm-2">
+                                            <select data-bind='options: regionlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:citizen.RegionID,selectPicker: {},event:{ change: regionchange}' data-live-search="true" class="" data-width="100%"> </select>
+                                        </div>
+                                        <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Tuman"]</label>
+                                        <div class="col-sm-2">
+                                            <select data-bind='options: districtlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:citizen.DistrictID,selectPicker: {},event:{ change: changedistrict}' data-live-search="true" class="" data-width="100%"> </select>
+                                        </div>
+                                        <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Mahalla"]</label>
+                                        <div class="col-sm-2">
+                                            <select data-bind='options: neiglist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:citizen.NeighborhoodID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
+                                        </div>
                                     </div>
                                     <div class="form-group">
-                                        <form class="form-inline">
-                                            <label class="col-md-2 control-label" required
-                                                   style="font-size:12px;text-align:right">@SharedLocalizer["Mas'ul hodim"]</label>
-                                            <div class="col-sm-4">
-                                                <input placeholder="@SharedLocalizer["Mas'ul hodim"]"
-                                                       style="font-size:15px;width:95%" data-bind="value:street.ResponsibleOfficer"
-                                                       required class="text-left form-control input-sm" />
-                                            </div>
-                                        </form>
-                                        <form class="form-inline">
-                                            <label class="col-md-1 control-label"
-                                                   style="font-size:12px;text-align:right">@SharedLocalizer["Viloyat"]</label>
-                                            <div class="col-sm-4">
-                                                <select style="font-size:15px"
-                                                        data-bind='options: regionlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:street.RegionId,selectPicker: {},event:{ change: regionchange}'
-                                                        data-live-search="true" class="" data-width="95%"></select>
-                                            </div>
-                                        </form>
+                                        
                                     </div>
                                     <div class="form-group">
-                                        <form class="form-inline">
-                                            <label class="col-md-2 control-label" required
-                                                   style="font-size:12px;text-align:right">@SharedLocalizer["Tuman"]</label>
-                                            <div class="col-sm-4">
-                                                <select style="font-size:15px"
-                                                        data-bind='options: districtlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:street.DistrictId,selectPicker: {},event:{ change: districtchange}'
-                                                        data-live-search="true" class="" data-width="95%"></select>
-                                            </div>
-                                        </form>
-                                        <form class="form-inline">
-                                            <label class="col-md-1 control-label"
-                                                   style="font-size:12px;text-align:right">@SharedLocalizer["Mahalla"]</label>
-                                            <div class="col-sm-4">
-                                                <select style="font-size:15px"
-                                                        data-bind='options: orglist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:street.NeighborhoodId,selectPicker: {}'
-                                                        data-live-search="true" class="" data-width="95%"></select>
-                                            </div>
-                                        </form>
-
+                                        
+                                    </div>
+                                    <div class="form-group">
+                                        
                                     </div>
                                     <br />
                                     <div class="form-group">
@@ -168,6 +140,8 @@
         </div>
     </div>
 </div>
+
+
 @section scripts
     {
     <environment names="Development">
@@ -176,6 +150,11 @@
         <script src="~/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
         <script src="~/lib/bootstrap-datepicker/dist/locales/bootstrap-datepicker.ru.min.js"></script>
         <script src="~/lib/bootstrap-select/dist/js/bootstrap-select.js"></script>
+        <script src="~/lib/bootstrap-select/dist/js/bootstrap-select.js"></script>
+        <script src="~/js/utility.js"></script>
+        <script src="~/lib/knockout/dist/knockout.debug.js"></script>
+        <script src="~/lib/knockout-mapping/knockout.mapping.js"></script>
+        <script src="~/js/ko.utility.js" asp-append-version="true"></script>
     </environment>
     <environment names="Staging,Production">
         <script src="~/lib/bootstrap-table/dist/bootstrap-table.min.js"></script>
@@ -183,134 +162,196 @@
         <script src="~/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
         <script src="~/lib/bootstrap-datepicker/dist/locales/bootstrap-datepicker.ru.min.js"></script>
         <script src="~/lib/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+        <script src="~/js/utility.js"></script>
+        <script src="~/lib/knockout/dist/knockout.js"></script>
+        <script src="~/lib/knockout-mapping/knockout.mapping.js"></script>
+        <script src="~/js/ko.utility.js" asp-append-version="true"></script>
     </environment>
+
     <script type="text/javascript">
+        function nameFilter() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("nameInput");
+            filter = input.value.toUpperCase().trim();
+            table = document.getElementById("filterTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[2];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function queryParams(params) {
+            params.Name = $('#filtername').val();
+            return params;
+        }
+
+        function queryParamsemp1(params) {
+            return params;
+        }
+        function queryParamsemp2(params) {
+            return params;
+        }
+
+
         var ItemModel = function () {
             var self = this;
             self.citizen = {};
-            self.nationlist = ko.mapping.fromJS([]);
-            self.educationlist = ko.mapping.fromJS([]);
-            self.genderlist = ko.mapping.fromJS([]);
-            self.academicdegreelist = ko.mapping.fromJS([]);
-            self.marriedlist = ko.mapping.fromJS([]);
-            self.academictitlelist = ko.mapping.fromJS([]);
-            self.citizenemploymentlist = ko.mapping.fromJS([]);
             self.regionlist = ko.mapping.fromJS([]);
             self.districtlist = ko.mapping.fromJS([]);
-            self.streetlist = ko.mapping.fromJS([]);
-            self.familylist = ko.mapping.fromJS([]);
+            self.neiglist = ko.mapping.fromJS([]);
 
-            self.loaddata = function () {
-                getajaxjson("@Url.Action("GetStateList", "Helper")", function (data) {
-                    ko.mapping.fromJS(data, self.statelist);
-                });
-                getajaxjson("@Url.Action("GetNationList", "Helper")", function (data) {
-                    ko.mapping.fromJS(data, self.nationlist);
-                });
-                getajaxjson("@Url.Action("GetEducationList", "Helper")", function (data) {
-                    ko.mapping.fromJS(data, self.educationlist);
-                });
-                getajaxjson("@Url.Action("GetGenderList", "Helper")", function (data) {
-                    ko.mapping.fromJS(data, self.genderlist);
-                });
-                getajaxjson("@Url.Action("GetAcademicDegreeList", "Helper")", function (data) {
-                    ko.mapping.fromJS(data, self.academicdegreelist);
-                });
-                getajaxjson("@Url.Action("GetMarriedList", "Helper")", function (data) {
-                    ko.mapping.fromJS(data, self.marriedlist);
-                });
-                getajaxjson("@Url.Action("GetAcademicTitleList", "Helper")", function (data) {
-                    ko.mapping.fromJS(data, self.academictitlelist);
-                });
-                getajaxjson("@Url.Action("GetCitizenEmploymentList", "Helper")", function (data) {
-                    ko.mapping.fromJS(data, self.citizenemploymentlist);
-                });
+            self.loaddata = function (id) {
+
                 getajaxjson("@Url.Action("GetRegionList", "Helper")", function (data) {
                     ko.mapping.fromJS(data, self.regionlist);
                 });
                 getajaxjson("@Url.Action("GetDistrictList", "Helper")", function (data) {
                     ko.mapping.fromJS(data, self.districtlist);
                 });
-                getajaxjson("@Url.Action("GetNeighborhoodstreet", "Helper")", function (data) {
-                    ko.mapping.fromJS(data, self.streetlist);
-                });
-                getajaxjson("@Url.Action("GetFamilyList", "Helper")", function (data) {
-                    ko.mapping.fromJS(data, self.familylist);
+                getajaxjson("@Url.Action("GetNeighborhoodList", "Helper")" + "/?TypeRequest=1", function (data) {
+                    ko.mapping.fromJS(data, self.neiglist);
                 });
             };
 
+            self.checkdata = function () {
+                if (self.family.StateID() === null || self.family.StateID() === undefined || self.family.StateID() === "") {
+                    alert("@SharedLocalizer["Holat belgilanmagan"]");
+                    return false;
+                }
+                if (self.family.Name() === null || self.family.Name() === undefined || self.family.Name() === "") {
+                    alert("@SharedLocalizer["Nomi belgilanmagan"]");
+                    return false;
+                }
+                return true;
+            };
             self.regionchange = function () {
-                getajaxjson("@Url.Action("GetDistrictList", "Helper")" + "/?RegionID=" + self.citizen.BirthdayRegionID(), function (data) {
+                getajaxjson("@Url.Action("GetDistrictList", "Helper")" + "/?RegionID=" + self.citizen.RegionID(), function (data) {
                     ko.mapping.fromJS(data, self.districtlist);
                 });
             };
             self.changedistrict = function () {
-                getajaxjson("@Url.Action("GetNeighborhoodList", "Helper")" + "/?TypeRequest=" + self.citizen.StreetID() + "/?DistrictList=" + self.citizen.StreetID(), function (data) {
-                    ko.mapping.fromJS(data, self.familylist);
+                getajaxjson("@Url.Action("GetNeighborhoodList", "Helper")" + "/?DistrictList" + self.citizen.NeighborhoodID(), function (data) {
+                    ko.mapping.fromJS(data, self.neiglist);
                 });
             };
-            ko.bindingHandlers.selectPicker = {
-                after: ['options'],   /* KO 3.0 feature to ensure binding execution order */
-                init: function (element, valueAccessor, allBindingsAccessor) {
-                    var $element = $(element);
-                    $element.addClass('selectpicker').selectpicker();
-
-                    var doRefresh = function () {
-                        $element.selectpicker('refresh');
-                    }, subscriptions = [];
-
-                    var addSubscription = function (bindingKey) {
-                        var targetObs = allBindingsAccessor.get(bindingKey);
-
-                        if (targetObs && ko.isObservable(targetObs)) {
-                            subscriptions.push(targetObs.subscribe(doRefresh));
-                        }
-                    };
-                    addSubscription('options');
-                    addSubscription('value');           // Single
-                    addSubscription('selectedOptions'); // Multiple
-                    ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
-                        while (subscriptions.length) {
-                            subscriptions.pop().dispose();
-                        }
-                    });
-                },
-                update: function (element, valueAccessor, allBindingsAccessor) {
+            self.savedata = function () {
+                if (!self.checkdata()) {
+                    return;
                 }
+                var datatosave = ko.mapping.toJSON(self.family);
+                $.ajax({
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json; charset=utf-8"
+                    },
+                    type: "POST",
+                    url: "@Url.Action("Update", "Family")",
+                    data: datatosave
+                }).done(function (data, status, xhr) {
+                    alert("@SharedLocalizer["Muvoffaqyatli"]");
+                    $("#editWindow").modal('hide');
+                    $('#table').bootstrapTable('refresh');
+                })
+                    .fail(function (xhr, status, error) {
+                        alert(xhr.responseText + " Xatolik:" + error);
+                    });
+            };
+
+            self.closewindow = function () {
+                $("#editWindow").modal('hide');
+                $('#table').bootstrapTable('refresh');
             };
         }
 
-        function queryParams(params) {
-            params.name = $('#filtername').val();
-            return params;
-        }
 
         $(document).ready(function () {
-            $('[data-toggle="popover"]').popover({
-                placement: 'top'
-            });
-            var $table = $('#table'),
-                selectedrow = [];
-            initTable();
+            var $table = $('#table');
+
+            selectedrow = [];
+
             function refreshdata() {
-                $('#table').bootstrapTable('refresh');
+                filter = 1;
+                $table.bootstrapTable('refresh');
             }
+
+            initTable();
+
+            var itemModel = new ItemModel();
+
+            itemModel.loaddata(0);
+            ko.applyBindings(itemModel);
+            selectedorgrow = [];
+            selectedid = [];
+
             $('#refreshdata').click(function () {
-                refreshdata();
+                $('#table').bootstrapTable('refresh');
             });
+
+            $('#addRow').click(function () {
+                editRow(0);
+            });
+
+            $('#editRow').click(function () { editRow(selectedrow); });
+
+            var selectedRows = '';
+
+
+            $('#table').on('dblclick', function () { editRow(); });
+
+            self.savedata = function () {
+                if (!self.checkdata()) {
+                    return;
+                }
+                var datatosave = ko.mapping.toJSON(self.family);
+                $.ajax({
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json; charset=utf-8"
+                    },
+                    type: "POST",
+                    url: "@Url.Action("Update", "Family")",
+                    data: datatosave
+                }).done(function (data, status, xhr) {
+                    alert("@SharedLocalizer["Muvoffaqyatli saqlandi"]");
+                    $("#editWindow").modal('hide');
+                    $('#table').bootstrapTable('refresh');
+                })
+                    .fail(function (xhr, status, error) {
+                        alert(xhr.responseText);
+                    });
+            };
+
             function initTable() {
                 $table.bootstrapTable({
                     pageSize: 50,
-                    height: getHeight(),
+                    height: getHeight()
                 });
                 $table.on('click-row.bs.table', function (e, row, $element) {
                     $('.success').removeClass('success');
                     $($element).addClass('success');
                     selectedrow = row.ID;
+                    selectedid = row.ID;
+                    userid = row.ID;
                 });
+                $table.on('load-error.bs.table', function (e, status, res) {
+                    alert(res.responseText);
+                });
+
+
+                // sometimes footer render error.
+
                 setTimeout(function () {
                     $table.bootstrapTable('resetView');
                 }, 200);
+
                 $(window).resize(function () {
                     $table.bootstrapTable('resetView', {
                         height: getHeight()
@@ -320,7 +361,13 @@
             function getHeight() {
                 return $(window).height() - $('h3').outerHeight(true) * 2.5 - $('#custom-toolbar').outerHeight(true) * 2.5;
             }
+            function editRow(id) {
+                itemModel.loaddata(id);
+                $("#editWindow").modal('show');
+            }
         });
+
+
         $(document).keypress(function (e) {
             if (e.which == 13) {
                 $("#refreshdata").click();
