@@ -35,7 +35,7 @@ namespace OnlineMahalla.Common.Model.Interface
         IEnumerable<dynamic> GetAllDistrict(int? RegionID);
 
         IEnumerable<dynamic> GetRegionList();
-        IEnumerable<dynamic> GetNeighborhoodList();
+        IEnumerable<dynamic> GetNeighborhoodList(int? TypeRequest, int? DistrictList);
         IEnumerable<dynamic> GetNeighborhoodListForStreet(int? DistrictID);
         IEnumerable<dynamic> GetTableList();
         IEnumerable<dynamic> GetNationList();

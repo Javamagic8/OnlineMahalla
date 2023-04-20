@@ -48,9 +48,9 @@ namespace UZASBO.Web.MVCClient.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetNeighborhoodList()
+        public IActionResult GetNeighborhoodList(int? TypeRequest, int? DistrictList)
         {
-            return new JsonResult(_dataRepository.GetNeighborhoodList());
+            return new JsonResult(_dataRepository.GetNeighborhoodList(TypeRequest, DistrictList));
         }
 
         public IActionResult GetTableList()

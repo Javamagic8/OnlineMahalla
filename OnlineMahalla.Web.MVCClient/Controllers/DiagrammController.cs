@@ -27,37 +27,9 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
             _hostingEnvironment = hostingEnvironment;
 
         }
-        public IActionResult ManAge()
+        public IActionResult Index()
         {
-            if (!_dataRepository.UserIsInRole("UserView"))
-                return Unauthorized();
-            return View();
-        }
-
-        public IActionResult WomanAge()
-        {
-            if (!_dataRepository.UserIsInRole("UserView"))
-                return Unauthorized();
-            return View();
-        }
-
-        public IActionResult ManEducation()
-        {
-            if (!_dataRepository.UserIsInRole("UserView"))
-                return Unauthorized();
-            return View();
-        }
-
-        public IActionResult WomanEducation()
-        {
-            if (!_dataRepository.UserIsInRole("UserView"))
-                return Unauthorized();
-            return View();
-        }
-
-        public IActionResult ManWomanDisable()
-        {
-            if (!_dataRepository.UserIsInRole("UserView"))
+            if (!_dataRepository.UserIsInRole("MonitoringniKorish"))
                 return Unauthorized();
             return View();
         }
