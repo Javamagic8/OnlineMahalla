@@ -85,6 +85,138 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             data.total = (int)_databaseExt.ExecuteScalar(sqlcount, sqlparams);
             return data;
         }
+        public PagedDataEx GetMonitoringList(string? Name, int? RegionID, int? DistrictID, int? NeigID, bool? IsConvicted, bool? IsLowIncome, bool? IsDisabled,
+            int? AcademicDegreeID, int? EducationID, int? AcademicTitleID, int? NationID, int? CitizenEmploymentID, string ToDate, string Date, int? GenderID, int? MarriedID, string Search, string Sort, string Order, int Offset, int Limit)
+        {
+            PagedDataEx data = new PagedDataEx();
+            Dictionary<string, object> sqlparams = new Dictionary<string, object>();
+            string sqlselect = @"SELECT Citizen.ID ID,
+                                        Citizen.FullName,
+                                        Citizen.PINFL,
+                                        Citizen.DateOfBirth,
+                                        Nationality.DisplayName Nation,
+                                        IIF(Citizen.IsForeignCitizen = 1,'Chetel','Uzbekiston') ForeignCitizen,
+                                        CitizenEmployment.DisplayName CitizenEmployment,
+                                        Street.Name Street,
+                                        Citizen.PhoneNumber,
+                                        Neighborhood.Name Neighborhood,
+                                        [State].DisplayName [State] ";
+
+            string sqlfrom = @" FROM hl_Citizen Citizen 
+                                     JOIN info_Nation Nationality ON Nationality.ID = Citizen.NationID
+                                     JOIN enum_Gender Gender ON Gender.ID = Citizen.GenderID
+                                     JOIN enum_Education Education ON Education.ID = Citizen.EducationID
+                                     LEFT JOIN enum_AcademicTitle AcademicTitle ON AcademicTitle.ID = Citizen.AcademicTitleID
+                                     LEFT JOIN enum_AcademicDegree AcademicDegree ON AcademicDegree.ID = Citizen.AcademicDegreeID
+                                     JOIN enum_Married Married ON Married.ID = Citizen.MarriedID
+                                     JOIN enum_CitizenEmployment CitizenEmployment ON CitizenEmployment.ID = Citizen.CitizenEmploymentID
+                                     JOIN info_Region Region ON Region.ID = Citizen.BirthRegionID
+                                     JOIN info_District District ON District.ID = Citizen.BirthDistrictID
+                                     JOIN info_Neighborhood Neighborhood ON Neighborhood.ID = Citizen.NeighborhoodID
+                                     JOIN enum_State [State] ON [State].ID = Citizen.StateID
+									 JOIN info_Street Street ON Street.ID = Citizen.StreetID ";
+
+            string sqlwhere = " WHERE 1 = 1 ";
+
+
+
+            if (RegionID.HasValue && RegionID.Value > 0)
+            {
+                sqlwhere += " AND Citizen.BirthRegionID = @BirthRegionID";
+                sqlparams.Add("@BirthRegionID", RegionID.Value);
+            }
+            if (DistrictID.HasValue && DistrictID.Value > 0)
+            {
+                sqlwhere += " AND Citizen.BirthDistrictID = @BirthDistrictID";
+                sqlparams.Add("@BirthDistrictID", DistrictID.Value);
+            }
+            if (NeigID.HasValue && NeigID.Value > 0)
+            {
+                sqlwhere += " AND Citizen.NeighborhoodID = @NeighborhoodID";
+                sqlparams.Add("@NeighborhoodID", NeigID.Value);
+            }
+            if (IsConvicted.HasValue)
+            {
+                sqlwhere += " AND Citizen.IsConvicted = @IsConvicted";
+                sqlparams.Add("@IsConvicted", IsConvicted.Value);
+            }
+            if (IsLowIncome.HasValue)
+            {
+                sqlwhere += " AND Citizen.IsLowIncome = @IsLowIncome";
+                sqlparams.Add("@IsLowIncome", IsLowIncome.Value);
+            }
+            if (IsDisabled.HasValue)
+            {
+                sqlwhere += " AND Citizen.IsDisabled = @IsDisabled";
+                sqlparams.Add("@IsDisabled", IsDisabled.Value);
+            }
+            if (AcademicDegreeID.HasValue && AcademicDegreeID.Value > 0)
+            {
+                sqlwhere += " AND Citizen.AcademicDegreeID = @AcademicDegreeID";
+                sqlparams.Add("@AcademicDegreeID", AcademicDegreeID.Value);
+            }
+            if (EducationID.HasValue && EducationID.Value > 0)
+            {
+                sqlwhere += " AND Citizen.EducationID = @EducationID";
+                sqlparams.Add("@EducationID", EducationID.Value);
+            }
+            if (AcademicTitleID.HasValue && AcademicTitleID.Value > 0)
+            {
+                sqlwhere += " AND Citizen.AcademicTitleID = @AcademicTitleID";
+                sqlparams.Add("@AcademicTitleID", AcademicTitleID.Value);
+            }
+            if (NationID.HasValue && NationID.Value > 0)
+            {
+                sqlwhere += " AND Citizen.NationID = @NationID";
+                sqlparams.Add("@NationID", NationID.Value);
+            }
+            if (CitizenEmploymentID.HasValue && CitizenEmploymentID.Value > 0)
+            {
+                sqlwhere += " AND Citizen.CitizenEmploymentID = @CitizenEmploymentID";
+                sqlparams.Add("@CitizenEmploymentID", CitizenEmploymentID.Value);
+            }
+            if (GenderID.HasValue && GenderID.Value > 0)
+            {
+                sqlwhere += " AND Citizen.GenderID = @GenderID";
+                sqlparams.Add("@GenderID", GenderID.Value);
+            }
+            if (MarriedID.HasValue && MarriedID.Value > 0)
+            {
+                sqlwhere += " AND Citizen.MarriedID = @MarriedID";
+                sqlparams.Add("@MarriedID", MarriedID.Value);
+            }
+            if (!String.IsNullOrEmpty(Date))
+            {
+                DateTime tostartdate = DateTime.ParseExact(Date.ToString(), "dd.MM.yyyy", null);
+                sqlwhere += " AND Citizen.DateOfBirth <= @ToDateOfBirth";
+                sqlparams.Add("@ToDateOfBirth", tostartdate);
+            }
+            if (!String.IsNullOrEmpty(ToDate))
+            {
+                DateTime toenddate = DateTime.ParseExact(ToDate.ToString(), "dd.MM.yyyy", null);
+                sqlwhere += " AND Citizen.DateOfBirth >= @DateOfBirth";
+                sqlparams.Add("@DateOfBirth", toenddate);
+            }
+
+            if (!String.IsNullOrEmpty(Name))
+            {
+                sqlwhere += " AND Citizen.FullName LIKE '%' + @FullName + '%'";
+                sqlparams.Add("@FullName", Name);
+            }
+            string sqlcount = "SELECT Count(Citizen.ID)" + sqlfrom + sqlwhere;
+            if (!String.IsNullOrEmpty(Sort))
+                sqlwhere += " ORDER BY " + Sort + " " + (Order == "asc" ? " " : " DESC");
+            else
+                sqlwhere += " ORDER BY Citizen.ID " + (Order == "asc" ? " " : " DESC");
+
+            if (Limit > 0)
+                sqlwhere += " OFFSET " + Offset + " ROWS FETCH NEXT " + Limit + " ROWS ONLY";
+
+            string sql = sqlselect + sqlfrom + sqlwhere;
+            data.rows = _databaseExt.GetDataFromSql(sql, sqlparams);
+            data.total = (int)_databaseExt.ExecuteScalar(sqlcount, sqlparams);
+            return data;
+        }
         public Citizen GetCitizen(int? id)
         {
             Dictionary<string, object> sqlparams = new Dictionary<string, object>();

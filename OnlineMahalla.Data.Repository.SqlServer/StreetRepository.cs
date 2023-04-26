@@ -54,6 +54,16 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                 sqlwhere += " AND Street.Name LIKE '%' + @Name + '%'";
                 sqlparams.Add("@Name", Name);
             }
+            if (!String.IsNullOrEmpty(District))
+            {
+                sqlwhere += " AND District.Name LIKE '%' + @District + '%'";
+                sqlparams.Add("@District", District);
+            }
+            if (!String.IsNullOrEmpty(Region))
+            {
+                sqlwhere += " AND Region.Name LIKE '%' + @Region + '%'";
+                sqlparams.Add("@Region", Region);
+            }
             string sqlcount = "SELECT Count(Street.ID)" + sqlfrom + sqlwhere;
             if (!String.IsNullOrEmpty(Sort))
                 sqlwhere += " ORDER BY " + Sort + " " + (Order == "asc" ? " " : " DESC");

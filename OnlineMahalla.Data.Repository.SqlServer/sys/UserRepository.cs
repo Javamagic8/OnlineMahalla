@@ -55,7 +55,7 @@ namespace OnlineMahalla.Data.Repository.SqlServer
             }
             if (!String.IsNullOrEmpty(NeighborhoodName))
             {
-                sqlwhere += " AND (org.Name like '%' + @OrganizationName + '%')";
+                sqlwhere += " AND (Neighborhood.Name like '%' + @OrganizationName + '%')";
                 sqlparamas.Add("@OrganizationName", NeighborhoodName);
             }
             if (!String.IsNullOrEmpty(NeighborhoodINN))

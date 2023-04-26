@@ -105,10 +105,6 @@
                         <i class="fa fa-edit"></i>@*@SharedLocalizer["Edit"]*@
                     </button>
                     <div class="input-group" style="width:10px"></div>
-                    <button data-roleview="FoydalanuvchilarniOzgartirish" id="deleteRow" type="button" class="btn btn-danger btn-sm"
-                            data-toggle="popover" data-trigger="hover" data-content="@SharedLocalizer["O'chirish"]">
-                        <i class="glyphicon glyphicon-trash"></i>@*@SharedLocalizer["Accept"]*@
-                    </button>
                 </div>
             </div>
         </div>
@@ -669,8 +665,8 @@
             params.INN = $('#filterOrgINN').val();
             params.ID = $('#filterOrgID').val();
             params.Name = $('#filterOrgName').val();
-            params.Oblast = $('#filterOrgOblast').val();
-            params.Region = $('#filterOrgRegion').val();
+            params.Region = $('#filterOrgOblast').val();
+            params.District = $('#filterOrgRegion').val();
             return params;
         }
 

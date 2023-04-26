@@ -69,11 +69,11 @@
                     </div>
                     <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Oilasi"]</label>
                     <div class="col-sm-2">
-                        <select data-bind='options: marriedlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:citizen.MarriedID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
+                        <select data-bind='options: marriedlist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:citizen.MarriedID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
                     </div>
                     <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Akademik unvoni"]</label>
                     <div class="col-sm-2">
-                        <select data-bind='options: academictitlelist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:citizen.AcademicTitleID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
+                        <select data-bind='options: academictitlelist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:citizen.AcademicTitleID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
                     </div>
 
                 </div>
@@ -108,11 +108,11 @@
                     <div class="col-sm-2">
                         <select data-bind='options: citizenemploymentlist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:citizen.CitizenEmploymentID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
                     </div>
-                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Tug'ilgan Viloyati"]</label>
+                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Viloyat"]</label>
                     <div class="col-sm-2">
                         <select data-bind='options: regionlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:citizen.BirthdayRegionID,selectPicker: {},event:{ change: regionchange}' data-live-search="true" class="" data-width="100%"> </select>
                     </div>
-                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Tug'ilgan tumani"]</label>
+                    <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Tuman"]</label>
                     <div class="col-sm-2">
                         <select data-bind='options: districtlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:citizen.BirthdayDistrictID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
                     </div>
@@ -157,47 +157,7 @@
         </div>
     </div>
 </div>
-<!-- Modal Select DataHistory -->
-<div id="datahistoryselectWindow" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">@SharedLocalizer["DataHistory"]</h4>
-            </div>
-            <p></p>
-            <div class="modal-body">
-                <div class="container">
-                    <table id="tableDataHistorySelect"
-                           data-search="false"
-                           data-show-refresh="false"
-                           data-show-toggle="false"
-                           data-show-columns="false"
-                           data-show-export="true"
-                           data-pagination="true"
-                           data-page-list="[50,100,150,200]"
-                           data-detail-view="false"
-                           data-minimum-count-columns="2"
-                           data-show-pagination-switch="false"
-                           data-side-pagination="server"
-                           data-query-params="queryParams"
-                           data-id-field="ID">
-                        <thead>
-                            <tr>
-                                <th data-field="Value" data-sortable="true">@SharedLocalizer["Value"]</th>
-                                <th data-field="DateOfCreated" data-sortable="true">@SharedLocalizer["DateOfCreated"]</th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">@SharedLocalizer["Close"]</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 
 @section scripts

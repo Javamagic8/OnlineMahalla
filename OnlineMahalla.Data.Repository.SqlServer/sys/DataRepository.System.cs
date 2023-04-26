@@ -32,10 +32,15 @@ namespace OnlineMahalla.Data.Repository.SqlServer
 
             var data = _databaseExt.GetDataFromSql(@"SELECT
                 neig.ID NeigID,
-                neig.Name NeigName
+                neig.Name NeigName,
+				district.Name DistrictName,
+				region.Name RegionName,
+				neig.TypeOrganizationID
                 FROM 
                 sys_User us
                 JOIN info_Neighborhood neig ON neig.ID=us.NeighborhoodID
+				JOIN info_Region region ON region.ID = neig.RegionID
+				JOIN info_District district ON district.ID = neig.DistrictID
                 WHERE us.Name=@UserName AND us.StateID <> 2", new string[] { "@UserName" }, new object[] { (UserName.StartsWith("ct_") && UserName.Length == 12) ? "ct" : UserName }).FirstOrDefault();
 
             UserInfo userInfo = new UserInfo()
@@ -44,11 +49,28 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                 UserID = userID,
                 NeigID = NeigID,
                 UserName = UserName,
+                RegionName = data.RegionName,
+                OrgTypeID = data.TypeOrganizationID,
+                DistrictName = data.DistrictName,
                 Roles = _databaseExt.GetDataFromSql("SELECT dbo.sys_Module.Name FROM dbo.sys_Module INNER JOIN dbo.sys_RoleModule ON dbo.sys_Module.ID = dbo.sys_RoleModule.ModuleID INNER JOIN dbo.sys_Role ON dbo.sys_RoleModule.RoleID = dbo.sys_Role.ID INNER JOIN dbo.sys_UserRole ON dbo.sys_Role.ID = dbo.sys_UserRole.RoleID WHERE (dbo.sys_UserRole.UserID =@UserID AND dbo.sys_UserRole.StateID=1)",
                 new string[] { "@UserID" }, new object[] { userID }).Select(x => (string)x.Name).ToList(),
                 Date = DateTime.Today.ToString("dd.MM.yyyy"),
                 IsChildLogOut = IsChildLogOut
             };
+            switch (userInfo.OrgTypeID)
+            {
+                case 1: userInfo.MonitoringName = GetOrganization(NeigID).Name + " bo'yicha monitoring ";
+                    break;
+                case 2:
+                    userInfo.MonitoringName = userInfo.DistrictName + " bo'yicha monitoring ";
+                    break;
+                case 3:
+                    userInfo.MonitoringName = userInfo.RegionName + " bo'yicha monitoring ";
+                    break;
+                case 4:
+                    userInfo.MonitoringName =  "Respublika bo'yicha monitoring ";
+                    break;
+            }
             return userInfo;
         }
 

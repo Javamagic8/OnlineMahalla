@@ -53,6 +53,12 @@ namespace UZASBO.Web.MVCClient.Controllers
             return new JsonResult(_dataRepository.GetNeighborhoodList(TypeRequest, DistrictList));
         }
 
+        [HttpGet]
+        public IActionResult GetDistrictNeighborhoodList(int DistrictList)
+        {
+            return new JsonResult(_dataRepository.GetNeighborhoodList(null,DistrictList));
+        }
+
         public IActionResult GetTableList()
         {
             return new JsonResult(_dataRepository.GetTableList());

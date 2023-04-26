@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using OnlineMahalla.Common.Model.Interface;
+using OnlineMahalla.Common.Model.Models.info;
 using OnlineMahalla.Common.Model.Models.sys;
 using OnlineMahalla.Web.MVCClient.Extentions;
 using OnlineMahalla.Web.MVCClient.Models;
@@ -36,9 +37,11 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
             string actionUrl = Url.Action("Profile", "Contractor");
             if (data.UserName.Substring(0, 3) == "ct_")
                 return Redirect(actionUrl);
-            //return Url.RouteUrl(new { Controller="Contractor",Action= "Profile" })
+            string asd = 
+            ViewBag.PageTitle = _dataRepository.GetUserInfo().MonitoringName;
             ViewBag.Title = _localizer["Info"];
             return View();
+            
         }
         public IActionResult About()
         {

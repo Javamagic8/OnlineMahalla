@@ -185,8 +185,30 @@ namespace OnlineMahalla.Data.Repository.SqlServer
                                  ,[CreateUserID]
                                  ,[DateOfModified]
                                  ,[ModifiedUserID]
-                             FROM [dbo].[info_Street] WHERE NeighborhoodID = @NeighborhoodID";
-            return _databaseExt.GetDataFromSql(sql, new string[] { "@NeighborhoodID" }, new object[] { NeighborhoodID });
+                             FROM [dbo].[info_Street] WHERE 1 = 1 ";
+            Dictionary<string, object> sqlparams = new Dictionary<string, object>();
+            switch (OrganizationTypeID)
+            {
+                case 1:
+                    {
+                        sql += " AND NeighborhoodID = @Neighborhood ";
+                        sqlparams.Add("@Neighborhood", NeighborhoodID);
+                    }
+                    break;
+                case 2:
+                    {
+                        sql += " AND DistrictID = @DistrictID ";
+                        sqlparams.Add("@DistrictID", DistrictID);
+                    }
+                    break;
+                case 3:
+                    {
+                        sql += " AND RegionID = @RegionID ";
+                        sqlparams.Add("@RegionID", RegionID);
+                    }
+                    break;
+            }
+            return _databaseExt.GetDataFromSql(sql, sqlparams);
         }
 
         public IEnumerable<dynamic> GetOrgList(int? ID)

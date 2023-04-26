@@ -32,10 +32,10 @@
         </div>
         <div class="input-group">
             <div class="btn-toolbar">
-                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" 
-                            data-target="#editWindow">
-                        <span class="glyphicon glyphicon-filter"></span>
-                    </button>
+                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                        data-target="#editWindow">
+                    <span class="glyphicon glyphicon-filter"></span>
+                </button>
                 <button id="refreshdata" class="btn btn-success btn-sm" data-toggle="popover" data-content="@SharedLocalizer["Yangilash"]" data-trigger="hover"><span class="glyphicon glyphicon-refresh"></span></button>
                 <div class="input-group" style="width:10px"></div>
             </div>
@@ -59,7 +59,7 @@
            data-page-list="[50,100,150,200]"
            data-show-footer="false"
            data-side-pagination="server"
-           data-url="@Url.Action("GetList", "Citizen")"
+           data-url="@Url.Action("GetMonitoringList", "Citizen")"
            data-query-params="queryParams"
            class="table table-striped">
         <thead>
@@ -81,7 +81,7 @@
 
 
 <div id="editWindow" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg" style="width:1500px">
+    <div class="modal-dialog modal-lg" style="width:1600px">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
@@ -98,34 +98,108 @@
                                     <div class="form-group">
                                         <label class="col-md-2 control-label" required style="font-size:13px">@SharedLocalizer["Viloyat"]</label>
                                         <div class="col-sm-2">
-                                            <select data-bind='options: regionlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:citizen.RegionID,selectPicker: {},event:{ change: regionchange}' data-live-search="true" class="" data-width="100%"> </select>
+                                            <select id="regionid" , data-bind='options: regionlist, optionsText: "Name",optionsValue:"ID",
+                                                        optionsCaption: "@SharedLocalizer["Tanlang"]",
+                                                          selectPicker: {},event:{ change: regionchange}'
+                                                    data-live-search="true" class="" data-width="100%"> </select>
                                         </div>
                                         <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Tuman"]</label>
                                         <div class="col-sm-2">
-                                            <select data-bind='options: districtlist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:citizen.DistrictID,selectPicker: {},event:{ change: changedistrict}' data-live-search="true" class="" data-width="100%"> </select>
+                                            <select id="districtid" data-bind='options: districtlist, optionsText: "Name",
+                                                    optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]",
+                                                    selectPicker: {},event:{ change: changedistrict}' data-live-search="true" class="" data-width="100%"> </select>
                                         </div>
                                         <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Mahalla"]</label>
                                         <div class="col-sm-2">
-                                            <select data-bind='options: neiglist, optionsText: "Name",optionsValue:"ID", optionsCaption: "@SharedLocalizer["Tanlang"]", value:citizen.NeighborhoodID,selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
+                                            <select id="neigid" data-bind='options: neiglist, optionsText: "Name",optionsValue:"ID", optionsCaption:
+                                                   "@SharedLocalizer["Tanlang"]",selectPicker: {}'
+                                                    data-live-search="true" class="" data-width="100%"> </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        
+                                        <label class="col-md-2 control-label" required style="font-size:13px">@SharedLocalizer["Sudlangan"]</label>
+                                        <div class="col-sm-1">
+                                            <input id="isconvicted" placeholder="@SharedLocalizer["Sudlangan"]"
+                                                   style="width: 30px;align-content:center"
+                                                   data-bind="checked:selt.IsConvicted, valueUpdate:'afterkeydown'"
+                                                   type="checkbox" class="form-control input-sm" />
+                                        </div><label class="col-md-2 control-label" required style="font-size:13px">@SharedLocalizer["Kamtaminlangan"]</label>
+                                        <div class="col-sm-1">
+                                            <input id="islowincome" placeholder="@SharedLocalizer["Kamtaminlangan"]"
+                                                   style="width: 30px;align-content:center"
+                                                   data-bind="checked:selt.IsLowIncome,valueUpdate:'afterkeydown'"
+                                                   type="checkbox" class="form-control input-sm" />
+                                        </div><label class="col-md-2 control-label" required style="font-size:13px">@SharedLocalizer["Nogiron"]</label>
+                                        <div class="col-sm-1">
+                                            <input id="isdisabled" placeholder="@SharedLocalizer["Nogiron"]"
+                                                   style="width: 30px;align-content:center"
+                                                   data-bind="checked:selt.IsDisabled,valueUpdate:'afterkeydown'"
+                                                   type="checkbox" class="form-control input-sm" />
+                                        </div>
                                     </div>
                                     <div class="form-group">
-                                        
+                                        <label class="col-md-2 control-label" required style="font-size:13px">@SharedLocalizer["Akademik darajasi"]</label>
+                                        <div class="col-sm-2">
+                                            <select id="academicdegreeid" data-bind='options: academicdegreelist, optionsText: "DisplayName",optionsValue:"ID",
+                                                            optionsCaption: "@SharedLocalizer["Tanlang"]",
+                                                            selectPicker: {}' data-live-search="true" class="" data-width="100%"> </select>
+                                        </div>
+                                        <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Ma'lumoti"]</label>
+                                        <div class="col-sm-2">
+                                            <select id="educationid" data-bind='options: educationlist, optionsText: "DisplayName",optionsValue:"ID",
+                                                        optionsCaption: "@SharedLocalizer["Tanlang"]",selectPicker: {}' 
+                                                        data-live-search="true" class="" data-width="100%"> </select>
+                                        </div>
+                                        <label class="col-md-1 control-label" required style="font-size:13px">@SharedLocalizer["Akademik unvoni"]</label>
+                                        <div class="col-sm-2">
+                                            <select id="academictitleid" data-bind='options: academictitlelist, optionsText: "DisplayName",optionsValue:"ID", 
+                                                    optionsCaption: "@SharedLocalizer["Tanlang"]",selectPicker: {}' 
+                                            data-live-search="true" class="" data-width="100%"> </select>
+                                        </div>
                                     </div>
                                     <div class="form-group">
-                                        
+                                        <label class="col-md-2 control-label" required style="font-size:13px">@SharedLocalizer["Millati"]</label>
+                                        <div class="col-md-2">
+                                            <select id="nationid" data-bind='options: nationlist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: 
+                                                        "@SharedLocalizer["Tanlang"]",selectPicker: {}'
+                                                        data-live-search="true" class="" data-width="100%"> </select>
+                                        </div>
+                                        <label class="col-md-2 control-label" required style="font-size:13px">@SharedLocalizer["Fuqaroning bandligi"]</label>
+                                        <div class="col-sm-2">
+                                            <select id="citizenemploymentid" data-bind='options: citizenemploymentlist, optionsText: "DisplayName",optionsValue:"ID", 
+                                                        optionsCaption: "@SharedLocalizer["Tanlang"]",selectPicker: {}' 
+                                                                                                    data-live-search="true" class="" data-width="100%"> </select>
+                                        </div>
+                                        <label class="col-md-1 col-xs-6 control-label" required style="font-size:13px;text-align:right">@SharedLocalizer["Tug'ilgan sanasi"]</label>
+                                        <div class="col-sm-1">
+                                            <input id="todate" placeholder="@SharedLocalizer["dan"]" required class="form-control input-sm" data-provide="datepicker" data-date-format="dd.mm.yyyy" data-date-autoclose="true" data-date-language="ru" />
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <input id="date" placeholder="@SharedLocalizer["gacha"]" required class="form-control input-sm" data-provide="datepicker" data-date-format="dd.mm.yyyy" data-date-autoclose="true" data-date-language="ru" />
+                                        </div>
                                     </div>
                                     <br />
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label" required style="font-size:13px">@SharedLocalizer["Fuqaro Jinsi"]</label>
+                                        <div class="col-sm-2">
+                                            <select id="genderid" data-bind='options: genderlist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption:
+                                                                "@SharedLocalizer["Tanlang"]",selectPicker: {}' 
+                                                                data-live-search="true" class="" data-width="100%"> </select>
+                                        </div>
+                                        <label class="col-md-2 control-label" required style="font-size:13px">@SharedLocalizer["Oilaviy ahvoli"]</label>
+                                        <div class="col-sm-2">
+                                            <select id="marriedid" data-bind='options: marriedlist, optionsText: "DisplayName",optionsValue:"ID", optionsCaption: 
+                                                            "@SharedLocalizer["Tanlang"]",selectPicker: {}' 
+                                                            data-live-search="true" class="" data-width="100%"> </select>
+                                        </div>
+                                    </div>
                                     <div class="form-group">
                                         <div style="align-content:center">
                                             <button type="button" data-bind="click:closewindow"
                                                     class="btn btn-default btn-sm">
                                                 @SharedLocalizer["Chiqish"]
                                             </button>
-                                            <button type="button" data-bind="click:savedata"
+                                            <button type="button" data-bind="click:queryParamsemp1"
                                                     class="btn btn-primary btn-sm">
                                                 @SharedLocalizer["Saqlash"]
                                             </button>
@@ -187,13 +261,31 @@
                 }
             }
         }
-
+        var selt = this;
         function queryParams(params) {
             params.Name = $('#filtername').val();
+            params.RegionID = $('#regionid').val();
+            params.DistrictID = $('#districtid').val();
+            params.NeigID = $('#neigid').val();
+            params.IsConvicted = selt.IsConvicted;
+            params.IsLowIncome = selt.IsLowIncome;
+            params.IsDisabled = selt.IsDisabled;
+            params.AcademicDegreeID = $('#academicdegreeid').val();
+            params.EducationID = $('#educationid').val();
+            params.AcademicTitleID = $('#academictitleid').val();
+            params.NationID = $('#nationid').val();
+            params.CitizenEmploymentID = $('#citizenemploymentid').val();
+            params.ToDate = $('#todate').val();
+            params.Date = $('#date').val();
+            params.GenderID = $('#genderid').val();
+            params.MarriedID = $('#marriedid').val();
+
+            $("#editWindow").modal('hide');
             return params;
         }
 
         function queryParamsemp1(params) {
+            $("#editWindow").modal('hide');
             return params;
         }
         function queryParamsemp2(params) {
@@ -203,13 +295,18 @@
 
         var ItemModel = function () {
             var self = this;
-            self.citizen = {};
             self.regionlist = ko.mapping.fromJS([]);
             self.districtlist = ko.mapping.fromJS([]);
             self.neiglist = ko.mapping.fromJS([]);
+            self.nationlist = ko.mapping.fromJS([]);
+            self.educationlist = ko.mapping.fromJS([]);
+            self.genderlist = ko.mapping.fromJS([]);
+            self.academicdegreelist = ko.mapping.fromJS([]);
+            self.marriedlist = ko.mapping.fromJS([]);
+            self.academictitlelist = ko.mapping.fromJS([]);
+            self.citizenemploymentlist = ko.mapping.fromJS([]);
 
             self.loaddata = function (id) {
-
                 getajaxjson("@Url.Action("GetRegionList", "Helper")", function (data) {
                     ko.mapping.fromJS(data, self.regionlist);
                 });
@@ -219,50 +316,38 @@
                 getajaxjson("@Url.Action("GetNeighborhoodList", "Helper")" + "/?TypeRequest=1", function (data) {
                     ko.mapping.fromJS(data, self.neiglist);
                 });
+                getajaxjson("@Url.Action("GetNationList", "Helper")", function (data) {
+                    ko.mapping.fromJS(data, self.nationlist);
+                });
+                getajaxjson("@Url.Action("GetEducationList", "Helper")", function (data) {
+                    ko.mapping.fromJS(data, self.educationlist);
+                });
+                getajaxjson("@Url.Action("GetGenderList", "Helper")", function (data) {
+                    ko.mapping.fromJS(data, self.genderlist);
+                });
+                getajaxjson("@Url.Action("GetAcademicDegreeList", "Helper")", function (data) {
+                    ko.mapping.fromJS(data, self.academicdegreelist);
+                });
+                getajaxjson("@Url.Action("GetMarriedList", "Helper")", function (data) {
+                    ko.mapping.fromJS(data, self.marriedlist);
+                });
+                getajaxjson("@Url.Action("GetAcademicTitleList", "Helper")", function (data) {
+                    ko.mapping.fromJS(data, self.academictitlelist);
+                });
+                getajaxjson("@Url.Action("GetCitizenEmploymentList", "Helper")", function (data) {
+                    ko.mapping.fromJS(data, self.citizenemploymentlist);
+                });
             };
 
-            self.checkdata = function () {
-                if (self.family.StateID() === null || self.family.StateID() === undefined || self.family.StateID() === "") {
-                    alert("@SharedLocalizer["Holat belgilanmagan"]");
-                    return false;
-                }
-                if (self.family.Name() === null || self.family.Name() === undefined || self.family.Name() === "") {
-                    alert("@SharedLocalizer["Nomi belgilanmagan"]");
-                    return false;
-                }
-                return true;
-            };
             self.regionchange = function () {
-                getajaxjson("@Url.Action("GetDistrictList", "Helper")" + "/?RegionID=" + self.citizen.RegionID(), function (data) {
+                getajaxjson("@Url.Action("GetDistrictList", "Helper")" + "/?RegionID=" + $('#regionid').val(), function (data) {
                     ko.mapping.fromJS(data, self.districtlist);
                 });
             };
             self.changedistrict = function () {
-                getajaxjson("@Url.Action("GetNeighborhoodList", "Helper")" + "/?DistrictList" + self.citizen.NeighborhoodID(), function (data) {
+                getajaxjson("@Url.Action("GetDistrictNeighborhoodList", "Helper")" + "/?DistrictList=" + $('#districtid').val(), function (data) {
                     ko.mapping.fromJS(data, self.neiglist);
                 });
-            };
-            self.savedata = function () {
-                if (!self.checkdata()) {
-                    return;
-                }
-                var datatosave = ko.mapping.toJSON(self.family);
-                $.ajax({
-                    headers: {
-                        "Accept": "application/json",
-                        "Content-Type": "application/json; charset=utf-8"
-                    },
-                    type: "POST",
-                    url: "@Url.Action("Update", "Family")",
-                    data: datatosave
-                }).done(function (data, status, xhr) {
-                    alert("@SharedLocalizer["Muvoffaqyatli"]");
-                    $("#editWindow").modal('hide');
-                    $('#table').bootstrapTable('refresh');
-                })
-                    .fail(function (xhr, status, error) {
-                        alert(xhr.responseText + " Xatolik:" + error);
-                    });
             };
 
             self.closewindow = function () {
@@ -295,39 +380,7 @@
                 $('#table').bootstrapTable('refresh');
             });
 
-            $('#addRow').click(function () {
-                editRow(0);
-            });
-
-            $('#editRow').click(function () { editRow(selectedrow); });
-
-            var selectedRows = '';
-
-
             $('#table').on('dblclick', function () { editRow(); });
-
-            self.savedata = function () {
-                if (!self.checkdata()) {
-                    return;
-                }
-                var datatosave = ko.mapping.toJSON(self.family);
-                $.ajax({
-                    headers: {
-                        "Accept": "application/json",
-                        "Content-Type": "application/json; charset=utf-8"
-                    },
-                    type: "POST",
-                    url: "@Url.Action("Update", "Family")",
-                    data: datatosave
-                }).done(function (data, status, xhr) {
-                    alert("@SharedLocalizer["Muvoffaqyatli saqlandi"]");
-                    $("#editWindow").modal('hide');
-                    $('#table').bootstrapTable('refresh');
-                })
-                    .fail(function (xhr, status, error) {
-                        alert(xhr.responseText);
-                    });
-            };
 
             function initTable() {
                 $table.bootstrapTable({

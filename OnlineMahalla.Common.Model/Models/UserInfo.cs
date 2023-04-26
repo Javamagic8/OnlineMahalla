@@ -13,9 +13,12 @@ namespace OnlineMahalla.Common.Model.Models
         public int UserID { get; set; }
         public int OrgTypeID { get; set; }
         public int NeigID { get; set; }
+        public string RegionName { get; set; }
+        public string DistrictName { get; set; }
         public string UserName { get; set; }
         public List<string> Roles { get; set; }
         public string Date { get; set; }
         public bool IsChildLogOut { get; set; }
+        public string MonitoringName { get; set; }
     }
 }

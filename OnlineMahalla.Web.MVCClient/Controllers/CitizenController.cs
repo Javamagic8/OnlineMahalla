@@ -5,6 +5,7 @@ using OnlineMahalla.Common.Model.Interface;
 using OnlineMahalla.Common.Model.Models;
 using OnlineMahalla.Common.Model.Models.info;
 using OnlineMahalla.Web.MVCClient.Extentions;
+using OnlineMahalla.Web.MVCClient.Models;
 
 namespace OnlineMahalla.Web.MVCClient.Controllers
 {
@@ -40,6 +41,16 @@ namespace OnlineMahalla.Web.MVCClient.Controllers
             if (!_dataRepository.UserIsInRole("FuqarolarniKorish"))
                 return BadRequest("Fuqarolarni ko'rish roli yo'q");
             var data = _dataRepository.GeCitizenList(Name, Search, Sort, Order, Offset, Limit);
+            return new JsonResult(data);
+        }
+        [HttpGet]
+        public IActionResult GetMonitoringList(string? Name, int? RegionID, int? DistrictID, int? NeigID, bool? IsConvicted, bool? IsLowIncome, bool? IsDisabled,
+            int? AcademicDegreeID, int? EducationID, int? AcademicTitleID, int? NationID, int? CitizenEmploymentID, string ToDate, string Date, int? GenderID, int? MarriedID, string Search, string Sort, string Order, int Offset, int Limit)
+        {
+            if (!_dataRepository.UserIsInRole("MonitoringKorish"))
+                return BadRequest("Monitoring ko'rish roli yo'q");
+            var data = _dataRepository.GetMonitoringList( Name,  RegionID,  DistrictID, NeigID,  IsConvicted,  IsLowIncome, IsDisabled,
+             AcademicDegreeID, EducationID,  AcademicTitleID,  NationID,  CitizenEmploymentID,  ToDate,  Date,  GenderID,  MarriedID, Search,  Sort, Order,  Offset,  Limit);
             return new JsonResult(data);
         }
         public IActionResult Get(int? id)
